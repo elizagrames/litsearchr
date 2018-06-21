@@ -1,0 +1,133 @@
+---
+title: "Creating a Systematic Review Search Strategy with searchr"
+author: "Eliza Grames"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Creating a Systematic Review Search Strategy with searchr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# About searchr
+## Introduction
+## Acknowledgements
+
+## How to cite?
+
+## Comments, suggestions, bugs, and questions
+
+# Installation and dependencies
+
+# Workflow example: Preparing a search strategy for a systematic review
+
+In this example, we're using searchr to develop a complete search strategy for a systematic review of papers that could potentially answer the question: What <u>processes</u> lead to immediate Black-backed <u>Woodpecker</u> <u>occupancy</u> of <u>post-fire</u> systems and subsequent decline with time since fire? 
+
+## Step 1: Conduct a naive search
+
+Come up with a simple Boolean search that captures the articles most relevant to your question. This vignette uses the example of conducting a search to find papers about woodpecker occupancy of post-fire forests. 
+
+Results: 258
+(from BIOSIS Citation Index)
+You searched for: TOPIC: (( ("nest success" OR birth OR death OR mortalit* OR immigrat* OR emigrat* OR mechanis* OR caus*) AND (fire* OR burn*) AND (occup* OR occur*) AND (woodpecker OR bird OR sapsucker) ))
+Timespan: All years. Indexes: BCI.
+
+Results: 177
+(from Zoological Record)
+You searched for: TOPIC: (( ("nest success" OR birth OR death OR mortalit* OR immigrat* OR emigrat* OR mechanis* OR caus*) AND (fire* OR burn*) AND (occup* OR occur*) AND (woodpecker OR bird OR sapsucker) ))
+Timespan: All years. Indexes: Zoological Record.
+
+Results: 203
+(from Scopus)
+You searched for: TITLE-ABS-KEY ( ( ( "nest success"  OR  birth  OR  death  OR  mortalit*  OR  immigrat*  OR  emigrat*  OR  mechanis*  OR  caus* )  AND  ( fire*  OR  burn* )  AND  ( occup*  OR  occur* )  AND  ( woodpecker  OR  bird  OR  sapsucker ) ) ) 
+
+
+Export full records to .csv files. 
+
+## Step 2: Prepare the dataset and graphs
+
+```{r}
+BIOSIS <- import_naive("BBWO-BIOSIS-062118.csv", database = "BIOSIS")
+ZooRec <- import_naive("BBWO-ZooRec-062118.csv", database = "ZooRec")
+Scopus <- import_naive("BBWO-Scopus-062118.csv", database = "Scopus")
+
+BBWO_data <- rbind(BIOSIS, ZooRec, Scopus) 
+
+# remove duplicates and clean punctuation in keywords
+BBWO_data <- clean_dataset(BBWO_data)
+
+unique_keywords <- get_unique(BBWO_data, singular=TRUE)
+
+# if the occurrence dataset is going to be made with only keywords, skip these steps
+# creating subjects combines the title, abstract, keywords, and/or modeling procedures 
+# these subjects are then scraped to find potential untagged keywords 
+BBWO_data <- create_subjects(BBWO_data, keys=TRUE, titles=TRUE, abstracts=TRUE, models=FALSE)
+BBWO_data <- get_descriptors(BBWO_data, unique_keywords, stemming=FALSE, exact=FALSE)
+
+
+```
+
+```{r}
+occurrence_dataset <- make_dataset(BBWO_data, keys=unique_keywords, onlykeywords = FALSE)
+
+trimmed_dataset <- trim_dataset(occurrence_dataset, studies=1)
+
+BBWO_graph <- make_graph(trimmed_dataset, printplot=TRUE)
+```
+
+## Step 3: Select important nodes and get search terms
+
+```{r}
+
+# check the form of the unique node strengths before choosing a method and other parameters
+hist(strength(BBWO_graph), 100)
+plot(sort(strength(BBWO_graph)), ylab="Node strengths")
+
+# this curve looks like a good candidate to fit a second-degree polynomial spline to with three knots
+# but I'll also check the cumulative cutoff to see how similar they are
+cutoffs_spline <- find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 3, diagnostics = TRUE)
+cutoffs_cumulative <- find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .8, diagnostics = TRUE)
+
+# diagnostics on the spline plot look good with residuals fairly close to 0 near the beginning
+# spline finds 55 as the cutoff, cumulative suggests 60, which are pretty close
+
+reduced_graph <- reduce_graph(BBWO_graph, cutoff_strength = cutoffs_spline[1])
+
+search_terms <- get_keywords(reduced_graph, savekeywords = TRUE, makewordle = TRUE)
+
+```
+
+## Step 4: Group terms into concepts
+
+## Step 5: Write Boolean searches
+
+
+This step has to be done manually. ***ELIZA COME BACK AND DO THIS SECTION PROPERLY***
+
+Make sure to add in which databases these searches work for. 
+
+```{r}
+
+fire_group <- c("fire", "burn", "post-fire", "wildfire")
+bird_group <- c("bird", "woodpecker", "avifauna")
+forest_group <- c("forest", "snag", "basal area", "conifer")
+occup_group <- c("occupancy", "occurrence", "density", "abundance")
+my_search_strategy <- list(fire_group, bird_group, forest_group, occup_group)
+
+write_search(groupdata = my_search_strategy, exactphrase = "No")
+
+write_stemmed_search(groupdata = my_search_strategy)
+
+```
+
+
+
+# Workflow example: Generating a keyword co-occurrence network for analysis
