@@ -26,3 +26,4 @@ Suggests: wordcloud,
     rmarkdown
 VignetteBuilder: knitr
 LinkingTo: Rcpp
+
