@@ -1,1 +1,0 @@
-( ( ( ogieñ ) OR (paliæ siê) OR (po po¿arze) OR (po¿ar) ) AND ( ( ptak ) OR (dziêcio³) OR (avifauna) ) AND ( ( las ) OR (szkopu³) OR (powierzchnia podstawowa) OR (drzewo iglaste) ) AND ( ( okupacja ) OR (wystêpowanie) OR (gêsto¶æ) OR (obfito¶æ) ) )

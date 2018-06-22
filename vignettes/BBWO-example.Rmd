@@ -93,14 +93,14 @@ In order to identify the most connected and commonly used keywords in the field,
 
 Once the occurrence dataset is created, it helps to trim it down to remove keywords that only appear in one or two studies. This reduces the amount of time required to process the dataset in future steps. 
 
-The trimmed dataset is then passed to make_graph() which creates an adjaceny matrix and then uses the package igraph to generate a network from the matrix. When printplot=TRUE, the function saves a high resolution .png file of the original network (without labels) to your current working directory. 
+The trimmed dataset is then passed to make_network() which creates an adjaceny matrix and then uses the package igraph to generate a network from the matrix. When printplot=TRUE, the function saves a high resolution .png file of the original network (without labels) to your current working directory. 
 
 ```{r}
 occurrence_dataset <- make_dataset(BBWO_data, keys=unique_keywords, onlykeywords = FALSE)
 
 trimmed_dataset <- trim_dataset(occurrence_dataset, studies=2)
 
-BBWO_graph <- make_graph(trimmed_dataset, printplot=TRUE)
+BBWO_graph <- make_network(trimmed_dataset, printplot=TRUE)
 ```
 
 ## Step 3: Select important nodes and get search terms

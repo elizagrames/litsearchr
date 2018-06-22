@@ -1,1 +1,0 @@
-( ( ( Feu ) OR (brûler) OR (post-incendie) OR (incendies) ) AND ( ( oiseau ) OR (Pivert) OR (avifaune) ) AND ( ( forêt ) OR (accroc) OR (zone basale) OR (conifère) ) AND ( ( occupation ) OR (occurrence) OR (densité) OR (abondance) ) )

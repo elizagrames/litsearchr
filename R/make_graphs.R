@@ -2,7 +2,7 @@
 #' @description Converts the presence-absence dataset to a keyword co-occurrence network stored as an \code{igraph} object.
 #' @param trimmed_data The presence-absence dataset that has been trimmed down to only include common keywords.
 #' @return An \code{igraph} graph object.
-make_graph <- function(trimmed_data, printplot=TRUE){
+make_network <- function(trimmed_data, printplot=TRUE){
   data_mat <- as.matrix(trimmed_data)
   co_occ <- t(data_mat) %*% data_mat
   graph <- igraph::graph.adjacency(co_occ,

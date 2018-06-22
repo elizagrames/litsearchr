@@ -1,1 +1,0 @@
-( ( ( fuego ) OR (quemar) OR (post fuego) OR (fuego fatuo) ) AND ( ( pájaro ) OR (pájaro carpintero) OR (avifauna) ) AND ( ( bosque ) OR (engancharse) OR (área basal) OR (conífera) ) AND ( ( ocupación ) OR (ocurrencia) OR (densidad) OR (abundancia) ) )

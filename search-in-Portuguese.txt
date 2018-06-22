@@ -1,1 +1,0 @@
-( ( ( fogo ) OR (queimar) OR (pós-fogo) OR (incêndios) ) AND ( ( pássaro ) OR (pica-pau) OR (avifauna) ) AND ( ( floresta ) OR (empecilho) OR (área basal) OR (conífera) ) AND ( ( ocupação ) OR (ocorrência) OR (densidade) OR (abundância) ) )

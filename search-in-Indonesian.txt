@@ -1,1 +1,0 @@
-( ( ( api ) OR (membakar) OR (post-fire) OR (kebakaran) ) AND ( ( burung ) OR (burung pelatuk) OR (dunia burung) ) AND ( ( hutan ) OR (merobek) OR (daerah basal) OR (konifer) ) AND ( ( hunian ) OR (kejadian) OR (massa jenis) OR (kelimpahan) ) )
