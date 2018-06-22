@@ -29,12 +29,15 @@ knitr::opts_chunk$set(
 
 # Workflow example: Preparing a search strategy for a systematic review
 
-In this example, we're using searchr to develop a complete search strategy for a systematic review of papers that could potentially answer the question: What <u>processes</u> lead to immediate Black-backed <u>Woodpecker</u> <u>occupancy</u> of <u>post-fire</u> systems and subsequent decline with time since fire? 
+In this example, we're using searchr to develop a complete search strategy for a systematic review of papers that could potentially answer the question: What <u>processes</u> lead to immediate Black-backed <u>Woodpecker</u> <u>occupancy</u> of <u>post-fire</u> systems and subsequent decline with time since fire? The goal of the example is to start with a basic set of search terms, identify additional relevant terms that are used in the literature but that aren't in our naive search, and write full Boolean searches in multiple languages that can be used to conduct a systematic review. 
 
 ## Step 1: Conduct a naive search
 
-Come up with a simple Boolean search that captures the articles most relevant to your question. This vignette uses the example of conducting a search to find papers about woodpecker occupancy of post-fire forests. 
+We have four main parts to our question: processes, woodpeckers, occupancy, and fire. These four concepts must be present in an article for it to be relevant, so our naive search should return articles that include all these concepts. Because we know something about Black-backed Woodpecker (BBWO) ecology, we know that principles of population ecology are likely to be important in determining their occupancy of post-fire systems and should include those in the process group. The other concept groups are the most relevant synonyms for those concepts that we already know appear in the literature. 
 
+We run our naive search in three databases: BIOSIS, Zoological Record, and Web of Science. Other databases could also be used, but the import functions are set up to work with these three since they're commonly used in biology. Search results should be exported as .csv files (for BIOSIS and Zoological Record, tab-delimited files will need to be converted to .csv). None of the columns need to be removed; default headers should be left alone. For BIOSIS and Zoological Record, we export the full record; in Scopus the citation information and abstract and keywords should be exported. 
+
+Date searches were conducted: 6/21/18. 
 Results: 258
 (from BIOSIS Citation Index)
 You searched for: TOPIC: (( ("nest success" OR birth OR death OR mortalit* OR immigrat* OR emigrat* OR mechanis* OR caus*) AND (fire* OR burn*) AND (occup* OR occur*) AND (woodpecker OR bird OR sapsucker) ))
@@ -49,10 +52,9 @@ Results: 203
 (from Scopus)
 You searched for: TITLE-ABS-KEY ( ( ( "nest success"  OR  birth  OR  death  OR  mortalit*  OR  immigrat*  OR  emigrat*  OR  mechanis*  OR  caus* )  AND  ( fire*  OR  burn* )  AND  ( occup*  OR  occur* )  AND  ( woodpecker  OR  bird  OR  sapsucker ) ) ) 
 
-
-Export full records to .csv files. 
-
 ## Step 2: Prepare the dataset and graphs
+
+Import datasets using import_naive(). This function standardizes their format so that you can use rbind to consolidate them into a single dataset. 
 
 ```{r}
 BIOSIS <- import_naive("BBWO-BIOSIS-062118.csv", database = "BIOSIS")
@@ -61,44 +63,77 @@ Scopus <- import_naive("BBWO-Scopus-062118.csv", database = "Scopus")
 
 BBWO_data <- rbind(BIOSIS, ZooRec, Scopus) 
 
-# remove duplicates and clean punctuation in keywords
-BBWO_data <- clean_dataset(BBWO_data)
-
-unique_keywords <- get_unique(BBWO_data, singular=TRUE)
-
-# if the occurrence dataset is going to be made with only keywords, skip these steps
-# creating subjects combines the title, abstract, keywords, and/or modeling procedures 
-# these subjects are then scraped to find potential untagged keywords 
-BBWO_data <- create_subjects(BBWO_data, keys=TRUE, titles=TRUE, abstracts=TRUE, models=FALSE)
-BBWO_data <- get_descriptors(BBWO_data, unique_keywords, stemming=FALSE, exact=FALSE)
-
-
 ```
+  
+Because the three databases we searched overlap in which journals and years they index, duplicate hits should be removed to avoid double-counting keywords from the same article. The clean_dataset() function uses the first 40 characters of article titles to determine which studies are duplicates. It's not perfect, but is the only unique aspect of the database records that is consistently exported. 
+
+```{r}
+BBWO_data <- clean_dataset(BBWO_data)
+```
+
+Our final list of keywords should only contain unique keywords, not duplicates, so we use get_unique() to pare down the list of keywords to consider. The default of singular=TRUE makes it so that plurals aren't considered a separate keyword (e.g. "animal" and "animals" are treated as the same word if singular=TRUE).
+
+```{r}
+unique_keywords <- get_unique(BBWO_data, singular=TRUE)
+```
+
+<b>Optional: Use title, abstract, and keywords to generate new keywords</b>
+
+Often, the title and abstract of an article are more informative than the provided keywords. To include these in the potential keywords, first use create_subjects() and then get_descriptors(). The first line of code concatenates keywords, titles, abstracts, and, if desired, modeling approach into a single block of text which is searched and turned into descriptors (to distinguise them from keywords) by the second line of code. Only an existing keyword (from any of the articles returned by the naive search) will be flagged, which prevents words like "about" from being included as a potential keyword. If there are search terms that you think should be considered but aren't in the list of unique keywords, you can use append() to add them to unique_keywords and then they will appear in the descriptors. 
+
+If you are only interested in considering keywords, not titles and abstracts, skip these lines and choose the option "onlykeywords = TRUE" in the next block of code. 
+
+```{r}
+BBWO_data <- create_subjects(BBWO_data, keys=TRUE, titles=TRUE, abstracts=TRUE, models=FALSE)
+
+BBWO_data <- get_descriptors(BBWO_data, unique_keywords, stemming=FALSE, exact=FALSE)
+```
+
+In order to identify the most connected and commonly used keywords in the field, we need to make a keyword co-occurrence network. To do this, first we need to know which articles include which keywords. The function make_dataset() takes our dataset and makes an occurrence dataset filled with 0 (for absence) or 1 (for occurrence) for each keyword in each study. The default settings search the descriptors, but changing onlykeywords to TRUE only considers the original keywords associated with each article. 
+
+Once the occurrence dataset is created, it helps to trim it down to remove keywords that only appear in one or two studies. This reduces the amount of time required to process the dataset in future steps. 
+
+The trimmed dataset is then passed to make_graph() which creates an adjaceny matrix and then uses the package igraph to generate a network from the matrix. When printplot=TRUE, the function saves a high resolution .png file of the original network (without labels) to your current working directory. 
 
 ```{r}
 occurrence_dataset <- make_dataset(BBWO_data, keys=unique_keywords, onlykeywords = FALSE)
 
-trimmed_dataset <- trim_dataset(occurrence_dataset, studies=1)
+trimmed_dataset <- trim_dataset(occurrence_dataset, studies=2)
 
 BBWO_graph <- make_graph(trimmed_dataset, printplot=TRUE)
 ```
 
 ## Step 3: Select important nodes and get search terms
 
+Since we have a weighted network, node importance is judged based on node strength. Stronger nodes are more important in the field and co-occur more often with other strong nodes. Weak nodes occur in the field less frequently and can be disregarded as good search terms. Essentially, identifying strong nodes is a way of generating search terms similar to Medical Subject Headings (MeSH) by looking at what is currently used in the field rather than having pre-determined headings.  
+
+There are two ways to identify important nodes in the searchr package: fitting a spline model to the node strengths to select tipping points or finding the minimum number of nodes to capture a large percent (e.g. 80%) of the total strength of the network. Which way you decide to identify important nodes depends both on your the node strengths of your graph are distributed and your personal preference. In this example, I will consider both.
+
+The first thing to do is look at the distribution of node strengths. From the density and histogram plots, it looks like this network has a lot of fairly weak nodes with a long tail. We're interested in the long tail. There looks like a pretty sharp cutoff, so a spline model is probably going to be a good way to identify where to place the cut off for importance. The cumulative node strength approach is more appropriate when there aren't clear breaks in the data.
+
+By looking at the plot of ranked node strengths, we should use a second-degree polynomial for the spline and should probably allow three knots: one around rank 400 where the curve starts to accelerate, one around rank 500 where the steepness changes more drastically, and one around rank 525 where the curve starts to asymptote. 
+
 ```{r}
+plot(density(igraph::strength(BBWO_graph)), main="Density of node strengths")
+hist(igraph::strength(BBWO_graph), 100, main="Histogram of node strengths", xlab="Node strength")
+plot(sort(igraph::strength(BBWO_graph)), ylab="Node strength", main="Ranked node strengths", xlab="Rank")
+```
 
-# check the form of the unique node strengths before choosing a method and other parameters
-hist(strength(BBWO_graph), 100)
-plot(sort(strength(BBWO_graph)), ylab="Node strengths")
 
-# this curve looks like a good candidate to fit a second-degree polynomial spline to with three knots
-# but I'll also check the cumulative cutoff to see how similar they are
+First, we run the spline method and save those cutoff points. Each knot is a potential cutoff point, though in this case we plan to use the lowest knot. For more complex node strength curves a different knot might be appropriate. To save a high-resolution .png of the residuals from the spline model fit and the model fit itself, set diagnostics to TRUE and the files will be saved in your working directory. The residuals should resemble a funnel plot centered on zero; large residuals with an increase in both rank and strength are expected. 
+
+For the cumulative method, the only decision is what percent of the total network node strength you want to capture. In this case, we left it at the default of 80%. Diagnostics for the cumulative curve are not actually diagnostic and simply show the cutoff point in terms of rank and strength. 
+
+```{r}
 cutoffs_spline <- find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 3, diagnostics = TRUE)
+
 cutoffs_cumulative <- find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .8, diagnostics = TRUE)
+```
 
-# diagnostics on the spline plot look good with residuals fairly close to 0 near the beginning
-# spline finds 55 as the cutoff, cumulative suggests 60, which are pretty close
 
+For the BBWO search, we're going to use the first knot from the spline fit, which is 189 This is slightly more conservative than the cumulative fit which suggested a cutoff of 147. We pass the cutoff strength to the reduce_graph() function which creates a new igraph object that only contains nodes with a minimum strength (in the original network) of at least 189. From the reduced graph, we use get_keywords() to save the keywords to a plain text file and also generate a wordcloud. 
+
+```{r}
 reduced_graph <- reduce_graph(BBWO_graph, cutoff_strength = cutoffs_spline[1])
 
 search_terms <- get_keywords(reduced_graph, savekeywords = TRUE, makewordle = TRUE)
@@ -107,27 +142,117 @@ search_terms <- get_keywords(reduced_graph, savekeywords = TRUE, makewordle = TR
 
 ## Step 4: Group terms into concepts
 
-## Step 5: Write Boolean searches
-
-
-This step has to be done manually. ***ELIZA COME BACK AND DO THIS SECTION PROPERLY***
-
-Make sure to add in which databases these searches work for. 
+We're still only interested in search terms that fall under one of our concept categories: processes, woodpecker, occupancy, fire. From the list of potential search terms returned, we manually go through and select which ones belong in a concept category and add it as a character vector. Any of the original search terms not included in the keywords from the network (e.g. woodpecker) should also be added back in. 
 
 ```{r}
+search_terms
+process_group <- c("behaviour",
+                   "breeding",
+                   "breeding habitat",
+                   "clutch size",
+                   "diet",
+                   "dispersal",
+                   "establishment",
+                   "fecundity",
+                   "food",
+                   "hatching",
+                   "migration",
+                   "mortality",
+                   "nest failure",
+                   "nest predation",
+                   "nest predator",
+                   "nest success",
+                   "nest survival",
+                   "nesting",
+                   "nesting habitat",
+                   "predation",
+                   "predator",           
+                   "prey",
+                   "recruitment",
+                   "reproduction",
+                   "reproductive behaviour",
+                   "reproductive rate",
+                   "reproductive success",
+                   "survival",
+                   "survival rate",
+                   "birth",
+                   "death",
+                   "mortality", 
+                   "immigration", 
+                   "emigration", 
+                   "mechanism", 
+                   "cause")
 
-fire_group <- c("fire", "burn", "post-fire", "wildfire")
-bird_group <- c("bird", "woodpecker", "avifauna")
-forest_group <- c("forest", "snag", "basal area", "conifer")
-occup_group <- c("occupancy", "occurrence", "density", "abundance")
-my_search_strategy <- list(fire_group, bird_group, forest_group, occup_group)
+fire_group <- c("anthropogenic disturbance",
+                "burn",
+                "burned forest",
+                "disturbance",
+                "disturbance regime",
+                "fire",
+                "fire regime",
+                "fire suppression",
+                "forest fire",
+                "prescribed fire",
+                "snag",
+                "wildfire")
 
-write_search(groupdata = my_search_strategy, exactphrase = "No")
+bird_group <- c("bird",
+                "breeding bird",
+                "woodpecker",
+                "sapsucker")
 
-write_stemmed_search(groupdata = my_search_strategy)
+occupancy_group <- c("abundance",
+                     "habitat suitability",
+                     "habitat use",
+                     "occurrence",
+                     "population decline",
+                     "population dynamic",
+                     "species abundance",
+                     "species composition",
+                     "species distribution",
+                     "species habitat",
+                     "occupancy")
+
+my_search_terms <- list(process_group, fire_group, bird_group, occupancy_group)
 
 ```
 
+## Step 5: Write Boolean searches
 
+The functions to write searches write simple Boolean searches that work in 11 tested databases:
 
-# Workflow example: Generating a keyword co-occurrence network for analysis
+<ul><li>BIOSIS Citation Index</li><li>
+Zoological Record</li><li>
+Scopus</li><li>
+CAB Direct</li><li>
+WorldCat</li><li>
+Proquest Dissertations and Theses</li><li>
+OAlster</li><li>
+Open Access Theses and Dissertations</li><li>
+Science.gov</li><li>
+OpenThesis</li><li>
+NDLTD Global ETD Search</li></ul>
+
+Some databases do not work with truncation/stemming inside of quotes for an exact phrase. Some databases also have length limits on searches (which is why databases like JSTOR are not supported). 
+
+###***ADD A TABLE LATER OF WHAT EACH SEARCH SITE DOES AND DOES NOT SUPPORT***
+
+To write foreign language searches, specify the list of your concept groups, the key topics for journal languages, and whether or not terms should be included in quotes to find exact phrases. The translation is done with the Google Translate API using the translate package. 
+
+To visually see which languages are used in the discipline, we can use the language_graphs() function. 
+
+If you want to specify the languages to write the search in instead of using the choose_languages() function, simply replace it with a character vector of languages. Available languages can be viewed with available_languages(). 
+
+###***THIS IS PROBABLY MY FAULT FOR DELETING MY CJK PACKAGES TO SAVE SPACE BUT I CAN'T WRITE ASIAN LANGUAGES SO FAR***
+
+To write English language searches, set languages to "English". Writing stemmed searches is currently only supported in English because of some issues I haven't quite worked out.
+
+```{r}
+
+write_search(groupdata = my_search_terms, languages = choose_languages(key_topics = c("biology", "conservation", "ecology", "forestry"))[1:10, 1], exactphrase = FALSE)
+
+language_graphs(lang_data=choose_languages(key_topics = c("biology", "conservation", "ecology", "forestry")), no_return = 20, key_topics = c("biology", "conservation", "ecology", "forestry"))
+  
+write_stemmed_search(groupdata = my_search_terms)
+
+```

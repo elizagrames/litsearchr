@@ -24,7 +24,7 @@ clean_dataset <- function(df, chars=40){
 #' @param df The dataset of titles, abstracts, and keywords.
 #' @param singular If \code{TRUE}, plural keywords are made singular (e.g. animals and animal count as the same word).
 #' @return A vector of unique keyword from all studies in dataset.
-get_unique <- function(df, singular=TRUE){
+get_unique <- function(df, singular=TRUE, minlength=4, maxlength=100){
   all_keywords <- c()
   for (i in 1:length(df$key)){
     all_keywords <- paste(all_keywords, ";", as.character(df$key[i]), sep="")
@@ -43,6 +43,12 @@ get_unique <- function(df, singular=TRUE){
   if (singular==TRUE) {
     require(pluralize, quietly=TRUE)
     unique_keywords <- unique(pluralize::singularize(unique_keywords))}
+
+  keyword_characters <- nchar(unique_keywords)
+  unique_keywords <- unique_keywords[which(keyword_characters >= minlength)]
+
+  keyword_characters <- nchar(unique_keywords)
+  unique_keywords <- unique_keywords[which(keyword_characters <= maxlength)]
 
   return(unique_keywords)
 }
@@ -82,17 +88,21 @@ get_descriptors <- function(df, keywords, stemming=FALSE, minlength=5, exact=FAL
     truncated_keys <- gsub("\\)", truncated_keys, replacement="")
     truncated_keys <- gsub("\\(", truncated_keys, replacement="")
     truncated_chars <- nchar(truncated_keys)
-    truncated_keys <- truncated_keys[which(truncated_chars >= min.length)]
-    returned_keys <- keywords[which(trunc.chars >= min.length)]
+    actual_keys <- c()
+
+    for (i in 1:length(truncated_chars)){
+      if (truncated_chars[i] < minlength){actual_keys[i] <- keywords[i]}
+      if (truncated_chars[i] >= minlength){actual_keys[i] <- truncated_keys[i]}
+    }
 
     for (i in 1:length(df$id)){
-      detect <- stringr::str_detect(df$subj[i], truncated_keys)
-      descriptors <- returned_keys[which(detect==TRUE)]
+      detect <- stringr::str_detect(df$subj[i], actual_keys)
+      descriptors <- actual_keys[which(detect==TRUE)]
       descriptors <- stringr::str_trim(descriptors)
       descriptors <- unique(descriptors)
       new_keys <- descriptors[1]
-      for (i in 2:length(descriptors)){
-        new_keys <- paste(new_keys, descriptors[i], sep=";")
+      for (j in 2:length(descriptors)){
+        new_keys <- paste(new_keys, descriptors[j], sep=";")
       }
       df$desc[i] <- stringr::str_trim(new_keys)
     }
@@ -105,8 +115,8 @@ get_descriptors <- function(df, keywords, stemming=FALSE, minlength=5, exact=FAL
       descriptors <- stringr::str_trim(descriptors)
       descriptors <- unique(descriptors)
       new_keys <- paste(df$key[i], descriptors[1])
-      for (i in 2:length(descriptors)){
-        new_keys <- paste(new_keys, descriptors[i], sep=";")
+      for (j in 2:length(descriptors)){
+        new_keys <- paste(new_keys, descriptors[j], sep=";")
       }
       df$desc[i] <- stringr::str_trim(new_keys)
     }

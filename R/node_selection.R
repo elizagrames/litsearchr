@@ -3,9 +3,8 @@
 #' @param graph An \code{igraph} graph object.
 #' @return Dataset of unique node strengths and in ranked order.
 make_strengths <- function(graph){
-  NS <- igraph::strength(graph)
-  unique_NS <- sort((NS))
-  strength_data <- cbind(seq(1, length(unique_NS)), unique_NS)
+  NS <- sort(igraph::strength(graph))
+  strength_data <- cbind(seq(1, length(NS)), NS)
   colnames(strength_data) <- c("rank", "strength")
   strength_data <- as.data.frame(strength_data)
   return(strength_data)
@@ -66,9 +65,11 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
 
       png("spline-model-residuals.png", width = 8, height = 8, units = 'in', res = 400)
       par(mfrow=c(1,2))
-      plot(strength_data$rank, spline_fit$resid, xlab="Rank", ylab="Residual")
+      plot(strength_data$rank, spline_fit$resid, xlab="Rank", ylab="Residual", main="Residuals along the x-axis (rank)")
       abline(h=0, col="red")
-      plot(strength_data$strength, spline_fit$resid, xlab="Strength", ylab="Residual")
+      abline(lm(spline_fit$resid ~ strength_data$rank), col="blue", lty=2)
+      plot(strength_data$strength, spline_fit$resid, xlab="Strength", ylab="Residual", main="Residuals along the y-axis (strength)")
+      abline(lm(spline_fit$resid ~ strength_data$strength), col="blue", lty=2)
       abline(h=0, col="red")
       dev.off()
     }
@@ -81,8 +82,15 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
 
     if (diagnostics == TRUE){
       png("cumulative-node-strength.png", width = 8, height = 8, units = 'in', res = 400)
-      plot(cumsum(sort(strength(graph))), type="l", ylab="Cumulative node strength")
+      plot(cumsum(sort(strength(graph))), type="l", ylab="Cumulative node strength", main="Cumulative sum of ranked node strength")
       abline(v=cut_point, col="blue")
+      legend("topleft", legend = c("Point at which cumulative percent is to the right of the line"), lwd=2, col="blue")
+      dev.off()
+
+      png("cumulative-node-cutoff.png", width = 8, height = 8, units = 'in', res = 400)
+      hist(strength(graph), 100, main="Histogram of node strengths", xlab="Node strength")
+      abline(v=cut_strengths, col="blue")
+      legend("topright", legend = c("Node strength cutoff"), lwd=2, col="blue")
       dev.off()
     }
   }

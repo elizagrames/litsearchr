@@ -1,123 +1,102 @@
-habitat feature
-community structure
+grazing
 population dynamic
-habitat quality
-population change
-military training
+climate change
+species distribution
 species richness
 fecundity
 wildfire
 reproductive rate
 species abundance
+species habitat
 forest management
 predation
 forest fire
-biodiversity conservation
-habitat patche
+anthropogenic disturbance
+clutch size
 reproductive success
-habitat disturbance
-habitat patch
 snag
 fire
 habitat loss
 nest success
+prescribed fire
 species composition
-food source
+nest failure
 nest survival
 management action
+habitat suitability
 urbanization
 management practice
-salvage logging
-population model
-water level
-biomass removal
+timber harvest
 hatching
 nesting
 conservation status
-habitat preference
 biodiversity
-habitat destruction
-management strategy
-soil condition
-oil spill
+burned forest
 ship
-food supply
+bird community
 grassland
-ecosystem service
-species composition change
+nesting habitat
 burn
 breeding habitat
 survival rate
+nest predation
 population decline
 forest
 habitat
 fire regime
-aquatic ecosystem
 mining
 biota
 conservation
-heterogeneous landscape
 breeding
 weather
 dispersal
 breeding bird
 food
-habitat fragmentation
-landscape heterogeneity
 fire suppression
 rainfall
 vegetation
 spatial scale
 landscape
 abundance
-facilitator
 recruitment
 survival
 drought
 flood
+marsh
 temperature
 biomass
 nest predator
 land management
-anthropogenic change
-edge effect
-forest fragmentation
 agriculture
-overgrazing
-wilderness area
 occurrence
 mature
 analysis
-range expansion
-forest ecosystem
 mortality
 pollution
+adaptation
 disturbance
 expansion
 migration
 ecology
 establishment
 logging
+habitat use
+demography
 economic
 ecosystem
 farming
 history
 land use
-legislation
-resource management
-water quality
-wildlife management
 infection
 pathogen
 treatment
 introduction
 understory
 moisture
-seasonality
-ecosystem structure
 fossil
 conservation measure
 reproduction
+reproductive behaviour
 abiotic factor
 physical factor
 land zone
@@ -126,8 +105,6 @@ eurasia
 europe
 animals and man
 disturbance by man
-documentation
-publication
 nutrition
 diet
 prey
@@ -137,29 +114,15 @@ behaviour
 predator
 australasian region
 australasia
-australia
 technique
 nearctic region
 north america
-usa
 terrestrial habitat
-marine zone
 development
-habitat utilization
-damage to vegetation
 host
-feeding behaviour
-atlantic ocean
-canada
 asia
-breeding site
 monitoring
-drying
-hawk
-owl
 raptor
-ammunition
-dog
 hunting
 review
 animal
@@ -172,25 +135,13 @@ migratory
 parasite
 lead
 wildlife
-gi
 human
-topography
 cause
 climate
+probability
 protected area
 stakeholder
 tourism
 alga
-toxin
 settlement
-soil erosion
-clearcut
 disturbance regime
-landscape configuration
-soil nutrient
-soil organic matter
-et
-particle
-water bird
-understorey
-poisoning

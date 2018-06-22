@@ -4,7 +4,7 @@
 \alias{get_unique}
 \title{Find unique keywords}
 \usage{
-get_unique(df, singular = TRUE)
+get_unique(df, singular = TRUE, minlength = 4, maxlength = 100)
 }
 \arguments{
 \item{df}{The dataset of titles, abstracts, and keywords.}

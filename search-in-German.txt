@@ -1,0 +1,1 @@
+( ( ( Feuer ) OR (brennen) OR (nach dem Feuer) OR (Lauffeuer) ) AND ( ( Vogel ) OR (Specht) OR (Avifauna) ) AND ( ( Wald ) OR (Haken) OR (Grundfläche) OR (Nadelbaum) ) AND ( ( Belegung ) OR (Auftreten) OR (Dichte) OR (Fülle) ) )

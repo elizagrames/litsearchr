@@ -19,8 +19,10 @@ Imports: dplyr,
     igraph,
     splines2,
     pluralize,
-    translate
+    translate,
+    Rcpp
 Suggests: wordcloud,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+LinkingTo: Rcpp
