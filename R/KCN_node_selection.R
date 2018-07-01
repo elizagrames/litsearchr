@@ -170,7 +170,12 @@ reduce_graph <- function(graph, cutoff_strength, printplot=TRUE){
 }
 
 
-#'
+#' Create keyword co-occurrence network with only ngrams
+#' @description Reduces the full keyword co-occurrence network to only include nodes with 2+ words or only unigrams. This is useful for separating commonly used words from distinct phrases.
+#' @param graph an igraph object
+#' @param min_ngrams a number; the minimum number of words to consider an ngram
+#' @param unigrams if TRUE, returns a subset of the network where each node is a unigram
+#' @return an igraph object
 make_ngram_graph <- function(graph, min_ngrams=2, unigrams=FALSE){
   require(igraph, quietly=TRUE)
   if (unigrams==FALSE){ngrams <- select_ngrams(graph, min_ngrams)}
