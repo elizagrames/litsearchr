@@ -33,7 +33,7 @@ In this example, we're using searchr to develop a complete search strategy for a
 
 ## Step 1: Conduct a naive search
 
-We have four main parts to our question: processes, woodpeckers, occupancy, and fire. These four concepts must be present in an article for it to be relevant, so our naive search should return articles that include all these concepts. Because we know something about Black-backed Woodpecker (BBWO) ecology, we know that principles of population ecology are likely to be important in determining their occupancy of post-fire systems and should include those in the process group. The other concept groups are the most relevant synonyms for those concepts that we already know appear in the literature. 
+We have four main parts to our question: processes, woodpeckers, occupancy, and fire. These four concepts must be present in an article for it to be relevant, so our naive search should return articles that include all these concepts. Because we know something about Black-backed Woodpecker (BBWO) ecology, we know that principles of population ecology are likely to be important in determining their occupancy of post-fire systems and should include those in the process group. The other concept groups are the most relevant synonyms for those concepts that we already know appear in the literature.
 
 We run our naive search in three databases: BIOSIS, Zoological Record, and Web of Science. Other databases could also be used, but the import functions are set up to work with these three since they're commonly used in biology. Search results should be exported as .csv files (for BIOSIS and Zoological Record, tab-delimited files will need to be converted to .csv). None of the columns need to be removed; default headers should be left alone. For BIOSIS and Zoological Record, we export the full record; in Scopus the citation information and abstract and keywords should be exported. 
 
@@ -86,7 +86,8 @@ If you are only interested in considering keywords, not titles and abstracts, sk
 ```{r}
 BBWO_data <- create_subjects(BBWO_data, keys=TRUE, titles=TRUE, abstracts=TRUE, models=FALSE)
 
-BBWO_data <- get_descriptors(BBWO_data, unique_keywords, stemming=FALSE, exact=FALSE)
+BBWO_data <- get_descriptors(BBWO_data, probkeys, stemming=FALSE, exact=FALSE)
+
 ```
 
 In order to identify the most connected and commonly used keywords in the field, we need to make a keyword co-occurrence network. To do this, first we need to know which articles include which keywords. The function make_dataset() takes our dataset and makes an occurrence dataset filled with 0 (for absence) or 1 (for occurrence) for each keyword in each study. The default settings search the descriptors, but changing onlykeywords to TRUE only considers the original keywords associated with each article. 
@@ -125,7 +126,7 @@ First, we run the spline method and save those cutoff points. Each knot is a pot
 For the cumulative method, the only decision is what percent of the total network node strength you want to capture. In this case, we left it at the default of 80%. Diagnostics for the cumulative curve are not actually diagnostic and simply show the cutoff point in terms of rank and strength. 
 
 ```{r}
-cutoffs_spline <- find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 3, diagnostics = TRUE)
+cutoffs_spline <- find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 4, diagnostics = TRUE)
 
 cutoffs_cumulative <- find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .8, diagnostics = TRUE)
 ```
@@ -134,9 +135,10 @@ cutoffs_cumulative <- find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .
 For the BBWO search, we're going to use the first knot from the spline fit, which is 189 This is slightly more conservative than the cumulative fit which suggested a cutoff of 147. We pass the cutoff strength to the reduce_graph() function which creates a new igraph object that only contains nodes with a minimum strength (in the original network) of at least 189. From the reduced graph, we use get_keywords() to save the keywords to a plain text file and also generate a wordcloud. 
 
 ```{r}
-reduced_graph <- reduce_graph(BBWO_graph, cutoff_strength = cutoffs_spline[1])
+reduced_graph <- reduce_graph(BBWO_graph, cutoff_strength = cutoffs_cumulative)
 
 search_terms <- get_keywords(reduced_graph, savekeywords = TRUE, makewordle = TRUE)
+head(sort(NS, decreasing=TRUE))
 
 ```
 
@@ -234,6 +236,10 @@ OpenThesis</li><li>
 NDLTD Global ETD Search</li></ul>
 
 Some databases do not work with truncation/stemming inside of quotes for an exact phrase. Some databases also have length limits on searches (which is why databases like JSTOR are not supported). 
+
+# Workflow example: Building a keyword co-occurrence network for analysis
+
+
 
 ###***ADD A TABLE LATER OF WHAT EACH SEARCH SITE DOES AND DOES NOT SUPPORT***
 

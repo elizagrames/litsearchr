@@ -1,8 +1,8 @@
 #' Select non-English languages to search in
 #' @description This function chooses the best non-English languages to conduct searches in based on the topic of the review. The topics query a database of non-English language journals compiled from Ulrich; currently only STEM fields are supported.
-#' @param key_topics A vector of topics related to the topic of the search.
-#' @return A data frame of languages used by journals tagged with the key topics and a count of how many journals use that language.
-choose_languages <- function(key_topics=c("biology", "conservation", "ecology")){
+#' @param key_topics a character vector of topics related to the topic of the search
+#' @return a data frame of languages used by journals tagged with the key topics and a count of how many journals use that language.
+get_language_data <- function(key_topics){
   subset_these <- c()
 
   for (i in 1:length(key_topics)){
@@ -45,18 +45,27 @@ choose_languages <- function(key_topics=c("biology", "conservation", "ecology"))
   lang_data$language <- names(lang_table)
   lang_data$count <- as.numeric(lang_table)
 
+  return(lang_data)
+}
+
+#' Select search languages
+#' @description Checks which languages returned from get_language_data() are possible to use and returns a character vector of languages to use. Called from inside write_search().
+choose_languages <- function(lang_data=get_language_data(key_topics = "biology")){
+
   language_output <- lang_data[,1:2]
-  language_output <- language_output[which((language_output$language %in% possible_langs$Language)==TRUE),]
+  language_output <- language_output[which((language_output$language %in% possible_langs$Language)==TRUE),1]
 
   return(language_output)
+
 }
 
 #' Generates a graph of languages to search
 #' @description Creates a bubble graph showing the number of journals in each language from the languages used by journals in given topics.
-#' @param lang_data The exported language data from choose_languages().
-#' @param no_return The maximum number of languages to include in the graph.
-#' @param key_topics The same key topics used in choose_languages().
-language_graphs <- function(lang_data, no_return=15, key_topics=c("biology", "conservation", "ecology")){
+#' @param lang_data a table of language data returned from choose_languages()
+#' @param no_return the maximum number of languages to include in the graph
+#' @param key_topics a character vector of the same key topics used in choose_languages()
+#' @return a bubble plot of non-English languages used by journals in a discipline sized by count
+language_graphs <- function(lang_data=get_language_data(key_topics=c("biology", "conservation", "ecology")), no_return=15, key_topics=c("biology", "conservation", "ecology")){
   lang_data$x <- as.numeric(row.names(lang_data))^.1
   lang_data$y <- sample(1:100, length(lang_data$language))*(as.numeric((lang_data$count)))*as.numeric(rownames(lang_data))
 
@@ -67,7 +76,6 @@ language_graphs <- function(lang_data, no_return=15, key_topics=c("biology", "co
     }}
 
   if (length(lang_data$x) <= no_return){
-    png("language-graph.png", width = 8, height = 4, units = 'in', res = 400)
     symbols(lang_data$x, lang_data$y,
             circles=lang_data$count,
             bg=rainbow(length(lang_data$x)),
@@ -78,11 +86,9 @@ language_graphs <- function(lang_data, no_return=15, key_topics=c("biology", "co
            legend=c(paste(lang_data$language, lang_data$count, sep=", ")),
            pch=20,
            col=rainbow(length(lang_data$x)))
-    dev.off()
   }
 
   if (length(lang_data$x) > no_return){
-    png("language-graph.png", width = 12, height = 8, units = 'in', res = 400)
     symbols(lang_data$x, lang_data$y,
             circles=lang_data$count,
             bg=rainbow(length(lang_data$x[1:no_return])),
@@ -94,11 +100,10 @@ language_graphs <- function(lang_data, no_return=15, key_topics=c("biology", "co
                           head(lang_data$count, no_return), sep=", ")),
            pch=20,
            col=head(rainbow(length(lang_data$x[1:no_return])),no_return))
-    dev.off()
+
   }
 
 }
-
 
 #' Translate search terms
 #' @description Takes groups of search terms and translates them into target language using the Google Translate API. This function is intended for use inside write_search(), not as a standalone function.
@@ -131,9 +136,9 @@ should_stem <- function(word){
 
 #' Write search with truncated word stems
 #' @description Truncates words to word stems and appends them with an asterisk as a wildcard character. Currently only supported for English.
-#' @param groupdata A list of character vectors, each of which is a concept group.
-#' @param languages Currently, only English stemmed searches are supported.
-#' @param exactphrase If set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes.
+#' @param groupdata a list of character vectors, each of which is a concept group
+#' @param languages a character of the language in which to write stemmed searches; currently, only English is supported
+#' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
 write_stemmed_search <- function(groupdata, languages="English", exactphrase=FALSE){
   no_groups <- length(groupdata)
   group_holder <- c()
@@ -209,11 +214,11 @@ write_stemmed_search <- function(groupdata, languages="English", exactphrase=FAL
 }
 
 #' Write Boolean searches
-#' @description Takes search terms grouped by concept group and writes Boolean searches in which terms within concept groups are separated by "OR" and concept groups are separated by "AND". Searches can be written in up to 53 languages, though the function defaults to only searching the top ten most used languages in a discipline using the choose_languages() function.
-#' @param groupdata A list of character vectors, each of which is a concept group.
-#' @param languages Which languages to write searches in. The default relies on searching a database of journals by discipline. All supported languages can be seen with available_languages().
-#' @param exactphrase If set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes.
-write_search <- function(groupdata, languages=choose_languages(key_topics = c("biology", "conservation", "ecology"))[1:10,1], exactphrase=FALSE){
+#' @description Takes search terms grouped by concept group and writes Boolean searches in which terms within concept groups are separated by "OR" and concept groups are separated by "AND". Searches can be written in up to 53 languages, though the function defaults to only searching the top ten most used languages in a discipline using the choose_languages() function. The default for language options relies on searching a database of journals by discipline based on Ulrich's Periodicals Directory. Only scientific fields are included in this database. All supported languages can be seen with available_languages().
+#' @param groupdata a list of character vectors, each of which is a concept group
+#' @param languages a character vector of supported languages to write searches in.
+#' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
+write_search <- function(groupdata, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE){
 
   if(exactphrase==FALSE){
     no_groups <- length(groupdata)
