@@ -29,6 +29,16 @@ knitr::opts_chunk$set(
 
 # Workflow example: Preparing a search strategy for a systematic review
 
+```{r}
+library(DiagrammeR)
+grViz("digraph{
+      # nodes
+      Naive [label='Naive searches']
+      }")
+
+```
+
+
 In this example, we're using searchr to develop a complete search strategy for a systematic review of papers that could potentially answer the question: What <u>processes</u> lead to immediate Black-backed <u>Woodpecker</u> <u>occupancy</u> of <u>post-fire</u> systems and subsequent decline with time since fire? The goal of the example is to start with a basic set of search terms, identify additional relevant terms that are used in the literature but that aren't in our naive search, and write full Boolean searches in multiple languages that can be used to conduct a systematic review. 
 
 ## Step 1: Conduct a naive search
