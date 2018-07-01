@@ -21,9 +21,10 @@ create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
 #' @return a data frame of node strengths, ranks, and names
 make_strengths <- function(graph){
   NS <- sort(igraph::strength(graph))
-  strength_data <- cbind(seq(1, length(NS)), NS, names(NS))
-  colnames(strength_data) <- c("rank", "strength", "nodename")
+  strength_data <- cbind(seq(1, length(NS), 1), as.numeric(NS))
+  colnames(strength_data) <- c("rank", "strength")
   strength_data <- as.data.frame(strength_data)
+  strength_data$nodename <- names(NS)
   strength_data$rank <- as.numeric(strength_data$rank)
   strength_data$strength <- as.numeric(strength_data$strength)
   return(strength_data)
@@ -39,6 +40,7 @@ select_ngrams <- function(graph, n=2){
   ngrams <- strength_data[which(sapply(strsplit(as.character(strength_data$nodename), " "), length) >= n),]
   return(ngrams)
   }
+
 
 #' Subset unigrams from node names
 #' @description Selects only nodes from a graph whose node names are at single words.
@@ -86,11 +88,11 @@ fit_splines <- function(strength_data, degrees=2, knot_num=1, knots){
 #' @param knot_num if using method spline, the number of knots to allow
 #' @param diagnostics if set to TRUE, saves plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point
 #' @return a vector of suggested node cutoff strengths
-find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE, min_ngrams=2){
+find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE){
+  require(igraph, quietly=TRUE)
+  strength_data <- make_strengths(graph)
 
   if (method == "spline") {
-      strength_data <- select_ngrams(graph, n=min_ngrams)
-
       knots <- find_knots(strength_data, degrees=degrees, knot_num=knot_num)
       cut_points <- floor(knots)
       cut_strengths <- (strength_data$strength)[cut_points]
@@ -115,8 +117,6 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
     }
 
   if (method == "cumulative"){
-    require(igraph, quietly=TRUE)
-    strength_data <- select_ngrams(graph, n=min_ngrams)
     cum_str <- max(cumsum(sort(strength_data$strength)))
     cut_point <- (which(cumsum(sort(strength_data$strength, decreasing = TRUE))>=cum_str*cum_pct))[1]
     cut_strengths <- as.numeric(sort(as.numeric(strength_data$strength), decreasing = TRUE)[cut_point])
@@ -155,17 +155,8 @@ get_keywords <- function(reduced_graph, savekeywords=TRUE, makewordle=TRUE){
 #' @param cutoff_strength the minimum node strength to be included in the reduced graph
 #' @return an igraph graph with only important nodes
 reduce_graph <- function(graph, cutoff_strength, printplot=TRUE){
-  NS <- strength(graph)
-  node_index <- as.data.frame(cbind(names(NS[1]), (NS[[1]])))
-
-  for (i in 2:length(NS)){
-    entry <- as.data.frame(cbind(names(NS[i]), NS[[i]]))
-    node_index <- rbind(node_index, entry)
-  }
-
-  node_index$V2 <- as.numeric(as.character(node_index$V2))
-  important_nodes <- which(node_index$V2 >= cutoff_strength)
-
+  strength_data <- make_strengths(graph)
+  important_nodes <- which(strength_data$strength >= cutoff_strength)
   reduced_graph <- induced.subgraph(graph, v=important_nodes)
   if (printplot == TRUE){
     require("igraph", quietly=TRUE)
@@ -177,3 +168,15 @@ reduce_graph <- function(graph, cutoff_strength, printplot=TRUE){
 
   return(reduced_graph)
 }
+
+
+#'
+make_ngram_graph <- function(graph, min_ngrams=2, unigrams=FALSE){
+  require(igraph, quietly=TRUE)
+  if (unigrams==FALSE){ngrams <- select_ngrams(graph, min_ngrams)}
+  if (unigrams==TRUE){ngrams <- select_unigrams(graph)}
+
+  ngram_graph <- igraph::induced.subgraph(graph, v=ngrams$nodename)
+  return(ngram_graph)
+}
+

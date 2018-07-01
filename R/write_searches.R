@@ -107,7 +107,7 @@ language_graphs <- function(lang_data=get_language_data(key_topics=c("biology", 
 
 #' Translate search terms
 #' @description Takes groups of search terms and translates them into target language using the Google Translate API. This function is intended for use inside write_search(), not as a standalone function.
-translate_search <- function(search_terms, target_language, source_language="en", API_key="AIzaSyBNlOXp3YIbUw2BOUqMAK4hNf5-t5EU6wY"){
+translate_search <- function(search_terms, target_language, source_language="en", API_key=translate_API){
   words <- search_terms
 
   termlist <- words
