@@ -156,7 +156,7 @@ get_keywords <- function(reduced_graph, savekeywords=TRUE, makewordle=TRUE){
 #' @return an igraph graph with only important nodes
 reduce_graph <- function(graph, cutoff_strength, printplot=TRUE){
   strength_data <- make_strengths(graph)
-  important_nodes <- which(strength_data$strength >= cutoff_strength)
+  important_nodes <- strength_data$nodename[which(strength_data$strength >= cutoff_strength)]
   reduced_graph <- induced.subgraph(graph, v=important_nodes)
   if (printplot == TRUE){
     require("igraph", quietly=TRUE)

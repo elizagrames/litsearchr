@@ -21,10 +21,10 @@ make_wordle <- function(graph, colorchoice=c("black")){
 #' @param graph an igraph object
 #' @param graphcolor a color choice for the graph edges and node frames
 #' @return a plot of the full network structure
-print_full_network <- function(graph, graphcolor="black"){
+plot_full_network <- function(graph, graphcolor="black"){
   require(igraph, quietly = TRUE)
   plot(graph,
      vertex.label.color="#00000000", vertex.label.cex=.5,
      vertex.size=sqrt(igraph::strength(graph)), vertex.color="white", vertex.frame.color=graphcolor,
-     edge.width=sqrt(E(graph)$weight), edge.color=graphcolo, edge.arrow.size=.25)
+     edge.width=sqrt(E(graph)$weight), edge.color=graphcolor, edge.arrow.size=.25)
 }

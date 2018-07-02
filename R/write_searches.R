@@ -139,7 +139,8 @@ should_stem <- function(word){
 #' @param groupdata a list of character vectors, each of which is a concept group
 #' @param languages a character of the language in which to write stemmed searches; currently, only English is supported
 #' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
-write_stemmed_search <- function(groupdata, languages="English", exactphrase=FALSE){
+#' @param directory the path to the directory where you want to save searches (defaults to current working directory)
+write_stemmed_search <- function(groupdata, languages="English", exactphrase=FALSE, directory="./"){
   no_groups <- length(groupdata)
   group_holder <- c()
 
@@ -206,7 +207,7 @@ write_stemmed_search <- function(groupdata, languages="English", exactphrase=FAL
 
   converted_search <- iconv(total_search, "UTF-8", trans_encod)
   converted_search <- gsub("\\\\", "\\", converted_search)
-  filename <- paste("search-in-", stemyes, current_lang, ".txt", sep="")
+  filename <- paste(directory, "search-in-", stemyes, current_lang, ".txt", sep="")
 
   writeLines(converted_search, filename)
 
@@ -216,9 +217,11 @@ write_stemmed_search <- function(groupdata, languages="English", exactphrase=FAL
 #' Write Boolean searches
 #' @description Takes search terms grouped by concept group and writes Boolean searches in which terms within concept groups are separated by "OR" and concept groups are separated by "AND". Searches can be written in up to 53 languages, though the function defaults to only searching the top ten most used languages in a discipline using the choose_languages() function. The default for language options relies on searching a database of journals by discipline based on Ulrich's Periodicals Directory. Only scientific fields are included in this database. All supported languages can be seen with available_languages().
 #' @param groupdata a list of character vectors, each of which is a concept group
+#' @param translate_API your Google Translate API key
 #' @param languages a character vector of supported languages to write searches in.
 #' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
-write_search <- function(groupdata, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE){
+#' @param directory the path to the directory where you want to save searches (defaults to current working directory)
+write_search <- function(groupdata, translate_API, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE, directory="./"){
 
   if(exactphrase==FALSE){
     no_groups <- length(groupdata)
@@ -258,7 +261,7 @@ write_search <- function(groupdata, languages=choose_languages(lang_data=get_lan
 
       converted_search <- iconv(total_search, "UTF-8", trans_encod)
       converted_search <- gsub("\\\\", "\\", converted_search)
-      filename <- paste("search-in-", current_lang, ".txt", sep="")
+      filename <- paste(directory, "search-in-", current_lang, ".txt", sep="")
 
       writeLines(converted_search, filename)
       print(paste(current_lang, "is written"))

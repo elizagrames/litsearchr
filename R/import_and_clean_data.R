@@ -28,7 +28,7 @@ import_naive <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
       df <- read.delim(import.files[i], header=TRUE, stringsAsFactors = FALSE)
       }
     if (stringr::str_detect(import.files[i], ".xls")==TRUE){
-      require(gdata, quietly=TRUE)
+      requireNamespace("gdata", quietly = TRUE)
       df <- gdata::read.xls(import.files[i])
     }
   database <- detect_database(df)

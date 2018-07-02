@@ -62,6 +62,7 @@ select_actual_terms <- function(df, min_freq=2){
   term_freq_table <- table(possible_terms)
 
   actual_terms <- names(term_freq_table)[which(term_freq_table >= min_freq)]
+  if(length(which(actual_terms=="")>0)){actual_terms <- actual_terms[-which(actual_terms=="")]}
 
   return(actual_terms)
 
