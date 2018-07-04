@@ -84,9 +84,9 @@ list.files("../inst/extdata/")
 
 ```
 
-Now that we have naive search results, we need to import these to our working environment with the function import_naive(). This function will identify any .txt, .csv, or .xls files in a dataset and import them accordingly. If importing .xls files, the gdata package is required. After loading in files, import_naive() identifies the database they were downloaded from (currently, only BIOSIS, Zoological Record, Scopus, and ProQuest are supported) then standardizes their columns. 
+Now that we have naive search results, we need to import these to our working environment with the function import_scope()(). This function will identify any .txt, .csv, or .xls files in a dataset and import them accordingly. If importing .xls files, the gdata package is required. After loading in files, import_scope()() identifies the database they were downloaded from (currently, only BIOSIS, Zoological Record, Scopus, and ProQuest are supported) then standardizes their columns. 
 
-If you have naive search results from a different database, format them (I suggest using the select() function in dplyr) to have the following columns in order: id, text, title, abstract, keywords, methods, type, authors, affiliation, source, year, volume, issue, startpage, endpage, doi, language, database. Columns can be left blank, but all the columns need to be included in that order in order to then rbind() your data frame to the data frame created with import_naive(). If you have suggestions for additional databases to support in the import_naive() function, please email me at eliza.grames\@uconn.edu 
+If you have naive search results from a different database, format them (I suggest using the select() function in dplyr) to have the following columns in order: id, text, title, abstract, keywords, methods, type, authors, affiliation, source, year, volume, issue, startpage, endpage, doi, language, database. Columns can be left blank, but all the columns need to be included in that order in order to then rbind() your data frame to the data frame created with import_scope()(). If you have suggestions for additional databases to support in the import_scope()() function, please email me at eliza.grames\@uconn.edu 
 
 If remove_duplicates is set to TRUE, duplicate articles that share the same journal title, volume number, and start page are removed. This is advised because using multiple databases for the naive search is likely to result in duplicates because the supported databases overlap in which journals and years they index. Removing duplicates avoids double-counting keywords from the same article which would inflate their importance in the field. 
 
@@ -96,7 +96,7 @@ All the files from the directory are bound to a single dataset which records the
 
 
 ```{r}
-BBWO_data <- import_naive("../inst/extdata/", remove_duplicates = TRUE, clean_dataset = TRUE)
+BBWO_data <- import_scope()("../inst/extdata/", remove_duplicates = TRUE, clean_dataset = TRUE)
 
 ```
 
@@ -151,7 +151,7 @@ We pass our BBWO_dfm matrix to create_network() and specify that a keyword must 
 
 ```{r}
 BBWO_graph <- create_network(BBWO_dfm, min_studies=3, min_occurrences = 3)
-plot_full_network(BBWO_graph)
+# plot_full_network(BBWO_graph)
 ```
 
 
@@ -207,7 +207,6 @@ Because unigrams will tend to be the dominant nodes in a network (e.g. "species"
 ```{r}
 ngram_graph <- make_ngram_graph(BBWO_graph, min_ngrams = 2)
 plot(sort(igraph::strength(ngram_graph)), ylab="Node strength", main="Ranked node strengths", xlab="Rank")
-abline(h=ngram_cutoff_strength)
 
 ngram_cutoff_strength <- find_cutoff(ngram_graph, method="spline", degrees = 2, knot_num = 3)
 ngram_reduced_graph <- reduce_graph(ngram_graph, cutoff_strength = ngram_cutoff_strength[1])
@@ -302,7 +301,7 @@ my_key_topics <- c("biology", "conservation", "ecology", "forestry")
 # As each language is written, the console will print "Russian is written!" etc...
 # "All done!" will print when all languages are written
 write_search(groupdata = my_search_terms, 
-             languages = choose_languages(lang_data=get_language_data(key_topics = my_key_topics)[1:10]), 
+             languages = choose_languages(lang_data=get_language_data(key_topics = my_key_topics)[1:10,]), 
              exactphrase = FALSE, directory="~/BBWO-searches/")
 
 language_graphs(lang_data = get_language_data(key_topics = my_key_topics), no_return = 15, key_topics = my_key_topics)

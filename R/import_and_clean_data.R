@@ -16,7 +16,7 @@ detect_database <- function(df){
   return(database)
 }
 
-import_naive <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, save_full_dataset=FALSE){
+import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, save_full_dataset=FALSE){
   import.files <- paste(directory, list.files(path=directory), sep="")
   df <- c()
 

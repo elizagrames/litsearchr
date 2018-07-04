@@ -18,7 +18,7 @@ add_stopwords <- function(new_stopwords){
 
 #' Extract potential keywords from abstracts and titles
 #' @description Uses the RAKE (Rapid Automatic Keyword Extractor) from rapidraker to extract potential keyword terms from titles and abstracts.
-#' @param df a dataframe created with import_naive
+#' @param df a dataframe created with import_scope
 #' @param new_stopwords a character vector of stopwords to ignore
 #' @param min_freq a number, the minimum occurrences of a potential term
 #' @param title include titles if TRUE
@@ -50,7 +50,7 @@ extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstra
 
 #' Extract actual article keywords
 #' @description Extracts actual author-and-database tagged keywords.
-#' @param df a data frame of search hits from import_naive
+#' @param df a data frame of search hits from import_scope
 #' @param min_freq a number, the minimum occurrences to be included
 #' @return a character vector of keywords actually occurring in the search dataset
 select_actual_terms <- function(df, min_freq=2){
