@@ -149,18 +149,72 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
 
 }
 
-deduplicate <- function(df){
-  dedupe <- paste(df$source, df$volume, df$startpage, tolower(substring(df$title, 1, 5)))
-  df <- df[which(duplicated(dedupe)==FALSE), ]
-  return(df)
+
+#' Remove duplicate articles
+#' @description Uses similarity of tokenized abstracts and titles to detect duplicates and remove them from the dataset.
+#' @param df a data frame created with import_scope()
+#' @param doc_sim the minimum similarity between two abstracts to be marked as duplicated
+#' @param title_sim the minimum similarity between two titles to be marked as duplicated
+#' @param mean_sim the minimum mean similarity of abstract and title similarity to be marked as duplicated
+#' @return a data frame with duplicates removed
+deduplicate <- function(df, doc_sim=.85, title_sim=.95, mean_sim=.8){
+  require(quanteda, quietly=TRUE)
+  full_dfm <- quanteda::dfm(make_corpus(df),
+                            remove = stopwords("english"),
+                            remove_numbers=TRUE,
+                            remove_punct=TRUE,
+                            remove_symbols=TRUE,
+                            remove_separators=TRUE,
+                            remove_twitter=TRUE,
+                            remove_hyphens=TRUE,
+                            remove_url=TRUE)
+  dfm_similarity <- quanteda::textstat_simil(full_dfm, margin = "documents")
+
+  sim_mat <- as.matrix(dfm_similarity)
+  sim_mat[lower.tri(sim_mat, diag=TRUE)] <- NA
+  sim_mat <- as.data.frame(sim_mat)
+
+  indices <- data.frame(ind = which(sim_mat > 0.5, arr.ind=TRUE))
+  indices$doc1 <- rownames(sim_mat)[indices$ind.row]
+  indices$doc2 <- colnames(sim_mat)[indices$ind.col]
+  indices$sim_score <- sim_mat[which(sim_mat > 0.5, arr.ind=TRUE)]
+  indices$title1 <- df$title[indices$ind.row]
+  indices$title2 <- df$title[indices$ind.col]
+  indices$title_sim <- rep(NA, nrow(indices))
+
+  for (i in 1:nrow(indices)){
+    check_corpus <- quanteda::corpus(c(indices$title1[i], indices$title2[i]))
+    check_dfm <- quanteda::dfm(check_corpus,
+                               remove_numbers=TRUE,
+                               remove_punct=TRUE,
+                               remove_symbols=TRUE,
+                               remove_separators=TRUE,
+                               remove_twitter=TRUE,
+                               remove_hyphens=TRUE,
+                               remove_url=TRUE)
+    check_sim <- quanteda::textstat_simil(check_dfm, method="cosine")
+    indices$title_sim[i] <- as.numeric(check_sim)
+
+  }
+
+  indices$mean_similarity <- (indices$sim_score + indices$title_sim)/2
+
+  remove_by_title <- which(indices$title_sim > title_sim)
+  remove_by_doc <- which(indices$sim_score > doc_sim)
+  remove_by_mean <- which(indices$mean_similarity > mean_sim)
+  remove_these <- append(remove_by_doc, c(remove_by_title, remove_by_mean))
+  remove_docs <- sort(unique(as.numeric(gsub("text", "", indices$doc2[remove_these]))))
+
+  new_data <- df[-c(remove_docs),]
+
+  return(new_data)
 }
 
 #' Remove duplicate studies and punctuation
-#' @description This function removes entries from the database that are duplicated articles (e.g. articles that were returned by two different databases) based on the first 40 characters of the title. It also replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
-#' @param df The dataset you want to deduplicate.
-#' @param chars How many characters you want to include for deduplication (default is 40).
-#' @return The cleaned dataset.
-clean_keywords <- function(df, chars=40){
+#' @description Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
+#' @param df a data frame from import_scope() to deduplicate
+#' @return a data frame with keyword punctuation standardized
+clean_keywords <- function(df){
   df$keywords <- tolower(as.character(df$keywords))
   removals <- c("\\(",
                 "\\)",
