@@ -4,10 +4,10 @@
 \alias{find_knots}
 \title{Find optimal knot placements}
 \usage{
-find_knots(strength_data, degrees = 2, knot_num = 1)
+find_knots(importance_data, degrees = 2, knot_num = 1)
 }
 \arguments{
-\item{strength_data}{a dataset of unique node strengths and their ranks}
+\item{importance_data}{a dataset of unique node strengths and their ranks}
 
 \item{degrees}{the degree of the polynomial for the curve of unique node strengths}
 

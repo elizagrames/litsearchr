@@ -4,7 +4,7 @@
 \alias{select_unigrams}
 \title{Subset unigrams from node names}
 \usage{
-select_unigrams(graph)
+select_unigrams(graph, importance_method = "strength")
 }
 \arguments{
 \item{graph}{an igraph object}

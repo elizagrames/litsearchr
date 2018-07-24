@@ -5,7 +5,8 @@
 \title{Find node cutoff strength}
 \usage{
 find_cutoff(graph, method = c("spline", "cumulative"), cum_pct = 0.8,
-  degrees = 2, knot_num = 1, diagnostics = TRUE)
+  degrees = 2, knot_num = 1, diagnostics = TRUE,
+  importance_method = "strength")
 }
 \arguments{
 \item{graph}{The complete graph.}

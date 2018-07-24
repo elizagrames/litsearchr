@@ -4,7 +4,7 @@
 \alias{select_ngrams}
 \title{Subset n-grams from node names}
 \usage{
-select_ngrams(graph, n = 2)
+select_ngrams(graph, n = 2, importance_method = "strength")
 }
 \arguments{
 \item{graph}{an igraph object}

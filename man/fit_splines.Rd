@@ -4,10 +4,10 @@
 \alias{fit_splines}
 \title{Fit spline model to node strengths}
 \usage{
-fit_splines(strength_data, degrees = 2, knot_num = 1, knots)
+fit_splines(importance_data, degrees = 2, knot_num = 1, knots)
 }
 \arguments{
-\item{strength_data}{a dataset of ranked unique node strengths}
+\item{importance_data}{a dataset of ranked unique node strengths}
 
 \item{degrees}{the same degrees used to find knot placement in \code{find_knots}}
 

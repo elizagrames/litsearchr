@@ -23,7 +23,8 @@ Imports: dplyr,
     translate,
     Rcpp,
     quanteda,
-    tm
+    tm,
+    rapidraker
 Suggests: wordcloud,
     knitr,
     rmarkdown,

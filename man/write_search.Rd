@@ -4,9 +4,10 @@
 \alias{write_search}
 \title{Write Boolean searches}
 \usage{
-write_search(groupdata, translate_API, languages = choose_languages(lang_data
-  = get_language_data(key_topics = "biology"))[1:10], exactphrase = FALSE,
-  directory = "./", databases = c("BIOSIS", "ZooRec", "EBSCO", "Scopus"))
+write_search(groupdata, translate_API = NULL,
+  languages = choose_languages(lang_data = get_language_data(key_topics =
+  "biology"))[1:10], exactphrase = FALSE, directory = "./",
+  databases = c("BIOSIS", "ZooRec", "EBSCO", "Scopus"))
 }
 \arguments{
 \item{groupdata}{a list of character vectors, each of which is a concept group}
