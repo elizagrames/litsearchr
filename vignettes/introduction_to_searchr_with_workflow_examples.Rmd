@@ -177,7 +177,7 @@ For the cumulative method, the only decision is what percent of the total networ
 ```{r}
 cutoffs_spline <- find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 4, diagnostics = TRUE)
 
-cutoffs_cumulative <- find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .8, diagnostics = TRUE)
+cutoffs_cumulative <- find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .8, diagnostics = TRUE, importance_method = "strength")
 ```
 
 

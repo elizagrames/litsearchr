@@ -95,7 +95,7 @@ fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
 #' @return a vector of suggested node cutoff strengths
 find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
   require(igraph, quietly=TRUE)
-  importance_data <- make_importance(graph)
+  importance_data <- make_importance(graph, importance_method)
 
   if (method == "spline") {
       knots <- find_knots(importance_data, degrees=degrees, knot_num=knot_num)
