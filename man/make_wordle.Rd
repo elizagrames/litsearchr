@@ -7,12 +7,12 @@
 make_wordle(graph, colorchoice = c("black"))
 }
 \arguments{
-\item{graph}{The reduced graph of only important nodes.}
+\item{graph}{a reduced graph of only important nodes}
 
-\item{colorchoice}{A vector listing colors to use for the wordcloud.}
+\item{colorchoice}{a vector listing colors to use for the wordcloud}
 }
 \value{
-Saves wordcloud to a .png file.
+plots a wordcloud
 }
 \description{
 Makes a wordcloud of keywords identified as important and changes size of text to correspond to node strength.

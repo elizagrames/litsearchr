@@ -2,7 +2,7 @@
 #' @description Makes a wordcloud of keywords identified as important and changes size of text to correspond to node strength.
 #' @param graph a reduced graph of only important nodes
 #' @param colorchoice a vector listing colors to use for the wordcloud
-#' @return a wordcloud
+#' @return plots a wordcloud
 make_wordle <- function(graph, colorchoice=c("black")){
   wordle <- as.data.frame(cbind(names(V(graph)), strength(graph)))
   colnames(wordle) <- c("label", "size")

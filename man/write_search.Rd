@@ -4,16 +4,21 @@
 \alias{write_search}
 \title{Write Boolean searches}
 \usage{
-write_search(groupdata, languages = choose_languages(key_topics = c("biology",
-  "conservation", "ecology"))[1:10, 1], exactphrase = FALSE)
+write_search(groupdata, translate_API, languages = choose_languages(lang_data
+  = get_language_data(key_topics = "biology"))[1:10], exactphrase = FALSE,
+  directory = "./", databases = c("BIOSIS", "ZooRec", "EBSCO", "Scopus"))
 }
 \arguments{
-\item{groupdata}{A list of character vectors, each of which is a concept group.}
+\item{groupdata}{a list of character vectors, each of which is a concept group}
 
-\item{languages}{Which languages to write searches in. The default relies on searching a database of journals by discipline. All supported languages can be seen with available_languages().}
+\item{translate_API}{your Google Translate API key}
 
-\item{exactphrase}{If set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes.}
+\item{languages}{a character vector of supported languages to write searches in.}
+
+\item{exactphrase}{if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes}
+
+\item{directory}{the path to the directory where you want to save searches (defaults to current working directory)}
 }
 \description{
-Takes search terms grouped by concept group and writes Boolean searches in which terms within concept groups are separated by "OR" and concept groups are separated by "AND". Searches can be written in up to 53 languages, though the function defaults to only searching the top ten most used languages in a discipline using the choose_languages() function.
+Takes search terms grouped by concept group and writes Boolean searches in which terms within concept groups are separated by "OR" and concept groups are separated by "AND". Searches can be written in up to 53 languages, though the function defaults to only searching the top ten most used languages in a discipline using the choose_languages() function. The default for language options relies on searching a database of journals by discipline based on Ulrich's Periodicals Directory. Only scientific fields are included in this database. All supported languages can be seen with available_languages().
 }

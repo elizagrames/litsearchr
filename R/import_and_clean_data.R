@@ -1,21 +1,24 @@
+#' Detects which database a search is from
+#' @description Uses the column names from databases to identify which database a search is from. This function can detect searches done in BIOSIS, Zoological Record, Web of Science with "All Databases" selected, Scopus, and any EBSCO-indexed database.
+#' @param df an exported dataset from any supported database
+#' @return a character vector with the name of the database or an error that the database was not identified
 detect_database <- function(df){
-  database <- c()
-  firstline <- paste(df[1,], collapse=" ")
+  database <- ""
+  database_signature <- paste(colnames(df), collapse=" ")
+  database <- names(which(importable_databases==database_signature))
 
-  if (stringr::str_detect(firstline, "ZOOR")==TRUE){
-    database <- "ZooRec"}
+  if (length(database)==0){print("Database format not recognized.")}
 
-  if (stringr::str_detect(firstline, "BCI:")==TRUE){database <- "BIOSIS"}
-
-  if (stringr::str_detect(firstline, "Scopus")==TRUE){database <- "Scopus"}
-
-  if (stringr::str_detect(firstline, "search.proquest")==TRUE){database <- "ProQuest"}
-
-  if (database==""){print("Database format not recognized.")}
-
-  return(database)
+  if (length(database)>0){return(database)}
 }
 
+#' Import results of a scoping search
+#' @description Imports the results of a scoping search, combines them into a single dataset, and (optionally) removes duplicate hits based on document similarity. Duplicates can be removed subsequently with custom similarity cutoffs using deduplicate() on the full dataset.
+#' @param directory the full path to the directory in which the searches are saved
+#' @param remove_duplicates if TRUE, removes duplicates based on document similarity
+#' @param clean_dataset if TRUE, removes excess punctuation and standardizes keywords
+#' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
+#' @return a data frame of all the search results combined
 import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, save_full_dataset=FALSE){
   import.files <- paste(directory, list.files(path=directory), sep="")
   df <- c()
@@ -25,8 +28,7 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
       df <- read.csv(import.files[i], header=TRUE, stringsAsFactors = FALSE)
       }
     if (stringr::str_detect(import.files[i], ".txt")==TRUE){
-      df <- read.delim(import.files[i], header=TRUE, stringsAsFactors = FALSE)
-      }
+      df <- read.delim(import.files[i], header=TRUE, stringsAsFactors = FALSE)}
     if (stringr::str_detect(import.files[i], ".xls")==TRUE){
       requireNamespace("gdata", quietly = TRUE)
       df <- gdata::read.xls(import.files[i])
@@ -72,9 +74,9 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
                         language=LA)
     temp <- strsplit(as.character(df$startpage), "-")
     if (length(temp) >0){
-      for (i in 1:length(temp)){
-        df$startpage[i] <- temp[[i]][1]
-        if (length(temp[[i]]) > 1){df$endpage[i] <- temp[[i]][2]}
+      for (j in 1:length(temp)){
+        df$startpage[j] <- temp[[j]][1]
+        if (length(temp[[j]]) > 1){df$endpage[j] <- temp[[j]][2]}
       }
     }
     df$methods <- rep("", length(df$id))
@@ -85,8 +87,8 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
                         id=UT,
                         title=TI,
                         abstract=AB,
-                        keywords=MI,
                         methods=MQ,
+                        keywords=MI,
                         type=DT,
                         authors=AU,
                         affiliation=C1,
@@ -100,33 +102,47 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
                         language=LA)
     df$text <- paste(df$abstract, df$keywords, sep=" ")
   }
-  if (database=="ProQuest"){
+  if (database=="WoS"){
     df <- dplyr::select(df,
-                        id=StoreId,
-                        title=Title,
-                        abstract=Abstract,
-                        keywords=subjectTerms,
-                        altkeys=subjects,
-                        type=documentType,
-                        authors=Authors,
-                        affiliation=AuthorAffiliation,
-                        source=pubtitle,
-                        year=year,
-                        volume=volume,
-                        issue=issue,
-                        startpage=pages,
-                        doi=digitalObjectIdentifier,
-                        language=language)
-    temp <- strsplit(as.character(df$startpage), "-")
-    if (length(temp) >0){
-      for (i in 1:length(temp)){
-        df$startpage[i] <- temp[[i]][1]
-        if (length(temp[[i]]) > 1){df$endpage[i] <- temp[[i]][2]}
-      }
-    }
-    df$methods <- rep("", length(df$id))
-    df$keywords <- paste(df$keywords, df$altkeys, sep=";")
+                        id=UT,
+                        title=TI,
+                        abstract=AB,
+                        authors=AU,
+                        source=SO,
+                        year=PY,
+                        volume=VL,
+                        issue=IS,
+                        startpage=BP,
+                        endpage=EP,
+                        doi=DI)
+    df$keywords <- rep("", nrow(df))
+    df$methods <- rep("", nrow(df))
+    df$type <- rep("", nrow(df))
+    df$affiliation <- rep("", nrow(df))
+    df$language <- rep("", nrow(df))
     df$text <- paste(df$abstract, df$keywords, sep=" ")
+  }
+  if (database=="EBSCO"){
+    df <- dplyr::select(df,
+                        id=Accession.Number,
+                        title=X...Article.Title,
+                        abstract=Abstract,
+                        authors=Author,
+                        source=Journal.Title,
+                        year=Publicaton.Date,
+                        volume=Volume,
+                        issue=Issue,
+                        startpage=First.Page,
+                        endpage=Page.Count,
+                        doi=DOI,
+                        keywords=Keywords,
+                        type=Doctype)
+
+    df$methods <- rep("", nrow(df))
+    df$affiliation <- rep("", nrow(df))
+    df$language <- rep("", nrow(df))
+    df$text <- paste(df$abstract, df$keywords, sep=" ")
+    df$endpage <- df$startpage + df$Page.Count
   }
 
   df$database <- rep(database, nrow(df))
@@ -157,10 +173,11 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
 #' @param title_sim the minimum similarity between two titles to be marked as duplicated
 #' @param mean_sim the minimum mean similarity of abstract and title similarity to be marked as duplicated
 #' @return a data frame with duplicates removed
-deduplicate <- function(df, doc_sim=.85, title_sim=.95, mean_sim=.8){
+deduplicate <- function(df, doc_sim=.85, title_sim=.95, mean_sim=.8, title_method="tokens"){
   require(quanteda, quietly=TRUE)
+  remove_by_title <- c()
   full_dfm <- quanteda::dfm(make_corpus(df),
-                            remove = stopwords("english"),
+                            remove = quanteda::stopwords("english"),
                             remove_numbers=TRUE,
                             remove_punct=TRUE,
                             remove_symbols=TRUE,
@@ -180,9 +197,14 @@ deduplicate <- function(df, doc_sim=.85, title_sim=.95, mean_sim=.8){
   indices$sim_score <- sim_mat[which(sim_mat > 0.5, arr.ind=TRUE)]
   indices$title1 <- df$title[indices$ind.row]
   indices$title2 <- df$title[indices$ind.col]
+  indices$authors1 <- df$authors[indices$ind.row]
+  indices$authors2 <- df$authors[indices$ind.col]
   indices$title_sim <- rep(NA, nrow(indices))
 
-  for (i in 1:nrow(indices)){
+  if (title_method=="quick"){remove_by_title <- which(duplicated(tolower(tm::removePunctuation(df$title)))==TRUE)}
+
+  if (title_method=="tokens"){
+   for (i in 1:nrow(indices)){
     check_corpus <- quanteda::corpus(c(indices$title1[i], indices$title2[i]))
     check_dfm <- quanteda::dfm(check_corpus,
                                remove_numbers=TRUE,
@@ -195,17 +217,28 @@ deduplicate <- function(df, doc_sim=.85, title_sim=.95, mean_sim=.8){
     check_sim <- quanteda::textstat_simil(check_dfm, method="cosine")
     indices$title_sim[i] <- as.numeric(check_sim)
 
+   }
   }
 
   indices$mean_similarity <- (indices$sim_score + indices$title_sim)/2
-
-  remove_by_title <- which(indices$title_sim > title_sim)
   remove_by_doc <- which(indices$sim_score > doc_sim)
   remove_by_mean <- which(indices$mean_similarity > mean_sim)
-  remove_these <- append(remove_by_doc, c(remove_by_title, remove_by_mean))
-  remove_docs <- sort(unique(as.numeric(gsub("text", "", indices$doc2[remove_these]))))
 
-  new_data <- df[-c(remove_docs),]
+  if (title_method=="tokens") {
+    remove_these <- append(remove_by_doc, c(remove_by_title, remove_by_mean))
+    if (length(remove_these > 0)){
+    remove_docs <- sort(unique(as.numeric(gsub("text", "", indices$doc2[remove_these]))))
+    }
+  }
+  if (title_method=="quick"){
+    remove_these <- append(remove_by_doc, c(remove_by_mean))
+    remove_docs <- sort(unique(as.numeric(gsub("text", "", indices$doc2[remove_these]))))
+    remove_docs <- unique(append(remove_docs, remove_by_title))
+  }
+
+
+  if (length(remove_docs) > 0){new_data <- df[-c(remove_docs),]}
+  if (length(remove_docs) == 0){new_data <- df}
 
   return(new_data)
 }

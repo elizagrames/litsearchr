@@ -4,14 +4,17 @@
 \alias{write_stemmed_search}
 \title{Write search with truncated word stems}
 \usage{
-write_stemmed_search(groupdata, languages = "English", exactphrase = FALSE)
+write_stemmed_search(groupdata, languages = "English", exactphrase = FALSE,
+  directory = "./")
 }
 \arguments{
-\item{groupdata}{A list of character vectors, each of which is a concept group.}
+\item{groupdata}{a list of character vectors, each of which is a concept group}
 
-\item{languages}{Currently, only English stemmed searches are supported.}
+\item{languages}{a character of the language in which to write stemmed searches; currently, only English is supported}
 
-\item{exactphrase}{If set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes.}
+\item{exactphrase}{if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes}
+
+\item{directory}{the path to the directory where you want to save searches (defaults to current working directory)}
 }
 \description{
 Truncates words to word stems and appends them with an asterisk as a wildcard character. Currently only supported for English.

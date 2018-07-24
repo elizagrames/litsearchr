@@ -1,6 +1,6 @@
 #' Create a keyword co-occurrence network
 #' @description Creates a keyword co-occurrence network from an adjacency matrix trimmed to remove rare terms.
-#' @param search_dfm a document-feature matrix from the quanteda package
+#' @param search_dfm a document-feature matrix created with create_dfm()
 #' @param min_studies the minimum number of studies a term must occur in to be included
 #' @param min_occurrences the minimum total number of times a term must occur (counting repeats in the same document)
 #' @return an igraph weighted graph
@@ -19,15 +19,20 @@ create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
 #' @description Selects only the node strength data from a graph.
 #' @param graph an igraph graph
 #' @return a data frame of node strengths, ranks, and names
-make_strengths <- function(graph){
-  NS <- sort(igraph::strength(graph))
-  strength_data <- cbind(seq(1, length(NS), 1), as.numeric(NS))
-  colnames(strength_data) <- c("rank", "strength")
-  strength_data <- as.data.frame(strength_data)
-  strength_data$nodename <- names(NS)
-  strength_data$rank <- as.numeric(strength_data$rank)
-  strength_data$strength <- as.numeric(strength_data$strength)
-  return(strength_data)
+make_importance <- function(graph, importance_method){
+  if (importance_method=="strength") {importance <- sort(igraph::strength(graph))}
+  if (importance_method=="eigencentrality"){importance <- sort(igraph::eigen_centrality(graph))}
+  if (importance_method=="alpha"){importance <- sort(igraph::alpha_centrality(graph))}
+  if (importance_method=="betweenness"){importance <- sort(igraph::betweenness(graph))}
+  if (importance_method=="hub"){importance <- sort(igraph::hub(graph))}
+  if (importance_method=="power"){importance <- sort(igraph::power_centrality(graph))}
+  importance_data <- cbind(seq(1, length(importance), 1), as.numeric(importance))
+  colnames(importance_data) <- c("rank", "strength")
+  importance_data <- as.data.frame(importance_data)
+  importance_data$nodename <- names(importance)
+  importance_data$rank <- as.numeric(importance_data$rank)
+  importance_data$importance <- as.numeric(importance_data$importance)
+  return(importance_data)
 }
 
 #' Subset n-grams from node names
@@ -35,9 +40,9 @@ make_strengths <- function(graph){
 #' @param graph an igraph object
 #' @param n a minimum number of words in an n-gram
 #' @return a data frame of node names, strengths, rank
-select_ngrams <- function(graph, n=2){
-  strength_data <- make_strengths(graph)
-  ngrams <- strength_data[which(sapply(strsplit(as.character(strength_data$nodename), " "), length) >= n),]
+select_ngrams <- function(graph, n=2, importance_method="strength"){
+  importance_data <- make_importance(graph)
+  ngrams <- importance_data[which(sapply(strsplit(as.character(importance_data$nodename), " "), length) >= n),]
   return(ngrams)
   }
 
@@ -46,20 +51,20 @@ select_ngrams <- function(graph, n=2){
 #' @description Selects only nodes from a graph whose node names are at single words.
 #' @param graph an igraph object
 #' @return a data frame of node names, strengths, rank
-select_unigrams <- function(graph){
-  strength_data <- make_strengths(graph)
-  unigrams <- strength_data[which(sapply(strsplit(as.character(strength_data$nodename), " "), length) == 1),]
+select_unigrams <- function(graph, importance_method="strength"){
+  importance_data <- make_importance(graph)
+  unigrams <- importance_data[which(sapply(strsplit(as.character(importance_data$nodename), " "), length) == 1),]
   return(unigrams)
 }
 
 #' Find optimal knot placements
 #' @description This function finds optimal knot placement given the degrees of your unique node strength graph and how many knots to allow. Degrees refers to the polynomial degree; for straight lines, use degree of 1 or for a curve use degree 2. Increasing the number of knots increases the fit and flexibility of the spline curve and presents more options for the cutoff strength.
-#' @param strength_data a dataset of unique node strengths and their ranks
+#' @param importance_data a dataset of unique node strengths and their ranks
 #' @param degrees the degree of the polynomial for the curve of unique node strengths
 #' @param knot_num the number of knots to allow
 #' @return a vector of knot placements
-find_knots <- function(strength_data, degrees=2, knot_num=1){
-  knotselect <- freeknotsplines::freepsgen(strength_data$rank, strength_data$strength,
+find_knots <- function(importance_data, degrees=2, knot_num=1){
+  knotselect <- freeknotsplines::freepsgen(importance_data$rank, importance_data$importance,
                                            degree=degrees, numknot=knot_num, seed=5, stream=0)
   knots <- knotselect@optknot
   return(knots)
@@ -67,14 +72,14 @@ find_knots <- function(strength_data, degrees=2, knot_num=1){
 
 #' Fit spline model to node strengths
 #' @description Fits a basis spline to the curve of ranked unique node strengths.
-#' @param strength_data a dataset of ranked unique node strenghts
+#' @param importance_data a dataset of ranked unique node strengths
 #' @param degrees the same degrees used to find knot placement in \code{find_knots}
 #' @param knot_num the same number of knots used to find knot placement in \code{find_knots}
 #' @param knots The vector of optimal knots returned from \code{find_knots}
 #' @return a fitted spline model
-fit_splines <- function(strength_data, degrees=2, knot_num=1, knots){
-  spline_b <- splines2::bSpline(as.numeric(strength_data$rank), knots=knots, degree=degrees, numknot=knot_num, intercept=TRUE)
-  spline_fit <- lm(as.numeric(strength_data$strength) ~ spline_b)
+fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
+  spline_b <- splines2::bSpline(as.numeric(importance_data$rank), knots=knots, degree=degrees, numknot=knot_num, intercept=TRUE)
+  spline_fit <- lm(as.numeric(importance_data$importance) ~ spline_b)
   return(spline_fit)
 }
 
@@ -82,51 +87,50 @@ fit_splines <- function(strength_data, degrees=2, knot_num=1, knots){
 #' Find node cutoff strength
 #' @description Find the minimum node strength to use as a cutoff point for important nodes.
 #' @param graph The complete graph.
-#' @param method The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80% of the total strength).
+#' @param method The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
 #' @param cum_pct if using method cumulative, the total percent of node strength to capture
 #' @param degrees if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths
 #' @param knot_num if using method spline, the number of knots to allow
 #' @param diagnostics if set to TRUE, saves plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point
 #' @return a vector of suggested node cutoff strengths
-find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE){
+find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
   require(igraph, quietly=TRUE)
-  strength_data <- make_strengths(graph)
+  importance_data <- make_importance(graph)
 
   if (method == "spline") {
-      knots <- find_knots(strength_data, degrees=degrees, knot_num=knot_num)
+      knots <- find_knots(importance_data, degrees=degrees, knot_num=knot_num)
       cut_points <- floor(knots)
-      cut_strengths <- (strength_data$strength)[cut_points]
+      cut_strengths <- (importance_data$importance)[cut_points]
 
       if (diagnostics == TRUE){
-        spline_fit <- fit_splines(strength_data, degrees=degrees, knot_num=knot_num, knots=knots)
-        plot(strength_data$rank, strength_data$strength,
+        spline_fit <- fit_splines(importance_data, degrees=degrees, knot_num=knot_num, knots=knots)
+        plot(importance_data$rank, importance_data$importance,
              main="Spline model fit",
              xlab="Rank", ylab="Node strength (unique)")
-        lines(strength_data$rank,spline_fit$fit,col="red",lwd=3)
+        lines(importance_data$rank,spline_fit$fit,col="red",lwd=3)
         abline(v=knots, col="blue", lwd=2)
 
         par(mfrow=c(1,2))
-        plot(strength_data$rank, spline_fit$resid, xlab="Rank", ylab="Residual", main="Residuals along the x-axis (rank)")
+        plot(importance_data$rank, spline_fit$resid, xlab="Rank", ylab="Residual", main="Residuals along the x-axis (rank)")
         abline(h=0, col="red")
-        abline(lm(spline_fit$resid ~ strength_data$rank), col="blue", lty=2)
-        plot(strength_data$strength, spline_fit$resid, xlab="Strength", ylab="Residual", main="Residuals along the y-axis (strength)")
-        abline(lm(spline_fit$resid ~ strength_data$strength), col="blue", lty=2)
+        abline(lm(spline_fit$resid ~ importance_data$rank), col="blue", lty=2)
+        plot(importance_data$importance, spline_fit$resid, xlab="Strength", ylab="Residual", main="Residuals along the y-axis (strength)")
+        abline(lm(spline_fit$resid ~ importance_data$importance), col="blue", lty=2)
         abline(h=0, col="red")
-        dev.off()
       }
     }
 
   if (method == "cumulative"){
-    cum_str <- max(cumsum(sort(strength_data$strength)))
-    cut_point <- (which(cumsum(sort(strength_data$strength, decreasing = TRUE))>=cum_str*cum_pct))[1]
-    cut_strengths <- as.numeric(sort(as.numeric(strength_data$strength), decreasing = TRUE)[cut_point])
+    cum_str <- max(cumsum(sort(importance_data$importance)))
+    cut_point <- (which(cumsum(sort(importance_data$importance, decreasing = TRUE))>=cum_str*cum_pct))[1]
+    cut_strengths <- as.numeric(sort(as.numeric(importance_data$importance), decreasing = TRUE)[cut_point])
 
     if (diagnostics == TRUE){
-      plot(cumsum(sort(strength_data$strength)), type="l", ylab="Cumulative node strength", main="Cumulative sum of ranked node strength")
+      plot(cumsum(sort(importance_data$importance)), type="l", ylab="Cumulative node strength", main="Cumulative sum of ranked node strength")
       abline(v=cut_point, col="blue")
       legend("topleft", legend = c("Point at which cumulative percent is to the right of the line"), lwd=2, col="blue")
 
-      hist(strength_data$strength, 100,
+      hist(importance_data$importance, 100,
            main="Histogram of node strengths", xlab="Node strength")
       abline(v=cut_strengths, col="blue")
       legend("topright", legend = c("Node strength cutoff"), lwd=2, col="blue")
@@ -137,7 +141,7 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
 
 #' Extract potential keywords
 #' @description Extracts keywords identified as important and writes them to a plain text file.
-#' @param reduced_graph a reduced graph with only important nodes
+#' @param reduced_graph a reduced graph with only important nodes created with reduce_grah()
 #' @param savekeywords if TRUE, saves the keywords to a plain text file
 #' @param makewordle if TRUE, creates a wordcloud image of the important keywords sized relative to node strength
 #' @return a list of potential keywords to consider
@@ -154,18 +158,10 @@ get_keywords <- function(reduced_graph, savekeywords=TRUE, makewordle=TRUE){
 #' @param graph the full graph object
 #' @param cutoff_strength the minimum node strength to be included in the reduced graph
 #' @return an igraph graph with only important nodes
-reduce_graph <- function(graph, cutoff_strength, printplot=TRUE){
-  strength_data <- make_strengths(graph)
-  important_nodes <- strength_data$nodename[which(strength_data$strength >= cutoff_strength)]
+reduce_graph <- function(graph, cutoff_strength){
+  importance_data <- make_importance(graph)
+  important_nodes <- importance_data$nodename[which(importance_data$importance >= cutoff_strength)]
   reduced_graph <- induced.subgraph(graph, v=important_nodes)
-  if (printplot == TRUE){
-    require("igraph", quietly=TRUE)
-    plot(reduced_graph,
-         vertex.label.color="#000000", vertex.label.cex=.5,
-         vertex.size=sqrt(igraph::strength(reduced_graph)), vertex.color="white", vertex.frame.color="black",
-         edge.width=sqrt(E(reduced_graph)$weight), edge.color="black", edge.arrow.size=.25)
-  }
-
   return(reduced_graph)
 }
 

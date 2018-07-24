@@ -40,7 +40,7 @@ extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstra
     if (abstract == FALSE){print("You aren't selecting any text to pass to RAKE!")}
   }
 
-  possible_terms <- rapidraker::rapidrake(article_subjects,
+  possible_terms <- rapidraker::rapidrake(tolower(article_subjects),
                                           stop_words = add_stopwords(new_stopwords),
                                           stem=FALSE)
   likely_terms <- possible_terms[[1]]$keyword[which(possible_terms[[1]]$freq >= min_freq)]
@@ -61,7 +61,7 @@ select_actual_terms <- function(df, min_freq=2){
 
   term_freq_table <- table(possible_terms)
 
-  actual_terms <- names(term_freq_table)[which(term_freq_table >= min_freq)]
+  actual_terms <- tolower(names(term_freq_table)[which(term_freq_table >= min_freq)])
   if(length(which(actual_terms=="")>0)){actual_terms <- actual_terms[-which(actual_terms=="")]}
 
   return(actual_terms)
@@ -75,7 +75,7 @@ select_actual_terms <- function(df, min_freq=2){
 #' @return a quanteda dictionary object
 make_dictionary <- function(actual_terms=select_actual_terms(df, min_freq=2), likely_terms=extract_terms(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE)){
 
-  complete_keywords <- unique(append(actual_terms, likely_terms))
+  complete_keywords <- unique(tolower(append(actual_terms, likely_terms)))
 
   my_dic <- as.data.frame(cbind(complete_keywords, complete_keywords))
   colnames(my_dic) <- c("word", "sentiment")
@@ -103,7 +103,8 @@ create_dfm <- function(corpus=make_corpus(df), my_dic=make_dictionary(), custom_
                   remove_twitter=TRUE,
                   remove_hyphens=TRUE,
                   remove_url=TRUE,
-                  dictionary=my_dic)
+                  dictionary=my_dic,
+                  tolower=TRUE)
 
   return(search_dfm)
 

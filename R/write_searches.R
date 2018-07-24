@@ -20,7 +20,7 @@ get_language_data <- function(key_topics){
   split_langs <- strsplit(combined_langs, "\ | ")
   all_langs <- split_langs[[1]]
 
-  remove.these <- c(which(all_langs=="null"),
+  remove_these <- c(which(all_langs=="null"),
                     which(all_langs=="Yes"),
                     which(all_langs=="English"),
                     which(all_langs=="Multiple"),
@@ -30,7 +30,7 @@ get_language_data <- function(key_topics){
                     which(all_langs=="in"),
                     which(all_langs=="|" ))
 
-  good_langs <- all_langs[-remove.these]
+  good_langs <- all_langs[-remove_these]
 
   label <- key_topics[1]
   if (length(key_topics) > 1){
@@ -221,7 +221,7 @@ write_stemmed_search <- function(groupdata, languages="English", exactphrase=FAL
 #' @param languages a character vector of supported languages to write searches in.
 #' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
 #' @param directory the path to the directory where you want to save searches (defaults to current working directory)
-write_search <- function(groupdata, translate_API, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE, directory="./"){
+write_search <- function(groupdata, translate_API, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE, directory="./", databases=c("BIOSIS", "ZooRec", "EBSCO", "Scopus")){
 
   if(exactphrase==FALSE){
     no_groups <- length(groupdata)
@@ -237,9 +237,16 @@ write_search <- function(groupdata, translate_API, languages=choose_languages(la
       for (j in 1:no_groups){
         current_group <- groupdata[j]
 
+        if (languages!="English"){
         translated_terms <- (translate_search(
           search_terms = current_group[[1]], target_language = current_lang))
         each_line <- paste("\\(", "\\(", translated_terms[1], "\\)")
+        }
+
+        if (languages=="English"){
+          translated_terms <- current_group[[1]]
+          each_line <- paste("\\(", "\\(", translated_terms[1], "\\)")
+        }
 
         for (k in 2:length(translated_terms)){
           each_line <- paste(each_line, " OR \\(", translated_terms[k],"\\)",  sep="")
@@ -261,9 +268,10 @@ write_search <- function(groupdata, translate_API, languages=choose_languages(la
 
       converted_search <- iconv(total_search, "UTF-8", trans_encod)
       converted_search <- gsub("\\\\", "\\", converted_search)
-      filename <- paste(directory, "search-in-", current_lang, ".txt", sep="")
 
+      filename <- paste(directory, "search-in-", current_lang, ".txt", sep="")
       writeLines(converted_search, filename)
+
       print(paste(current_lang, "is written"))
     }
 
@@ -284,9 +292,16 @@ write_search <- function(groupdata, translate_API, languages=choose_languages(la
       for (j in 1:no_groups){
         current_group <- groupdata[j]
 
+        if (languages!="English"){
         translated_terms <- (translate_search(
           search_terms = current_group[[1]], target_language = current_lang))
         each_line <- paste("\\(", "\"", translated_terms[1], "\"", sep="")
+        }
+
+        if (languages=="English"){
+          translated_terms <- current_group[[1]]
+          each_line <- paste("\\(", "\"", translated_terms[1], "\"", sep="")
+        }
 
         for (k in 2:length(translated_terms)){
           each_line <- paste(each_line, " OR ", "\"", translated_terms[k], "\"", sep="")
@@ -310,8 +325,8 @@ write_search <- function(groupdata, translate_API, languages=choose_languages(la
       converted_search <- gsub("\\\\", "\\", converted_search)
       filename <- paste("search-in-", current_lang, ".txt", sep="")
 
-      writeLines(converted.search, filename)
-      print(paste(current.lang, "is written"))
+      writeLines(converted_search, filename)
+      print(paste(current_lang, "is written"))
     }
 
   }
@@ -325,4 +340,5 @@ write_search <- function(groupdata, translate_API, languages=choose_languages(la
 available_languages <- function(){
   print(possible_langs$Language)
 }
+
 

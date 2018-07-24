@@ -4,15 +4,19 @@
 \alias{language_graphs}
 \title{Generates a graph of languages to search}
 \usage{
-language_graphs(lang_data, no_return = 15, key_topics = c("biology",
+language_graphs(lang_data = get_language_data(key_topics = c("biology",
+  "conservation", "ecology")), no_return = 15, key_topics = c("biology",
   "conservation", "ecology"))
 }
 \arguments{
-\item{lang_data}{The exported language data from choose_languages().}
+\item{lang_data}{a table of language data returned from choose_languages()}
 
-\item{no_return}{The maximum number of languages to include in the graph.}
+\item{no_return}{the maximum number of languages to include in the graph}
 
-\item{key_topics}{The same key topics used in choose_languages().}
+\item{key_topics}{a character vector of the same key topics used in choose_languages()}
+}
+\value{
+a bubble plot of non-English languages used by journals in a discipline sized by count
 }
 \description{
 Creates a bubble graph showing the number of journals in each language from the languages used by journals in given topics.

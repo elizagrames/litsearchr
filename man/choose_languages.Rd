@@ -2,16 +2,10 @@
 % Please edit documentation in R/write_searches.R
 \name{choose_languages}
 \alias{choose_languages}
-\title{Select non-English languages to search in}
+\title{Select search languages}
 \usage{
-choose_languages(key_topics = c("biology", "conservation", "ecology"))
-}
-\arguments{
-\item{key_topics}{A vector of topics related to the topic of the search.}
-}
-\value{
-A data frame of languages used by journals tagged with the key topics and a count of how many journals use that language.
+choose_languages(lang_data = get_language_data(key_topics = "biology"))
 }
 \description{
-This function chooses the best non-English languages to conduct searches in based on the topic of the review. The topics query a database of non-English language journals compiled from Ulrich; currently only STEM fields are supported.
+Checks which languages returned from get_language_data() are possible to use and returns a character vector of languages to use. Called from inside write_search().
 }
