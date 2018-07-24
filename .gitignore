@@ -1,3 +1,9 @@
 *.o
 *.so
 *.dll
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+inst/doc
+src/
