@@ -41,8 +41,7 @@ I want to thank:
 
 # Installation and dependencies
 
-To install **litsearchr** on a Unix-based OS (OSX or Linux) use devtools::install_github("elizagrames/litsearchr")
-To install **litsearchr** on a Windows machine, download the repository from https://github.com/elizagrames/litsearchr, delete the ./src/ directory, and build the package. Or, if you're on Windows and know better than us about how to install R packages from GitHub that were built on a Unix system, let us know so we can update the instructions!
+To install **litsearchr** use devtools::install_github("elizagrames/litsearchr"). 
 
 # Workflow example: Preparing a search strategy for a systematic review
 
