@@ -27,7 +27,7 @@ make_importance <- function(graph, importance_method){
   if (importance_method=="hub"){importance <- sort(igraph::hub(graph))}
   if (importance_method=="power"){importance <- sort(igraph::power_centrality(graph))}
   importance_data <- cbind(seq(1, length(importance), 1), as.numeric(importance))
-  colnames(importance_data) <- c("rank", "strength")
+  colnames(importance_data) <- c("rank", "importance")
   importance_data <- as.data.frame(importance_data)
   importance_data$nodename <- names(importance)
   importance_data$rank <- as.numeric(importance_data$rank)
@@ -41,7 +41,7 @@ make_importance <- function(graph, importance_method){
 #' @param n a minimum number of words in an n-gram
 #' @return a data frame of node names, strengths, rank
 select_ngrams <- function(graph, n=2, importance_method="strength"){
-  importance_data <- make_importance(graph)
+  importance_data <- make_importance(graph, importance_method = importance_method)
   ngrams <- importance_data[which(sapply(strsplit(as.character(importance_data$nodename), " "), length) >= n),]
   return(ngrams)
   }
@@ -52,7 +52,7 @@ select_ngrams <- function(graph, n=2, importance_method="strength"){
 #' @param graph an igraph object
 #' @return a data frame of node names, strengths, rank
 select_unigrams <- function(graph, importance_method="strength"){
-  importance_data <- make_importance(graph)
+  importance_data <- make_importance(graph, importance_method = importance_method)
   unigrams <- importance_data[which(sapply(strsplit(as.character(importance_data$nodename), " "), length) == 1),]
   return(unigrams)
 }
@@ -95,7 +95,7 @@ fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
 #' @return a vector of suggested node cutoff strengths
 find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
   require(igraph, quietly=TRUE)
-  importance_data <- make_importance(graph, importance_method)
+  importance_data <- make_importance(graph, importance_method=importance_method)
 
   if (method == "spline") {
       knots <- find_knots(importance_data, degrees=degrees, knot_num=knot_num)
@@ -158,8 +158,8 @@ get_keywords <- function(reduced_graph, savekeywords=TRUE, makewordle=TRUE){
 #' @param graph the full graph object
 #' @param cutoff_strength the minimum node strength to be included in the reduced graph
 #' @return an igraph graph with only important nodes
-reduce_graph <- function(graph, cutoff_strength){
-  importance_data <- make_importance(graph)
+reduce_graph <- function(graph, cutoff_strength, importance_method="strength"){
+  importance_data <- make_importance(graph, importance_method = importance_method)
   important_nodes <- importance_data$nodename[which(importance_data$importance >= cutoff_strength)]
   reduced_graph <- induced.subgraph(graph, v=important_nodes)
   return(reduced_graph)
