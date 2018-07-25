@@ -28,12 +28,23 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
       df <- read.csv(import.files[i], header=TRUE, stringsAsFactors = FALSE)
       }
     if (stringr::str_detect(import.files[i], ".txt")==TRUE){
-      df <- read.delim(import.files[i], header=TRUE, stringsAsFactors = FALSE)}
+      df <- read.table(import.files[i], sep="\t", header=TRUE, comment.char="#",
+                       na.strings=".", stringsAsFactors=FALSE,
+                       quote="", fill=TRUE)
+      if (paste(colnames(df), collapse=" ")==importable_databases$BIOSIS2){
+        colnames(df) <- gsub("X...", "", colnames(df))
+        df <- df[,1:65]
+      }
+      if (paste(colnames(df), collapse=" ")==importable_databases$ZooRec2){
+        colnames(df) <- gsub("X...", "", colnames(df))
+      }
+    }
     if (stringr::str_detect(import.files[i], ".xls")==TRUE){
       requireNamespace("gdata", quietly = TRUE)
       df <- gdata::read.xls(import.files[i])
     }
-  database <- detect_database(df)
+    database <- c()
+    database <- detect_database(df)
 
   if (database=="Scopus"){
     df <- dplyr::select(df,
