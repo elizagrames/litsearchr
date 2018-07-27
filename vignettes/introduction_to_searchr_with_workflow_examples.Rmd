@@ -299,6 +299,7 @@ Partial support:
  - Ingenta Connect [inconsistently allows stemming within quotes]
  - JSTOR [no stemming in quotes, limited length, not recommended]
  - Wiley Online Library [no stemming within quotes]
+ - ScienceDirect [no wildcards, no more than 8 boolean operators; don't use]
 
 
 To write foreign language searches, specify the list of your concept groups, the key topics for journal languages, and whether or not terms should be included in quotes to find exact phrases. The translation is done with the Google Translate API using the translate package. You will need to set up an API key to use this function (https://cloud.google.com/translate/). 

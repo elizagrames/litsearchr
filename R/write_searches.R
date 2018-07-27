@@ -221,7 +221,7 @@ write_stemmed_search <- function(groupdata, languages="English", exactphrase=FAL
 #' @param languages a character vector of supported languages to write searches in.
 #' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
 #' @param directory the path to the directory where you want to save searches (defaults to current working directory)
-write_search <- function(groupdata, translate_API=NULL, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE, directory="./", databases=c("BIOSIS", "ZooRec", "EBSCO", "Scopus")){
+write_search <- function(groupdata, translate_API=NULL, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE, directory="./"){
 
   if(exactphrase==FALSE){
     no_groups <- length(groupdata)

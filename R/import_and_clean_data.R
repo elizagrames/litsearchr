@@ -26,6 +26,13 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
   for (i in 1:length(import.files)){
     if (stringr::str_detect(import.files[i], ".csv")==TRUE){
       df <- read.csv(import.files[i], header=TRUE, stringsAsFactors = FALSE)
+      if (paste(colnames(df), collapse=" ")==importable_databases$EBSCO2){
+        colnames(df) <- gsub("X...", "", colnames(df))
+      }
+      if (paste(colnames(df), collapse=" ")==importable_databases$Scopus2){
+        colnames(df) <- gsub("X...", "", colnames(df))
+      }
+
       }
     if (stringr::str_detect(import.files[i], ".txt")==TRUE){
       df <- read.table(import.files[i], sep="\t", header=TRUE, comment.char="#",
@@ -38,6 +45,10 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
       if (paste(colnames(df), collapse=" ")==importable_databases$ZooRec2){
         colnames(df) <- gsub("X...", "", colnames(df))
       }
+      if (paste(colnames(df), collapse=" ")==importable_databases$MEDLINE2){
+        colnames(df) <- gsub("X...", "", colnames(df))
+      }
+
     }
     if (stringr::str_detect(import.files[i], ".xls")==TRUE){
       requireNamespace("gdata", quietly = TRUE)
@@ -53,7 +64,7 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
                         abstract=Abstract,
                         keywords=Author.Keywords,
                         type=Document.Type,
-                        authors=X...Authors,
+                        authors=Authors,
                         affiliation=Affiliations,
                         source=Source.title,
                         year=Year,
@@ -113,6 +124,33 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
                         language=LA)
     df$text <- paste(df$abstract, df$keywords, sep=" ")
   }
+  if (database=="MEDLINE"){
+      df <- dplyr::select(df,
+                          id=AN,
+                          title=TI,
+                          abstract=AB,
+                          keywords=ID,
+                          type=DT,
+                          authors=AU,
+                          affiliation=C1,
+                          source=SO,
+                          year=PY,
+                          volume=VL,
+                          issue=IS,
+                          startpage=PS,
+                          doi=DI,
+                          language=LA)
+      df$text <- paste(df$abstract, df$keywords, sep=" ")
+      df$methods <- rep("", length(df$id))
+      temp <- strsplit(as.character(df$startpage), "-")
+      if (length(temp) >0){
+        for (j in 1:length(temp)){
+          df$startpage[j] <- temp[[j]][1]
+          if (length(temp[[j]]) > 1){df$endpage[j] <- temp[[j]][2]}
+        }
+      }
+    }
+
   if (database=="WoS"){
     df <- dplyr::select(df,
                         id=UT,
@@ -136,11 +174,11 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
   if (database=="EBSCO"){
     df <- dplyr::select(df,
                         id=Accession.Number,
-                        title=X...Article.Title,
+                        title=Article.Title,
                         abstract=Abstract,
                         authors=Author,
                         source=Journal.Title,
-                        year=Publicaton.Date,
+                        year=Publication.Date,
                         volume=Volume,
                         issue=Issue,
                         startpage=First.Page,
@@ -153,7 +191,6 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
     df$affiliation <- rep("", nrow(df))
     df$language <- rep("", nrow(df))
     df$text <- paste(df$abstract, df$keywords, sep=" ")
-    df$endpage <- df$startpage + df$Page.Count
   }
 
   df$database <- rep(database, nrow(df))
@@ -184,72 +221,68 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
 #' @param title_sim the minimum similarity between two titles to be marked as duplicated
 #' @param mean_sim the minimum mean similarity of abstract and title similarity to be marked as duplicated
 #' @return a data frame with duplicates removed
-deduplicate <- function(df, doc_sim=.85, title_sim=.95, mean_sim=.8, title_method="tokens"){
+deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, title_method="tokens", doc_sim=.85, title_sim=.95){
   require(quanteda, quietly=TRUE)
-  remove_by_title <- c()
-  full_dfm <- quanteda::dfm(make_corpus(df),
-                            remove = quanteda::stopwords("english"),
-                            remove_numbers=TRUE,
-                            remove_punct=TRUE,
-                            remove_symbols=TRUE,
-                            remove_separators=TRUE,
-                            remove_twitter=TRUE,
-                            remove_hyphens=TRUE,
-                            remove_url=TRUE)
-  dfm_similarity <- quanteda::textstat_simil(full_dfm, margin = "documents")
 
-  sim_mat <- as.matrix(dfm_similarity)
-  sim_mat[lower.tri(sim_mat, diag=TRUE)] <- NA
-  sim_mat <- as.data.frame(sim_mat)
+  remove_abstracts <- c()
+  remove_titles <- c()
 
-  indices <- data.frame(ind = which(sim_mat > 0.5, arr.ind=TRUE))
-  indices$doc1 <- rownames(sim_mat)[indices$ind.row]
-  indices$doc2 <- colnames(sim_mat)[indices$ind.col]
-  indices$sim_score <- sim_mat[which(sim_mat > 0.5, arr.ind=TRUE)]
-  indices$title1 <- df$title[indices$ind.row]
-  indices$title2 <- df$title[indices$ind.col]
-  indices$authors1 <- df$authors[indices$ind.row]
-  indices$authors2 <- df$authors[indices$ind.col]
-  indices$title_sim <- rep(NA, nrow(indices))
+  if (use_abstracts==TRUE){
+    dfA <- dplyr::select(df, id, text)
+    full_dfm <- quanteda::dfm(make_corpus(dfA),
+                              remove = quanteda::stopwords("english"),
+                              remove_numbers=TRUE,
+                              remove_punct=TRUE,
+                              remove_symbols=TRUE,
+                              remove_separators=TRUE,
+                              remove_twitter=TRUE,
+                              remove_hyphens=TRUE,
+                              remove_url=TRUE)
+    dfm_similarity <- quanteda::textstat_simil(full_dfm, margin = "documents")
+    sim_mat <- as.matrix(dfm_similarity)
+    sim_mat[lower.tri(sim_mat, diag=TRUE)] <- NA
+    sim_mat <- as.data.frame(sim_mat)
 
-  if (title_method=="quick"){remove_by_title <- which(duplicated(tolower(tm::removePunctuation(df$title)))==TRUE)}
-
-  if (title_method=="tokens"){
-   for (i in 1:nrow(indices)){
-    check_corpus <- quanteda::corpus(c(indices$title1[i], indices$title2[i]))
-    check_dfm <- quanteda::dfm(check_corpus,
-                               remove_numbers=TRUE,
-                               remove_punct=TRUE,
-                               remove_symbols=TRUE,
-                               remove_separators=TRUE,
-                               remove_twitter=TRUE,
-                               remove_hyphens=TRUE,
-                               remove_url=TRUE)
-    check_sim <- quanteda::textstat_simil(check_dfm, method="cosine")
-    indices$title_sim[i] <- as.numeric(check_sim)
-
-   }
+    indices <- data.frame(ind = which(sim_mat > doc_sim, arr.ind=TRUE))
+    indices$doc1 <- rownames(sim_mat)[indices$ind.row]
+    indices$doc2 <- colnames(sim_mat)[indices$ind.col]
+    remove_abstracts <- sort(unique(as.numeric(gsub("text", "", indices$doc2))))
   }
 
-  indices$mean_similarity <- (indices$sim_score + indices$title_sim)/2
-  remove_by_doc <- which(indices$sim_score > doc_sim)
-  remove_by_mean <- which(indices$mean_similarity > mean_sim)
+  if (use_titles==TRUE){
+    if (title_method=="quick"){
+      remove_titles <- which(duplicated(tolower(tm::removePunctuation(df$title)))==TRUE)
+    }
 
-  if (title_method=="tokens") {
-    remove_these <- append(remove_by_doc, c(remove_by_title, remove_by_mean))
-    if (length(remove_these > 0)){
-    remove_docs <- sort(unique(as.numeric(gsub("text", "", indices$doc2[remove_these]))))
+    if (title_method=="tokens"){
+
+      dfT <- dplyr::select(df, id, text=title)
+      full_dfm <- quanteda::dfm(make_corpus(dfT),
+                                remove = quanteda::stopwords("english"),
+                                remove_numbers=TRUE,
+                                remove_punct=TRUE,
+                                remove_symbols=TRUE,
+                                remove_separators=TRUE,
+                                remove_twitter=TRUE,
+                                remove_hyphens=TRUE,
+                                remove_url=TRUE)
+      dfm_similarity <- quanteda::textstat_simil(full_dfm, margin = "documents")
+      sim_mat <- as.matrix(dfm_similarity)
+      sim_mat[lower.tri(sim_mat, diag=TRUE)] <- NA
+      sim_mat <- as.data.frame(sim_mat)
+
+      indices <- data.frame(ind = which(sim_mat > title_sim, arr.ind=TRUE))
+      indices$doc1 <- rownames(sim_mat)[indices$ind.row]
+      indices$doc2 <- colnames(sim_mat)[indices$ind.col]
+      remove_titles <- sort(unique(as.numeric(gsub("text", "", indices$doc2))))
+
     }
   }
-  if (title_method=="quick"){
-    remove_these <- append(remove_by_doc, c(remove_by_mean))
-    remove_docs <- sort(unique(as.numeric(gsub("text", "", indices$doc2[remove_these]))))
-    remove_docs <- unique(append(remove_docs, remove_by_title))
-  }
 
+  remove_documents <- unique(append(remove_abstracts, remove_titles))
 
-  if (length(remove_docs) > 0){new_data <- df[-c(remove_docs),]}
-  if (length(remove_docs) == 0){new_data <- df}
+  if (length(remove_documents) > 0){new_data <- df[-c(remove_documents),]}
+  if (length(remove_documents) == 0){new_data <- df}
 
   return(new_data)
 }

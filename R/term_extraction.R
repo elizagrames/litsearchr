@@ -24,7 +24,7 @@ add_stopwords <- function(new_stopwords){
 #' @param title include titles if TRUE
 #' @param abstract include abstracts if TRUE
 #' @return a character vector of potential keyword terms
-extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE){
+extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
   if (title == TRUE){
     if (abstract == TRUE){
       article_subjects <- paste(df$title, df$abstract, collapse=". ")
@@ -44,6 +44,9 @@ extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstra
                                           stop_words = add_stopwords(new_stopwords),
                                           stem=FALSE)
   likely_terms <- possible_terms[[1]]$keyword[which(possible_terms[[1]]$freq >= min_freq)]
+  if (ngrams==TRUE){
+    likely_terms <- likely_terms[which(sapply(strsplit(as.character(likely_terms), " "), length) >= n)]
+  }
 
   return(likely_terms)
 }
@@ -53,7 +56,7 @@ extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstra
 #' @param df a data frame of search hits from import_scope
 #' @param min_freq a number, the minimum occurrences to be included
 #' @return a character vector of keywords actually occurring in the search dataset
-select_actual_terms <- function(df, min_freq=2){
+select_actual_terms <- function(df, min_freq=2, ngrams=TRUE, n=2){
   cleaned_keywords <- clean_keywords(df)$keyword
   possible_terms <- paste(df$keywords, collapse=";")
   possible_terms <- strsplit(possible_terms, ";")[[1]]
@@ -63,6 +66,10 @@ select_actual_terms <- function(df, min_freq=2){
 
   actual_terms <- tolower(names(term_freq_table)[which(term_freq_table >= min_freq)])
   if(length(which(actual_terms=="")>0)){actual_terms <- actual_terms[-which(actual_terms=="")]}
+  if (ngrams==TRUE){
+    actual_terms <- actual_terms[which(sapply(strsplit(as.character(actual_terms), " "), length) >= n)]
+  }
+
 
   return(actual_terms)
 
