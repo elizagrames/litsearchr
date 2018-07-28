@@ -4,8 +4,8 @@
 #' @return a character vector with the name of the database or an error that the database was not identified
 detect_database <- function(df){
   database <- ""
-  database_signature <- paste(colnames(df), collapse=" ")
-  database <- names(which(importable_databases==database_signature))
+  database_signature <- paste(colnames(df)[-1], collapse=" ")
+  database <- names(importable_databases)[which(stringr::str_detect(importable_databases, database_signature)==TRUE)]
 
   if (length(database)==0){print("Database format not recognized.")}
 
@@ -37,7 +37,7 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
       df <- gdata::read.xls(import.files[i])
     }
     colnames(df) <- gsub("X...", "", colnames(df))
-    colnames(df) <- gsub("??..", "", colnames(df))
+    colnames(df) <- gsub("ï..", "", colnames(df))
     if (colnames(df)[length(colnames(df))] == "X"){
       df <- df[,-length(colnames(df))]
     }
