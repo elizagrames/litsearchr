@@ -21,38 +21,25 @@ detect_database <- function(df){
 #' @return a data frame of all the search results combined
 import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, save_full_dataset=FALSE){
   import.files <- paste(directory, list.files(path=directory), sep="")
-  df <- c()
 
   for (i in 1:length(import.files)){
+    df <- c()
     if (stringr::str_detect(import.files[i], ".csv")==TRUE){
       df <- read.csv(import.files[i], header=TRUE, stringsAsFactors = FALSE)
-      if (paste(colnames(df), collapse=" ")==importable_databases$EBSCO2){
-        colnames(df) <- gsub("X...", "", colnames(df))
-      }
-      if (paste(colnames(df), collapse=" ")==importable_databases$Scopus2){
-        colnames(df) <- gsub("X...", "", colnames(df))
-      }
-
       }
     if (stringr::str_detect(import.files[i], ".txt")==TRUE){
       df <- read.table(import.files[i], sep="\t", header=TRUE, comment.char="#",
                        na.strings=".", stringsAsFactors=FALSE,
                        quote="", fill=TRUE)
-      if (paste(colnames(df), collapse=" ")==importable_databases$BIOSIS2){
-        colnames(df) <- gsub("X...", "", colnames(df))
-        df <- df[,1:65]
-      }
-      if (paste(colnames(df), collapse=" ")==importable_databases$ZooRec2){
-        colnames(df) <- gsub("X...", "", colnames(df))
-      }
-      if (paste(colnames(df), collapse=" ")==importable_databases$MEDLINE2){
-        colnames(df) <- gsub("X...", "", colnames(df))
-      }
-
     }
     if (stringr::str_detect(import.files[i], ".xls")==TRUE){
       requireNamespace("gdata", quietly = TRUE)
       df <- gdata::read.xls(import.files[i])
+    }
+    colnames(df) <- gsub("X...", "", colnames(df))
+    colnames(df) <- gsub("??..", "", colnames(df))
+    if (colnames(df)[length(colnames(df))] == "X"){
+      df <- df[,-length(colnames(df))]
     }
     database <- c()
     database <- detect_database(df)
