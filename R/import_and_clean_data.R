@@ -37,7 +37,6 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
       df <- gdata::read.xls(import.files[i])
     }
     colnames(df) <- gsub("X...", "", colnames(df))
-    colnames(df) <- gsub("ï..", "", colnames(df))
     if (colnames(df)[length(colnames(df))] == "X"){
       df <- df[,-length(colnames(df))]
     }
@@ -179,6 +178,30 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
     df$language <- rep("", nrow(df))
     df$text <- paste(df$abstract, df$keywords, sep=" ")
   }
+
+    if (database=="ProQuest"){
+      df <- dplyr::select(df,
+                          id=StoreId,
+                          title=Title,
+                          abstract=Abstract,
+                          keywords=subjectTerms,
+                          altkeys=subjects,
+                          type=documentType,
+                          authors=Authors,
+                          affiliation=correspondenceAuthor,
+                          source=pubtitle,
+                          year=year,
+                          volume=volume,
+                          issue=issue,
+                          startpage=startPage,
+                          doi=digitalObjectIdentifier,
+                          language=language)
+      df$endpage <- rep("", length(df$id))
+      df$methods <- rep("", length(df$id))
+      df$keywords <- paste(df$keywords, df$altkeys, sep=";")
+      df$text <- paste(df$abstract, df$keywords, sep=" ")
+      }
+
 
   df$database <- rep(database, nrow(df))
 
