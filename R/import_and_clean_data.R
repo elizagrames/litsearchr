@@ -40,6 +40,7 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
     if (colnames(df)[length(colnames(df))] == "X"){
       df <- df[,-length(colnames(df))]
     }
+
     database <- c()
     database <- detect_database(df)
 
@@ -179,7 +180,7 @@ import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, 
     df$text <- paste(df$abstract, df$keywords, sep=" ")
   }
 
-    if (database=="ProQuest"){
+  if (database=="ProQuest"){
       df <- dplyr::select(df,
                           id=StoreId,
                           title=Title,

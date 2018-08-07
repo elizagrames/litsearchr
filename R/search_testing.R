@@ -57,7 +57,8 @@ check_search_strategy <- function(relevant_studies, retrieved_studies, min_sim=.
 #' @param true_hits a character vector of titles for articles that should be returned
 #' @param retrieved_articles a character vector of titles for articles returned by a search
 #' @value a table of the best match for each true title from the search results along with a title similarity score
-check_recall <- function(true_hits, retrieved_articles, min_sim=.6){
+check_recall <- function(true_hits, retrieved_articles, min_sim=.6, new_stopwords = NULL){
+  custom_stopwords <- add_stopwords(new_stopwords=new_stopwords)
   titlekeys <- quanteda::tokens_remove(quanteda::tokens(tm::removePunctuation(tolower(true_hits))), custom_stopwords)
 
   positions <- list()
@@ -84,11 +85,12 @@ check_recall <- function(true_hits, retrieved_articles, min_sim=.6){
     similarity <- table(positions[[i]])/length(article)
     similarity <- sort(similarity[which(similarity > min_sim)], decreasing=TRUE)
     best_match <- similarity[1]
-    similarity_entry <- as.data.frame(cbind(true_hits[i], as.character(retrieved_articles[as.numeric(names(best_match))]), as.numeric(best_match)))
+    other_match <- similarity[2]
+    similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]), as.character(retrieved_articles[as.numeric(names(best_match))]), as.character(retrieved_articles[as.numeric(names(other_match))]), as.numeric(best_match), as.numeric(other_match)))
     if (i == 1){similarity_table <- similarity_entry}
     if (i > 1){similarity_table <- rbind(similarity_table, similarity_entry)}
   }
-  colnames(similarity_table) <- c("Title", "Best_match", "Similarity")
+  colnames(similarity_table) <- c("Title", "Match_1", "Match_2", "Similarity_1", "Similarity_2")
   return(similarity_table)
 
 }
