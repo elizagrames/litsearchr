@@ -57,25 +57,29 @@ check_search_strategy <- function(relevant_studies, retrieved_studies, min_sim=.
 #' @param true_hits a character vector of titles for articles that should be returned
 #' @param retrieved_articles a character vector of titles for articles returned by a search
 #' @value a table of the best match for each true title from the search results along with a title similarity score
-check_recall <- function(true_hits, retrieved_articles, min_sim=.6, new_stopwords = NULL){
-  custom_stopwords <- add_stopwords(new_stopwords=new_stopwords)
-  titlekeys <- quanteda::tokens_remove(quanteda::tokens(tm::removePunctuation(tolower(true_hits))), custom_stopwords)
-
+check_recall <- function (true_hits, retrieved_articles, min_sim = 0.6, new_stopwords = NULL) {
+  custom_stopwords <- add_stopwords(new_stopwords = new_stopwords)
+  titlekeys <- quanteda::tokens_remove(quanteda::tokens(tm::removePunctuation(tolower(true_hits))),
+                                       custom_stopwords)
   positions <- list()
   length(positions) <- length(titlekeys)
-
-  for (i in 1:length(titlekeys)){
+  for (i in 1:length(titlekeys)) {
     article <- titlekeys[[i]]
-    for (j in 1:length(article)){
-      temp <- stringr::str_detect(tm::removePunctuation(tolower(retrieved_articles)), article[j])
-      hits <- which(temp==TRUE)
-      if (length(hits) > 0){
-        for (k in 1:length(hits)){
-          if (i == 1){
-            if (k == 1){positions[[i]] <- hits[k]}
-            if (k > 1){positions[[i]] <- c(positions[[i]], hits[k])}
+    for (j in 1:length(article)) {
+      temp <- stringr::str_detect(tm::removePunctuation(tolower(retrieved_articles)),
+                                  article[j])
+      hits <- which(temp == TRUE)
+      if (length(hits) > 0) {
+        for (k in 1:length(hits)) {
+          if (i == 1) {
+            if (k == 1) {
+              positions[[i]] <- hits[k]
+            }
+            if (k > 1) {
+              positions[[i]] <- c(positions[[i]], hits[k])
+            }
           }
-          if (i > 1){
+          if (i > 1) {
             positions[[i]] <- c(positions[[i]], hits[k])
           }
         }
@@ -83,16 +87,28 @@ check_recall <- function(true_hits, retrieved_articles, min_sim=.6, new_stopword
     }
 
     similarity <- table(positions[[i]])/length(article)
-    similarity <- sort(similarity[which(similarity > min_sim)], decreasing=TRUE)
-    best_match <- similarity[1]
-    other_match <- similarity[2]
-    similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]), as.character(retrieved_articles[as.numeric(names(best_match))]), as.character(retrieved_articles[as.numeric(names(other_match))]), as.numeric(best_match), as.numeric(other_match)))
-    if (i == 1){similarity_table <- similarity_entry}
-    if (i > 1){similarity_table <- rbind(similarity_table, similarity_entry)}
-  }
-  colnames(similarity_table) <- c("Title", "Match_1", "Match_2", "Similarity_1", "Similarity_2")
-  return(similarity_table)
 
+    similarity <- sort(similarity[which(similarity > min_sim)],
+                       decreasing = TRUE)
+    if (length(similarity) > 0){
+      best_match <- similarity[1]
+      similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]),
+                                              as.character(retrieved_articles[as.numeric(names(best_match))]),
+                                              as.numeric(best_match)))}
+
+    if (length(similarity)==0){
+      similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]), "NA", "NA"))
+    }
+
+    if (i == 1) {
+      similarity_table <- similarity_entry
+    }
+    if (i > 1) {
+      similarity_table <- rbind(similarity_table, similarity_entry)
+    }
+  }
+  colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
+  return(similarity_table)
 }
 
 #' Get precision and recall of a search

@@ -19,209 +19,142 @@ detect_database <- function(df){
 #' @param clean_dataset if TRUE, removes excess punctuation and standardizes keywords
 #' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
 #' @return a data frame of all the search results combined
-import_scope <- function(directory, remove_duplicates=TRUE, clean_dataset=TRUE, save_full_dataset=FALSE){
-  import.files <- paste(directory, list.files(path=directory), sep="")
-
-  for (i in 1:length(import.files)){
+import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = TRUE,
+                          save_full_dataset = FALSE) {
+  import.files <- paste(directory, list.files(path = directory),
+                        sep = "")
+  for (i in 1:length(import.files)) {
     df <- c()
-    if (stringr::str_detect(import.files[i], ".csv")==TRUE){
-      df <- read.csv(import.files[i], header=TRUE, stringsAsFactors = FALSE)
-      }
-    if (stringr::str_detect(import.files[i], ".txt")==TRUE){
-      df <- read.table(import.files[i], sep="\t", header=TRUE, comment.char="#",
-                       na.strings=".", stringsAsFactors=FALSE,
-                       quote="", fill=TRUE)
+    if (stringr::str_detect(import.files[i], ".csv") == TRUE) {
+      df <- read.csv(import.files[i], header = TRUE, stringsAsFactors = FALSE)
     }
-    if (stringr::str_detect(import.files[i], ".xls")==TRUE){
+    if (stringr::str_detect(import.files[i], ".txt") == TRUE) {
+      df <- read.table(import.files[i], sep = "\t", header = TRUE,
+                       comment.char = "#", na.strings = ".", stringsAsFactors = FALSE,
+                       quote = "", fill = TRUE)
+    }
+    if (stringr::str_detect(import.files[i], ".xls") == TRUE) {
       requireNamespace("gdata", quietly = TRUE)
       df <- gdata::read.xls(import.files[i])
     }
     colnames(df) <- gsub("X...", "", colnames(df))
-    if (colnames(df)[length(colnames(df))] == "X"){
-      df <- df[,-length(colnames(df))]
-    }
+    colnames(df) <- gsub("ï..", "", colnames(df))
 
+    if (colnames(df)[length(colnames(df))] == "X") {
+      df <- df[, -length(colnames(df))]
+    }
     database <- c()
     database <- detect_database(df)
-
-  if (database=="Scopus"){
-    df <- dplyr::select(df,
-                        id=EID,
-                        title=Title,
-                        abstract=Abstract,
-                        keywords=Author.Keywords,
-                        type=Document.Type,
-                        authors=Authors,
-                        affiliation=Affiliations,
-                        source=Source.title,
-                        year=Year,
-                        volume=Volume,
-                        issue=Issue,
-                        startpage=Page.start,
-                        endpage=Page.end,
-                        doi=DOI
-    )
-    df$methods <- rep("", length(df$id))
-    df$language <- rep("", length(df$id))
-    df$text <- paste(df$abstract, df$keywords, sep=" ")
-  }
-  if (database=="ZooRec"){
-    df <- dplyr::select(df,
-                        id=AN,
-                        title=TI,
-                        abstract=AB,
-                        keywords=DE,
-                        type=DT,
-                        authors=AU,
-                        affiliation=C1,
-                        source=SO,
-                        year=PY,
-                        volume=VL,
-                        issue=IS,
-                        startpage=PS,
-                        doi=DI,
-                        language=LA)
-    temp <- strsplit(as.character(df$startpage), "-")
-    if (length(temp) >0){
-      for (j in 1:length(temp)){
-        df$startpage[j] <- temp[[j]][1]
-        if (length(temp[[j]]) > 1){df$endpage[j] <- temp[[j]][2]}
-      }
+    if (database == "Scopus") {
+      df <- dplyr::select(df, id = EID, title = Title,
+                          abstract = Abstract, keywords = Author.Keywords,
+                          type = Document.Type, authors = Authors, affiliation = Affiliations,
+                          source = Source.title, year = Year, volume = Volume,
+                          issue = Issue, startpage = Page.start, endpage = Page.end,
+                          doi = DOI)
+      df$methods <- rep("", length(df$id))
+      df$language <- rep("", length(df$id))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
-    df$methods <- rep("", length(df$id))
-    df$text <- paste(df$abstract, df$keywords, sep=" ")
-  }
-  if (database=="BIOSIS"){
-    df <- dplyr::select(df,
-                        id=UT,
-                        title=TI,
-                        abstract=AB,
-                        methods=MQ,
-                        keywords=MI,
-                        type=DT,
-                        authors=AU,
-                        affiliation=C1,
-                        source=SO,
-                        year=PY,
-                        volume=VL,
-                        issue=IS,
-                        startpage=BP,
-                        endpage=EP,
-                        doi=DI,
-                        language=LA)
-    df$text <- paste(df$abstract, df$keywords, sep=" ")
-  }
-  if (database=="MEDLINE"){
-      df <- dplyr::select(df,
-                          id=AN,
-                          title=TI,
-                          abstract=AB,
-                          keywords=ID,
-                          type=DT,
-                          authors=AU,
-                          affiliation=C1,
-                          source=SO,
-                          year=PY,
-                          volume=VL,
-                          issue=IS,
-                          startpage=PS,
-                          doi=DI,
-                          language=LA)
-      df$text <- paste(df$abstract, df$keywords, sep=" ")
+    if (database == "ZooRec") {
+      df <- dplyr::select(df, id = AN, title = TI, abstract = AB,
+                          keywords = DE, type = DT, authors = AU, affiliation = C1,
+                          source = SO, year = PY, volume = VL, issue = IS,
+                          startpage = PS, doi = DI, language = LA)
+      temp <- strsplit(as.character(df$startpage), "-")
+      if (length(temp) > 0) {
+        for (j in 1:length(temp)) {
+          df$startpage[j] <- temp[[j]][1]
+          if (length(temp[[j]]) > 1) {
+            df$endpage[j] <- temp[[j]][2]
+          }
+        }
+      }
+      df$methods <- rep("", length(df$id))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if (database == "BIOSIS") {
+      df <- dplyr::select(df, id = UT, title = TI, abstract = AB,
+                          methods = MQ, keywords = MI, type = DT, authors = AU,
+                          affiliation = C1, source = SO, year = PY, volume = VL,
+                          issue = IS, startpage = BP, endpage = EP, doi = DI,
+                          language = LA)
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if (database == "MEDLINE") {
+      df <- dplyr::select(df, id = AN, title = TI, abstract = AB,
+                          keywords = ID, type = DT, authors = AU, affiliation = C1,
+                          source = SO, year = PY, volume = VL, issue = IS,
+                          startpage = PS, doi = DI, language = LA)
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
       df$methods <- rep("", length(df$id))
       temp <- strsplit(as.character(df$startpage), "-")
-      if (length(temp) >0){
-        for (j in 1:length(temp)){
+      if (length(temp) > 0) {
+        for (j in 1:length(temp)) {
           df$startpage[j] <- temp[[j]][1]
-          if (length(temp[[j]]) > 1){df$endpage[j] <- temp[[j]][2]}
+          if (length(temp[[j]]) > 1) {
+            df$endpage[j] <- temp[[j]][2]
+          }
         }
       }
     }
-
-  if (database=="WoS"){
-    df <- dplyr::select(df,
-                        id=UT,
-                        title=TI,
-                        abstract=AB,
-                        authors=AU,
-                        source=SO,
-                        year=PY,
-                        volume=VL,
-                        issue=IS,
-                        startpage=BP,
-                        endpage=EP,
-                        doi=DI)
-    df$keywords <- rep("", nrow(df))
-    df$methods <- rep("", nrow(df))
-    df$type <- rep("", nrow(df))
-    df$affiliation <- rep("", nrow(df))
-    df$language <- rep("", nrow(df))
-    df$text <- paste(df$abstract, df$keywords, sep=" ")
-  }
-  if (database=="EBSCO"){
-    df <- dplyr::select(df,
-                        id=Accession.Number,
-                        title=Article.Title,
-                        abstract=Abstract,
-                        authors=Author,
-                        source=Journal.Title,
-                        year=Publication.Date,
-                        volume=Volume,
-                        issue=Issue,
-                        startpage=First.Page,
-                        endpage=Page.Count,
-                        doi=DOI,
-                        keywords=Keywords,
-                        type=Doctype)
-
-    df$methods <- rep("", nrow(df))
-    df$affiliation <- rep("", nrow(df))
-    df$language <- rep("", nrow(df))
-    df$text <- paste(df$abstract, df$keywords, sep=" ")
-  }
-
-  if (database=="ProQuest"){
-      df <- dplyr::select(df,
-                          id=StoreId,
-                          title=Title,
-                          abstract=Abstract,
-                          keywords=subjectTerms,
-                          altkeys=subjects,
-                          type=documentType,
-                          authors=Authors,
-                          affiliation=correspondenceAuthor,
-                          source=pubtitle,
-                          year=year,
-                          volume=volume,
-                          issue=issue,
-                          startpage=startPage,
-                          doi=digitalObjectIdentifier,
-                          language=language)
+    if (database == "WoS") {
+      df <- dplyr::select(df, id = UT, title = TI, abstract = AB,
+                          authors = AU, source = SO, year = PY, volume = VL,
+                          issue = IS, startpage = BP, endpage = EP, doi = DI)
+      df$keywords <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$type <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$language <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if (database == "EBSCO") {
+      df <- dplyr::select(df, id = Accession.Number, title = Article.Title,
+                          abstract = Abstract, authors = Author, source = Journal.Title,
+                          year = Publication.Date, volume = Volume, issue = Issue,
+                          startpage = First.Page, endpage = Page.Count,
+                          doi = DOI, keywords = Keywords, type = Doctype)
+      df$methods <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$language <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if (database == "ProQuest") {
+      df <- dplyr::select(df, id = StoreId, title = Title,
+                          abstract = Abstract, keywords = subjectTerms,
+                          altkeys = subjects, type = documentType, authors = Authors,
+                          affiliation = correspondenceAuthor, source = pubtitle,
+                          year = year, volume = volume, issue = issue,
+                          startpage = startPage, doi = digitalObjectIdentifier,
+                          language = language)
       df$endpage <- rep("", length(df$id))
       df$methods <- rep("", length(df$id))
-      df$keywords <- paste(df$keywords, df$altkeys, sep=";")
-      df$text <- paste(df$abstract, df$keywords, sep=" ")
-      }
-
-
-  df$database <- rep(database, nrow(df))
-
-  df <- dplyr::select(df, id, text, title, abstract, keywords,
-                      methods, type, authors, affiliation, source,
-                      year, volume, issue, startpage, endpage, doi, language,
-                      database)
-
-  if (i == 1){search_hits <- df}
-  if (i > 1){search_hits <- rbind(search_hits, df)}
-
+      df$keywords <- paste(df$keywords, df$altkeys, sep = ";")
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    df$database <- rep(database, nrow(df))
+    df <- dplyr::select(df, id, text, title, abstract, keywords,
+                        methods, type, authors, affiliation, source, year,
+                        volume, issue, startpage, endpage, doi, language,
+                        database)
+    if (i == 1) {
+      search_hits <- df
+    }
+    if (i > 1) {
+      search_hits <- rbind(search_hits, df)
+    }
   }
-
-  if (save_full_dataset==TRUE){write.csv(search_hits, "./full_dataset.csv")}
-  if (remove_duplicates==TRUE){search_hits <- deduplicate(search_hits)}
-  if (clean_dataset==TRUE){search_hits <- clean_keywords(search_hits)}
-
+  if (save_full_dataset == TRUE) {
+    write.csv(search_hits, "./full_dataset.csv")
+  }
+  if (remove_duplicates == TRUE) {
+    search_hits <- deduplicate(search_hits)
+  }
+  if (clean_dataset == TRUE) {
+    search_hits <- clean_keywords(search_hits)
+  }
   return(search_hits)
-
 }
 
 
