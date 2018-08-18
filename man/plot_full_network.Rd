@@ -4,12 +4,14 @@
 \alias{plot_full_network}
 \title{Plot full keyword co-occurrence network}
 \usage{
-plot_full_network(graph, graphcolor = "black")
+plot_full_network(graph, graphcolor = "#006E6D", color_gradient = TRUE)
 }
 \arguments{
 \item{graph}{an igraph object}
 
 \item{graphcolor}{a color choice for the graph edges and node frames}
+
+\item{color_gradient}{if TRUE, the intensity of the color for each node scales with node strength}
 }
 \value{
 a plot of the full network structure

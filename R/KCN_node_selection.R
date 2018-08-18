@@ -18,13 +18,14 @@ create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
 #' Subset strength data from a graph
 #' @description Selects only the node strength data from a graph.
 #' @param graph an igraph graph
+#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node strengths, ranks, and names
 make_importance <- function(graph, importance_method){
   if (importance_method=="strength") {importance <- sort(igraph::strength(graph))}
   if (importance_method=="eigencentrality"){importance <- sort(igraph::eigen_centrality(graph))}
   if (importance_method=="alpha"){importance <- sort(igraph::alpha_centrality(graph))}
   if (importance_method=="betweenness"){importance <- sort(igraph::betweenness(graph))}
-  if (importance_method=="hub"){importance <- sort(igraph::hub(graph))}
+  if (importance_method=="hub"){importance <- sort(igraph::hub_score(graph))}
   if (importance_method=="power"){importance <- sort(igraph::power_centrality(graph))}
   importance_data <- cbind(seq(1, length(importance), 1), as.numeric(importance))
   colnames(importance_data) <- c("rank", "importance")
@@ -39,6 +40,7 @@ make_importance <- function(graph, importance_method){
 #' @description Selects only nodes from a graph whose node names are at least n-grams, where n is the minimum number of words in the node name. The default n-gram is a 2+-gram, which captures potential keyword terms that are at least two words long. The reason for this is that unigrams (terms with only one word) are detected more frequently, but are also generally less relevant to finding keyword terms.
 #' @param graph an igraph object
 #' @param n a minimum number of words in an n-gram
+#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node names, strengths, rank
 select_ngrams <- function(graph, n=2, importance_method="strength"){
   importance_data <- make_importance(graph, importance_method = importance_method)
@@ -50,6 +52,7 @@ select_ngrams <- function(graph, n=2, importance_method="strength"){
 #' Subset unigrams from node names
 #' @description Selects only nodes from a graph whose node names are at single words.
 #' @param graph an igraph object
+#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node names, strengths, rank
 select_unigrams <- function(graph, importance_method="strength"){
   importance_data <- make_importance(graph, importance_method = importance_method)
@@ -92,10 +95,11 @@ fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
 #' @param degrees if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths
 #' @param knot_num if using method spline, the number of knots to allow
 #' @param diagnostics if set to TRUE, saves plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point
+#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a vector of suggested node cutoff strengths
 find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
-  require(igraph, quietly=TRUE)
-  importance_data <- make_importance(graph, importance_method=importance_method)
+
+    importance_data <- make_importance(graph, importance_method=importance_method)
 
   if (method == "spline") {
       knots <- find_knots(importance_data, degrees=degrees, knot_num=knot_num)
@@ -146,8 +150,8 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
 #' @param makewordle if TRUE, creates a wordcloud image of the important keywords sized relative to node strength
 #' @return a list of potential keywords to consider
 get_keywords <- function(reduced_graph, savekeywords=TRUE, makewordle=TRUE){
-  potential_keys <- names(V(reduced_graph))
-  if (savekeywords == TRUE){ writeLines(potential_keys, "potential-keywords.txt") }
+  potential_keys <- names(igraph::V(reduced_graph))
+  if (savekeywords == TRUE){writeLines(potential_keys, "potential-keywords.txt") }
   if (makewordle == TRUE) {make_wordle(reduced_graph)}
   return(potential_keys)
 }
@@ -157,11 +161,12 @@ get_keywords <- function(reduced_graph, savekeywords=TRUE, makewordle=TRUE){
 #' Takes the full graph and reduces it to only include nodes (and associated edges) greater than the cutoff strength for important nodes.
 #' @param graph the full graph object
 #' @param cutoff_strength the minimum node strength to be included in the reduced graph
+#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return an igraph graph with only important nodes
 reduce_graph <- function(graph, cutoff_strength, importance_method="strength"){
   importance_data <- make_importance(graph, importance_method = importance_method)
   important_nodes <- importance_data$nodename[which(importance_data$importance >= cutoff_strength)]
-  reduced_graph <- induced.subgraph(graph, v=important_nodes)
+  reduced_graph <- igraph::induced_subgraph(graph, v=important_nodes)
   return(reduced_graph)
 }
 
@@ -173,11 +178,10 @@ reduce_graph <- function(graph, cutoff_strength, importance_method="strength"){
 #' @param unigrams if TRUE, returns a subset of the network where each node is a unigram
 #' @return an igraph object
 make_ngram_graph <- function(graph, min_ngrams=2, unigrams=FALSE){
-  require(igraph, quietly=TRUE)
   if (unigrams==FALSE){ngrams <- select_ngrams(graph, min_ngrams)}
   if (unigrams==TRUE){ngrams <- select_unigrams(graph)}
 
-  ngram_graph <- igraph::induced.subgraph(graph, v=ngrams$nodename)
+  ngram_graph <- igraph::induced_subgraph(graph, v=ngrams$nodename)
   return(ngram_graph)
 }
 

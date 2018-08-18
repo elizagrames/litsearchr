@@ -5,12 +5,14 @@
 \title{Create reduced graph of important nodes
 Takes the full graph and reduces it to only include nodes (and associated edges) greater than the cutoff strength for important nodes.}
 \usage{
-reduce_graph(graph, cutoff_strength)
+reduce_graph(graph, cutoff_strength, importance_method = "strength")
 }
 \arguments{
 \item{graph}{the full graph object}
 
 \item{cutoff_strength}{the minimum node strength to be included in the reduced graph}
+
+\item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
 \value{
 an igraph graph with only important nodes

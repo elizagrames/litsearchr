@@ -6,10 +6,10 @@ get_language_data <- function(key_topics){
   subset_these <- c()
 
   for (i in 1:length(key_topics)){
-    subset_these <- append(subset_these, which(stringr::str_detect(ulrich$SubjectCodes, key_topics[i])==TRUE))
+    subset_these <- append(subset_these, which(stringr::str_detect(litsearchr::ulrich$SubjectCodes, key_topics[i])==TRUE))
   }
 
-  my_subject <- ulrich[subset_these,]
+  my_subject <- litsearchr::ulrich[subset_these,]
   langs <- my_subject$Language
 
   combined_langs <- c()
@@ -50,10 +50,11 @@ get_language_data <- function(key_topics){
 
 #' Select search languages
 #' @description Checks which languages returned from get_language_data() are possible to use and returns a character vector of languages to use. Called from inside write_search().
+#' @param lang_data a table of language data exported from get_language_data()
 choose_languages <- function(lang_data=get_language_data(key_topics = "biology")){
 
   language_output <- lang_data[,1:2]
-  language_output <- language_output[which((language_output$language %in% possible_langs$Language)==TRUE),1]
+  language_output <- language_output[which((language_output$language %in% litsearchr::possible_langs$Language)==TRUE),1]
 
   return(language_output)
 
@@ -106,15 +107,19 @@ language_graphs <- function(lang_data=get_language_data(key_topics=c("biology", 
 }
 
 #' Translate search terms
+#' @param search_terms a character vector of search terms
+#' @param target_language a character vector of the language(s) to translate the search to
+#' @param source_language a character vector of the language the search terms are currently in
+#' @param API_key an API key for Google Translate (not available through litsearchr)
 #' @description Takes groups of search terms and translates them into target language using the Google Translate API. This function is intended for use inside write_search(), not as a standalone function.
 translate_search <- function(search_terms, target_language, source_language="en", API_key=translate_API){
   words <- search_terms
 
   termlist <- words
 
-  this_one <- which(stringr::str_detect(possible_langs$Language, target_language)==TRUE)
-  trans_lang <- as.character(possible_langs$Short[this_one])
-  trans_encod <- as.character(possible_langs$Encoding[this_one])
+  this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, target_language)==TRUE)
+  trans_lang <- as.character(litsearchr::possible_langs$Short[this_one])
+  trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
 
   for (i in 1:length(words)){
     termlist[i] <- translate::translate(words[i], source=source_language, target=trans_lang, key = API_key)[[1]]
@@ -124,6 +129,7 @@ translate_search <- function(search_terms, target_language, source_language="en"
 }
 
 #' Check whether a word is long enough to stem
+#' @param word the word to check
 #' @description Checks if the stemmed form of a word is longer than 3 characters. Not intended as a standalone function and is called from write_stemmed_search().
 should_stem <- function(word){
   wordcut <- SnowballC::wordStem(word, language="en")
@@ -202,8 +208,8 @@ write_stemmed_search <- function(groupdata, languages="English", exactphrase=FAL
 
   total_search <- paste("\\(", total_search, "\\)")
 
-  this_one <- which(stringr::str_detect(possible_langs$Language, current_lang)==TRUE)
-  trans_encod <- as.character(possible_langs$Encoding[this_one])
+  this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
+  trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
 
   converted_search <- iconv(total_search, "UTF-8", trans_encod)
   converted_search <- gsub("\\\\", "\\", converted_search)
@@ -263,8 +269,8 @@ write_search <- function(groupdata, translate_API=NULL, languages=choose_languag
       }
       total_search <- paste("\\(", total_search, "\\)")
 
-      this_one <- which(stringr::str_detect(possible_langs$Language, current_lang)==TRUE)
-      trans_encod <- as.character(possible_langs$Encoding[this_one])
+      this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
+      trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
 
       converted_search <- iconv(total_search, "UTF-8", trans_encod)
       converted_search <- gsub("\\\\", "\\", converted_search)
@@ -318,8 +324,8 @@ write_search <- function(groupdata, translate_API=NULL, languages=choose_languag
       }
       total_search <- paste("\\(", total_search, "\\)")
 
-      this_one <- which(stringr::str_detect(possible_langs$Language, current_lang)==TRUE)
-      trans_encod <- as.character(possible_langs$Encoding[this_one])
+      this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
+      trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
 
       converted_search <- iconv(total_search, "UTF-8", trans_encod)
       converted_search <- gsub("\\\\", "\\", converted_search)
@@ -338,7 +344,7 @@ write_search <- function(groupdata, translate_API=NULL, languages=choose_languag
 #' Print possible search languages
 #' @description Prints a list of languages that write_search() can write searches in.
 available_languages <- function(){
-  print(possible_langs$Language)
+  print(litsearchr::possible_langs$Language)
 }
 
 

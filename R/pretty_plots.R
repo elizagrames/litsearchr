@@ -4,7 +4,7 @@
 #' @param colorchoice a vector listing colors to use for the wordcloud
 #' @return plots a wordcloud
 make_wordle <- function(graph, colorchoice=c("#006E6D")){
-  wordle <- as.data.frame(cbind(names(V(graph)), strength(graph)))
+  wordle <- as.data.frame(cbind(names(igraph::V(graph)), igraph::strength(graph)))
   colnames(wordle) <- c("label", "size")
   if (!requireNamespace("wordcloud", quietly = TRUE)){
     stop("wordcloud needed for this function to work. Please install it.",
@@ -23,13 +23,12 @@ make_wordle <- function(graph, colorchoice=c("#006E6D")){
 #' @param color_gradient if TRUE, the intensity of the color for each node scales with node strength
 #' @return a plot of the full network structure
 plot_full_network <- function(graph, graphcolor="#006E6D", color_gradient=TRUE){
-  require(igraph, quietly = TRUE)
   node_color <- graphcolor
   if (color_gradient==TRUE){
     color_intensity <- igraph::strength(graph)
     color_set <- ((log(color_intensity-min(color_intensity)+1)/log(max(color_intensity-min(color_intensity)+1)))*100)
     color_set <- floor(as.numeric(color_set/.390625))
-    alpha_codes <- color_alphas$code[color_set]
+    alpha_codes <- litsearchr::color_alphas$code[color_set]
     color_list <- paste(graphcolor, alpha_codes, sep="")
     node_color <- color_list
   }
@@ -47,13 +46,18 @@ plot_full_network <- function(graph, graphcolor="#006E6D", color_gradient=TRUE){
 #' @param graphcolor a valid color name or hex code for the graph nodes
 #' @return an RGL plot of the graph
 plot_3D_network <- function(graph, graphcolor="#006E6D"){
-  require(rgl, quietly=TRUE)
+  if (!requireNamespace("rgl", quietly = TRUE)){
+    stop("rgl needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
+  if (requireNamespace("rgl", quietly=TRUE)){
+    igraph::rglplot(graph,
+                    layout=igraph::layout.fruchterman.reingold(graph, dim=3),
+                    vertex.label.color="#000000", vertex.label.cex=.5,
+                    vertex.size=sqrt(igraph::strength(graph)),
+                    vertex.color=graphcolor, vertex.frame.color=graphcolor,
+                    edge.width=.25, edge.color="black", edge.arrow.size=.25)
+  }
 
-  igraph::rglplot(graph,
-                  layout=layout.fruchterman.reingold(graph, dim=3),
-                  vertex.label.color="#000000", vertex.label.cex=.5,
-                  vertex.size=sqrt(igraph::strength(graph)),
-                  vertex.color=graphcolor, vertex.frame.color=graphcolor,
-                  edge.width=.25, edge.color="black", edge.arrow.size=.25)
-}
+ }
 

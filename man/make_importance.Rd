@@ -8,6 +8,8 @@ make_importance(graph, importance_method)
 }
 \arguments{
 \item{graph}{an igraph graph}
+
+\item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
 \value{
 a data frame of node strengths, ranks, and names

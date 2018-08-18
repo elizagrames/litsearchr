@@ -5,7 +5,7 @@
 \title{Extract potential keywords from abstracts and titles}
 \usage{
 extract_terms(df, new_stopwords = NULL, min_freq = 2, title = TRUE,
-  abstract = TRUE)
+  abstract = TRUE, ngrams = TRUE, n = 2)
 }
 \arguments{
 \item{df}{a dataframe created with import_scope}
@@ -17,6 +17,10 @@ extract_terms(df, new_stopwords = NULL, min_freq = 2, title = TRUE,
 \item{title}{include titles if TRUE}
 
 \item{abstract}{include abstracts if TRUE}
+
+\item{ngrams}{if TRUE, only extracts phrases with word count greater than a specified n}
+
+\item{n}{the minimum word count for ngrams}
 }
 \value{
 a character vector of potential keyword terms

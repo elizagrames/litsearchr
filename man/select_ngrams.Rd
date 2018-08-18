@@ -10,6 +10,8 @@ select_ngrams(graph, n = 2, importance_method = "strength")
 \item{graph}{an igraph object}
 
 \item{n}{a minimum number of words in an n-gram}
+
+\item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
 \value{
 a data frame of node names, strengths, rank

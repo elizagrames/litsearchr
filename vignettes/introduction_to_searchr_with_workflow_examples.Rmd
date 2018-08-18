@@ -1,10 +1,10 @@
 ---
-title: "Introduction to litsearchr with an example of writing a systematic review search strategy"
+title: "Introduction to litsearchr with an example of writing a systematic review search strategy for Black-backed Woodpecker occupancy of post-fire forest systems"
 author: "Eliza Grames and Andrew Stillman"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to litsearchr with an example of writing a systematic review search strategy}
+  %\VignetteIndexEntry{Introduction to litsearchr with an example of writing a systematic review search strategy for Black-backed Woodpecker occupancy of post-fire forest systems}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -27,8 +27,7 @@ Our intent in creating **litsearchr** is to make the process of designing a sear
 
 ## Acknowledgements
 
-I want to thank:
- - My co-author Andrew Stillman for using his study system as an example, providing feedback and suggestions at every step of the project, and testing the precision and recall of the package
+We want to thank:
  - Chris Elphick and Morgan Tingley for feedback, support, and advice at every stage of this project
  - Carolyn Mills for advice on which databases to search, testing database search rules, and guiding us through the process of manually writing a search strategy
  - Robi Bagchi for the initial idea to use co-occurrence networks for keyword identification
@@ -38,10 +37,6 @@ I want to thank:
 ## Comments, suggestions, bugs, and questions
 
 **litsearchr** is a work in progress - any and all comments, suggestions, bugs, or questions are welcome! Please email eliza.grames\@uconn.edu or open an issue at  https://github.com/elizagrames/litsearchr.
-
-# Installation and dependencies
-
-To install **litsearchr** use devtools::install_github("elizagrames/litsearchr"). 
 
 # Workflow example: Preparing a search strategy for a systematic review
 
@@ -108,7 +103,7 @@ First, we use the Rapid Automatic Keyword Extraction algorithm [@Rose2010] in th
 The amount of time this function takes depends on the size of your database; for ~500 articles it is under a minute. 
 
 ```{r}
-raked_keywords <- extract_terms(BBWO_data, new_stopwords = NULL, min_freq = 2, title = TRUE, abstract = TRUE)
+raked_keywords <- extract_terms(BBWO_data, new_stopwords = NULL, min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
 
 # When we check the results, some of these are definitely not important keywords
 # For example, "cocaine exposure cause parrot foot necrosis" doesn't seem particularly relevant to our woodpecker question
@@ -120,7 +115,7 @@ head(raked_keywords, 20)
 Next, we want to extract the author/database-tagged keywords from our scoping search.
 
 ```{r}
-real_keywords <- select_actual_terms(BBWO_data)
+real_keywords <- select_actual_terms(BBWO_data, ngrams = TRUE, n=2)
 
 # At first glance, these keywords seem more relevant
 # But something tagged with "biology" really isn't any better than "cocaine exposure cause parrot foot necrosis"
@@ -190,41 +185,9 @@ reduced_graph <- reduce_graph(BBWO_graph, cutoff_strength = cutoffs_spline[1])
 
 search_terms <- get_keywords(reduced_graph, savekeywords = TRUE, makewordle = FALSE)
 
-# If we check the length of search_terms, it is a pretty long list to consider manually (930)
 length(search_terms)
 
-# How relevant are these terms? Not very
 head(sort(search_terms), 20)
-
-# We have two options about how to procede here: use a more stringent cutoff for node strength (for example cutoffs_spline[2]), or split out network into n-grams which is the next example
-
-```
-
-### Splitting the full network into subgraphs by n-grams to identify important keywords
-
-Unigrams (keyword phrases with only one word) will tend to be the dominant nodes in a network. For example, "species" will always be more important than "species occurrence" or "species distribution" because both of the 2-grams will be counted in the unigram. To account for this, the package includes a function to split the full network into a graph of n-grams (and if desired, a separate graph of unigrams). This graph can be passed to find_cutoffs() to get the most relevant potential keywords. Essentially, splitting the graph into n-grams will allow you to consider terms that are likely more relevant to your search that are being drowned out by unigrams in the full graph. If you want to bring the unigrams back in, you can always combine them into a joint list. The code for this is shown below, but we won't consider the unigrams as potential keywords. 
-
-```{r}
-ngram_graph <- make_ngram_graph(BBWO_graph, min_ngrams = 2)
-plot(sort(igraph::strength(ngram_graph)), ylab="Node strength", main="Ranked node strengths", xlab="Rank")
-
-ngram_cutoff_strength <- find_cutoff(ngram_graph, method="spline", degrees = 2, knot_num = 3)
-ngram_reduced_graph <- reduce_graph(ngram_graph, cutoff_strength = ngram_cutoff_strength[1])
-
-# Note: to get a wordcloud, you need to install the package wordcloud
-ngram_keywords <- get_keywords(ngram_reduced_graph, makewordle=TRUE)
-
-# as expected, the n-gram keywords are much more relevant than the full network
-head(ngram_keywords, 20)
-
-unigram_graph <- make_ngram_graph(BBWO_graph, unigrams = TRUE)
-plot(sort(igraph::strength(unigram_graph)), ylab="Node strength", main="Ranked node strengths", xlab="Rank")
-
-unigram_cutoff_strength <- find_cutoff(unigram_graph, method="spline", degrees = 2, knot_num = 3)
-unigram_reduced_graph <- reduce_graph(unigram_graph, cutoff_strength = unigram_cutoff_strength[2])
-
-unigram_keywords <- get_keywords(unigram_reduced_graph, makewordle = FALSE)
-
 
 ```
 
@@ -237,45 +200,43 @@ We think it is easiest to sort potential keywords in a .csv file outside of R, s
 At this stage, you can also add in additional terms that you've thought of that weren't in your scoping search and weren't found by litsearchr. litsearchr is merely meant as a tool to identify additional keywords - not to restrict your search. 
 
 ```{r}
-write.csv(ngram_keywords, "~/ngram-potential-keywords.csv")
+# write.csv(search_terms, "./ngram-potential-keywords.csv")
 
-grouped_keywords <- read.csv("~/ngram-potential-keywords-grouped.csv", 
-                             stringsAsFactors = FALSE)
+grouped_keywords <- litsearchr::BBWO_grouped_keywords
 
 # We append our original search terms for a category with the newly identified terms
-process_group <- append(
+process_group <- unique(append(
   c("nest success", "birth", "death", "mortality", 
     "immigration", "emigration", "mechanism", "cause"),
-  grouped_keywords$term[which(grouped_keywords$group=="process")])
-
+  grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "process"))]))
+                                                  
 # An example of adding a keyword - colleagues suggested that "stand-replacing fire" be added
-fire_group <- append(
+fire_group <- unique(append(
   c("fire","burn", "stand-replacing fire"),
-  grouped_keywords$term[which(grouped_keywords$group=="fire")])
+  grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "fire"))]))
 
 # For the bird group, we removed our scoping term "bird" because it isn't specific to woodpeckers
-bird_group <- append(
+bird_group <- unique(append(
   c("woodpecker", "sapsucker"),
-  grouped_keywords$term[which(grouped_keywords$group=="bird")])
+  grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "bird"))]))
 
-occupancy_group <- append(
+occupancy_group <- unique(append(
   c("occupancy", "occupance", "occurrence"),
-  grouped_keywords$term[which(grouped_keywords$group=="occupancy")])
+  grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "occupancy"))]))
 
-# The habitat group is new based on scanning keywords
-habitat_group <- grouped_keywords$term[which(grouped_keywords$group=="habitat")]
 
-my_search_terms <- list(process_group, fire_group, bird_group, occupancy_group, habitat_group)
+my_search_terms <- list(process_group, fire_group, bird_group, occupancy_group)
 
 ```
 
 ## Step 5: Write Boolean searches
 
-litsearchr provides functions to write simple Boolean searches that work in 14 tested databases.
+litsearchr provides functions to write simple Boolean searches that work in 15 tested databases.
 
 Full support:
  - BIOSIS Citation Index
  - Zoological Record
+ - MEDLINE
  - Scopus
  - CAB Direct
  - WorldCat
@@ -318,20 +279,20 @@ my_key_topics <- c("biology", "conservation", "ecology", "forestry")
 # "All done!" will print when all languages are written
 write_search(groupdata = my_search_terms, 
              languages = choose_languages(lang_data=get_language_data(key_topics = my_key_topics)[1:10,]), 
-             exactphrase = FALSE, directory="~/BBWO-searches/")
+             exactphrase = FALSE, directory="./")
 
 language_graphs(lang_data = get_language_data(key_topics = my_key_topics), no_return = 15, key_topics = my_key_topics)
 
-write_stemmed_search(groupdata = my_search_terms, exactphrase = TRUE, directory="~/BBWO-searches/")
+write_stemmed_search(groupdata = my_search_terms, exactphrase = TRUE, directory="./")
 
 ```
 
 
-Now we can inspect our written searches. Foreign language searches will be in unicode, but if you open them in a web browser, you can copy and paste them into search databases. Depending on what fonts you have on your computer, you may or may not be able to get the CJK (Chinese-Japanese-Korean character sets) searches working; my computer will not return CJK characters.
+Now we can inspect our written searches. Foreign language searches will be in unicode, but if you open them in a web browser, you can copy and paste them into search databases (assuming you have the appropriate fonts on your computer to display them). 
 
 ```{r}
-readLines("~/BBWO-searches/search-in-Russian.txt")
-readLines("~/BBWO-searches/search-in-French.txt")
-readLines("~/BBWO-searches/search-in-stemmed-English.txt")
+readLines("./search-in-Russian.txt")
+readLines("./search-in-French.txt")
+readLines("./search-in-stemmed-English.txt")
 
 ```

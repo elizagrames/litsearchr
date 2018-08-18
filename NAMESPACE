@@ -1,1 +1,7 @@
 exportPattern("^[[:alpha:]]+")
+importFrom("grDevices", "rainbow")
+importFrom("graphics", "abline", "hist", "legend", "lines", "par",
+           "plot", "symbols", "text", "title")
+importFrom("stats", "df", "lm")
+importFrom("utils", "head", "methods", "read.csv", "read.table",
+           "write.csv")

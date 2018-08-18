@@ -6,6 +6,9 @@
 \usage{
 choose_languages(lang_data = get_language_data(key_topics = "biology"))
 }
+\arguments{
+\item{lang_data}{a table of language data exported from get_language_data()}
+}
 \description{
 Checks which languages returned from get_language_data() are possible to use and returns a character vector of languages to use. Called from inside write_search().
 }

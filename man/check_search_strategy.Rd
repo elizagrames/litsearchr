@@ -8,9 +8,9 @@ check_search_strategy(relevant_studies, retrieved_studies, min_sim = 0.8,
   print_sim_min = 0.5)
 }
 \arguments{
-\item{relevant_studies}{a data frame where the first column is titles of articles deemed relevant to a review.}
+\item{relevant_studies}{a character vector of article titles deemed relevant to a review}
 
-\item{retrieved_studies}{a data frame where the first column is titles of articles retrieved by a search (with duplicates removed)}
+\item{retrieved_studies}{a character vector of article titles retrieved by a search (with duplicates removed)}
 
 \item{min_sim}{the minimum similarity for an article to be counted as being retrieved}
 
@@ -20,5 +20,5 @@ check_search_strategy(relevant_studies, retrieved_studies, min_sim = 0.8,
 a list with two objects: a table of search metrics (precision, number needed to process, and sensitivity) and a data frame of all titles whose similarity score is greater than print_sim_min
 }
 \description{
-Calculates precision and sensitivity of a search given a set of known articles that should be included in the search and the complete and deduplicated results of conducting a search.
+NOTE: this function takes a long time for large searches; use check_recall() along with search_performance() for large datasets. Calculates precision and sensitivity of a search given a set of known articles that should be included in the search and the complete and deduplicated results of conducting a search.
 }

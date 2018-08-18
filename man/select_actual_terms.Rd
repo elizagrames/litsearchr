@@ -4,12 +4,16 @@
 \alias{select_actual_terms}
 \title{Extract actual article keywords}
 \usage{
-select_actual_terms(df, min_freq = 2)
+select_actual_terms(df, min_freq = 2, ngrams = TRUE, n = 2)
 }
 \arguments{
 \item{df}{a data frame of search hits from import_scope}
 
 \item{min_freq}{a number, the minimum occurrences to be included}
+
+\item{ngrams}{if TRUE, only extracts phrases with word count greater than a specified n}
+
+\item{n}{the minimum word count for ngrams}
 }
 \value{
 a character vector of keywords actually occurring in the search dataset

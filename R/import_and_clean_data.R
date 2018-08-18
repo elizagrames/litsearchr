@@ -5,7 +5,7 @@
 detect_database <- function(df){
   database <- ""
   database_signature <- paste(colnames(df)[-1], collapse=" ")
-  database <- names(importable_databases)[which(stringr::str_detect(importable_databases, database_signature)==TRUE)]
+  database <- names(litsearchr::importable_databases)[which(stringr::str_detect(litsearchr::importable_databases, database_signature)==TRUE)]
 
   if (length(database)==0){print("Database format not recognized.")}
 
@@ -19,8 +19,7 @@ detect_database <- function(df){
 #' @param clean_dataset if TRUE, removes excess punctuation and standardizes keywords
 #' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
 #' @return a data frame of all the search results combined
-import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = TRUE,
-                          save_full_dataset = FALSE) {
+import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = TRUE, save_full_dataset = FALSE) {
   import.files <- paste(directory, list.files(path = directory),
                         sep = "")
   for (i in 1:length(import.files)) {
@@ -33,12 +32,9 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
                        comment.char = "#", na.strings = ".", stringsAsFactors = FALSE,
                        quote = "", fill = TRUE)
     }
-    if (stringr::str_detect(import.files[i], ".xls") == TRUE) {
-      requireNamespace("gdata", quietly = TRUE)
-      df <- gdata::read.xls(import.files[i])
-    }
+
     colnames(df) <- gsub("X...", "", colnames(df))
-    colnames(df) <- gsub("ï..", "", colnames(df))
+    colnames(df) <- gsub("\303\257..", "", colnames(df))
 
     if (colnames(df)[length(colnames(df))] == "X") {
       df <- df[, -length(colnames(df))]
@@ -120,19 +116,7 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df$language <- rep("", nrow(df))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
-    if (database == "ProQuest") {
-      df <- dplyr::select(df, id = StoreId, title = Title,
-                          abstract = Abstract, keywords = subjectTerms,
-                          altkeys = subjects, type = documentType, authors = Authors,
-                          affiliation = correspondenceAuthor, source = pubtitle,
-                          year = year, volume = volume, issue = issue,
-                          startpage = startPage, doi = digitalObjectIdentifier,
-                          language = language)
-      df$endpage <- rep("", length(df$id))
-      df$methods <- rep("", length(df$id))
-      df$keywords <- paste(df$keywords, df$altkeys, sep = ";")
-      df$text <- paste(df$abstract, df$keywords, sep = " ")
-    }
+
     df$database <- rep(database, nrow(df))
     df <- dplyr::select(df, id, text, title, abstract, keywords,
                         methods, type, authors, affiliation, source, year,
@@ -161,12 +145,13 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
 #' Remove duplicate articles
 #' @description Uses similarity of tokenized abstracts and titles to detect duplicates and remove them from the dataset.
 #' @param df a data frame created with import_scope()
+#' @param use_abstracts if TRUE, tokenizes and computes similarity scores for all abstracts
+#' @param use_titles if TRUE, computes similarity based on titles
+#' @param title_method if "tokens", tokenizes titles to compute similarity; if "quick", removes punctuation and capitalization then removes exact duplicates
 #' @param doc_sim the minimum similarity between two abstracts to be marked as duplicated
 #' @param title_sim the minimum similarity between two titles to be marked as duplicated
-#' @param mean_sim the minimum mean similarity of abstract and title similarity to be marked as duplicated
 #' @return a data frame with duplicates removed
 deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, title_method="tokens", doc_sim=.85, title_sim=.95){
-  require(quanteda, quietly=TRUE)
 
   remove_abstracts <- c()
   remove_titles <- c()
@@ -200,7 +185,7 @@ deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, title_method="t
 
     if (title_method=="tokens"){
 
-      dfT <- dplyr::select(df, id, text=title)
+      dfT <- dplyr::select(df, id=id, text=title)
       full_dfm <- quanteda::dfm(make_corpus(dfT),
                                 remove = quanteda::stopwords("english"),
                                 remove_numbers=TRUE,

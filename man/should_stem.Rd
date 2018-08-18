@@ -6,6 +6,9 @@
 \usage{
 should_stem(word)
 }
+\arguments{
+\item{word}{the word to check}
+}
 \description{
 Checks if the stemmed form of a word is longer than 3 characters. Not intended as a standalone function and is called from write_stemmed_search().
 }

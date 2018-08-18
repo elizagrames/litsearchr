@@ -4,7 +4,7 @@
 \alias{make_wordle}
 \title{Create a wordcloud}
 \usage{
-make_wordle(graph, colorchoice = c("black"))
+make_wordle(graph, colorchoice = c("#006E6D"))
 }
 \arguments{
 \item{graph}{a reduced graph of only important nodes}

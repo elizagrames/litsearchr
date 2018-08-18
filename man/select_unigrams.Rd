@@ -8,6 +8,8 @@ select_unigrams(graph, importance_method = "strength")
 }
 \arguments{
 \item{graph}{an igraph object}
+
+\item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
 \value{
 a data frame of node names, strengths, rank

@@ -10,7 +10,7 @@ Description: searchr automates the process of choosing search terms and writing 
     Scopus, BIOSIS, Zoological Record, and ProQuest. After keywords are selected and 
     manually grouped into concept categories, searchr writes Boolean searches in up to 
     53 different languages with stemming support for English.
-License: GPL-2.0
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
@@ -28,6 +28,8 @@ Imports: dplyr,
 Suggests: wordcloud,
     knitr,
     rmarkdown,
-    gdata
+    gdata,
+    rgl
 VignetteBuilder: knitr
-LinkingTo: Rcpp
+Depends: R (>= 2.10)
+

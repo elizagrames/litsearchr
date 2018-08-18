@@ -13,7 +13,7 @@ check_search_strategy <- function(relevant_studies, retrieved_studies, min_sim=.
   df$text <- as.character(df$text)
   comparison_corpus <- make_corpus(df)
   comparison_dfm <- quanteda::dfm(comparison_corpus,
-                                  remove = custom_stopwords,
+                                  remove = litsearchr::custom_stopwords,
                                   remove_numbers=TRUE,
                                   remove_punct=TRUE,
                                   remove_symbols=TRUE,
@@ -56,7 +56,9 @@ check_search_strategy <- function(relevant_studies, retrieved_studies, min_sim=.
 #' @description Checks a list of known articles against the results of a search to see how many the search retrieves.
 #' @param true_hits a character vector of titles for articles that should be returned
 #' @param retrieved_articles a character vector of titles for articles returned by a search
-#' @value a table of the best match for each true title from the search results along with a title similarity score
+#' @param min_sim the minimum similarity between two titles to be considered for manual review
+#' @param new_stopwords any common words in the titles that should be ignored when computing similarity to avoid false matches
+#' @return a table of the best match for each true title from the search results along with a title similarity score
 check_recall <- function (true_hits, retrieved_articles, min_sim = 0.6, new_stopwords = NULL) {
   custom_stopwords <- add_stopwords(new_stopwords = new_stopwords)
   titlekeys <- quanteda::tokens_remove(quanteda::tokens(tm::removePunctuation(tolower(true_hits))),
@@ -116,7 +118,7 @@ check_recall <- function (true_hits, retrieved_articles, min_sim = 0.6, new_stop
 #' @param no_desired the number of  articles that should be returned
 #' @param no_hits the number of good hits that a search found (can be found with check_recall)
 #' @param no_articles the total number of articles that a search found
-#' @value the sensitivity, precision, and number needed to process
+#' @return the sensitivity, precision, and number needed to process
 search_performance <- function(no_desired, no_hits, no_articles){
   sensitivity <- round(no_hits/no_desired*100, 3)
   precision <- round(no_hits/no_articles*100, 3)

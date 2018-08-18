@@ -20,6 +20,8 @@ find_cutoff(graph, method = c("spline", "cumulative"), cum_pct = 0.8,
 \item{knot_num}{if using method spline, the number of knots to allow}
 
 \item{diagnostics}{if set to TRUE, saves plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point}
+
+\item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
 \value{
 a vector of suggested node cutoff strengths

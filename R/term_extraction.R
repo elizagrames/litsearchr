@@ -12,7 +12,7 @@ make_corpus <- function(df){
 #' @param new_stopwords a character vector of new words to add
 #' @return an updated vector of custom stopwords to remove from text
 add_stopwords <- function(new_stopwords){
-  custom_stopwords <- sort(unique(append(custom_stopwords, new_stopwords)))
+  custom_stopwords <- sort(unique(append(litsearchr::custom_stopwords, new_stopwords)))
   return(custom_stopwords)
 }
 
@@ -23,6 +23,8 @@ add_stopwords <- function(new_stopwords){
 #' @param min_freq a number, the minimum occurrences of a potential term
 #' @param title include titles if TRUE
 #' @param abstract include abstracts if TRUE
+#' @param ngrams if TRUE, only extracts phrases with word count greater than a specified n
+#' @param n the minimum word count for ngrams
 #' @return a character vector of potential keyword terms
 extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
   if (title == TRUE){
@@ -55,6 +57,8 @@ extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstra
 #' @description Extracts actual author-and-database tagged keywords.
 #' @param df a data frame of search hits from import_scope
 #' @param min_freq a number, the minimum occurrences to be included
+#' @param ngrams if TRUE, only extracts phrases with word count greater than a specified n
+#' @param n the minimum word count for ngrams
 #' @return a character vector of keywords actually occurring in the search dataset
 select_actual_terms <- function(df, min_freq=2, ngrams=TRUE, n=2){
   cleaned_keywords <- clean_keywords(df)$keyword
@@ -102,7 +106,7 @@ create_dfm <- function(corpus=make_corpus(df), my_dic=make_dictionary(), custom_
 
   search_dfm <- quanteda::dfm(corpus,
                   stem = FALSE,
-                  remove=custom_stopwords,
+                  remove=litsearchr::custom_stopwords,
                   remove_numbers=TRUE,
                   remove_punct=TRUE,
                   remove_symbols=TRUE,

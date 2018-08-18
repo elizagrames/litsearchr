@@ -7,6 +7,15 @@
 translate_search(search_terms, target_language, source_language = "en",
   API_key = translate_API)
 }
+\arguments{
+\item{search_terms}{a character vector of search terms}
+
+\item{target_language}{a character vector of the language(s) to translate the search to}
+
+\item{source_language}{a character vector of the language the search terms are currently in}
+
+\item{API_key}{an API key for Google Translate (not available through litsearchr)}
+}
 \description{
 Takes groups of search terms and translates them into target language using the Google Translate API. This function is intended for use inside write_search(), not as a standalone function.
 }
