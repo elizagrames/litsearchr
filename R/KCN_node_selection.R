@@ -110,15 +110,14 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
         spline_fit <- fit_splines(importance_data, degrees=degrees, knot_num=knot_num, knots=knots)
         plot(importance_data$rank, importance_data$importance,
              main="Spline model fit",
-             xlab="Rank", ylab="Node strength (unique)")
+             xlab="Rank", ylab="Node importance (unique)")
         lines(importance_data$rank,spline_fit$fit,col="red",lwd=3)
         abline(v=knots, col="blue", lwd=2)
 
-        par(mfrow=c(1,2))
         plot(importance_data$rank, spline_fit$resid, xlab="Rank", ylab="Residual", main="Residuals along the x-axis (rank)")
         abline(h=0, col="red")
         abline(lm(spline_fit$resid ~ importance_data$rank), col="blue", lty=2)
-        plot(importance_data$importance, spline_fit$resid, xlab="Strength", ylab="Residual", main="Residuals along the y-axis (strength)")
+        plot(importance_data$importance, spline_fit$resid, xlab="Importance", ylab="Residual", main="Residuals along the y-axis (importance)")
         abline(lm(spline_fit$resid ~ importance_data$importance), col="blue", lty=2)
         abline(h=0, col="red")
       }
@@ -130,14 +129,14 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
     cut_strengths <- as.numeric(sort(as.numeric(importance_data$importance), decreasing = TRUE)[cut_point])
 
     if (diagnostics == TRUE){
-      plot(cumsum(sort(importance_data$importance)), type="l", ylab="Cumulative node strength", main="Cumulative sum of ranked node strength")
+      plot(cumsum(sort(importance_data$importance)), type="l", ylab="Cumulative node importance", main="Cumulative sum of ranked node importance")
       abline(v=cut_point, col="blue")
-      legend("topleft", legend = c("Point at which cumulative percent is to the right of the line"), lwd=2, col="blue")
+      legend("topleft", legend = c("Cutoff rank"), lwd=2, col="blue")
 
       hist(importance_data$importance, 100,
-           main="Histogram of node strengths", xlab="Node strength")
+           main="Histogram of node importance", xlab="Node importance")
       abline(v=cut_strengths, col="blue")
-      legend("topright", legend = c("Node strength cutoff"), lwd=2, col="blue")
+      legend("topright", legend = c("Node importance cutoff"), lwd=2, col="blue")
     }
   }
   return(cut_strengths)
@@ -160,7 +159,7 @@ get_keywords <- function(reduced_graph, savekeywords=TRUE, makewordle=TRUE){
 #' Create reduced graph of important nodes
 #' Takes the full graph and reduces it to only include nodes (and associated edges) greater than the cutoff strength for important nodes.
 #' @param graph the full graph object
-#' @param cutoff_strength the minimum node strength to be included in the reduced graph
+#' @param cutoff_strength the minimum node importance to be included in the reduced graph
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return an igraph graph with only important nodes
 reduce_graph <- function(graph, cutoff_strength, importance_method="strength"){
