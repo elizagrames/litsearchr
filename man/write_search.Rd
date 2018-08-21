@@ -4,14 +4,14 @@
 \alias{write_search}
 \title{Write Boolean searches}
 \usage{
-write_search(groupdata, translate_API = NULL,
+write_search(groupdata, API_key = NULL,
   languages = choose_languages(lang_data = get_language_data(key_topics =
   "biology"))[1:10], exactphrase = FALSE, directory = "./")
 }
 \arguments{
 \item{groupdata}{a list of character vectors, each of which is a concept group}
 
-\item{translate_API}{your Google Translate API key}
+\item{API_key}{your Google Translate API key}
 
 \item{languages}{a character vector of supported languages to write searches in.}
 

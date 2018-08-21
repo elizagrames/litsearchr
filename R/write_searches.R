@@ -112,7 +112,7 @@ language_graphs <- function(lang_data=get_language_data(key_topics=c("biology", 
 #' @param source_language a character vector of the language the search terms are currently in
 #' @param API_key an API key for Google Translate (not available through litsearchr)
 #' @description Takes groups of search terms and translates them into target language using the Google Translate API. This function is intended for use inside write_search(), not as a standalone function.
-translate_search <- function(search_terms, target_language, source_language="en", API_key=translate_API){
+translate_search <- function(search_terms, target_language, source_language="en", API_key){
   words <- search_terms
 
   termlist <- words
@@ -223,11 +223,11 @@ write_stemmed_search <- function(groupdata, languages="English", exactphrase=FAL
 #' Write Boolean searches
 #' @description Takes search terms grouped by concept group and writes Boolean searches in which terms within concept groups are separated by "OR" and concept groups are separated by "AND". Searches can be written in up to 53 languages, though the function defaults to only searching the top ten most used languages in a discipline using the choose_languages() function. The default for language options relies on searching a database of journals by discipline based on Ulrich's Periodicals Directory. Only scientific fields are included in this database. All supported languages can be seen with available_languages().
 #' @param groupdata a list of character vectors, each of which is a concept group
-#' @param translate_API your Google Translate API key
+#' @param API_key your Google Translate API key
 #' @param languages a character vector of supported languages to write searches in.
 #' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
 #' @param directory the path to the directory where you want to save searches (defaults to current working directory)
-write_search <- function(groupdata, translate_API=NULL, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE, directory="./"){
+write_search <- function(groupdata, API_key=NULL, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE, directory="./"){
 
   if(exactphrase==FALSE){
     no_groups <- length(groupdata)

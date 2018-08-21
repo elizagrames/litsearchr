@@ -5,7 +5,7 @@
 \title{Translate search terms}
 \usage{
 translate_search(search_terms, target_language, source_language = "en",
-  API_key = translate_API)
+  API_key)
 }
 \arguments{
 \item{search_terms}{a character vector of search terms}

@@ -11,7 +11,6 @@ Description: searchr automates the process of choosing search terms and writing 
     manually grouped into concept categories, searchr writes Boolean searches in up to 
     53 different languages with stemming support for English.
 License: GPL-3
-Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Imports: dplyr,

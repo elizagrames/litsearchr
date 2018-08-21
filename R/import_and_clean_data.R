@@ -42,21 +42,39 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
     database <- c()
     database <- detect_database(df)
     if (database == "Scopus") {
-      df <- dplyr::select(df, id = EID, title = Title,
-                          abstract = Abstract, keywords = Author.Keywords,
-                          type = Document.Type, authors = Authors, affiliation = Affiliations,
-                          source = Source.title, year = Year, volume = Volume,
-                          issue = Issue, startpage = Page.start, endpage = Page.end,
-                          doi = DOI)
+      df <- dplyr::select(id = df$EID,
+                          title = df$Title,
+                          abstract = df$Abstract,
+                          keywords = df$Author.Keywords,
+                          type = df$Document.Type,
+                          authors = df$Authors,
+                          affiliation = df$ffiliations,
+                          source = df$Source.title,
+                          year = df$Year,
+                          volume = df$Volume,
+                          issue = df$Issue,
+                          startpage = df$Page.start,
+                          endpage = df$Page.end,
+                          doi = df$DOI)
       df$methods <- rep("", length(df$id))
       df$language <- rep("", length(df$id))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
     if (database == "ZooRec") {
-      df <- dplyr::select(df, id = AN, title = TI, abstract = AB,
-                          keywords = DE, type = DT, authors = AU, affiliation = C1,
-                          source = SO, year = PY, volume = VL, issue = IS,
-                          startpage = PS, doi = DI, language = LA)
+      df <- dplyr::select(id = df$AN,
+                          title = df$TI,
+                          abstract = df$AB,
+                          keywords = df$DE,
+                          type = df$DT,
+                          authors = df$AU,
+                          affiliation = df$C1,
+                          source = df$SO,
+                          year = df$PY,
+                          volume = df$VL,
+                          issue = df$IS,
+                          startpage = df$PS,
+                          doi = df$DI,
+                          language = df$LA)
       temp <- strsplit(as.character(df$startpage), "-")
       if (length(temp) > 0) {
         for (j in 1:length(temp)) {
@@ -70,18 +88,39 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
     if (database == "BIOSIS") {
-      df <- dplyr::select(df, id = UT, title = TI, abstract = AB,
-                          methods = MQ, keywords = MI, type = DT, authors = AU,
-                          affiliation = C1, source = SO, year = PY, volume = VL,
-                          issue = IS, startpage = BP, endpage = EP, doi = DI,
-                          language = LA)
+      df <- dplyr::select(id = df$UT,
+                          title = df$TI,
+                          abstract = df$AB,
+                          methods = df$MQ,
+                          keywords = df$MI,
+                          type = df$DT,
+                          authors = df$AU,
+                          affiliation = df$C1,
+                          source = df$SO,
+                          year = df$PY,
+                          volume = df$VL,
+                          issue = df$IS,
+                          startpage = df$BP,
+                          endpage = df$EP,
+                          doi = df$DI,
+                          language = df$LA)
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
     if (database == "MEDLINE") {
-      df <- dplyr::select(df, id = AN, title = TI, abstract = AB,
-                          keywords = ID, type = DT, authors = AU, affiliation = C1,
-                          source = SO, year = PY, volume = VL, issue = IS,
-                          startpage = PS, doi = DI, language = LA)
+      df <- dplyr::select(id = df$AN,
+                          title = df$TI,
+                          abstract = df$AB,
+                          keywords = df$ID,
+                          type = df$DT,
+                          authors = df$AU,
+                          affiliation = df$C1,
+                          source = df$SO,
+                          year = df$Y,
+                          volume = df$VL,
+                          issue = df$IS,
+                          startpage = df$PS,
+                          doi = df$DI,
+                          language = df$LA)
       df$text <- paste(df$abstract, df$keywords, sep = " ")
       df$methods <- rep("", length(df$id))
       temp <- strsplit(as.character(df$startpage), "-")
@@ -95,9 +134,17 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       }
     }
     if (database == "WoS") {
-      df <- dplyr::select(df, id = UT, title = TI, abstract = AB,
-                          authors = AU, source = SO, year = PY, volume = VL,
-                          issue = IS, startpage = BP, endpage = EP, doi = DI)
+      df <- dplyr::select(id = df$UT,
+                          title = df$TI,
+                          abstract = df$AB,
+                          authors = df$AU,
+                          source = df$SO,
+                          year = df$PY,
+                          volume = df$VL,
+                          issue = df$IS,
+                          startpage = df$BP,
+                          endpage = df$EP,
+                          doi = df$DI)
       df$keywords <- rep("", nrow(df))
       df$methods <- rep("", nrow(df))
       df$type <- rep("", nrow(df))
@@ -106,27 +153,37 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
     if (database == "EBSCO") {
-      df <- dplyr::select(df, id = Accession.Number, title = Article.Title,
-                          abstract = Abstract, authors = Author, source = Journal.Title,
-                          year = Publication.Date, volume = Volume, issue = Issue,
-                          startpage = First.Page, endpage = Page.Count,
-                          doi = DOI, keywords = Keywords, type = Doctype)
+      df <- dplyr::select(id = df$Accession.Number,
+                          title = df$Article.Title,
+                          abstract = df$Abstract,
+                          authors = df$Author,
+                          source = df$Journal.Title,
+                          year = df$Publication.Date,
+                          volume = df$Volume,
+                          issue = df$Issue,
+                          startpage = df$First.Page,
+                          endpage = df$Page.Count,
+                          doi = df$DOI,
+                          keywords = df$Keywords,
+                          type = df$Doctype)
       df$methods <- rep("", nrow(df))
       df$affiliation <- rep("", nrow(df))
       df$language <- rep("", nrow(df))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
+    if (length(database)>0){
 
     df$database <- rep(database, nrow(df))
-    df <- dplyr::select(df, id, text, title, abstract, keywords,
-                        methods, type, authors, affiliation, source, year,
-                        volume, issue, startpage, endpage, doi, language,
-                        database)
+    df <- dplyr::select(df$id, df$text, df$title, df$abstract, df$keywords,
+                        df$methods, df$type, df$authors, df$affiliation, df$source, df$year,
+                        df$volume, df$issue, df$startpage, df$endpage, df$doi, df$language,
+                        df$database)
     if (i == 1) {
       search_hits <- df
     }
     if (i > 1) {
       search_hits <- rbind(search_hits, df)
+    }
     }
   }
   if (save_full_dataset == TRUE) {
@@ -157,7 +214,7 @@ deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, title_method="t
   remove_titles <- c()
 
   if (use_abstracts==TRUE){
-    dfA <- dplyr::select(df, id, text)
+    dfA <- dplyr::select(df$id, df$text)
     full_dfm <- quanteda::dfm(make_corpus(dfA),
                               remove = quanteda::stopwords("english"),
                               remove_numbers=TRUE,
@@ -185,7 +242,7 @@ deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, title_method="t
 
     if (title_method=="tokens"){
 
-      dfT <- dplyr::select(df, id=id, text=title)
+      dfT <- dplyr::select(id=df$id, text=df$title)
       full_dfm <- quanteda::dfm(make_corpus(dfT),
                                 remove = quanteda::stopwords("english"),
                                 remove_numbers=TRUE,
