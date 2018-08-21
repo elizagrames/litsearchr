@@ -179,6 +179,7 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
     if (length(database)>0){
 
       df$database <- rep(database, nrow(df))
+      df[] <- lapply(df, as.character)
       df <- as.data.frame(
         cbind(id=df$id, text=df$text, title=df$title, abstract=df$abstract, keywords=df$keywords,
               methods=df$methods, type=df$type, authors=df$authors, affiliation=df$affiliation, source=df$source, year=df$year,

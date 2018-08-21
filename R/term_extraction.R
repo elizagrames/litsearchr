@@ -105,17 +105,17 @@ make_dictionary <- function(actual_terms=select_actual_terms(df, min_freq=2), li
 create_dfm <- function(corpus=make_corpus(df), my_dic=make_dictionary(), custom_stopwords=add_stopwords(NULL)){
 
   search_dfm <- quanteda::dfm(corpus,
-                  stem = FALSE,
-                  remove=litsearchr::custom_stopwords,
-                  remove_numbers=TRUE,
-                  remove_punct=TRUE,
-                  remove_symbols=TRUE,
-                  remove_separators=TRUE,
-                  remove_twitter=TRUE,
-                  remove_hyphens=TRUE,
-                  remove_url=TRUE,
-                  dictionary=my_dic,
-                  tolower=TRUE)
+                              stem = FALSE,
+                              remove=litsearchr::custom_stopwords,
+                              remove_numbers=TRUE,
+                              remove_punct=TRUE,
+                              remove_symbols=TRUE,
+                              remove_separators=TRUE,
+                              remove_twitter=TRUE,
+                              remove_hyphens=TRUE,
+                              remove_url=TRUE,
+                              dictionary=my_dic,
+                              tolower=TRUE)
 
   return(search_dfm)
 
