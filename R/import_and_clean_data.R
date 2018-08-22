@@ -6,7 +6,7 @@ detect_database <- function(df){
   database <- ""
   database_signature <- paste(colnames(df)[-1], collapse=" ")
   database <- names(litsearchr::importable_databases)[which(stringr::str_detect(litsearchr::importable_databases, database_signature)==TRUE)]
-  if(stringr::str_detect(database_signature, importable_databases$WoS)){database <- "WoS"}
+  if(stringr::str_detect(database_signature, litsearchr::importable_databases$WoS)){database <- "WoS"}
 
   if (length(database)==0){print("Database format not recognized.")}
 

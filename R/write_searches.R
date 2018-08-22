@@ -112,7 +112,7 @@ language_graphs <- function(lang_data=get_language_data(key_topics=c("biology", 
 #' @param source_language a character vector of the language the search terms are currently in
 #' @param API_key an API key for Google Translate (not available through litsearchr)
 #' @description Takes groups of search terms and translates them into target language using the Google Translate API. This function is intended for use inside write_search(), not as a standalone function.
-translate_search <- function(search_terms, target_language, source_language="en", API_key){
+translate_search <- function(search_terms, target_language, source_language="en", API_key=API_key){
   words <- search_terms
 
   termlist <- words
@@ -156,55 +156,55 @@ write_stemmed_search <- function(groupdata, languages="English", exactphrase=FAL
 
   stemyes <- "stemmed-"
   if (exactphrase==FALSE){
-      for (j in 1:no_groups){
-        current_group <- groupdata[j]
-        translated_terms <- current_group[[1]]
-        for (m in 1:length(current_group[[1]])){
-          translated_terms[m] <- should_stem(current_group[[1]][m])
-        }
-        translated_terms <- unique(translated_terms)
-        each_line <- paste("\\(", translated_terms[1], "*", sep="")
+    for (j in 1:no_groups){
+      current_group <- groupdata[j]
+      translated_terms <- current_group[[1]]
+      for (m in 1:length(current_group[[1]])){
+        translated_terms[m] <- should_stem(current_group[[1]][m])
+      }
+      translated_terms <- unique(translated_terms)
+      each_line <- paste("\\(", translated_terms[1], "*", sep="")
 
-        for (k in 2:length(translated_terms)){
-          each_line <- paste(each_line, " OR ", translated_terms[k], "*", sep="")
-        }
-
-        each_line <- paste(each_line, "\\)")
-
-        translated_groups[[j]] <- each_line
+      for (k in 2:length(translated_terms)){
+        each_line <- paste(each_line, " OR ", translated_terms[k], "*", sep="")
       }
 
-      total_search <- translated_groups[[1]]
-      for (l in 2:length(translated_groups)){
-        total_search <- paste(total_search, translated_groups[[l]], sep=" AND ")
-      }
+      each_line <- paste(each_line, "\\)")
+
+      translated_groups[[j]] <- each_line
     }
+
+    total_search <- translated_groups[[1]]
+    for (l in 2:length(translated_groups)){
+      total_search <- paste(total_search, translated_groups[[l]], sep=" AND ")
+    }
+  }
 
   if (exactphrase==TRUE){
-      for (j in 1:no_groups){
-        current_group <- groupdata[j]
+    for (j in 1:no_groups){
+      current_group <- groupdata[j]
 
-        translated_terms <- current_group[[1]]
-        for (m in 1:length(current_group[[1]])){
-          translated_terms[m] <- should_stem(current_group[[1]][m])
-        }
-        translated_terms <- unique(translated_terms)
-        each_line <- paste("\\(", "\"", translated_terms[1], "*", "\"", sep="")
+      translated_terms <- current_group[[1]]
+      for (m in 1:length(current_group[[1]])){
+        translated_terms[m] <- should_stem(current_group[[1]][m])
+      }
+      translated_terms <- unique(translated_terms)
+      each_line <- paste("\\(", "\"", translated_terms[1], "*", "\"", sep="")
 
-        for (k in 2:length(translated_terms)){
-          each_line <- paste(each_line, " OR ", "\"", translated_terms[k], "*", "\"", sep="")
-        }
-
-        each_line <- paste(each_line, "\\)")
-
-        translated_groups[[j]] <- each_line
+      for (k in 2:length(translated_terms)){
+        each_line <- paste(each_line, " OR ", "\"", translated_terms[k], "*", "\"", sep="")
       }
 
-      total_search <- translated_groups[[1]]
-      for (l in 2:length(translated_groups)){
-        total_search <- paste(total_search, translated_groups[[l]], sep=" AND ")
-      }
+      each_line <- paste(each_line, "\\)")
+
+      translated_groups[[j]] <- each_line
     }
+
+    total_search <- translated_groups[[1]]
+    for (l in 2:length(translated_groups)){
+      total_search <- paste(total_search, translated_groups[[l]], sep=" AND ")
+    }
+  }
 
   total_search <- paste("\\(", total_search, "\\)")
 
@@ -243,13 +243,13 @@ write_search <- function(groupdata, API_key=NULL, languages=choose_languages(lan
       for (j in 1:no_groups){
         current_group <- groupdata[j]
 
-        if (languages!="English"){
-        translated_terms <- (translate_search(
-          search_terms = current_group[[1]], target_language = current_lang))
-        each_line <- paste("\\(", "\\(", translated_terms[1], "\\)")
+        if (current_lang!="English"){
+          translated_terms <- (litsearchr::translate_search(
+            search_terms = current_group[[1]], target_language = current_lang, API_key = API_key))
+          each_line <- paste("\\(", "\\(", translated_terms[1], "\\)")
         }
 
-        if (languages=="English"){
+        if (current_lang=="English"){
           translated_terms <- current_group[[1]]
           each_line <- paste("\\(", "\\(", translated_terms[1], "\\)")
         }
@@ -298,13 +298,13 @@ write_search <- function(groupdata, API_key=NULL, languages=choose_languages(lan
       for (j in 1:no_groups){
         current_group <- groupdata[j]
 
-        if (languages!="English"){
-        translated_terms <- (translate_search(
-          search_terms = current_group[[1]], target_language = current_lang))
-        each_line <- paste("\\(", "\"", translated_terms[1], "\"", sep="")
+        if (current_lang!="English"){
+          translated_terms <- (translate_search(
+            search_terms = current_group[[1]], target_language = current_lang))
+          each_line <- paste("\\(", "\"", translated_terms[1], "\"", sep="")
         }
 
-        if (languages=="English"){
+        if (current_lang=="English"){
           translated_terms <- current_group[[1]]
           each_line <- paste("\\(", "\"", translated_terms[1], "\"", sep="")
         }
@@ -348,3 +348,23 @@ available_languages <- function(){
 }
 
 
+#' Write a search to check title recall
+#' @description Given a set of titles, writes a Boolean search that can be used in database title fields to check whether a search strategy retrieves titles.
+#' @param titles a character vector of titles
+#' @return a text string
+write_title_search <- function(titles){
+  titlekeys <- quanteda::tokens_remove(
+    quanteda::tokens(tolower(titles),
+                     remove_numbers=TRUE, remove_hyphens=FALSE, remove_punct=TRUE), litsearchr::custom_stopwords)
+
+  title <- c()
+  for (i in 1:length(titlekeys)){
+    temp <- paste(titlekeys[[i]], collapse=" ")
+    title[i] <- paste("\\(", temp, "\\)")
+  }
+
+  title_search <- paste(title, collapse=" OR ")
+  title_search <- gsub("\\\\", "", title_search)
+
+  return(title_search)
+}

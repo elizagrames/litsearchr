@@ -10,7 +10,7 @@ reduce_graph(graph, cutoff_strength, importance_method = "strength")
 \arguments{
 \item{graph}{the full graph object}
 
-\item{cutoff_strength}{the minimum node strength to be included in the reduced graph}
+\item{cutoff_strength}{the minimum node importance to be included in the reduced graph}
 
 \item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }

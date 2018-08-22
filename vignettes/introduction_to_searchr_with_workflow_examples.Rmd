@@ -268,15 +268,13 @@ my_key_topics <- c("biology", "conservation", "ecology", "forestry")
 # Depending on how many languages you choose to search in and how many search terms you have, this can take some time
 # As each language is written, the console will print "Russian is written!" etc...
 # "All done!" will print when all languages are written
-litsearchr::write_search(groupdata = my_search_terms, 
-             languages = litsearchr::choose_languages(lang_data=litsearchr::get_language_data(key_topics = my_key_topics)[1:10,]), 
-             exactphrase = FALSE, directory="./")
-
-litsearchr::write_search(groupdata = my_search_terms, 
-             languages ="French", 
-             exactphrase = FALSE, directory="~/Downloads")
+litsearchr::choose_languages(lang_data=litsearchr::get_language_data(key_topics = my_key_topics)[1:10,])
 
 litsearchr::language_graphs(lang_data = litsearchr::get_language_data(key_topics = my_key_topics), no_return = 15, key_topics = my_key_topics)
+
+litsearchr::write_search(groupdata = my_search_terms, 
+             languages = c("Russian", "Spanish", "Indonesian"), 
+             exactphrase = FALSE, directory="./", API_key = translate_API)
 
 litsearchr::write_stemmed_search(groupdata = my_search_terms, exactphrase = TRUE, directory="./")
 
