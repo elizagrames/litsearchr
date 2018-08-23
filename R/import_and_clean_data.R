@@ -29,23 +29,20 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df <- read.csv(import_files[i], header = TRUE, stringsAsFactors = FALSE)
     }
     if (stringr::str_detect(import_files[i], ".txt") == TRUE) {
-      df <- read.table(import_files[i], sep = "\t", header = TRUE,
-                       comment.char = "#", na.strings = ".", stringsAsFactors = FALSE,
+      df <- read.table(import_files[i], sep = "\t", header = TRUE, 
+                       comment.char = "#", na.strings = ".", stringsAsFactors = FALSE, 
                        quote = "", fill = TRUE)
     }
 
-    colnames(df) <- gsub("\\.\\.\\.", "\\.\\.", colnames(df))
-
-    temp_cn <- strsplit(colnames(df)[1], "\\.\\.")[[1]]
-    if (length(temp_cn)>1){
-      colnames(df)[1] <- temp_cn[2]
+    if (stringr::str_detect(paste(colnames(df), collapse=" "), "\\.\\.")){
+    temp_cn <- strsplit(as.character(colnames(df)[1]), "\\.\\.")
+    if (length(temp_cn[[1]]) > 1) {
+      colnames(df)[1] <- temp_cn[[1]][2]
     }
-
-    if (colnames(df)[length(colnames(df))] == "X") {
-      df <- df[, -length(colnames(df))]
     }
+    
     database <- c()
-    database <- detect_database(df)
+    database <- litsearchr::detect_database(df)
     if (database == "Scopus") {
       df <- as.data.frame(cbind(id = df$EID,
                                 title = df$Title,
