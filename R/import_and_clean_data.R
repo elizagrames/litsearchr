@@ -40,6 +40,7 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       colnames(df)[1] <- temp_cn[[1]][2]
     }
     }
+    if(length(which(colnames(df)=="X"))>0){df <- df[, -which(colnames(df)=="X")]}
     
     database <- c()
     database <- litsearchr::detect_database(df)
