@@ -20,8 +20,10 @@ detect_database <- function(df){
 #' @param clean_dataset if TRUE, removes excess punctuation and standardizes keywords
 #' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
 #' @return a data frame of all the search results combined
-import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = TRUE, save_full_dataset = FALSE) {
-  import_files <- paste(directory, list.files(path = directory),
+import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = TRUE, 
+          save_full_dataset = FALSE) 
+{
+  import_files <- paste(directory, list.files(path = directory), 
                         sep = "")
   for (i in 1:length(import_files)) {
     df <- c()
@@ -45,39 +47,23 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
     database <- c()
     database <- litsearchr::detect_database(df)
     if (database == "Scopus") {
-      df <- as.data.frame(cbind(id = df$EID,
-                                title = df$Title,
-                                abstract = df$Abstract,
-                                keywords = df$Author.Keywords,
-                                type = df$Document.Type,
-                                authors = df$Authors,
-                                affiliation = df$Affiliations,
-                                source = df$Source.title,
-                                year = df$Year,
-                                volume = df$Volume,
-                                issue = df$Issue,
-                                startpage = df$Page.start,
-                                endpage = df$Page.end,
+      df <- as.data.frame(cbind(id = df$EID, title = df$Title, 
+                                abstract = df$Abstract, keywords = df$Author.Keywords, 
+                                type = df$Document.Type, authors = df$Authors, 
+                                affiliation = df$Affiliations, source = df$Source.title, 
+                                year = df$Year, volume = df$Volume, issue = df$Issue, 
+                                startpage = df$Page.start, endpage = df$Page.end, 
                                 doi = df$DOI))
       df$methods <- rep("", length(df$id))
       df$language <- rep("", length(df$id))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
     if (database == "ZooRec") {
-      df <- as.data.frame(cbind(id = df$AN,
-                                title = df$TI,
-                                abstract = df$AB,
-                                keywords = df$DE,
-                                type = df$DT,
-                                authors = df$AU,
-                                affiliation = df$C1,
-                                source = df$SO,
-                                year = df$PY,
-                                volume = df$VL,
-                                issue = df$IS,
-                                startpage = df$PS,
-                                doi = df$DI,
-                                language = df$LA))
+      df <- as.data.frame(cbind(id = df$AN, title = df$TI, 
+                                abstract = df$AB, keywords = df$DE, type = df$DT, 
+                                authors = df$AU, affiliation = df$C1, source = df$SO, 
+                                year = df$PY, volume = df$VL, issue = df$IS, 
+                                startpage = df$PS, doi = df$DI, language = df$LA))
       df$startpage <- as.character(df$startpage)
       temp <- strsplit(as.character(df$startpage), "-")
       if (length(temp) > 0) {
@@ -92,39 +78,20 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
     if (database == "BIOSIS") {
-      df <- as.data.frame(cbind(id = df$UT,
-                                title = df$TI,
-                                abstract = df$AB,
-                                methods = df$MQ,
-                                keywords = df$MI,
-                                type = df$DT,
-                                authors = df$AU,
-                                affiliation = df$C1,
-                                source = df$SO,
-                                year = df$PY,
-                                volume = df$VL,
-                                issue = df$IS,
-                                startpage = df$BP,
-                                endpage = df$EP,
-                                doi = df$DI,
-                                language = df$LA))
+      df <- as.data.frame(cbind(id = df$UT, title = df$TI, 
+                                abstract = df$AB, methods = df$MQ, keywords = df$MI, 
+                                type = df$DT, authors = df$AU, affiliation = df$C1, 
+                                source = df$SO, year = df$PY, volume = df$VL, 
+                                issue = df$IS, startpage = df$BP, endpage = df$EP, 
+                                doi = df$DI, language = df$LA))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
     if (database == "MEDLINE") {
-      df <- as.data.frame(cbind(id = df$AN,
-                                title = df$TI,
-                                abstract = df$AB,
-                                keywords = df$ID,
-                                type = df$DT,
-                                authors = df$AU,
-                                affiliation = df$C1,
-                                source = df$SO,
-                                year = df$Y,
-                                volume = df$VL,
-                                issue = df$IS,
-                                startpage = df$PS,
-                                doi = df$DI,
-                                language = df$LA))
+      df <- as.data.frame(cbind(id = df$AN, title = df$TI, 
+                                abstract = df$AB, keywords = df$ID, type = df$DT, 
+                                authors = df$AU, affiliation = df$C1, source = df$SO, 
+                                year = df$Y, volume = df$VL, issue = df$IS, startpage = df$PS, 
+                                doi = df$DI, language = df$LA))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
       df$methods <- rep("", length(df$id))
       temp <- strsplit(as.character(df$startpage), "-")
@@ -138,17 +105,10 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       }
     }
     if (database == "WoS") {
-      df <- as.data.frame(cbind(id = df$UT,
-                                title = df$TI,
-                                abstract = df$AB,
-                                authors = df$AU,
-                                source = df$SO,
-                                year = df$PY,
-                                volume = df$VL,
-                                issue = df$IS,
-                                startpage = df$BP,
-                                endpage = df$EP,
-                                doi = df$DI))
+      df <- as.data.frame(cbind(id = df$UT, title = df$TI, 
+                                abstract = df$AB, authors = df$AU, source = df$SO, 
+                                year = df$PY, volume = df$VL, issue = df$IS, 
+                                startpage = df$BP, endpage = df$EP, doi = df$DI))
       df$keywords <- rep("", nrow(df))
       df$methods <- rep("", nrow(df))
       df$type <- rep("", nrow(df))
@@ -157,33 +117,28 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
     if (database == "EBSCO") {
-      df <- as.data.frame(cbind(id = df$Accession.Number,
-                                title = df$Article.Title,
-                                abstract = df$Abstract,
-                                authors = df$Author,
-                                source = df$Journal.Title,
-                                year = df$Publication.Date,
-                                volume = df$Volume,
-                                issue = df$Issue,
-                                startpage = df$First.Page,
-                                endpage = df$Page.Count,
-                                doi = df$DOI,
-                                keywords = df$Keywords,
+      df <- as.data.frame(cbind(id = df$Accession.Number, 
+                                title = df$Article.Title, abstract = df$Abstract, 
+                                authors = df$Author, source = df$Journal.Title, 
+                                year = df$Publication.Date, volume = df$Volume, 
+                                issue = df$Issue, startpage = df$First.Page, 
+                                endpage = df$Page.Count, doi = df$DOI, keywords = df$Keywords, 
                                 type = df$Doctype))
       df$methods <- rep("", nrow(df))
       df$affiliation <- rep("", nrow(df))
       df$language <- rep("", nrow(df))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
-    if (length(database)>0){
-
+    if (length(database) > 0) {
       df$database <- rep(database, nrow(df))
       df[] <- lapply(df, as.character)
-      df <- as.data.frame(
-        cbind(id=df$id, text=df$text, title=df$title, abstract=df$abstract, keywords=df$keywords,
-              methods=df$methods, type=df$type, authors=df$authors, affiliation=df$affiliation, source=df$source, year=df$year,
-              volume=df$volume, issue=df$issue, startpage=df$startpage, endpage=df$endpage, doi=df$doi, language=df$language,
-              database=df$database))
+      df <- as.data.frame(cbind(id = df$id, text = df$text, 
+                                title = df$title, abstract = df$abstract, keywords = df$keywords, 
+                                methods = df$methods, type = df$type, authors = df$authors, 
+                                affiliation = df$affiliation, source = df$source, 
+                                year = df$year, volume = df$volume, issue = df$issue, 
+                                startpage = df$startpage, endpage = df$endpage, 
+                                doi = df$doi, language = df$language, database = df$database))
       df[] <- lapply(df, as.character)
       if (i == 1) {
         search_hits <- df
