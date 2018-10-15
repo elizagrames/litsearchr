@@ -4,8 +4,8 @@
 \alias{extract_terms}
 \title{Extract potential keywords from abstracts and titles}
 \usage{
-extract_terms(df, new_stopwords = NULL, min_freq = 2, title = TRUE,
-  abstract = TRUE, ngrams = TRUE, n = 2)
+extract_terms(df, type = c("RAKE", "tagged"), new_stopwords = NULL,
+  min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n = 2)
 }
 \arguments{
 \item{df}{a dataframe created with import_scope}

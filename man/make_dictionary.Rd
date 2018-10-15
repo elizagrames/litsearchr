@@ -4,14 +4,10 @@
 \alias{make_dictionary}
 \title{Make a dictionary from keywords}
 \usage{
-make_dictionary(actual_terms = select_actual_terms(df, min_freq = 2),
-  likely_terms = extract_terms(df, new_stopwords = NULL, min_freq = 2, title =
-  TRUE, abstract = TRUE))
+make_dictionary(terms = NULL)
 }
 \arguments{
-\item{actual_terms}{a character vector of search terms}
-
-\item{likely_terms}{a character vector of search terms}
+\item{terms}{a list object including at least one character vector of search terms}
 }
 \value{
 a quanteda dictionary object

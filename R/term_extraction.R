@@ -27,7 +27,7 @@ add_stopwords <- function(new_stopwords){
 #' @param n the minimum word count for ngrams
 #' @return a character vector of potential keyword terms
 extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
-  if(type="RAKE"){
+  if(type=="RAKE"){
   if (title == TRUE){
     if (abstract == TRUE){
       article_subjects <- paste(df$title, df$abstract, collapse=". ")
@@ -53,7 +53,7 @@ extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_
   return(likely_terms)
   }
 
-  if(type="tagged"){
+  if(type=="tagged"){
     cleaned_keywords <- clean_keywords(df)$keyword
     possible_terms <- paste(df$keywords, collapse=";")
     possible_terms <- strsplit(possible_terms, ";")[[1]]
