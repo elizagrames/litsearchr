@@ -140,86 +140,6 @@ should_stem <- function(word){
   return(new_word)
 }
 
-#' Write search with truncated word stems
-#' @description Truncates words to word stems and appends them with an asterisk as a wildcard character. Currently only supported for English.
-#' @param groupdata a list of character vectors, each of which is a concept group
-#' @param languages a character of the language in which to write stemmed searches; currently, only English is supported
-#' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
-#' @param directory the path to the directory where you want to save searches (defaults to current working directory)
-write_stemmed_search <- function(groupdata, languages="English", exactphrase=FALSE, directory="./"){
-  no_groups <- length(groupdata)
-  group_holder <- c()
-
-  current_lang <- languages
-  translated_groups <- list()
-  length(translated_groups) <- no_groups
-
-  stemyes <- "stemmed-"
-  if (exactphrase==FALSE){
-    for (j in 1:no_groups){
-      current_group <- groupdata[j]
-      translated_terms <- current_group[[1]]
-      for (m in 1:length(current_group[[1]])){
-        translated_terms[m] <- should_stem(current_group[[1]][m])
-      }
-      translated_terms <- unique(translated_terms)
-      each_line <- paste("\\(", translated_terms[1], "*", sep="")
-
-      for (k in 2:length(translated_terms)){
-        each_line <- paste(each_line, " OR ", translated_terms[k], "*", sep="")
-      }
-
-      each_line <- paste(each_line, "\\)")
-
-      translated_groups[[j]] <- each_line
-    }
-
-    total_search <- translated_groups[[1]]
-    for (l in 2:length(translated_groups)){
-      total_search <- paste(total_search, translated_groups[[l]], sep=" AND ")
-    }
-  }
-
-  if (exactphrase==TRUE){
-    for (j in 1:no_groups){
-      current_group <- groupdata[j]
-
-      translated_terms <- current_group[[1]]
-      for (m in 1:length(current_group[[1]])){
-        translated_terms[m] <- should_stem(current_group[[1]][m])
-      }
-      translated_terms <- unique(translated_terms)
-      each_line <- paste("\\(", "\"", translated_terms[1], "*", "\"", sep="")
-
-      for (k in 2:length(translated_terms)){
-        each_line <- paste(each_line, " OR ", "\"", translated_terms[k], "*", "\"", sep="")
-      }
-
-      each_line <- paste(each_line, "\\)")
-
-      translated_groups[[j]] <- each_line
-    }
-
-    total_search <- translated_groups[[1]]
-    for (l in 2:length(translated_groups)){
-      total_search <- paste(total_search, translated_groups[[l]], sep=" AND ")
-    }
-  }
-
-  total_search <- paste("\\(", total_search, "\\)")
-
-  this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
-  trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
-
-  converted_search <- iconv(total_search, "UTF-8", trans_encod)
-  converted_search <- gsub("\\\\", "\\", converted_search)
-  filename <- paste(directory, "search-in-", stemyes, current_lang, ".txt", sep="")
-
-  writeLines(converted_search, filename)
-
-  return(print("All done!"))
-}
-
 #' Write Boolean searches
 #' @description Takes search terms grouped by concept group and writes Boolean searches in which terms within concept groups are separated by "OR" and concept groups are separated by "AND". Searches can be written in up to 53 languages, though the function defaults to only searching the top ten most used languages in a discipline using the choose_languages() function. The default for language options relies on searching a database of journals by discipline based on Ulrich's Periodicals Directory. Only scientific fields are included in this database. All supported languages can be seen with available_languages().
 #' @param groupdata a list of character vectors, each of which is a concept group
@@ -227,13 +147,14 @@ write_stemmed_search <- function(groupdata, languages="English", exactphrase=FAL
 #' @param languages a character vector of supported languages to write searches in.
 #' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
 #' @param directory the path to the directory where you want to save searches (defaults to current working directory)
-write_search <- function(groupdata, API_key=NULL, languages=choose_languages(lang_data=get_language_data(key_topics = "biology"))[1:10], exactphrase=FALSE, directory="./"){
+#' @param stemming if TRUE, writes stemmed search (only when the current language is English)
+write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FALSE, directory="./", stemming=TRUE){
+  no_groups <- length(groupdata)
+  group_holder <- c()
+  no_langs <- length(languages)
 
-  if(exactphrase==FALSE){
-    no_groups <- length(groupdata)
-    group_holder <- c()
+   if(exactphrase==FALSE){
 
-    no_langs <- length(languages)
 
     for (i in 1:no_langs){
       current_lang <- languages[i]
@@ -250,12 +171,26 @@ write_search <- function(groupdata, API_key=NULL, languages=choose_languages(lan
         }
 
         if (current_lang=="English"){
+          if(stemming==FALSE){
           translated_terms <- current_group[[1]]
-          each_line <- paste("\\(", "\\(", translated_terms[1], "\\)")
+          }
+
+          if(stemming==TRUE){
+            stemyes <- "stemmed-"
+            translated_terms <- current_group[[1]]
+
+            for (m in 1:length(current_group[[1]])){
+              translated_terms[m] <- litsearchr::should_stem(current_group[[1]][m])
+            }
+
+          }
+          each_line <- paste("\\(", "\\(", translated_terms[1],  "*", "\\)")
+
+
         }
 
         for (k in 2:length(translated_terms)){
-          each_line <- paste(each_line, " OR \\(", translated_terms[k],"\\)",  sep="")
+          each_line <- paste(each_line, " OR \\(", translated_terms[k],"\\)", "*",  sep="")
         }
 
         each_line <- paste(each_line, "\\)")
@@ -285,11 +220,6 @@ write_search <- function(groupdata, API_key=NULL, languages=choose_languages(lan
   }
 
   if(exactphrase==TRUE){
-    no_groups <- length(groupdata)
-    group_holder <- c()
-
-    no_langs <- length(languages)
-
     for (i in 1:no_langs){
       current_lang <- languages[i]
       translated_groups <- list()
@@ -305,7 +235,18 @@ write_search <- function(groupdata, API_key=NULL, languages=choose_languages(lan
         }
 
         if (current_lang=="English"){
+          if(stemming==FALSE){
+
+
           translated_terms <- current_group[[1]]
+          }
+          if(stemming==TRUE){
+            stemyes <- "stemmed-"
+            for (m in 1:length(current_group[[1]])){
+              translated_terms[m] <- should_stem(current_group[[1]][m])
+            }
+
+          }
           each_line <- paste("\\(", "\"", translated_terms[1], "\"", sep="")
         }
 

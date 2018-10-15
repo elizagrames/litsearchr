@@ -26,7 +26,8 @@ add_stopwords <- function(new_stopwords){
 #' @param ngrams if TRUE, only extracts phrases with word count greater than a specified n
 #' @param n the minimum word count for ngrams
 #' @return a character vector of potential keyword terms
-extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
+extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
+  if(type="RAKE"){
   if (title == TRUE){
     if (abstract == TRUE){
       article_subjects <- paste(df$title, df$abstract, collapse=". ")
@@ -49,44 +50,37 @@ extract_terms <- function(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstra
   if (ngrams==TRUE){
     likely_terms <- likely_terms[which(sapply(strsplit(as.character(likely_terms), " "), length) >= n)]
   }
-
   return(likely_terms)
-}
-
-#' Extract actual article keywords
-#' @description Extracts actual author-and-database tagged keywords.
-#' @param df a data frame of search hits from import_scope
-#' @param min_freq a number, the minimum occurrences to be included
-#' @param ngrams if TRUE, only extracts phrases with word count greater than a specified n
-#' @param n the minimum word count for ngrams
-#' @return a character vector of keywords actually occurring in the search dataset
-select_actual_terms <- function(df, min_freq=2, ngrams=TRUE, n=2){
-  cleaned_keywords <- clean_keywords(df)$keyword
-  possible_terms <- paste(df$keywords, collapse=";")
-  possible_terms <- strsplit(possible_terms, ";")[[1]]
-  possible_terms <- stringr::str_trim(tm::removePunctuation(possible_terms))
-
-  term_freq_table <- table(possible_terms)
-
-  actual_terms <- tolower(names(term_freq_table)[which(term_freq_table >= min_freq)])
-  if(length(which(actual_terms=="")>0)){actual_terms <- actual_terms[-which(actual_terms=="")]}
-  if (ngrams==TRUE){
-    actual_terms <- actual_terms[which(sapply(strsplit(as.character(actual_terms), " "), length) >= n)]
   }
 
+  if(type="tagged"){
+    cleaned_keywords <- clean_keywords(df)$keyword
+    possible_terms <- paste(df$keywords, collapse=";")
+    possible_terms <- strsplit(possible_terms, ";")[[1]]
+    possible_terms <- stringr::str_trim(tm::removePunctuation(possible_terms))
 
-  return(actual_terms)
+    term_freq_table <- table(possible_terms)
+
+    actual_terms <- tolower(names(term_freq_table)[which(term_freq_table >= min_freq)])
+    if(length(which(actual_terms=="")>0)){actual_terms <- actual_terms[-which(actual_terms=="")]}
+    if (ngrams==TRUE){
+      actual_terms <- actual_terms[which(sapply(strsplit(as.character(actual_terms), " "), length) >= n)]
+    }
+
+    return(actual_terms)
+  }
 
 }
 
 #' Make a dictionary from keywords
 #' @description Combines actual keywords and likely keywords into a dictionary object using the as.dictionary function from quanteda.
-#' @param actual_terms a character vector of search terms
-#' @param likely_terms a character vector of search terms
+#' @param terms a list object including at least one character vector of search terms
 #' @return a quanteda dictionary object
-make_dictionary <- function(actual_terms=NULL, likely_terms=NULL){
-
-  complete_keywords <- unique(tolower(append(actual_terms, likely_terms)))
+make_dictionary <- function(terms=NULL){
+  complete_keywords <- terms[[1]]
+  for(i in 1:length(terms)){
+    complete_keywords <- unique(tolower(append(complete_keywords, terms[[i]])))
+  }
 
   my_dic <- as.data.frame(cbind(complete_keywords, complete_keywords))
   colnames(my_dic) <- c("word", "sentiment")
