@@ -84,7 +84,7 @@ select_actual_terms <- function(df, min_freq=2, ngrams=TRUE, n=2){
 #' @param actual_terms a character vector of search terms
 #' @param likely_terms a character vector of search terms
 #' @return a quanteda dictionary object
-make_dictionary <- function(actual_terms=select_actual_terms(df, min_freq=2), likely_terms=extract_terms(df, new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE)){
+make_dictionary <- function(actual_terms=NULL, likely_terms=NULL){
 
   complete_keywords <- unique(tolower(append(actual_terms, likely_terms)))
 
