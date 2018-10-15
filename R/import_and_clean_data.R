@@ -147,7 +147,7 @@ detect_database <- function(df){
   if(stringr::str_detect(database_signature, "BCI:BCI")){database <- "BIOSIS"}
   if(stringr::str_detect(database_signature, "www.scopus.com")){database <- "Scopus"}
   if(stringr::str_detect(database_signature, "search.proquest.com")){database <- "ProQuest"}
-  if(stringr::str_detect(database_signature, "search.ebsco.com")){database <- "EBSCO"}
+  if(stringr::str_detect(database_signature, "ebscohost.com")){database <- "EBSCO"}
   if(stringr::str_detect(database_signature, "NDLTD_import")){database <- "NDLTD"}
   if(stringr::str_detect(database_signature, "OATD_import")){database <- "OATD"}
   if(stringr::str_detect(database_signature, "OpenThesis_import")){database <- "OpenThesis"}
@@ -157,7 +157,7 @@ detect_database <- function(df){
   if (length(database)==0){
     database <- "Unknown"
     print("Database format not recognized.")
-    }
+  }
 
 }
 
@@ -168,8 +168,8 @@ detect_database <- function(df){
 #' @param clean_dataset if TRUE, removes excess punctuation and standardizes keywords
 #' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
 #' @return a data frame of all the search results combined
-import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = TRUE,
-          save_full_dataset = FALSE)
+import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TRUE,
+                         save_full_dataset = FALSE)
 {
   import_files <- paste(directory, list.files(path = directory),
                         sep = "")
@@ -185,16 +185,17 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
     }
 
     if (stringr::str_detect(paste(colnames(df), collapse=" "), "\\.\\.")){
-    temp_cn <- strsplit(as.character(colnames(df)[1]), "\\.\\.")
-    if (length(temp_cn[[1]]) > 1) {
-      colnames(df)[1] <- temp_cn[[1]][2]
-    }
+      temp_cn <- strsplit(as.character(colnames(df)[1]), "\\.\\.")
+      if (length(temp_cn[[1]]) > 1) {
+        colnames(df)[1] <- temp_cn[[1]][2]
+      }
     }
     if(length(which(colnames(df)=="X"))>0){df <- df[, -which(colnames(df)=="X")]}
 
+    print(paste("Importing file", import_files[i]))
     database <- c()
-    database <- litsearchr::detect_database(df)
-    if (database == "Scopus") {
+    database <- detect_database(df)
+    if(database == "Scopus"){
       df <- as.data.frame(cbind(id = df$EID, title = df$Title,
                                 abstract = df$Abstract, keywords = df$Author.Keywords,
                                 type = df$Document.Type, authors = df$Authors,
@@ -206,7 +207,7 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df$language <- rep("", length(df$id))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
-    if (database == "ZooRec") {
+    if(database == "ZooRec"){
       df <- as.data.frame(cbind(id = df$AN, title = df$TI,
                                 abstract = df$AB, keywords = df$DE, type = df$DT,
                                 authors = df$AU, affiliation = df$C1, source = df$SO,
@@ -225,7 +226,7 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df$methods <- rep("", length(df$id))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
-    if (database == "BIOSIS") {
+    if(database == "BIOSIS"){
       df <- as.data.frame(cbind(id = df$UT, title = df$TI,
                                 abstract = df$AB, methods = df$MQ, keywords = df$MI,
                                 type = df$DT, authors = df$AU, affiliation = df$C1,
@@ -234,7 +235,7 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
                                 doi = df$DI, language = df$LA))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
-    if (database == "MEDLINE") {
+    if(database == "MEDLINE"){
       df <- as.data.frame(cbind(id = df$AN, title = df$TI,
                                 abstract = df$AB, keywords = df$ID, type = df$DT,
                                 authors = df$AU, affiliation = df$C1, source = df$SO,
@@ -252,7 +253,7 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
         }
       }
     }
-    if (database == "EBSCO") {
+    if(database == "EBSCO"){
       df <- as.data.frame(cbind(id = df$Accession.Number,
                                 title = df$Article.Title, abstract = df$Abstract,
                                 authors = df$Author, source = df$Journal.Title,
@@ -265,7 +266,7 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df$language <- rep("", nrow(df))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
-    if (database == "NDLTD"){
+    if(database == "NDLTD"){
       df <- as.data.frame(cbind(title=df$title, authors=df$author,
                                 year=df$date, abstract=df$abstract))
       df$id <- rep("", nrow(df))
@@ -318,6 +319,29 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
       df$language <- rep("", nrow(df))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
+    if (database=="ProQuest"){
+      df <- as.data.frame(cbind(id=df$StoreId, title=df$Title, abstract=df$Abstract, keywords=df$subjectTerms, type=df$documentType,
+                                authors=df$Authors, source=df$pubtitle, year=df$year, volume=df$volume, issue=df$issue,
+                                startpage=df$pages, doi=df$digitalObjectIdentifier, language=df$language))
+      df$affiliation <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$endpage <- rep("", nrow(df))
+
+      df$startpage <- as.character(df$startpage)
+      temp <- strsplit(as.character(df$startpage), "-")
+      if (length(temp) > 0) {
+        for (j in 1:length(temp)) {
+          if(length(temp[[j]])>0){
+            df$startpage[j] <- temp[[j]][1]
+          }
+          if (length(temp[[j]]) > 1) {
+            df$endpage[j] <- temp[[j]][2]
+          }
+        }
+      }
+
+      df$text <- paste(df$abstract, df$keywords, sep=" ")
+    }
 
 
     if (database != "Unknown") {
@@ -340,22 +364,24 @@ import_scope <- function (directory, remove_duplicates = TRUE, clean_dataset = T
     }
     if(database=="Unknown"){
       print(paste("Warning: Unable to recognize format for", import_files[i]))
-      }
+    }
   }
 
 
   if (save_full_dataset == TRUE) {
     write.csv(search_hits, "./full_dataset.csv")
+    print("Complete dataset written to .csv file.")
   }
   if (remove_duplicates == TRUE) {
+    print("Removing duplicates.")
     search_hits <- deduplicate(search_hits)
   }
   if (clean_dataset == TRUE) {
+    print("Cleaning dataset.")
     search_hits <- clean_keywords(search_hits)
   }
   return(search_hits)
 }
-
 
 #' Remove duplicate articles
 #' @description Uses similarity of tokenized abstracts and titles to detect duplicates and remove them from the dataset.
