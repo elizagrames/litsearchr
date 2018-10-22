@@ -13,7 +13,7 @@ Description: searchr automates the process of choosing search terms and writing 
 License: GPL-3
 LazyData: true
 RoxygenNote: 6.0.1
-Imports: dplyr,
+Imports: 
     SnowballC,
     stringr,
     freeknotsplines,
@@ -24,10 +24,10 @@ Imports: dplyr,
     quanteda,
     tm,
     rapidraker
-Suggests: wordcloud,
+Suggests: 
+    wordcloud,
     knitr,
     rmarkdown,
-    gdata,
     rgl
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
