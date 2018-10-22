@@ -153,7 +153,7 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
   group_holder <- c()
   no_langs <- length(languages)
 
-   if(exactphrase==FALSE){
+  if(exactphrase==FALSE){
 
 
     for (i in 1:no_langs){
@@ -172,7 +172,7 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
 
         if (current_lang=="English"){
           if(stemming==FALSE){
-          translated_terms <- current_group[[1]]
+            translated_terms <- current_group[[1]]
           }
 
           if(stemming==TRUE){
@@ -237,13 +237,14 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
         if (current_lang=="English"){
           if(stemming==FALSE){
 
-
-          translated_terms <- current_group[[1]]
+            translated_terms <- current_group[[1]]
           }
           if(stemming==TRUE){
             stemyes <- "stemmed-"
+            translated_terms <- current_group[[1]]
             for (m in 1:length(current_group[[1]])){
-              translated_terms[m] <- should_stem(current_group[[1]][m])
+              prestar <- should_stem(current_group[[1]][m])
+              translated_terms[m] <- paste(prestar, "*", sep="")
             }
 
           }
@@ -270,7 +271,12 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
 
       converted_search <- iconv(total_search, "UTF-8", trans_encod)
       converted_search <- gsub("\\\\", "\\", converted_search)
-      filename <- paste("search-in-", current_lang, ".txt", sep="")
+
+      if(stemming==FALSE){filename <- paste("search-in-", current_lang, ".txt", sep="")}
+      if(stemming==TRUE){
+        if(current_lang!="English"){filename <- paste("search-in-", current_lang, ".txt", sep="")}
+        if(current_lang=="English"){filename <- paste("search-in-stemmed-", current_lang, ".txt", sep="")}
+      }
 
       writeLines(converted_search, filename)
       print(paste(current_lang, "is written"))
