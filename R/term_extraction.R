@@ -19,6 +19,7 @@ add_stopwords <- function(new_stopwords){
 #' Extract potential keywords from abstracts and titles
 #' @description Uses the RAKE (Rapid Automatic Keyword Extractor) from rapidraker to extract potential keyword terms from titles and abstracts.
 #' @param df a dataframe created with import_scope
+#' @param type if generating keywords from title and/or abstract, use "RAKE"; if extracting author or database tagged keywords, use "tagged"
 #' @param new_stopwords a character vector of stopwords to ignore
 #' @param min_freq a number, the minimum occurrences of a potential term
 #' @param title include titles if TRUE
