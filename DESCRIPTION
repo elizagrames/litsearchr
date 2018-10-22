@@ -23,7 +23,8 @@ Imports:
     Rcpp,
     quanteda,
     tm,
-    rapidraker
+    rapidraker,
+    xml2
 Suggests: 
     wordcloud,
     knitr,
