@@ -5,10 +5,13 @@
 \title{Extract potential keywords from abstracts and titles}
 \usage{
 extract_terms(df, type = c("RAKE", "tagged"), new_stopwords = NULL,
-  min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n = 2)
+  min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE,
+  n = 2)
 }
 \arguments{
 \item{df}{a dataframe created with import_scope}
+
+\item{type}{if generating keywords from title and/or abstract, use "RAKE"; if extracting author or database tagged keywords, use "tagged"}
 
 \item{new_stopwords}{a character vector of stopwords to ignore}
 

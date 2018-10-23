@@ -12,7 +12,7 @@ Description: searchr automates the process of choosing search terms and writing 
     53 different languages with stemming support for English.
 License: GPL-3
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Imports: 
     SnowballC,
     stringr,
@@ -32,4 +32,3 @@ Suggests:
     rgl
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
-

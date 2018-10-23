@@ -5,8 +5,8 @@
 \title{Generates a graph of languages to search}
 \usage{
 language_graphs(lang_data = get_language_data(key_topics = c("biology",
-  "conservation", "ecology")), no_return = 15, key_topics = c("biology",
-  "conservation", "ecology"))
+  "conservation", "ecology")), no_return = 15,
+  key_topics = c("biology", "conservation", "ecology"))
 }
 \arguments{
 \item{lang_data}{a table of language data returned from choose_languages()}
