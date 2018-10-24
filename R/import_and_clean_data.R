@@ -4,6 +4,12 @@
 #' @param save_results if TRUE, writes results to a .csv file
 #' @param destination the folder where the full search should be saved
 scrape_results <- function(URL, save_results=TRUE, destination="./"){
+  if(save_results==TRUE){
+    if(menu(c("yes", "no"), title="This will write results to a .csv file. Do you want to save the results to a .csv file?")==2){
+      save_results <- FALSE
+    }
+  }
+
   if(stringr::str_detect(URL, "oatd.org")){database <- "OATD"}
   if(stringr::str_detect(URL, "ndltd.org")){database <- "NDLTD"}
   if(stringr::str_detect(URL, "openthesis.org")){database <- "OpenThesis"}
@@ -133,6 +139,9 @@ scrape_results <- function(URL, save_results=TRUE, destination="./"){
   }
   dataset$source <- rep(database, nrow(dataset))
   if(save_results==TRUE){write.csv(dataset, paste(destination, database, "_import.csv", sep=""))}
+
+
+
   return(dataset)
 }
 
@@ -171,217 +180,12 @@ detect_database <- function(df){
 import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TRUE,
                          save_full_dataset = FALSE)
 {
-  import_files <- paste(directory, list.files(path = directory),
-                        sep = "")
-  for (i in 1:length(import_files)) {
-    df <- c()
-    if (stringr::str_detect(import_files[i], ".csv") == TRUE) {
-      df <- read.csv(import_files[i], header = TRUE, stringsAsFactors = FALSE)
-    }
-    if (stringr::str_detect(import_files[i], ".txt") == TRUE) {
-      df <- read.table(import_files[i], sep = "\t", header = TRUE,
-                       comment.char = "#", na.strings = ".", stringsAsFactors = FALSE,
-                       quote = "", fill = TRUE)
-    }
-
-    if (stringr::str_detect(paste(colnames(df), collapse=" "), "\\.\\.")){
-      temp_cn <- strsplit(as.character(colnames(df)[1]), "\\.\\.")
-      if (length(temp_cn[[1]]) > 1) {
-        colnames(df)[1] <- temp_cn[[1]][2]
-      }
-    }
-    if(length(which(colnames(df)=="X"))>0){df <- df[, -which(colnames(df)=="X")]}
-
-    print(paste("Importing file", import_files[i]))
-    database <- c()
-    database <- detect_database(df)
-    if(database == "Scopus"){
-      df <- as.data.frame(cbind(id = df$EID, title = df$Title,
-                                abstract = df$Abstract, keywords = df$Author.Keywords,
-                                type = df$Document.Type, authors = df$Authors,
-                                affiliation = df$Affiliations, source = df$Source.title,
-                                year = df$Year, volume = df$Volume, issue = df$Issue,
-                                startpage = df$Page.start, endpage = df$Page.end,
-                                doi = df$DOI))
-      df$methods <- rep("", length(df$id))
-      df$language <- rep("", length(df$id))
-      df$text <- paste(df$abstract, df$keywords, sep = " ")
-    }
-    if(database == "ZooRec"){
-      df <- as.data.frame(cbind(id = df$AN, title = df$TI,
-                                abstract = df$AB, keywords = df$DE, type = df$DT,
-                                authors = df$AU, affiliation = df$C1, source = df$SO,
-                                year = df$PY, volume = df$VL, issue = df$IS,
-                                startpage = df$PS, doi = df$DI, language = df$LA))
-      df$startpage <- as.character(df$startpage)
-      temp <- strsplit(as.character(df$startpage), "-")
-      if (length(temp) > 0) {
-        for (j in 1:length(temp)) {
-          df$startpage[j] <- temp[[j]][1]
-          if (length(temp[[j]]) > 1) {
-            df$endpage[j] <- temp[[j]][2]
-          }
-        }
-      }
-      df$methods <- rep("", length(df$id))
-      df$text <- paste(df$abstract, df$keywords, sep = " ")
-    }
-    if(database == "BIOSIS"){
-      df <- as.data.frame(cbind(id = df$UT, title = df$TI,
-                                abstract = df$AB, methods = df$MQ, keywords = df$MI,
-                                type = df$DT, authors = df$AU, affiliation = df$C1,
-                                source = df$SO, year = df$PY, volume = df$VL,
-                                issue = df$IS, startpage = df$BP, endpage = df$EP,
-                                doi = df$DI, language = df$LA))
-      df$text <- paste(df$abstract, df$keywords, sep = " ")
-    }
-    if(database == "MEDLINE"){
-      df <- as.data.frame(cbind(id = df$AN, title = df$TI,
-                                abstract = df$AB, keywords = df$ID, type = df$DT,
-                                authors = df$AU, affiliation = df$C1, source = df$SO,
-                                year = df$Y, volume = df$VL, issue = df$IS, startpage = df$PS,
-                                doi = df$DI, language = df$LA))
-      df$text <- paste(df$abstract, df$keywords, sep = " ")
-      df$methods <- rep("", length(df$id))
-      temp <- strsplit(as.character(df$startpage), "-")
-      if (length(temp) > 0) {
-        for (j in 1:length(temp)) {
-          df$startpage[j] <- temp[[j]][1]
-          if (length(temp[[j]]) > 1) {
-            df$endpage[j] <- temp[[j]][2]
-          }
-        }
-      }
-    }
-    if(database == "EBSCO"){
-      df <- as.data.frame(cbind(id = df$Accession.Number,
-                                title = df$Article.Title, abstract = df$Abstract,
-                                authors = df$Author, source = df$Journal.Title,
-                                year = df$Publication.Date, volume = df$Volume,
-                                issue = df$Issue, startpage = df$First.Page,
-                                endpage = df$Page.Count, doi = df$DOI, keywords = df$Keywords,
-                                type = df$Doctype))
-      df$methods <- rep("", nrow(df))
-      df$affiliation <- rep("", nrow(df))
-      df$language <- rep("", nrow(df))
-      df$text <- paste(df$abstract, df$keywords, sep = " ")
-    }
-    if(database == "NDLTD"){
-      df <- as.data.frame(cbind(title=df$title, authors=df$author,
-                                year=df$date, abstract=df$abstract))
-      df$id <- rep("", nrow(df))
-      df$source <- rep("", nrow(df))
-      df$volume <- rep("", nrow(df))
-      df$issue <- rep("", nrow(df))
-      df$startpage <- rep("", nrow(df))
-      df$endpage <- rep("", nrow(df))
-      df$doi <- rep("", nrow(df))
-      df$keywords <- rep("", nrow(df))
-      df$type <- rep("", nrow(df))
-      df$methods <- rep("", nrow(df))
-      df$affiliation <- rep("", nrow(df))
-      df$language <- rep("", nrow(df))
-      df$text <- paste(df$abstract, df$keywords, sep = " ")
-    }
-    if (database == "OATD"){
-      df <- as.data.frame(cbind(title=df$title, authors=df$author,
-                                abstract=df$abstract))
-      df$id <- rep("", nrow(df))
-      df$source <- rep("", nrow(df))
-      df$volume <- rep("", nrow(df))
-      df$issue <- rep("", nrow(df))
-      df$startpage <- rep("", nrow(df))
-      df$endpage <- rep("", nrow(df))
-      df$doi <- rep("", nrow(df))
-      df$keywords <- rep("", nrow(df))
-      df$type <- rep("", nrow(df))
-      df$methods <- rep("", nrow(df))
-      df$affiliation <- rep("", nrow(df))
-      df$language <- rep("", nrow(df))
-      df$year <- rep("", nrow(df))
-      df$text <- paste(df$abstract, df$keywords, sep = " ")
-    }
-    if (database == "OpenThesis"){
-      df <- as.data.frame(cbind(title=df$title, authors=df$author,
-                                year=df$date))
-      df$id <- rep("", nrow(df))
-      df$abstract <- rep("", nrow(df))
-      df$source <- rep("", nrow(df))
-      df$volume <- rep("", nrow(df))
-      df$issue <- rep("", nrow(df))
-      df$startpage <- rep("", nrow(df))
-      df$endpage <- rep("", nrow(df))
-      df$doi <- rep("", nrow(df))
-      df$keywords <- rep("", nrow(df))
-      df$type <- rep("", nrow(df))
-      df$methods <- rep("", nrow(df))
-      df$affiliation <- rep("", nrow(df))
-      df$language <- rep("", nrow(df))
-      df$text <- paste(df$abstract, df$keywords, sep = " ")
-    }
-    if (database=="ProQuest"){
-      df <- as.data.frame(cbind(id=df$StoreId, title=df$Title, abstract=df$Abstract, keywords=df$subjectTerms, type=df$documentType,
-                                authors=df$Authors, source=df$pubtitle, year=df$year, volume=df$volume, issue=df$issue,
-                                startpage=df$pages, doi=df$digitalObjectIdentifier, language=df$language))
-      df$affiliation <- rep("", nrow(df))
-      df$methods <- rep("", nrow(df))
-      df$endpage <- rep("", nrow(df))
-
-      df$startpage <- as.character(df$startpage)
-      temp <- strsplit(as.character(df$startpage), "-")
-      if (length(temp) > 0) {
-        for (j in 1:length(temp)) {
-          if(length(temp[[j]])>0){
-            df$startpage[j] <- temp[[j]][1]
-          }
-          if (length(temp[[j]]) > 1) {
-            df$endpage[j] <- temp[[j]][2]
-          }
-        }
-      }
-
-      df$text <- paste(df$abstract, df$keywords, sep=" ")
-    }
-
-
-    if (database != "Unknown") {
-      df$database <- rep(database, nrow(df))
-      df[] <- lapply(df, as.character)
-      df <- as.data.frame(cbind(id = df$id, text = df$text,
-                                title = df$title, abstract = df$abstract, keywords = df$keywords,
-                                methods = df$methods, type = df$type, authors = df$authors,
-                                affiliation = df$affiliation, source = df$source,
-                                year = df$year, volume = df$volume, issue = df$issue,
-                                startpage = df$startpage, endpage = df$endpage,
-                                doi = df$doi, language = df$language, database = df$database))
-      df[] <- lapply(df, as.character)
-      if (i == 1) {
-        search_hits <- df
-      }
-      if (i > 1) {
-        search_hits <- rbind(search_hits, df)
-      }
-    }
-    if(database=="Unknown"){
-      print(paste("Warning: Unable to recognize format for", import_files[i]))
+  if(save_full_dataset==TRUE){
+    if(menu(c("yes", "no"),
+            title="This will save the full dataset to a .csv file in your working directory. Do you want litsearchr to save the full dataset?")==2){
+      save_full_dataset <- FALSE
     }
   }
-
-
-  if (save_full_dataset == TRUE) {
-    write.csv(search_hits, "./full_dataset.csv")
-    print("Complete dataset written to .csv file.")
-  }
-  if (remove_duplicates == TRUE) {
-    print("Removing duplicates.")
-    search_hits <- deduplicate(search_hits)
-  }
-  if (clean_dataset == TRUE) {
-    print("Cleaning dataset.")
-    search_hits <- clean_keywords(search_hits)
-  }
-  return(search_hits)
-}
 
 #' Remove duplicate articles
 #' @description Uses similarity of tokenized abstracts and titles to detect duplicates and remove them from the dataset.

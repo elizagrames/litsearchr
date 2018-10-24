@@ -130,7 +130,7 @@ translate_search <- function(search_terms, target_language, source_language="en"
 
 #' Check whether a word is long enough to stem
 #' @param word the word to check
-#' @description Checks if the stemmed form of a word is longer than 3 characters. Not intended as a standalone function and is called from write_stemmed_search().
+#' @description Checks if the stemmed form of a word is longer than 3 characters. Not intended as a standalone function and is called from write_search().
 should_stem <- function(word){
   wordcut <- SnowballC::wordStem(word, language="en")
   splitup <- strsplit(wordcut, " ")[[1]]
@@ -149,6 +149,7 @@ should_stem <- function(word){
 #' @param directory the path to the directory where you want to save searches (defaults to current working directory)
 #' @param stemming if TRUE, writes stemmed search (only when the current language is English)
 write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FALSE, directory="./", stemming=TRUE){
+  if(menu(c("yes", "no"), title="This is going to write .txt files to your computer containing the search strings. Do you want to continue?")==1){
   no_groups <- length(groupdata)
   group_holder <- c()
   no_langs <- length(languages)
@@ -285,6 +286,11 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
   }
 
   return(print("All done!"))
+  }
+
+  if(menu(c("yes", "no"), title="This is going to write .txt files to your computer containing the search strings. Do you want to continue?")==2){
+    print("No searches written.")}
+
 }
 
 

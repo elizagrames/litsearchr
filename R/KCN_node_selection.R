@@ -94,7 +94,7 @@ fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
 #' @param cum_pct if using method cumulative, the total percent of node strength to capture
 #' @param degrees if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths
 #' @param knot_num if using method spline, the number of knots to allow
-#' @param diagnostics if set to TRUE, saves plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point
+#' @param diagnostics if set to TRUE, prints plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a vector of suggested node cutoff strengths
 find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
@@ -143,12 +143,17 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
 }
 
 #' Extract potential keywords
-#' @description Extracts keywords identified as important and writes them to a plain text file.
+#' @description Extracts keywords identified as important.
 #' @param reduced_graph a reduced graph with only important nodes created with reduce_grah()
 #' @param savekeywords if TRUE, saves the keywords to a plain text file
 #' @param makewordle if TRUE, creates a wordcloud image of the important keywords sized relative to node strength
 #' @return a list of potential keywords to consider
 get_keywords <- function(reduced_graph, savekeywords=TRUE, makewordle=TRUE){
+  if(savekeywords==TRUE){
+    if(menu(c("yes", "no"), title="This will write keywords to a plain text file. Do you want to save keywords to a file?")==2){
+      savekeywords <- FALSE
+    }
+  }
   potential_keys <- names(igraph::V(reduced_graph))
   if (savekeywords == TRUE){writeLines(potential_keys, "potential-keywords.txt") }
   if (makewordle == TRUE) {make_wordle(reduced_graph)}
