@@ -148,8 +148,13 @@ should_stem <- function(word){
 #' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
 #' @param directory the path to the directory where you want to save searches (defaults to current working directory)
 #' @param stemming if TRUE, writes stemmed search (only when the current language is English)
-write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FALSE, directory="./", stemming=TRUE, verbose=TRUE){
-  if(menu(c("yes", "no"), title="This is going to write .txt files to your computer containing the search strings. Do you want to continue?")==1){
+write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FALSE, directory="./", stemming=TRUE, verbose=TRUE, writesearch=FALSE){
+  if(writesearch==TRUE){
+    if(menu(c("yes", "no"),
+          title="This is going to write .txt files to your computer containing the search strings. Are you sure you want to write the files?")==2){
+    writesearch <- FALSE
+  }}
+
   no_groups <- length(groupdata)
   group_holder <- c()
   no_langs <- length(languages)
@@ -210,10 +215,21 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
       converted_search <- iconv(total_search, "UTF-8", trans_encod)
       converted_search <- gsub("\\\\", "\\", converted_search)
 
-      filename <- paste(directory, "search-in-", current_lang, ".txt", sep="")
-      writeLines(converted_search, filename)
+      if(writesearch==TRUE){
+        filename <- paste(directory, "search-in-", current_lang, ".txt", sep="")
+        writeLines(converted_search, filename)
+        if(verbose==TRUE){
+          print(paste(current_lang, "is written"))
+        }
+      }
 
-      if(verbose==TRUE){print(paste(current_lang, "is written"))}
+      if(i==1){
+        search_list <- list()
+        length(search_list) <- length(i)
+      }
+      search_list[[i]] <- converted_search
+      names(search_list)[[i]] <- current_lang
+
     }
 
 
@@ -278,19 +294,30 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
         if(current_lang=="English"){filename <- paste("search-in-stemmed-", current_lang, ".txt", sep="")}
       }
 
-      writeLines(converted_search, filename)
-      if(verbose==TRUE){print(paste(current_lang, "is written"))}
+      if(writesearch==TRUE){
+        writeLines(converted_search, filename)
+        if(verbose==TRUE){
+          print(paste(current_lang, "is written"))
+          }
+      }
+
+      if(i==1){
+        search_list <- list()
+        length(search_list) <- length(i)
+      }
+      search_list[[i]] <- converted_search
+      names(search_list)[[i]] <- current_lang
+
+
     }
 
   }
 
-  return(print("All done!"))
+  return(search_list)
   }
 
-  if(menu(c("yes", "no"), title="This is going to write .txt files to your computer containing the search strings. Do you want to continue?")==2){
-    print("No searches written.")}
 
-}
+
 
 
 #' Print possible search languages

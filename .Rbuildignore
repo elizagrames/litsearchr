@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^cran-comments.md
 ^README.Rmd
+.R/scrape_results.R
