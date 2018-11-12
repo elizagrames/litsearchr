@@ -3,7 +3,7 @@ search_terms <- list(c("nesting success", "avian", "avifauna"),
                      c("fragment", "fragmentation"))
 
 ## need a way to specify where to search (presumed title, abs, key when available)
-## make these all connect to the litsearchr import option
+## make these all connect to the litsearchr import option using the database tag
 
 #### DONE: Google Scholar ####
 ## only goes up to 256 characters
@@ -16,13 +16,13 @@ scrape_google_scholar <- function(search_terms, writefile=TRUE){
   search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
   if(nchar(search_strat)<=256){
 
-  if(writefile==TRUE){if(menu(c("yes", "no"),
-                              title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
-    writefile <- FALSE
-  }
-  }
+    if(writefile==TRUE){if(menu(c("yes", "no"),
+                                title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
+      writefile <- FALSE
+    }
+    }
 
-  base_URL <- "https://scholar.google.com/scholar?"
+    base_URL <- "https://scholar.google.com/scholar?"
 
     first_search <- gsub(" ", "+", paste(base_URL, "start=0&num=20&q=", search_strat, sep=""))
     firstpage <- as.character(xml2::read_html(first_search))
@@ -136,14 +136,16 @@ scrape_google_scholar <- function(search_terms, writefile=TRUE){
     if(writefile==TRUE){
       write.csv(species_data, "google_scholar_hits.csv")
     }
+    study_data$database <- rep("google_scholar_scrape", nrow(study_data))
     return(study_data)
   }
+
 
   if(nchar(search_strat) > 256){
     print("Error: Google Scholar only allows search strings under 256 characters. Aborting.")}
 
 
-  }
+}
 
 
 #### DONE: JSTOR ####
@@ -164,77 +166,79 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
 
   search_strat <- write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
   search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
-if(nchar(search_strat)<=256){
+  if(nchar(search_strat)<=256){
 
-  firstURL <- paste(base_URL1, "1", base_URL2, search_strat, base_URL3, sep="")
-  firstpage <- as.character(xml2::read_html(firstURL))
+    firstURL <- paste(base_URL1, "1", base_URL2, search_strat, base_URL3, sep="")
+    firstpage <- as.character(xml2::read_html(firstURL))
 
-  nhits <- as.numeric(strsplit(strsplit(firstpage, "data-result-count=\"")[[1]][2], "\"")[[1]][1])
-  npages <- ceiling(nhits/25)
+    nhits <- as.numeric(strsplit(strsplit(firstpage, "data-result-count=\"")[[1]][2], "\"")[[1]][1])
+    npages <- ceiling(nhits/25)
 
-  for(w in 1:npages){
-    if(w==1){website <- firstpage}
-    if(w>1){
-      URL <- paste(base_URL1, w, base_URL2, search_strat, base_URL3, sep="")
-      website <- as.character(xml2::read_html(URL))
+    for(w in 1:npages){
+      if(w==1){website <- firstpage}
+      if(w>1){
+        URL <- paste(base_URL1, w, base_URL2, search_strat, base_URL3, sep="")
+        website <- as.character(xml2::read_html(URL))
 
-    }
+      }
 
-    articles <- strsplit(website, "row result-item")[[1]][-1]
+      articles <- strsplit(website, "row result-item")[[1]][-1]
 
-    for(i in 1:length(articles)){
-      current_article <- articles[i]
-      type <- stringr::str_trim(strsplit(strsplit(current_article, "badge\">")[[1]][2], "</div>")[[1]][1])
-      title <- stringr::str_trim(strsplit(strsplit(strsplit(current_article, "title\"")[[1]][2], "</div>")[[1]][1], "\n")[[1]][2])
-      authorlist <- strsplit(strsplit(strsplit(current_article, "contrib\"")[[1]][2], "</div>")[[1]][1], "</a>")[[1]]
-      for(m in 1:length(authorlist)){
-        author <- strsplit(authorlist[m], "\">")[[1]][2]
-        if(m==1){authors <- author}
-        if(m>1){
-          if(is.na(author)==FALSE){authors <- paste(authors, author, sep="; ")}
+      for(i in 1:length(articles)){
+        current_article <- articles[i]
+        type <- stringr::str_trim(strsplit(strsplit(current_article, "badge\">")[[1]][2], "</div>")[[1]][1])
+        title <- stringr::str_trim(strsplit(strsplit(strsplit(current_article, "title\"")[[1]][2], "</div>")[[1]][1], "\n")[[1]][2])
+        authorlist <- strsplit(strsplit(strsplit(current_article, "contrib\"")[[1]][2], "</div>")[[1]][1], "</a>")[[1]]
+        for(m in 1:length(authorlist)){
+          author <- strsplit(authorlist[m], "\">")[[1]][2]
+          if(m==1){authors <- author}
+          if(m>1){
+            if(is.na(author)==FALSE){authors <- paste(authors, author, sep="; ")}
+          }
         }
+
+        journal <- strsplit(strsplit(current_article, "<cite>")[[1]][2], "</cite>")[[1]][1]
+        pubinfo <- stringr::str_trim(strsplit(strsplit(current_article, "</cite>")[[1]][2], "</div>")[[1]][1])
+
+        if(stringr::str_detect(current_article, "Topics: ")==TRUE){
+          keyword_list <- strsplit(strsplit(strsplit(current_article, "Topics: ")[[1]][2], "</div>")[[1]][1], "\">")[[1]][-1]
+        }
+
+        if(stringr::str_detect(current_article, "Topic: ")==TRUE){
+          keyword_list <- strsplit(strsplit(strsplit(current_article, "Topic: ")[[1]][2], "</div>")[[1]][1], "\">")[[1]][-1]
+        }
+
+        for(k in 1:length(keyword_list)){
+          keyword <- strsplit(keyword_list[k], "</a>")[[1]][1]
+          if(k==1){keywords <- keyword}
+          if(k>1){keywords <- paste(keywords, keyword, sep="; ")}
+        }
+
+        doi <- strsplit(strsplit(current_article, "doi:")[[1]][2], " --")[[1]][1]
+
+        entry <- cbind(title, authors, journal, pubinfo, keywords, type, doi)
+        if(i==1){dataset <- entry}
+        if(i>1){dataset <- rbind(dataset, entry)}
       }
 
-      journal <- strsplit(strsplit(current_article, "<cite>")[[1]][2], "</cite>")[[1]][1]
-      pubinfo <- stringr::str_trim(strsplit(strsplit(current_article, "</cite>")[[1]][2], "</div>")[[1]][1])
-
-      if(stringr::str_detect(current_article, "Topics: ")==TRUE){
-        keyword_list <- strsplit(strsplit(strsplit(current_article, "Topics: ")[[1]][2], "</div>")[[1]][1], "\">")[[1]][-1]
-      }
-
-      if(stringr::str_detect(current_article, "Topic: ")==TRUE){
-        keyword_list <- strsplit(strsplit(strsplit(current_article, "Topic: ")[[1]][2], "</div>")[[1]][1], "\">")[[1]][-1]
-      }
-
-      for(k in 1:length(keyword_list)){
-        keyword <- strsplit(keyword_list[k], "</a>")[[1]][1]
-        if(k==1){keywords <- keyword}
-        if(k>1){keywords <- paste(keywords, keyword, sep="; ")}
-      }
-
-      doi <- strsplit(strsplit(current_article, "doi:")[[1]][2], " --")[[1]][1]
-
-      entry <- cbind(title, authors, journal, pubinfo, keywords, type, doi)
-      if(i==1){dataset <- entry}
-      if(i>1){dataset <- rbind(dataset, entry)}
+      if(w==1){study_data <- dataset}
+      if(w>1){study_data <- rbind(study_data, dataset)}
     }
 
-    if(w==1){study_data <- dataset}
-    if(w>1){study_data <- rbind(study_data, dataset)}
-  }
-  if(writefile==TRUE){
-    write.csv(study_data, "jstor_hits.csv")
+    study_data$database <- rep("JSTOR_scrape", nrow(study_data))
+    if(writefile==TRUE){
+      write.csv(study_data, "jstor_hits.csv")
+
+    }
+
+    return(study_data)
 
   }
-
-  return(study_data)
-
-}
 
   if(nchar(search_strat) > 256){
     print("Error: JSTOR only allows search strings under 256 characters. Aborting.")}
 
-  }
+}
 
 #### NO ABSTRACTS: Scopus ####
 
@@ -337,6 +341,9 @@ scrape_scopus <- function(search_terms, writefile=TRUE){
       if(j>1){study_data <- rbind(study_data, page_entry)}
     }
 
+    study_data$database <- rep("Scopus_scrape", nrow(study_data))
+
+
     if(writefile==TRUE){
       write.csv(study_data, "scopus_hits.csv")
     }
@@ -370,49 +377,51 @@ scrape_worldcat <- function(search_terms, writefile=TRUE){
 
   if(stringr::str_detect(firstpage, "Request-URI Too Large")==FALSE){
 
-  total_hits <- as.numeric(strsplit(strsplit(firstpage, "> of about <strong>")[[1]][2], "</strong>")[[1]][1])
-  npages <- floor(total_hits/10)
-  if(floor(total_hits/10)==ceiling(total_hits/10)){npages <- floor((total_hits-1)/10)}
-  if(npages==0){npages <- 1}
+    total_hits <- as.numeric(strsplit(strsplit(firstpage, "> of about <strong>")[[1]][2], "</strong>")[[1]][1])
+    npages <- floor(total_hits/10)
+    if(floor(total_hits/10)==ceiling(total_hits/10)){npages <- floor((total_hits-1)/10)}
+    if(npages==0){npages <- 1}
 
-  for(h in 1:npages){
-    if(h==1){
-      website <- firstpage
-    }
-    if(h>1){
-      current_URL <- paste(URL1, search_strat, "&start=", paste(npages[h],"1", sep=""), sep="")
-      website <- as.character(xml2::read_html(current_URL))
-    }
-
-    articles <- strsplit(website, "result details")[[1]][-1]
-
-    for(i in 1:length(articles)){
-      current_article <- articles[i]
-      title <- strsplit(strsplit(strsplit(strsplit(current_article, "class=\"name\">")[[1]][2], "</div")[[1]][1],"<strong>")[[1]][2], "</strong>")[[1]][1]
-      authors <- strsplit(strsplit(current_article, ">by ")[[1]][2], "</div")[[1]][1]
-      type <- strsplit(strsplit(current_article, "itemType\">")[[1]][2], "</span>")[[1]][1]
-      language <- strsplit(strsplit(current_article, "itemLanguage\">")[[1]][2], "</span>")[[1]][1]
-      if(stringr::str_detect(current_article, "itemPublisher")){
-        publication <- strsplit(strsplit(current_article, "itemPublisher\">")[[1]][2], "</span>")[[1]][1]
-        pubinfo <- ""
+    for(h in 1:npages){
+      if(h==1){
+        website <- firstpage
       }
-      if(stringr::str_detect(current_article, "type\">Publication: ")){
-        pub <- strsplit(strsplit(current_article, "type\">Publication: ")[[1]][2], "</div>")[[1]][1]
-        publication <- strsplit(pub, ",")[[1]][1]
-        pubinfo <- strsplit(pub, ",")[[1]][2]
+      if(h>1){
+        current_URL <- paste(URL1, search_strat, "&start=", paste(npages[h],"1", sep=""), sep="")
+        website <- as.character(xml2::read_html(current_URL))
       }
-      article_entry <- cbind(title, authors, type, language, publication, pubinfo)
-      if(i==1){page_hits <- article_entry}
-      if(i>1){page_hits <- rbind(page_hits, article_entry)}
-    }
-    if(h==1){study_data <- page_hits}
-    if(h>1){study_data <- rbind(study_data, page_hits)}
-  }
 
-  if(writefile==TRUE){
-    write.csv(study_data, "WorldCat_hits.csv")
-  }
-  return(study_data)
+      articles <- strsplit(website, "result details")[[1]][-1]
+
+      for(i in 1:length(articles)){
+        current_article <- articles[i]
+        title <- strsplit(strsplit(strsplit(strsplit(current_article, "class=\"name\">")[[1]][2], "</div")[[1]][1],"<strong>")[[1]][2], "</strong>")[[1]][1]
+        authors <- strsplit(strsplit(current_article, ">by ")[[1]][2], "</div")[[1]][1]
+        type <- strsplit(strsplit(current_article, "itemType\">")[[1]][2], "</span>")[[1]][1]
+        language <- strsplit(strsplit(current_article, "itemLanguage\">")[[1]][2], "</span>")[[1]][1]
+        if(stringr::str_detect(current_article, "itemPublisher")){
+          publication <- strsplit(strsplit(current_article, "itemPublisher\">")[[1]][2], "</span>")[[1]][1]
+          pubinfo <- ""
+        }
+        if(stringr::str_detect(current_article, "type\">Publication: ")){
+          pub <- strsplit(strsplit(current_article, "type\">Publication: ")[[1]][2], "</div>")[[1]][1]
+          publication <- strsplit(pub, ",")[[1]][1]
+          pubinfo <- strsplit(pub, ",")[[1]][2]
+        }
+        article_entry <- cbind(title, authors, type, language, publication, pubinfo)
+        if(i==1){page_hits <- article_entry}
+        if(i>1){page_hits <- rbind(page_hits, article_entry)}
+      }
+      if(h==1){study_data <- page_hits}
+      if(h>1){study_data <- rbind(study_data, page_hits)}
+    }
+    study_data$database <- rep("WorldCat_scrape", nrow(study_data))
+
+    if(writefile==TRUE){
+      write.csv(study_data, "WorldCat_hits.csv")
+    }
+
+    return(study_data)
   }
 
   if(stringr::str_detect(firstpage, "Request-URI Too Large")==TRUE){
@@ -435,65 +444,67 @@ search_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TR
   base_URL1 <- "http://apps.webofknowledge.com/full_record.do?product="
   base_URL2 <- "&search_mode=GeneralSearch&qid="
 
-firstsite <- as.character(xml2::read_html(paste(base_URL1, dbID, base_URL2, qid, "&SID=", sessionID, "&page=1&doc=1", sep="")))
+  firstsite <- as.character(xml2::read_html(paste(base_URL1, dbID, base_URL2, qid, "&SID=", sessionID, "&page=1&doc=1", sep="")))
 
-total_hits <- stringr::str_trim(strsplit(strsplit(strsplit(strsplit(firstsite, "paginationNext")[[1]][1], "paginationForm")[[1]][2], "of")[[1]][2], "<a ")[[1]][1])
-total_hits <- as.numeric(gsub(",", "", total_hits))
+  total_hits <- stringr::str_trim(strsplit(strsplit(strsplit(strsplit(firstsite, "paginationNext")[[1]][1], "paginationForm")[[1]][2], "of")[[1]][2], "<a ")[[1]][1])
+  total_hits <- as.numeric(gsub(",", "", total_hits))
 
-if(total_hits > 100000){total_hits <- 100000}
+  if(total_hits > 100000){total_hits <- 100000}
 
-for(i in 1:total_hits){
-  if(i==1){website <- firstsite}
-  if(i>1){
-    search_string <- paste(base_URL, qid, "&SID=", sessionID, "&page=1&doc=", i, sep="")
-    website <- as.character(xml2::read_html(search_string))
+  for(i in 1:total_hits){
+    if(i==1){website <- firstsite}
+    if(i>1){
+      search_string <- paste(base_URL, qid, "&SID=", sessionID, "&page=1&doc=", i, sep="")
+      website <- as.character(xml2::read_html(search_string))
+    }
+
+    article <- strsplit(strsplit(as.character(website), "FRleftColumn")[[1]][2], "tmp_associatedDigitalRecords_records")[[1]][1]
+    title <- strsplit(strsplit(article, "title\">\n<value>")[[1]][2], "</value></p>")[[1]][1]
+
+    authorlist <- strsplit(strsplit(strsplit(article, "By:</span>")[[1]][2], "block-record-info-source")[[1]][1],
+                           "</a>")[[1]]
+
+    for(j in 1:(length(authorlist)-1)){
+      author <- strsplit(authorlist[j], "\">")[[1]][2]
+      if(j==1){authors <- author}
+      if(j>1){authors <- paste(authors, author, sep="; ")}
+    }
+
+    publication <- strsplit(strsplit(article, "sourceTitle\">\n<value>")[[1]][2], "</value")[[1]][1]
+    pubinfo <- strsplit(strsplit(article, "block-record-info-source-values")[[1]][2], "block-record-info")[[1]][1]
+    vol <- strsplit(strsplit(pubinfo, "Volume:</span>")[[1]][2], "</p>")[[1]][1]
+    issue <- strsplit(strsplit(pubinfo, "Issue:</span>")[[1]][2], "</p>")[[1]][1]
+    pgs <- strsplit(strsplit(pubinfo, "Pages:</span>")[[1]][2], "</p>")[[1]][1]
+    doi <- strsplit(strsplit(pubinfo, "DOI:</span>")[[1]][2], "</p>")[[1]][1]
+    date <- strsplit(strsplit(pubinfo, "Published:</span>")[[1]][2], "</p>")[[1]][1]
+    type <- strsplit(strsplit(pubinfo, "Document Type:</span>")[[1]][2], "</p>")[[1]][1]
+
+    abstract <- strsplit(strsplit(article, "Abstract</div>\n<p class=\"FR_field\">")[[1]][2], "</p>\n</div>")[[1]][1]
+    address <- strsplit(strsplit(article, "Addresses:</span>")[[1]][2], "</p>")[[1]][1]
+    email <- strsplit(strsplit(article, "mailto:")[[1]][2], "\">")[[1]][1]
+
+    # This needs to be cleaned up still
+    taxa <- strsplit(strsplit(article, "Taxonomic Data:</span>")[[1]][2], "</table>")[[1]][1]
+
+    keywords <- strsplit(strsplit(article, "Miscellaneous Descriptors:</span>\n<value>")[[1]][2], "</value>")[[1]][1]
+    language <- strsplit(strsplit(article, "Language:</span>")[[1]][2], "</p>")[[1]][1]
+    id <- strsplit(strsplit(article, "Accession Number:</span>")[[1]][2], "</p>")[[1]][1]
+    issn <- strsplit(strsplit(article, "ISSN:</span>")[[1]][2], "</p>")[[1]][1]
+
+    entry <- cbind(id, title, abstract, authors, publication, vol, issue, pgs, doi,
+                   date, type, address, email, taxa, keywords, language, issn)
+
+    if(i==1){dataset <- entry}
+    if(i>1){dataset <- rbind(dataset, entry)}
+    if(verbose==TRUE){if(i/total_hits*100==floor(i/total_hits*100)){print(paste(i/total_hits*100, "% done.", sep=""))}}
   }
+  study_data$database <- rep("WoS_scrape", nrow(study_data))
 
-  article <- strsplit(strsplit(as.character(website), "FRleftColumn")[[1]][2], "tmp_associatedDigitalRecords_records")[[1]][1]
-  title <- strsplit(strsplit(article, "title\">\n<value>")[[1]][2], "</value></p>")[[1]][1]
+  if(writefile==TRUE){
+    write.csv(dataset, "WebOfScience_hits.csv")
 
-  authorlist <- strsplit(strsplit(strsplit(article, "By:</span>")[[1]][2], "block-record-info-source")[[1]][1],
-                         "</a>")[[1]]
-
-  for(j in 1:(length(authorlist)-1)){
-    author <- strsplit(authorlist[j], "\">")[[1]][2]
-    if(j==1){authors <- author}
-    if(j>1){authors <- paste(authors, author, sep="; ")}
   }
-
-  publication <- strsplit(strsplit(article, "sourceTitle\">\n<value>")[[1]][2], "</value")[[1]][1]
-  pubinfo <- strsplit(strsplit(article, "block-record-info-source-values")[[1]][2], "block-record-info")[[1]][1]
-  vol <- strsplit(strsplit(pubinfo, "Volume:</span>")[[1]][2], "</p>")[[1]][1]
-  issue <- strsplit(strsplit(pubinfo, "Issue:</span>")[[1]][2], "</p>")[[1]][1]
-  pgs <- strsplit(strsplit(pubinfo, "Pages:</span>")[[1]][2], "</p>")[[1]][1]
-  doi <- strsplit(strsplit(pubinfo, "DOI:</span>")[[1]][2], "</p>")[[1]][1]
-  date <- strsplit(strsplit(pubinfo, "Published:</span>")[[1]][2], "</p>")[[1]][1]
-  type <- strsplit(strsplit(pubinfo, "Document Type:</span>")[[1]][2], "</p>")[[1]][1]
-
-  abstract <- strsplit(strsplit(article, "Abstract</div>\n<p class=\"FR_field\">")[[1]][2], "</p>\n</div>")[[1]][1]
-  address <- strsplit(strsplit(article, "Addresses:</span>")[[1]][2], "</p>")[[1]][1]
-  email <- strsplit(strsplit(article, "mailto:")[[1]][2], "\">")[[1]][1]
-
-  # This needs to be cleaned up still
-  taxa <- strsplit(strsplit(article, "Taxonomic Data:</span>")[[1]][2], "</table>")[[1]][1]
-
-  keywords <- strsplit(strsplit(article, "Miscellaneous Descriptors:</span>\n<value>")[[1]][2], "</value>")[[1]][1]
-  language <- strsplit(strsplit(article, "Language:</span>")[[1]][2], "</p>")[[1]][1]
-  id <- strsplit(strsplit(article, "Accession Number:</span>")[[1]][2], "</p>")[[1]][1]
-  issn <- strsplit(strsplit(article, "ISSN:</span>")[[1]][2], "</p>")[[1]][1]
-
-  entry <- cbind(id, title, abstract, authors, publication, vol, issue, pgs, doi,
-                 date, type, address, email, taxa, keywords, language, issn)
-
-  if(i==1){dataset <- entry}
-  if(i>1){dataset <- rbind(dataset, entry)}
-  if(verbose==TRUE){if(i/total_hits*100==floor(i/total_hits*100)){print(paste(i/total_hits*100, "% done.", sep=""))}}
-}
-if(writefile==TRUE){
-  write.csv(dataset, "WebOfScience_hits.csv")
-
-}
-return(dataset)
+  return(dataset)
 }
 
 
@@ -556,29 +567,15 @@ scrape_ingenta <- funcion(search_terms, writefile=TRUE){
       study_data <- rbind(study_data, entry)
     }
 
+  }
+  study_data$database <- rep("Ingenta_scrape", nrow(study_data))
 
-
-
-
-    #articles <- strsplit(strsplit(strsplit(webpage, "searchResultsListForm")[[1]][2], "pager-bar favouritesBottom")[[1]][1], "searchResultTitle")[[1]][-1]
-
-  #  for(k in 1:length(articles)){
-   #   title <- strsplit(strsplit(articles[k], "title=\"")[[1]][2], "\">")[[1]][1]
-   #   authors <- strsplit(strsplit(articles[k], "Authors: </th>\n<td>")[[1]][2], "\n</td>")[[1]][1]
-   #   source <- strsplit(strsplit(strsplit(strsplit(articles[k], "Source:")[[1]][2], "a href")[[1]][2], ">")[[1]][2], "</")[[1]][1]
-
-      ## this needs to be cleaned up more to split into volume, page, etc
-    #  pubinfo <- strsplit(strsplit(strsplit(articles[k], "Source:")[[1]][2], "</a>, ")[[1]][2], "</td>")[[1]][1]
-    #  publisher <- strsplit(strsplit(strsplit(strsplit(articles[k], "Publisher:")[[1]][2], "a href")[[1]][2], ">")[[1]][2], "</")[[1]][1]
-
-    }
-
-if(writefile==TRUE){
-  write.csv(study_data, "ingenta_hits.csv")
-}
+  if(writefile==TRUE){
+    write.csv(study_data, "ingenta_hits.csv")
+  }
 
   return(study_data)
-  }
+}
 
 
 #### DONE: PubMed ####
@@ -627,11 +624,12 @@ scrape_pubmed <- function(search_terms, writefile=TRUE){
     if(i >1){
       study_data <- rbind(study_data, entry)
     }
-    }
+  }
+  study_data$database <- rep("PubMed_scrape", nrow(study_data))
 
-if(writefile==TRUE){
-  write.csv(study_data, "pubmed_hits.csv")
-}
+  if(writefile==TRUE){
+    write.csv(study_data, "pubmed_hits.csv")
+  }
   return(study_data)
 
 }
@@ -682,7 +680,7 @@ scrape_CABDirect <- function(search_terms, writefile=TRUE){
         }
         if(a>1){
           if(is.na(author)==FALSE)
-          authors <- paste(authors, author, sep="; ")
+            authors <- paste(authors, author, sep="; ")
         }
       }
       publisher <- strsplit(strsplit(articles[k], "Publisher</strong> : ")[[1]][2], "</p")[[1]][1]
@@ -707,21 +705,20 @@ scrape_CABDirect <- function(search_terms, writefile=TRUE){
 
     }
 
-if(i==1){
-  study_data <- page_data
-}
+    if(i==1){
+      study_data <- page_data
+    }
     if(i>1){
       study_data <- rbind(study_data, page_data)
     }
   }
+  study_data$database <- rep("CABDirect_scrape", nrow(study_data))
+
   if(writefile==TRUE){
     write.csv(study_data, "CABDirect_hits.csv")
   }
-return(study_data)
+  return(study_data)
 }
-
-
-x <- scrape_CABDirect(search_terms = search_terms)
 
 
 
