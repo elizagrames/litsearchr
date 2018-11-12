@@ -5,7 +5,7 @@
 \title{Import results of a scoping search}
 \usage{
 import_naive(directory, remove_duplicates = TRUE, clean_dataset = TRUE,
-  save_full_dataset = FALSE)
+  save_full_dataset = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{directory}{the full path to the directory in which the searches are saved}

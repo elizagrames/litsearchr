@@ -5,7 +5,8 @@
 \title{Write Boolean searches}
 \usage{
 write_search(groupdata, API_key = NULL, languages = NULL,
-  exactphrase = FALSE, directory = "./", stemming = TRUE)
+  exactphrase = FALSE, directory = "./", stemming = TRUE,
+  verbose = TRUE, writesearch = FALSE)
 }
 \arguments{
 \item{groupdata}{a list of character vectors, each of which is a concept group}

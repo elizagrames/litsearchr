@@ -4,7 +4,8 @@
 \alias{scrape_results}
 \title{Scrapes results from open access thesis databases}
 \usage{
-scrape_results(URL, save_results = TRUE, destination = "./")
+scrape_results(URL, save_results = TRUE, destination = "./",
+  verbose = TRUE)
 }
 \arguments{
 \item{URL}{the URL from running a search}

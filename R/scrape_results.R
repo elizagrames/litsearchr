@@ -1,22 +1,15 @@
-search_terms <- list(c("black-backed woodpecker", "picoides arcticus"),
-                     c("fire", "burn"))
-
-## need a way to specify where to search (presumed title, abs, key when available)
-## make these all connect to the litsearchr import option using the database tag
-
-#### DONE: Google Scholar ####
-## only goes up to 256 characters
-## will stop at 60 pages due to captcha issues
-
-
+#' Scrapes results from Google Scholar
+#' @description Scrapes hits from Google Scholar. Limited to 256 characters and 60 queries.
+#' @param search_terms a list of character strings with grouped search terms
+#' @param writefile if TRUE, writes results to a .csv file in the working directory
 scrape_google_scholar <- function(search_terms, writefile=TRUE){
 
-  search_strat <- write_search(search_terms, languages= "English", exactphrase=TRUE)
+  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE)
   search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
   if(nchar(search_strat)<=256){
 
     if(writefile==TRUE){if(menu(c("yes", "no"),
-                                title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
+                                title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
       writefile <- FALSE
     }
     }
@@ -149,10 +142,10 @@ scrape_google_scholar <- function(search_terms, writefile=TRUE){
 
 }
 
-
-#### DONE: JSTOR ####
-## only goes up to 256 characters
-
+#' Scrapes results from JSTOR
+#' @description Scrapes hits from JSTOR. Limited to 256 characters and must access through institutional login.
+#' @param search_terms a list of character strings with grouped search terms
+#' @param writefile if TRUE, writes results to a .csv file in the working directory
 scrape_jstor <- function(search_terms, writefile=TRUE){
 
   base_URL1 <- "https://www.jstor.org/action/doAdvancedSearch?searchType=facetSearch&page="
@@ -160,13 +153,13 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
   base_URL3 <- "&f4=all&f6=all&f2=all"
 
   if(writefile==TRUE){if(menu(c("yes", "no"),
-                              title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
+                              title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
     writefile <- FALSE
   }
   }
 
 
-  search_strat <- write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
   search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "+", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
   if(nchar(search_strat)<=256){
 
@@ -245,22 +238,21 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
 
 }
 
-#### NO ABSTRACTS: Scopus ####
-
-## need to modify this to grab the url of the hit and pull abstracts and keywords from there
-## currently it pulls the eid, but is running into problems scraping that
-
+#' Scrapes results from Scopus
+#' @description Scrapes hits from Scopus. Does not currently extract abstracts - only titles and publication information. Must login through institutional access.
+#' @param search_terms a list of character strings with grouped search terms
+#' @param writefile if TRUE, writes results to a .csv file in the working directory
 scrape_scopus <- function(search_terms, writefile=TRUE){
 
   if(writefile==TRUE){if(menu(c("yes", "no"),
-                              title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
+                              title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
     writefile <- FALSE
   }
   }
 
   scopus_base <- "https://www.scopus.com/results/results.uri?sort=plf-f&src=s&sid=f68938845668763794e120e1ed0927e2&sot=a&sdt=a&sl=24&s=TITLE-ABS-KEY-AUTH"
 
-  search_strat <- write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
   search_strat <- gsub("\"","'",gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "+", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))
   search_string <- paste(scopus_base, search_strat, "&cl=t&offset=", 1, sep="")
 
@@ -359,23 +351,21 @@ scrape_scopus <- function(search_terms, writefile=TRUE){
 
 }
 
-#### DONE: WorldCat ####
 
-## has some undefined query limit
-## probably don't actually want to use
-## probably has 2048 URI length
-
-
+#' Scrapes results from WorldCat
+#' @description Scrapes hits from WorldCat. Query length is limited by server requests, which can be triggered either by excessively long queries or by vague queries that return too many results.
+#' @param search_terms a list of character strings with grouped search terms
+#' @param writefile if TRUE, writes results to a .csv file in the working directory
 scrape_worldcat <- function(search_terms, writefile=TRUE){
 
   if(writefile==TRUE){if(menu(c("yes", "no"),
-                              title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
+                              title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
     writefile <- FALSE
   }
   }
   URL1 <- "http://www.worldcat.org/search?q="
 
-  search_strat <- write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
   search_strat <- gsub("\"","%22",gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "+", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))
   search_string <- paste(URL1, search_strat, "&start=1", sep="")
 
@@ -437,14 +427,17 @@ scrape_worldcat <- function(search_terms, writefile=TRUE){
   }
 }
 
-#### DONE: WoS ####
-
-sessionID <- "6Co3BUExHQQ8vWNdDXL"
-
-search_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TRUE){
+#' Scrapes results from Web of Science databases
+#' @description Scrapes hits from databases hosted on Web of Science. The exported session must be left active while running the script and you must sign in through your institutional login.
+#' @param sessionID the session ID (found in the URL of an active sessioin as SID=)
+#' @param dbID the database you are scraping results from; if you want all the databases your institution has access to, this is likely "UA" whereas specific databases like BIOSIS "BCI" can be called.
+#' @param writefile if TRUE, writes results to a .csv file in the working directory
+#' @param qid if you have run more than one query in a session, check your search history to change the query id
+#' @param verbose if TRUE, prints percentage updates every now and then so you know it is still running
+scrape_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TRUE){
 
   if(writefile==TRUE){if(menu(c("yes", "no"),
-                              title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
+                              title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
     writefile <- FALSE
   }
   }
@@ -518,19 +511,19 @@ search_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TR
 }
 
 
-
-#### DONE: Ingenta Connect ####
-## uri limit, presumed 2048
-
+#' Scrapes results from Ingenta Connect
+#' @description Scrapes hits from Ingenta Connect. Query length is limited by server requests, which can be triggered either by excessively long queries or by vague queries that return too many results. Must login through institutional access.
+#' @param search_terms a list of character strings with grouped search terms
+#' @param writefile if TRUE, writes results to a .csv file in the working directory
 scrape_ingenta <- function(search_terms, writefile=TRUE){
   if(writefile==TRUE){if(menu(c("yes", "no"),
-                              title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
+                              title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
     writefile <- FALSE
   }
   }
 
   base_URL <- "https://www.ingentaconnect.com/search/article?option1=tka&value1="
-  search_strat <- write_search(search_terms, languages= "English", exactphrase=TRUE)
+  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE)
   search_strat <- gsub("\\)","%29",gsub("\\(", "%28", gsub("\"", "%22", gsub(" ", "+", gsub(" \\)", "%29", gsub("\\( ", "%28", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))))
 
   first_search <- gsub(" ", "+", paste("https://www.ingentaconnect.com/search?option1=tka&value1=", search_strat, "&pageSize=100&page=1", sep=""))
@@ -593,19 +586,20 @@ scrape_ingenta <- function(search_terms, writefile=TRUE){
 }
 
 
-#### DONE: PubMed ####
-# query is limited to 2048 characters because of URI
-
+#' Scrapes results from PubMed
+#' @description Scrapes hits from PubMed. Query length is limited by server requests, which can be triggered either by excessively long queries.
+#' @param search_terms a list of character strings with grouped search terms
+#' @param writefile if TRUE, writes results to a .csv file in the working directory
 scrape_pubmed <- function(search_terms, writefile=TRUE){
 
   base_URL <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&retmax=100000&sort=date&term="
   if(writefile==TRUE){if(menu(c("yes", "no"),
-                              title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
+                              title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
     writefile <- FALSE
   }
   }
 
-  search_strat <- write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
   search_strat <- gsub("\"", "%22", gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "%20", gsub("\\\\", "",  gsub(" OR ", "%20OR%20", search_strat))))))
 
   firstURL <- paste(base_URL, search_strat, sep="")
@@ -653,19 +647,20 @@ scrape_pubmed <- function(search_terms, writefile=TRUE){
 
 
 
-#### DONE: CABDirect ####
-# 2048 character limit (presumed)
-
+#' Scrapes results from CAB Direct
+#' @description Scrapes hits from CAB Direct. Query length is limited by server requests, which can be triggered either by excessively long queries. Must login through institutional access.
+#' @param search_terms a list of character strings with grouped search terms
+#' @param writefile if TRUE, writes results to a .csv file in the working directory
 scrape_CABDirect <- function(search_terms, writefile=TRUE){
   base_URL <- "https://www.cabdirect.org/cabdirect/search/?q="
 
   if(writefile==TRUE){if(menu(c("yes", "no"),
-                              title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
+                              title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
     writefile <- FALSE
   }
   }
 
-  search_strat <- write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
   search_strat <- gsub("\"", "%22", gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "%20", gsub("\\\\", "",  gsub(" OR ", "%20OR%20", search_strat))))))
 
   firstURL <- paste(base_URL, search_strat, "&rows=100", sep="")
@@ -741,31 +736,4 @@ scrape_CABDirect <- function(search_terms, writefile=TRUE){
   return(study_data)
   }
 }
-
-##### testing area #####
-
-#googlesch <- scrape_google_scholar(search_terms = search_terms)
-
-jstor <- scrape_jstor(search_terms = search_terms)
-scopus <- scrape_scopus(search_terms = search_terms)
-worldcat <- scrape_worldcat(search_terms = search_terms)
-ingenta <- scrape_ingenta(search_terms = search_terms)
-pubmed <- scrape_pubmed(search_terms = search_terms)
-cabdirect <- scrape_CABDirect(search_terms = search_terms)
-
-
-#### bielefeld ####
-
-# needs %28 %29 instead of ( )
-# doesn't return many hits for complex queries
-
-
-#### wiley online library ####
-
-# server error, presumed URI > 2048
-
-#### doaj ####
-
-# unknown query limit
-# not many hits for complex queries
 

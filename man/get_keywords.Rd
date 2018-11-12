@@ -17,5 +17,5 @@ get_keywords(reduced_graph, savekeywords = TRUE, makewordle = TRUE)
 a list of potential keywords to consider
 }
 \description{
-Extracts keywords identified as important and writes them to a plain text file.
+Extracts keywords identified as important.
 }
