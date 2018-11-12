@@ -88,7 +88,7 @@ First, we use the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010
 The amount of time this function takes depends on the size of your database; for ~500 articles it is under a minute. 
 
 ```{r}
-raked_keywords <- litsearchr::extract_terms(BBWO_data, type="RAKE", new_stopwords = NULL, min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
+raked_keywords <- litsearchr::extract_terms(BBWO_data, type="RAKE", new_stopwords = NULL, min_freq = 1, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
 
 # When we check the results, some of these are definitely not important keywords (e.g. "eglin air force base")
 # But, not to worry, these sorts of keywords will disappear once we check their frequency in the entire dataset later

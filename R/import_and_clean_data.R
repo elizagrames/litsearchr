@@ -178,7 +178,7 @@ detect_database <- function(df){
 #' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
 #' @return a data frame of all the search results combined
 import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TRUE,
-                         save_full_dataset = FALSE){
+                         save_full_dataset = FALSE, verbose = TRUE){
   if(save_full_dataset==TRUE){
     if(menu(c("yes", "no"),
             title="This will save the full dataset to a .csv file in your working directory. Do you want litsearchr to save the full dataset?")==2){
@@ -206,7 +206,7 @@ import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TR
     }
     if(length(which(colnames(df)=="X"))>0){df <- df[, -which(colnames(df)=="X")]}
 
-    print(paste("Importing file", import_files[i]))
+    if(verbose==TRUE){print(paste("Importing file", import_files[i]))}
     database <- c()
     database <- detect_database(df)
     if(database == "Scopus"){
