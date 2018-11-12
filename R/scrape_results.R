@@ -1,6 +1,5 @@
-search_terms <- list(c("nesting success", "avian", "avifauna"),
-                     c("forest", "woodlot"),
-                     c("fragment", "fragmentation"))
+search_terms <- list(c("black-backed woodpecker", "picoides arcticus"),
+                     c("fire", "burn"))
 
 ## need a way to specify where to search (presumed title, abs, key when available)
 ## make these all connect to the litsearchr import option using the database tag
@@ -133,10 +132,13 @@ scrape_google_scholar <- function(search_terms, writefile=TRUE){
 
       }
     }
+    study_data <- as.data.frame(study_data)
+    study_data$database <- rep("google_scholar_scrape", nrow(study_data))
+
     if(writefile==TRUE){
       write.csv(species_data, "google_scholar_hits.csv")
     }
-    study_data$database <- rep("google_scholar_scrape", nrow(study_data))
+
     return(study_data)
   }
 
@@ -165,7 +167,7 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
 
 
   search_strat <- write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
-  search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
+  search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "+", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
   if(nchar(search_strat)<=256){
 
     firstURL <- paste(base_URL1, "1", base_URL2, search_strat, base_URL3, sep="")
@@ -199,6 +201,8 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
 
         journal <- strsplit(strsplit(current_article, "<cite>")[[1]][2], "</cite>")[[1]][1]
         pubinfo <- stringr::str_trim(strsplit(strsplit(current_article, "</cite>")[[1]][2], "</div>")[[1]][1])
+        keyword_list <- c()
+        keyword_list[1] <- "no keywords</a>"
 
         if(stringr::str_detect(current_article, "Topics: ")==TRUE){
           keyword_list <- strsplit(strsplit(strsplit(current_article, "Topics: ")[[1]][2], "</div>")[[1]][1], "\">")[[1]][-1]
@@ -225,10 +229,11 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
       if(w>1){study_data <- rbind(study_data, dataset)}
     }
 
+    study_data <- as.data.frame(study_data)
+
     study_data$database <- rep("JSTOR_scrape", nrow(study_data))
     if(writefile==TRUE){
       write.csv(study_data, "jstor_hits.csv")
-
     }
 
     return(study_data)
@@ -341,6 +346,7 @@ scrape_scopus <- function(search_terms, writefile=TRUE){
       if(j>1){study_data <- rbind(study_data, page_entry)}
     }
 
+    study_data <- as.data.frame(study_data)
     study_data$database <- rep("Scopus_scrape", nrow(study_data))
 
 
@@ -387,7 +393,7 @@ scrape_worldcat <- function(search_terms, writefile=TRUE){
         website <- firstpage
       }
       if(h>1){
-        current_URL <- paste(URL1, search_strat, "&start=", paste(npages[h],"1", sep=""), sep="")
+        current_URL <- paste(URL1, search_strat, "&start=", paste(h,"1", sep=""), sep="")
         website <- as.character(xml2::read_html(current_URL))
       }
 
@@ -415,6 +421,8 @@ scrape_worldcat <- function(search_terms, writefile=TRUE){
       if(h==1){study_data <- page_hits}
       if(h>1){study_data <- rbind(study_data, page_hits)}
     }
+    study_data <- as.data.frame(study_data)
+
     study_data$database <- rep("WorldCat_scrape", nrow(study_data))
 
     if(writefile==TRUE){
@@ -498,6 +506,8 @@ search_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TR
     if(i>1){dataset <- rbind(dataset, entry)}
     if(verbose==TRUE){if(i/total_hits*100==floor(i/total_hits*100)){print(paste(i/total_hits*100, "% done.", sep=""))}}
   }
+  study_data <- as.data.frame(study_data)
+
   study_data$database <- rep("WoS_scrape", nrow(study_data))
 
   if(writefile==TRUE){
@@ -512,7 +522,7 @@ search_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TR
 #### DONE: Ingenta Connect ####
 ## uri limit, presumed 2048
 
-scrape_ingenta <- funcion(search_terms, writefile=TRUE){
+scrape_ingenta <- function(search_terms, writefile=TRUE){
   if(writefile==TRUE){if(menu(c("yes", "no"),
                               title="This will write a .csv to your working directory. Are you sure that you want to do that?")==2){
     writefile <- FALSE
@@ -534,14 +544,18 @@ scrape_ingenta <- funcion(search_terms, writefile=TRUE){
 
   for(l in 1:nhits){
 
-    if(l>1){
-      search_string <- paste(base_URL, search_strat, "&index=", l, sep="")
+      search_string <- paste(base_URL, search_strat, "&pageSize=100&index=", l, sep="")
       webpage <- as.character(xml2::read_html(search_string))
-    }
 
     title <- strsplit(strsplit(webpage, "DC.title\" content=\"")[[1]][2], "\">\n")[[1]][1]
     publisher <- strsplit(strsplit(webpage, "DC.publisher\" content=\"")[[1]][[2]], "\">\n")[[1]][1]
-    authorlist <- strsplit(strsplit(webpage, "DC.identifier\" content=\"")[[1]][1], "DC.creator\" content=\"")[[1]][-1]
+    if(stringr::str_detect(webpage, "DC.creator")){
+      authorlist <- strsplit(strsplit(webpage, "DC.creator\" content=\"")[[1]][2], "\">\n<meta name=\"")[[1]][1]
+    }
+    if(stringr::str_detect(webpage, "DC.identifier")){
+      authorlist <- strsplit(strsplit(webpage, "DC.identifier\" content=\"")[[1]][1], "DC.creator\" content=\"")[[1]][-1]
+      doi <- strsplit(strsplit(webpage, "DC.identifier\" content=\"")[[1]][[2]], "\">\n")[[1]][1]
+    }
 
     for(a in 1:length(authorlist)){
       author <- strsplit(authorlist[a], "\">")[[1]][1]
@@ -553,7 +567,6 @@ scrape_ingenta <- funcion(search_terms, writefile=TRUE){
       }
     }
 
-    doi <- strsplit(strsplit(webpage, "DC.identifier\" content=\"")[[1]][[2]], "\">\n")[[1]][1]
     date <- strsplit(strsplit(webpage, "DCTERMS.issued\" content=\"")[[1]][[2]], "\">\n")[[1]][1]
     pubinfo <- strsplit(strsplit(webpage, "DCTERMS.bibliographicCitation\" content=\"")[[1]][[2]], "\">\n")[[1]][1]
     abstract <- gsub("\n", "", strsplit(strsplit(webpage, "<div id=\"Abst\" class=\"tab-pane active\">")[[1]][2], "</div>")[[1]][1])
@@ -568,6 +581,8 @@ scrape_ingenta <- funcion(search_terms, writefile=TRUE){
     }
 
   }
+  study_data <- as.data.frame(study_data)
+
   study_data$database <- rep("Ingenta_scrape", nrow(study_data))
 
   if(writefile==TRUE){
@@ -625,6 +640,8 @@ scrape_pubmed <- function(search_terms, writefile=TRUE){
       study_data <- rbind(study_data, entry)
     }
   }
+  study_data <- as.data.frame(study_data)
+
   study_data$database <- rep("PubMed_scrape", nrow(study_data))
 
   if(writefile==TRUE){
@@ -657,6 +674,8 @@ scrape_CABDirect <- function(search_terms, writefile=TRUE){
   nhits <- as.numeric(stringr::str_trim(strsplit(strsplit(strsplit(firstpage, "cd4NumberOfSearchResults")[[1]][2], "</span>")[[1]][1], "\n")[[1]][2]))
 
   npages <- floor(nhits/100)+1
+  if(is.na(npages)==TRUE){print("No hits found.")}
+  if(is.na(npages)==FALSE){
 
   for(i in 1:npages){
     if(i==1){
@@ -712,14 +731,27 @@ scrape_CABDirect <- function(search_terms, writefile=TRUE){
       study_data <- rbind(study_data, page_data)
     }
   }
+  study_data <- as.data.frame(study_data)
+
   study_data$database <- rep("CABDirect_scrape", nrow(study_data))
 
   if(writefile==TRUE){
     write.csv(study_data, "CABDirect_hits.csv")
   }
   return(study_data)
+  }
 }
 
+##### testing area #####
+
+#googlesch <- scrape_google_scholar(search_terms = search_terms)
+
+jstor <- scrape_jstor(search_terms = search_terms)
+scopus <- scrape_scopus(search_terms = search_terms)
+worldcat <- scrape_worldcat(search_terms = search_terms)
+ingenta <- scrape_ingenta(search_terms = search_terms)
+pubmed <- scrape_pubmed(search_terms = search_terms)
+cabdirect <- scrape_CABDirect(search_terms = search_terms)
 
 
 #### bielefeld ####
