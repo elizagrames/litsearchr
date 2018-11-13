@@ -24,7 +24,8 @@ Imports:
     quanteda,
     tm,
     rapidraker,
-    xml2
+    xml2,
+    utils
 Suggests: 
     wordcloud,
     knitr,

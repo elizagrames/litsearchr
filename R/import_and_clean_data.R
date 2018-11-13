@@ -1,149 +1,3 @@
-#' Scrapes results from open access thesis databases
-#' @description Scrapes web pages to download results into a datasheet that can be read with import_naive(). Currently only supports OATD, NDLTD, and OpenThesis.
-#' @param URL the URL from running a search
-#' @param save_results if TRUE, writes results to a .csv file
-#' @param destination the folder where the full search should be saved
-scrape_results <- function(URL, save_results=TRUE, destination="./", verbose=TRUE){
-  if(save_results==TRUE){
-    if(menu(c("yes", "no"), title="This will write results to a .csv file. Do you want to save the results to a .csv file?")==2){
-      save_results <- FALSE
-    }
-  }
-
-  if(stringr::str_detect(URL, "oatd.org")){database <- "OATD"}
-  if(stringr::str_detect(URL, "ndltd.org")){database <- "NDLTD"}
-  if(stringr::str_detect(URL, "openthesis.org")){database <- "OpenThesis"}
-  if(database==""){print("URL not recognized.")}
-
-
-  if(database=="OATD"){
-    base_site <- URL
-    oatd <- xml2::read_html(paste(base_site, "&amp;start=1", sep=""))
-    save(oatd, file="oatd-import1.RData")
-    OATD <- as.character(oatd)
-    x <- strsplit(OATD, "total matches.<")
-    x[[1]][1]
-    total_hits <- as.numeric(strsplit(strsplit(x[[1]][1], "Showing records ")[[1]][2], "\n")[[1]][2])
-    npages <- c(seq(1, floor(total_hits), 30))
-
-    for (k in 1:length(npages)){
-      URLpage <- paste(base_site, "&amp;start=", npages[k], sep="")
-      webpage <- xml2::read_html(URLpage)
-      OATD <- as.character(webpage)
-      sploatd <- strsplit(OATD, "div class=\"result\"")[[1]][-1]
-      sploatd <- gsub("</em>", "", sploatd)
-      sploatd <- gsub("<em class=\"hilite\">", "", sploatd)
-
-      for(i in 1:length(sploatd)){
-        university <- stringr::str_trim(strsplit(strsplit(strsplit(sploatd[i], ".png")[[1]][2], "</p")[[1]][1], "\n")[[1]][2])
-        author <- stringr::str_trim(strsplit(strsplit(sploatd[i], ".\n<span>")[[1]][2], "</span")[[1]][1])
-        title <- stringr::str_trim(strsplit(strsplit(sploatd[i], "etdTitle\"><span>")[[1]][2], "</span")[[1]][1])
-
-        abstract <- stringr::str_trim(strsplit(strsplit(strsplit(sploatd[i], "closeField")[[1]][2], "</span>")[[1]][2], "</div")[[1]][1])
-
-        thesis <- cbind(author, university, title, abstract)
-        if(i==1){df <- thesis}
-        if(i>1){df <- rbind(df, thesis)}
-      }
-
-      if(k==1){dataset <- df}
-      if(k>1){dataset <- rbind(dataset, df)}
-      if(verbose==TRUE){print(paste("Done with page number", ((npages[k]-1)/30)+1, "of", (max((npages-1)/30)+1), sep=" "))}
-
-    }
-  }
-  if(database=="NDLTD"){
-    base_site <- URL
-    first_page <- paste(base_site, "&start=", "0", sep="")
-    ndltd1 <- xml2::read_html(first_page)
-    ndltd <- as.character(ndltd1)
-
-    total_hits <- as.numeric(stringr::str_trim(strsplit(strsplit(
-      strsplit(strsplit(ndltd, "Search results")[[1]][2], "seconds")[[1]][1], "of")[[1]][2], "\\(")[[1]][1]))
-    npages <- seq(0, floor(total_hits), 10)
-
-    for (k in 1:length(npages)){
-      URLpage <- paste(base_site, "&start=", npages[k], sep="")
-      webpage <- xml2::read_html(URLpage)
-
-      NDLTD <- as.character(webpage)
-      NDspl <- strsplit(NDLTD, "<tr>")[[1]][-1]
-      NDspl[length(NDspl)] <- strsplit(NDspl[length(NDspl)], "</tr>")[[1]][1]
-
-
-      for (i in 1:length(NDspl)){
-        init_title <- strsplit(strsplit(NDspl[i], "</h4>")[[1]][1], ">")
-        title <- strsplit(init_title[[1]][length(init_title[[1]])], "<")[[1]][1]
-
-        author <- stringr::str_trim(strsplit(
-          strsplit(strsplit(NDspl[i], "/h4>")[[1]][2], "<em>")[[1]][2], "</em>")[[1]][1])
-
-        date <- stringr::str_trim(strsplit(
-          strsplit(strsplit(NDspl[i], "/h4>")[[1]][2], "<em>")[[1]][3], "</em>")[[1]][1])
-
-        init_abstract <- strsplit(strsplit(strsplit(
-          strsplit(strsplit(NDspl[i], "/h4>")[[1]][2], "<em>")[[1]][3], "</em>")[[1]][2], "/div>")[[1]][1], ">")
-
-        abstract <- stringr::str_trim(gsub("<", "", gsub("\n", " ", init_abstract[[1]][length(init_abstract[[1]])])))
-
-        thesis <- cbind(author, date, title, abstract)
-        if(i==1){df <- thesis}
-        if(i>1){df <- rbind(df, thesis)}
-
-      }
-
-      if(k==1){dataset <- df}
-      if(k>1){dataset <- rbind(dataset, df)}
-      if(verbose==TRUE){print(paste("Done with page number", npages[k]/10, "of", max(npages/10), sep=" "))}
-
-    }
-  }
-  if(database=="OpenThesis"){
-    base_split <- strsplit(URL, "&")[[1]][1]
-    base_site <- paste(base_split, "&repeatSearch=true&from=searchResults&offset=", sep="")
-
-    urlopen <- paste(base_site, "0", "&max=5", sep="")
-    openth1 <- xml2::read_html(x)
-    openth <- as.character(openth1)
-
-    nhits <- stringr::str_trim(gsub("</strong>", "", gsub("<strong>", "", strsplit(strsplit(strsplit(strsplit(openth, "class=\"results\"")[[1]][2], "query")[[1]][1], "results")[[1]][1], "of")[[1]][2])))
-
-    npages <- seq(0, floor(nhits/100)*100, 100)
-
-    for(k in 1:length(npages)){
-      URLpage <- paste(base_site, npages[k], "&max=100", sep="")
-
-      webpage <- xml2::read_html(URLpage)
-      opth <- as.character(webpage)
-
-      remove_junk <- strsplit(strsplit(opth, "<table")[[1]][2], "table>")[[1]][1]
-      splopth <- strsplit(remove_junk, "class=\"title")[[1]][-1]
-
-      for (i in 1:length(splopth)){
-        url <- paste(strsplit(strsplit(splopth[i], "a href=\"")[[1]][2], ".html")[[1]][1], ".html", sep="")
-        title <- strsplit(strsplit(strsplit(splopth[i], "</a")[[1]][1], "a href")[[1]][2], ">")[[1]][2]
-        author <- strsplit(strsplit(splopth[i], "\n                                        <td>")[[1]][2], "</td")[[1]][1]
-        date <- strsplit(strsplit(splopth[i], "\n                                        <td>")[[1]][3], "</td")[[1]][1]
-        university <- strsplit(strsplit(strsplit(strsplit(splopth[i], "\n                                        <td>")[[1]][3], "</td")[[1]][2], ".html\">")[[1]][2], "</a")[[1]][1]
-        type <- strsplit(strsplit(splopth[i], "\n                                        <td>")[[1]][4], "</td")[[1]][1]
-
-        thesis <- cbind(url, title, author, date, university, type)
-        if (i ==1){df <- thesis}
-        if (i > 1){df <- rbind(df, thesis)}
-      }
-
-      if (k==1){dataset <- df}
-      if (k>1){dataset <- rbind(dataset, df)}
-      if(verbose==TRUE){print(paste("Done with page number", npages[k]/100, "of", max(npages/100), sep=" "))}
-    }
-  }
-  dataset$source <- rep(database, nrow(dataset))
-  if(save_results==TRUE){write.csv(dataset, paste(destination, database, "_import.csv", sep=""))}
-
-
-
-  return(dataset)
-}
 
 #' Detects which database a search is from
 #' @description Uses the column names from databases to identify which database a search is from. This function can detect searches done in Web of Science databases (BIOSIS, Zoological Record, or MEDLINE), Scopus, and any EBSCO-indexed database.
@@ -176,11 +30,12 @@ detect_database <- function(df){
 #' @param remove_duplicates if TRUE, removes duplicates based on document similarity
 #' @param clean_dataset if TRUE, removes excess punctuation and standardizes keywords
 #' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
+#' @param verbose if TRUE, prints which file is currently being imported
 #' @return a data frame of all the search results combined
 import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TRUE,
                          save_full_dataset = FALSE, verbose = TRUE){
   if(save_full_dataset==TRUE){
-    if(menu(c("yes", "no"),
+    if(utils::menu(c("yes", "no"),
             title="This will save the full dataset to a .csv file in your working directory. Do you want litsearchr to save the full dataset?")==2){
       save_full_dataset <- FALSE
     }

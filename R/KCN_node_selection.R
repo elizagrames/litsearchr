@@ -150,7 +150,7 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
 #' @return a list of potential keywords to consider
 get_keywords <- function(reduced_graph, savekeywords=TRUE, makewordle=TRUE){
   if(savekeywords==TRUE){
-    if(menu(c("yes", "no"), title="This will write keywords to a plain text file. Do you want to save keywords to a file?")==2){
+    if(utils::menu(c("yes", "no"), title="This will write keywords to a plain text file. Do you want to save keywords to a file?")==2){
       savekeywords <- FALSE
     }
   }

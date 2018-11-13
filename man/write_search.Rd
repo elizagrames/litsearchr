@@ -20,6 +20,13 @@ write_search(groupdata, API_key = NULL, languages = NULL,
 \item{directory}{the path to the directory where you want to save searches (defaults to current working directory)}
 
 \item{stemming}{if TRUE, writes stemmed search (only when the current language is English)}
+
+\item{verbose}{if TRUE, prints when each language is finished writing}
+
+\item{writesearch}{if TRUE, saves the searches to .txt files in the specified directory}
+}
+\value{
+a list of search strings
 }
 \description{
 Takes search terms grouped by concept group and writes Boolean searches in which terms within concept groups are separated by "OR" and concept groups are separated by "AND". Searches can be written in up to 53 languages, though the function defaults to only searching the top ten most used languages in a discipline using the choose_languages() function. The default for language options relies on searching a database of journals by discipline based on Ulrich's Periodicals Directory. Only scientific fields are included in this database. All supported languages can be seen with available_languages().

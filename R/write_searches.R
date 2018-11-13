@@ -148,9 +148,12 @@ should_stem <- function(word){
 #' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
 #' @param directory the path to the directory where you want to save searches (defaults to current working directory)
 #' @param stemming if TRUE, writes stemmed search (only when the current language is English)
+#' @param verbose if TRUE, prints when each language is finished writing
+#' @param writesearch if TRUE, saves the searches to .txt files in the specified directory
+#' @return a list of search strings
 write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FALSE, directory="./", stemming=TRUE, verbose=TRUE, writesearch=FALSE){
   if(writesearch==TRUE){
-    if(menu(c("yes", "no"),
+    if(utils::menu(c("yes", "no"),
           title="This is going to write .txt files to your computer containing the search strings. Are you sure you want to write the files?")==2){
     writesearch <- FALSE
   }}

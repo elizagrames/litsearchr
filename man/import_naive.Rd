@@ -15,6 +15,8 @@ import_naive(directory, remove_duplicates = TRUE, clean_dataset = TRUE,
 \item{clean_dataset}{if TRUE, removes excess punctuation and standardizes keywords}
 
 \item{save_full_dataset}{if TRUE, saves a .csv of the full dataset in the working directory}
+
+\item{verbose}{if TRUE, prints which file is currently being imported}
 }
 \value{
 a data frame of all the search results combined

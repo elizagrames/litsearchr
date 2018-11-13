@@ -5,12 +5,13 @@
 \title{Scrapes hits from specified databases}
 \usage{
 scrape_hits(search_terms, database = c("scopus", "googlescholar",
-  "jstor", "cabdirect", "WoS", "ingenta", "pubmed", "worldcat"))
+  "jstor", "cabdirect", "WoS", "ingenta", "pubmed", "worldcat", "oatd",
+  "ndltd", "openthesis"))
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms. Note that for some databases (e.g. JSTOR) the query length is limited.}
 
-\item{database}{a character with the database to scrape. Options: scopus, googlescholar, jstor, cabdirect, WoS, ingenta, pubmed, worldcat.}
+\item{database}{a character with the database to scrape. Options: scopus, googlescholar, jstor, cabdirect, ingenta, pubmed, worldcat, oatd, ndltd, and openthesis.}
 }
 \value{
 a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
