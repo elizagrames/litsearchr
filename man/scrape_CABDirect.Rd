@@ -11,6 +11,9 @@ scrape_CABDirect(search_terms, writefile = TRUE)
 
 \item{writefile}{if TRUE, writes results to a .csv file in the working directory}
 }
+\value{
+a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+}
 \description{
 Scrapes hits from CAB Direct. Query length is limited by server requests, which can be triggered either by excessively long queries. Must login through institutional access.
 }

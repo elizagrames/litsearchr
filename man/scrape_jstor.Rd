@@ -11,6 +11,9 @@ scrape_jstor(search_terms, writefile = TRUE)
 
 \item{writefile}{if TRUE, writes results to a .csv file in the working directory}
 }
+\value{
+a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+}
 \description{
 Scrapes hits from JSTOR. Limited to 256 characters and must access through institutional login.
 }

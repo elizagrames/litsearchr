@@ -1,7 +1,45 @@
+#' Scrapes hits from specified databases
+#' @description Provides a wrapper function to scrape hits from databases that litsearchr can scrape and that the user has institutional access to.
+#' @param search_terms a list of character strings with grouped search terms. Note that for some databases (e.g. JSTOR) the query length is limited.
+#' @param database a character with the database to scrape. Options: scopus, googlescholar, jstor, cabdirect, WoS, ingenta, pubmed, worldcat.
+#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_hits <- function(search_terms, database=c("scopus", "googlescholar", "jstor", "cabdirect", "WoS", "ingenta", "pubmed", "worldcat")){
+  search_input <- search_terms
+  if(database=="scopus"){
+    hits <- litsearchr::scrape_scopus(search_terms = search_input)
+  }
+  if(database=="googlescholar"){
+    hits <- litsearchr::scrape_google_scholar(search_terms = search_input)
+  }
+  if(database=="jstor"){
+    hits <- litsearchr::scrape_jstor(search_terms = search_input)
+  }
+  if(database=="cabdirect"){
+    hits <- litsearchr::scrape_CABDirect(search_terms = search_input)
+  }
+  if(database=="WoS"){
+    hits <- litsearchr::scrape_WoS(search_terms = search_input)
+  }
+  if(database=="ingenta"){
+    hits <- litsearchr::scrape_ingenta(search_terms = search_input)
+  }
+  if(database=="pubmed"){
+    hits <- litsearchr::scrape_pubmed(search_terms = search_input)
+  }
+  if(database=="worldcat"){
+    hits <- litsearchr::scrape_worldcat(search_terms = search_input)
+  }
+  return(hits)
+}
+
+
+
+
 #' Scrapes results from Google Scholar
 #' @description Scrapes hits from Google Scholar. Limited to 256 characters and 60 queries.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
+#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 scrape_google_scholar <- function(search_terms, writefile=TRUE){
 
   search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE)
@@ -146,6 +184,7 @@ scrape_google_scholar <- function(search_terms, writefile=TRUE){
 #' @description Scrapes hits from JSTOR. Limited to 256 characters and must access through institutional login.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
+#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 scrape_jstor <- function(search_terms, writefile=TRUE){
 
   base_URL1 <- "https://www.jstor.org/action/doAdvancedSearch?searchType=facetSearch&page="
@@ -161,8 +200,11 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
 
   search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
   search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "+", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
+  search_strat <- gsub("\"", "'", search_strat)
+
   if(nchar(search_strat)<=256){
 
+    x <- xml2::read_html("https://www.jstor.org/")
     firstURL <- paste(base_URL1, "1", base_URL2, search_strat, base_URL3, sep="")
     firstpage <- as.character(xml2::read_html(firstURL))
 
@@ -242,6 +284,7 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
 #' @description Scrapes hits from Scopus. Does not currently extract abstracts - only titles and publication information. Must login through institutional access.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
+#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 scrape_scopus <- function(search_terms, writefile=TRUE){
 
   if(writefile==TRUE){if(menu(c("yes", "no"),
@@ -351,11 +394,11 @@ scrape_scopus <- function(search_terms, writefile=TRUE){
 
 }
 
-
 #' Scrapes results from WorldCat
 #' @description Scrapes hits from WorldCat. Query length is limited by server requests, which can be triggered either by excessively long queries or by vague queries that return too many results.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
+#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 scrape_worldcat <- function(search_terms, writefile=TRUE){
 
   if(writefile==TRUE){if(menu(c("yes", "no"),
@@ -434,6 +477,7 @@ scrape_worldcat <- function(search_terms, writefile=TRUE){
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
 #' @param qid if you have run more than one query in a session, check your search history to change the query id
 #' @param verbose if TRUE, prints percentage updates every now and then so you know it is still running
+#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 scrape_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TRUE){
 
   if(writefile==TRUE){if(menu(c("yes", "no"),
@@ -510,11 +554,11 @@ scrape_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TR
   return(dataset)
 }
 
-
 #' Scrapes results from Ingenta Connect
 #' @description Scrapes hits from Ingenta Connect. Query length is limited by server requests, which can be triggered either by excessively long queries or by vague queries that return too many results. Must login through institutional access.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
+#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 scrape_ingenta <- function(search_terms, writefile=TRUE){
   if(writefile==TRUE){if(menu(c("yes", "no"),
                               title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
@@ -585,11 +629,11 @@ scrape_ingenta <- function(search_terms, writefile=TRUE){
   return(study_data)
 }
 
-
 #' Scrapes results from PubMed
 #' @description Scrapes hits from PubMed. Query length is limited by server requests, which can be triggered either by excessively long queries.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
+#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 scrape_pubmed <- function(search_terms, writefile=TRUE){
 
   base_URL <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&retmax=100000&sort=date&term="
@@ -645,12 +689,11 @@ scrape_pubmed <- function(search_terms, writefile=TRUE){
 
 }
 
-
-
 #' Scrapes results from CAB Direct
 #' @description Scrapes hits from CAB Direct. Query length is limited by server requests, which can be triggered either by excessively long queries. Must login through institutional access.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
+#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 scrape_CABDirect <- function(search_terms, writefile=TRUE){
   base_URL <- "https://www.cabdirect.org/cabdirect/search/?q="
 
@@ -736,4 +779,3 @@ scrape_CABDirect <- function(search_terms, writefile=TRUE){
   return(study_data)
   }
 }
-

@@ -18,6 +18,9 @@ scrape_WoS(sessionID, dbID = "UA", writefile = TRUE, qid = "1",
 
 \item{verbose}{if TRUE, prints percentage updates every now and then so you know it is still running}
 }
+\value{
+a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+}
 \description{
 Scrapes hits from databases hosted on Web of Science. The exported session must be left active while running the script and you must sign in through your institutional login.
 }
