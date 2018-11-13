@@ -3,3 +3,8 @@
 ^cran-comments.md
 ^README.Rmd
 .R/scrape_results.R
+.Rhistory
+.gitignore
+.litsearchr.Rproj
+src/
+revdep/

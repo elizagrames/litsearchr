@@ -9,6 +9,5 @@ This is an initial submission.
 ## R CMD check results
 There were no ERRORs or WARNINGs or NOTEs.
 
-
 ## Downstream dependencies
 I also ran R CMD check on downstream dependencies. All packages passed.
