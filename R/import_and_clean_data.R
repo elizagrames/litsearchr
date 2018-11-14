@@ -11,9 +11,19 @@ detect_database <- function(df){
   if(stringr::str_detect(database_signature, "www.scopus.com")){database <- "Scopus"}
   if(stringr::str_detect(database_signature, "search.proquest.com")){database <- "ProQuest"}
   if(stringr::str_detect(database_signature, "ebscohost.com")){database <- "EBSCO"}
-  if(stringr::str_detect(database_signature, "NDLTD_import")){database <- "NDLTD"}
-  if(stringr::str_detect(database_signature, "OATD_import")){database <- "OATD"}
-  if(stringr::str_detect(database_signature, "OpenThesis_import")){database <- "OpenThesis"}
+
+  if(stringr::str_detect(database_signature, "ndltd_scrape")){database <- "NDLTD"}
+  if(stringr::str_detect(database_signature, "oatd_scrape")){database <- "OATD"}
+  if(stringr::str_detect(database_signature, "openthesis_scrape")){database <- "OpenThesis"}
+
+  if(stringr::str_detect(database_signature, "googlescholar_scrape")){database <- "google_scholar"}
+  if(stringr::str_detect(database_signature, "jstor_scrape")){database <- "jstor"}
+  if(stringr::str_detect(database_signature, "scopus_scrape")){database <- "scopus_scrape"}
+  if(stringr::str_detect(database_signature, "cabdirect_scrape")){database <- "cabdirect"}
+  if(stringr::str_detect(database_signature, "ingenta_scrape")){database <- "ingenta"}
+  if(stringr::str_detect(database_signature, "pubmed_scrape")){database <- "pubmed"}
+  if(stringr::str_detect(database_signature, "worldcat_scrape")){database <- "worldcat"}
+  if(stringr::str_detect(database_signature, "wos_scrape")){database <- "wos_scrape"}
 
   if (length(database)>0){return(database)}
 
@@ -212,17 +222,157 @@ import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TR
       df$text <- paste(df$abstract, df$keywords, sep=" ")
     }
 
+    if(database == "googlescholar_scrape"){
+      df <- as.data.frame(cbind(title=df$title, authors=df$authors,
+                                year=df$year, source=df$journal))
+      df$id <- rep("", nrow(df))
+      df$abstract <- rep("", nrow(df))
+      df$volume <- rep("", nrow(df))
+      df$issue <- rep("", nrow(df))
+      df$startpage <- rep("", nrow(df))
+      df$endpage <- rep("", nrow(df))
+      df$doi <- rep("", nrow(df))
+      df$keywords <- rep("", nrow(df))
+      df$type <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$language <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if(database == "jstor_scrape"){
+      df <- as.data.frame(cbind(title=df$title, authors=df$authors,
+                                source=df$journal, keywords=df$keyword,
+                                type=df$type, doi=df$doi, volume=df$pubinfo))
+      df$id <- rep("", nrow(df))
+      df$issue <- rep("", nrow(df))
+      df$startpage <- rep("", nrow(df))
+      df$endpage <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$year <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$abstract <- rep("", nrow(df))
+      df$language <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if(database == "scopus_scrape"){
+      df <- as.data.frame(cbind(id=df$id,
+                                title=df$title,
+                                authors=df$authors,
+                                year=df$year,
+                                source=df$publication,
+                                volume=df$volume,
+                                issue=df$issue,
+                                startpage=df$pages,
+                                doi=df$doi))
+      df$abstract <- rep("", nrow(df))
+      df$endpage <- rep("", nrow(df))
+      df$keywords <- rep("", nrow(df))
+      df$type <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$language <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if(database == "cabdirect_scrape"){
+      df <- as.data.frame(cbind(title=df$title, authors=df$authors,
+                                abstract=df$abstract, source=df$source, volume=df$pubinfo))
+      df$id <- rep("", nrow(df))
+      df$year <- rep("", nrow(df))
+      df$issue <- rep("", nrow(df))
+      df$startpage <- rep("", nrow(df))
+      df$endpage <- rep("", nrow(df))
+      df$doi <- rep("", nrow(df))
+      df$keywords <- rep("", nrow(df))
+      df$type <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$language <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if(database == "ingenta_scrape"){
+      df <- as.data.frame(cbind(title=df$title, authors=df$authors,
+                                year=df$date, abstract=df$abstract, doi=df$doi, volume=df$pubinfo))
+      df$id <- rep("", nrow(df))
+      df$source <- rep("", nrow(df))
+      df$issue <- rep("", nrow(df))
+      df$startpage <- rep("", nrow(df))
+      df$endpage <- rep("", nrow(df))
+      df$keywords <- rep("", nrow(df))
+      df$type <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$language <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if(database == "pubmed_scrape"){
+      df <- as.data.frame(cbind(title=df$title, authors=df$authors,
+                                year=df$year, abstract=df$abstract,
+                                id=df$id, keywords=df$keywords, source=df$source, volume=df$volume, doi=df$doi))
+      df$issue <- rep("", nrow(df))
+      df$startpage <- rep("", nrow(df))
+      df$endpage <- rep("", nrow(df))
+      df$type <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$language <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if(database == "worldcat_scrape"){
+      df <- as.data.frame(cbind(title=df$title, authors=df$authors,
+                                year=df$date, abstract=df$abstract,
+                                type=df$type, language=df$language,
+                                source=df$publication, volume=df$pubinfo))
+      df$id <- rep("", nrow(df))
+      df$issue <- rep("", nrow(df))
+      df$startpage <- rep("", nrow(df))
+      df$endpage <- rep("", nrow(df))
+      df$doi <- rep("", nrow(df))
+      df$keywords <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if(database == "wos_scrape"){
+      df <- as.data.frame(cbind(id = df$id,
+                                title = df$title,
+                                abstract = df$abstract,
+                                keywords = df$keywords,
+                                type = df$type,
+                                authors = df$authors,
+                                affiliation = df$address,
+                                source = df$publication,
+                                year = df$date,
+                                volume = df$volume,
+                                issue = df$issue,
+                                startpage = df$pgs,
+                                doi = df$doi,
+                                language = df$language))
+      df$endpage <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
 
     if (database != "Unknown") {
       df$database <- rep(database, nrow(df))
       df[] <- lapply(df, as.character)
-      df <- as.data.frame(cbind(id = df$id, text = df$text,
-                                title = df$title, abstract = df$abstract, keywords = df$keywords,
-                                methods = df$methods, type = df$type, authors = df$authors,
-                                affiliation = df$affiliation, source = df$source,
-                                year = df$year, volume = df$volume, issue = df$issue,
-                                startpage = df$startpage, endpage = df$endpage,
-                                doi = df$doi, language = df$language, database = df$database))
+      df <- as.data.frame(cbind(id = df$id,
+                                text = df$text,
+                                title = df$title,
+                                abstract = df$abstract,
+                                keywords = df$keywords,
+                                methods = df$methods,
+                                type = df$type,
+                                authors = df$authors,
+                                affiliation = df$affiliation,
+                                source = df$source,
+                                year = df$year,
+                                volume = df$volume,
+                                issue = df$issue,
+                                startpage = df$startpage,
+                                endpage = df$endpage,
+                                doi = df$doi,
+                                language = df$language,
+                                database = df$database))
       df[] <- lapply(df, as.character)
       if (i == 1) {
         search_hits <- df

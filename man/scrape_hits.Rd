@@ -6,12 +6,16 @@
 \usage{
 scrape_hits(search_terms, database = c("scopus", "googlescholar",
   "jstor", "cabdirect", "WoS", "ingenta", "pubmed", "worldcat", "oatd",
-  "ndltd", "openthesis"))
+  "ndltd", "openthesis"), verbose = TRUE, writefile = TRUE)
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms. Note that for some databases (e.g. JSTOR) the query length is limited.}
 
 \item{database}{a character with the database to scrape. Options: scopus, googlescholar, jstor, cabdirect, ingenta, pubmed, worldcat, oatd, ndltd, and openthesis.}
+
+\item{verbose}{if TRUE, prints which page of hits it has finished}
+
+\item{writefile}{if TRUE, writes results to a .csv file in the working directory}
 }
 \value{
 a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)

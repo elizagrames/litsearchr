@@ -4,12 +4,21 @@
 \alias{scrape_google_scholar}
 \title{Scrapes results from Google Scholar}
 \usage{
-scrape_google_scholar(search_terms, writefile = TRUE)
+scrape_google_scholar(search_terms, writefile = TRUE, verbose = TRUE,
+  languages = "English", stemming = TRUE, exactphrase = TRUE)
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms}
 
 \item{writefile}{if TRUE, writes results to a .csv file in the working directory}
+
+\item{verbose}{if TRUE, prints which page of hits it has finished}
+
+\item{languages}{which language to search in; available languages can be viewed with available_languages().}
+
+\item{stemming}{if TRUE, keywords will be truncated and stem from root word forms (only if language is English)}
+
+\item{exactphrase}{if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned}
 }
 \value{
 a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)

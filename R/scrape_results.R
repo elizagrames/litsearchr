@@ -2,54 +2,62 @@
 #' @description Provides a wrapper function to scrape hits from databases that litsearchr can scrape and that the user has institutional access to.
 #' @param search_terms a list of character strings with grouped search terms. Note that for some databases (e.g. JSTOR) the query length is limited.
 #' @param database a character with the database to scrape. Options: scopus, googlescholar, jstor, cabdirect, ingenta, pubmed, worldcat, oatd, ndltd, and openthesis.
+#' @param verbose if TRUE, prints which page of hits it has finished
+#' @param writefile if TRUE, writes results to a .csv file in the working directory
 #' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_hits <- function(search_terms, database=c("scopus", "googlescholar", "jstor", "cabdirect", "WoS", "ingenta", "pubmed", "worldcat", "oatd", "ndltd", "openthesis")){
+scrape_hits <- function(search_terms, database=c("scopus", "googlescholar", "jstor",
+                                                 "cabdirect", "WoS", "ingenta",
+                                                 "pubmed", "worldcat",
+                                                 "oatd", "ndltd", "openthesis"),
+                        verbose=TRUE, writefile=TRUE){
   search_input <- search_terms
   if(database=="scopus"){
-    hits <- litsearchr::scrape_scopus(search_terms = search_input)
+    hits <- litsearchr::scrape_scopus(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   if(database=="googlescholar"){
-    hits <- litsearchr::scrape_google_scholar(search_terms = search_input)
+    hits <- litsearchr::scrape_google_scholar(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   if(database=="jstor"){
-    hits <- litsearchr::scrape_jstor(search_terms = search_input)
+    hits <- litsearchr::scrape_jstor(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   if(database=="cabdirect"){
-    hits <- litsearchr::scrape_CABDirect(search_terms = search_input)
+    hits <- litsearchr::scrape_CABDirect(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   if(database=="ingenta"){
-    hits <- litsearchr::scrape_ingenta(search_terms = search_input)
+    hits <- litsearchr::scrape_ingenta(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   if(database=="pubmed"){
-    hits <- litsearchr::scrape_pubmed(search_terms = search_input)
+    hits <- litsearchr::scrape_pubmed(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   if(database=="worldcat"){
-    hits <- litsearchr::scrape_worldcat(search_terms = search_input)
+    hits <- litsearchr::scrape_worldcat(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   if(database=="oatd"){
-    hits <- litsearchr::scrape_oatd(search_terms = search_input)
+    hits <- litsearchr::scrape_oatd(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   if(database=="ndltd"){
-    hits <- litsearchr::scrape_ndltd(search_terms = search_input)
+    hits <- litsearchr::scrape_ndltd(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   if(database=="openthesis"){
-    hits <- litsearchr::scrape_openthesis(search_terms = search_input)
+    hits <- litsearchr::scrape_openthesis(search_terms = search_input, verbose=verbose, writefile = writefile)
   }
   return(hits)
 }
-
-
 
 
 #' Scrapes results from Google Scholar
 #' @description Scrapes hits from Google Scholar. Limited to 256 characters and 60 queries.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
+#' @param verbose if TRUE, prints which page of hits it has finished
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned
 #' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_google_scholar <- function(search_terms, writefile=TRUE){
+scrape_google_scholar <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
 
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE)
-  search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
+  search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "%20", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
   if(nchar(search_strat)<=256){
 
     if(writefile==TRUE){if(utils::menu(c("yes", "no"),
@@ -168,9 +176,11 @@ scrape_google_scholar <- function(search_terms, writefile=TRUE){
         if(l>1){study_data <- rbind(study_data, dataset)}
 
       }
-    }
+
+      if(verbose==TRUE){print(paste("Done with page", l, "out of", npages)      )      }
+      }
     study_data <- as.data.frame(study_data)
-    study_data$database <- rep("google_scholar_scrape", nrow(study_data))
+    study_data$database <- rep("googlescholar_scrape", nrow(study_data))
 
     if(writefile==TRUE){
       write.csv(study_data, "google_scholar_hits.csv")
@@ -190,8 +200,11 @@ scrape_google_scholar <- function(search_terms, writefile=TRUE){
 #' @description Scrapes hits from JSTOR. Limited to 256 characters and must access through institutional login.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_jstor <- function(search_terms, writefile=TRUE){
+#' @param verbose if TRUE, prints which page of hits it has finished
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_jstor <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
 
   base_URL1 <- "https://www.jstor.org/action/doAdvancedSearch?searchType=facetSearch&page="
   base_URL2 <- "&sd=&ed=&c3=AND&c4=AND&f5=all&c5=AND&f1=all&acc=off&f3=all&group=none&f0=all&c6=AND&c1=AND&c2=AND&q0="
@@ -204,7 +217,7 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
   }
 
 
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
   search_strat <- gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "+", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat)))))
   search_strat <- gsub("\"", "'", search_strat)
 
@@ -268,11 +281,13 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
 
       if(w==1){study_data <- dataset}
       if(w>1){study_data <- rbind(study_data, dataset)}
-    }
+      if(verbose==TRUE){print(paste("Done with page", w, "out of", npages)      )      }
+
+      }
 
     study_data <- as.data.frame(study_data)
 
-    study_data$database <- rep("JSTOR_scrape", nrow(study_data))
+    study_data$database <- rep("jstor_scrape", nrow(study_data))
     if(writefile==TRUE){
       write.csv(study_data, "jstor_hits.csv")
     }
@@ -290,8 +305,12 @@ scrape_jstor <- function(search_terms, writefile=TRUE){
 #' @description Scrapes hits from Scopus. Does not currently extract abstracts - only titles and publication information. Must login through institutional access.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_scopus <- function(search_terms, writefile=TRUE){
+#' @param verbose if TRUE, prints which page of hits it has finished
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_scopus <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
+
 
   if(writefile==TRUE){if(utils::menu(c("yes", "no"),
                               title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
@@ -301,7 +320,7 @@ scrape_scopus <- function(search_terms, writefile=TRUE){
 
   scopus_base <- "https://www.scopus.com/results/results.uri?sort=plf-f&src=s&sid=f68938845668763794e120e1ed0927e2&sot=a&sdt=a&sl=24&s=TITLE-ABS-KEY-AUTH"
 
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
   search_strat <- gsub("\"","'",gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "+", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))
   search_string <- paste(scopus_base, search_strat, "&cl=t&offset=", 1, sep="")
 
@@ -337,8 +356,8 @@ scrape_scopus <- function(search_terms, writefile=TRUE){
           authors <- strsplit(strsplit(articles[k], "<td>")[[1]][2], "Show author details\">")[[1]][-1]
           for(l in 1:length(authors)){
             author <- strsplit(authors[l], "</")[[1]][1]
-            if(l==1){author_list <- author}
-            if(l>1){author_list <- paste(author_list, author, sep="; ")}
+            if(l==1){authors <- author}
+            if(l>1){authors <- paste(authors, author, sep="; ")}
           }
         }
         year <- strsplit(strsplit(strsplit(articles[k], "</td>")[[1]][3], ">\n")[[1]][2], "\n")[[1]][1]
@@ -378,17 +397,19 @@ scrape_scopus <- function(search_terms, writefile=TRUE){
         }
 
 
-        article_entry <- cbind(id, title, author_list, year, publication, volume, issue, pages, doi)
+        article_entry <- cbind(id, title, authors, year, publication, volume, issue, pages, doi)
         if(k==1){page_entry <- article_entry}
         if(k>1){page_entry <- rbind(page_entry, article_entry)}
       }
 
       if(j==1){study_data <- page_entry}
       if(j>1){study_data <- rbind(study_data, page_entry)}
-    }
+      if(verbose==TRUE){print(paste("Done with page", j, "out of", npages)      )      }
+
+      }
 
     study_data <- as.data.frame(study_data)
-    study_data$database <- rep("Scopus_scrape", nrow(study_data))
+    study_data$database <- rep("scopus_scrape", nrow(study_data))
 
 
     if(writefile==TRUE){
@@ -404,8 +425,11 @@ scrape_scopus <- function(search_terms, writefile=TRUE){
 #' @description Scrapes hits from WorldCat. Query length is limited by server requests, which can be triggered either by excessively long queries or by vague queries that return too many results.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_worldcat <- function(search_terms, writefile=TRUE){
+#' @param verbose if TRUE, prints which page of hits it has finished
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_worldcat <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
 
   if(writefile==TRUE){if(utils::menu(c("yes", "no"),
                               title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
@@ -414,7 +438,7 @@ scrape_worldcat <- function(search_terms, writefile=TRUE){
   }
   URL1 <- "http://www.worldcat.org/search?q="
 
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
   search_strat <- gsub("\"","%22",gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "+", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))
   search_string <- paste(URL1, search_strat, "&start=1", sep="")
 
@@ -459,10 +483,12 @@ scrape_worldcat <- function(search_terms, writefile=TRUE){
       }
       if(h==1){study_data <- page_hits}
       if(h>1){study_data <- rbind(study_data, page_hits)}
+      if(verbose==TRUE){print(paste("Done with page", h, "out of", npages)      )      }
+
     }
     study_data <- as.data.frame(study_data)
 
-    study_data$database <- rep("WorldCat_scrape", nrow(study_data))
+    study_data$database <- rep("worldcat_scrape", nrow(study_data))
 
     if(writefile==TRUE){
       write.csv(study_data, "WorldCat_hits.csv")
@@ -483,7 +509,7 @@ scrape_worldcat <- function(search_terms, writefile=TRUE){
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
 #' @param qid if you have run more than one query in a session, check your search history to change the query id
 #' @param verbose if TRUE, prints percentage updates every now and then so you know it is still running
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+#' @return a dataframe of hits returned
 scrape_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TRUE){
 
   if(writefile==TRUE){if(utils::menu(c("yes", "no"),
@@ -551,7 +577,7 @@ scrape_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TR
   }
   study_data <- as.data.frame(study_data)
 
-  study_data$database <- rep("WoS_scrape", nrow(study_data))
+  study_data$database <- rep("wos_scrape", nrow(study_data))
 
   if(writefile==TRUE){
     write.csv(dataset, "WebOfScience_hits.csv")
@@ -564,8 +590,11 @@ scrape_WoS <- function(sessionID, dbID="UA", writefile=TRUE, qid="1", verbose=TR
 #' @description Scrapes hits from Ingenta Connect. Query length is limited by server requests, which can be triggered either by excessively long queries or by vague queries that return too many results. Must login through institutional access.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_ingenta <- function(search_terms, writefile=TRUE){
+#' @param verbose if TRUE, prints which page of hits it has finished
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_ingenta <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
   if(writefile==TRUE){if(utils::menu(c("yes", "no"),
                               title="This will write a .csv to your working directory with all the hits returned. Are you sure that you want to do that?")==2){
     writefile <- FALSE
@@ -573,7 +602,7 @@ scrape_ingenta <- function(search_terms, writefile=TRUE){
   }
 
   base_URL <- "https://www.ingentaconnect.com/search/article?option1=tka&value1="
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE)
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
   search_strat <- gsub("\\)","%29",gsub("\\(", "%28", gsub("\"", "%22", gsub(" ", "+", gsub(" \\)", "%29", gsub("\\( ", "%28", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))))
 
   first_search <- gsub(" ", "+", paste("https://www.ingentaconnect.com/search?option1=tka&value1=", search_strat, "&pageSize=100&page=1", sep=""))
@@ -622,11 +651,16 @@ scrape_ingenta <- function(search_terms, writefile=TRUE){
     if(l>1){
       study_data <- rbind(study_data, entry)
     }
+    if(verbose==TRUE){
+      if(l/nhits*100==floor(l/nhits*100)){
+        print(paste(l/nhits*100, "% Done", sep="")      )      }
+
+    }
 
   }
   study_data <- as.data.frame(study_data)
 
-  study_data$database <- rep("Ingenta_scrape", nrow(study_data))
+  study_data$database <- rep("ingenta_scrape", nrow(study_data))
 
   if(writefile==TRUE){
     write.csv(study_data, "ingenta_hits.csv")
@@ -639,8 +673,11 @@ scrape_ingenta <- function(search_terms, writefile=TRUE){
 #' @description Scrapes hits from PubMed. Query length is limited by server requests, which can be triggered either by excessively long queries.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_pubmed <- function(search_terms, writefile=TRUE){
+#' @param verbose if TRUE, prints which page of hits it has finished
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_pubmed <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
 
   base_URL <- "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&retmax=100000&sort=date&term="
   if(writefile==TRUE){if(utils::menu(c("yes", "no"),
@@ -649,7 +686,7 @@ scrape_pubmed <- function(search_terms, writefile=TRUE){
   }
   }
 
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
   search_strat <- gsub("\"", "%22", gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "%20", gsub("\\\\", "",  gsub(" OR ", "%20OR%20", search_strat))))))
 
   firstURL <- paste(base_URL, search_strat, sep="")
@@ -683,10 +720,16 @@ scrape_pubmed <- function(search_terms, writefile=TRUE){
     if(i >1){
       study_data <- rbind(study_data, entry)
     }
+
+    if(verbose==TRUE){
+      if(i/length(IDs)*100==floor(i/length(IDs)*100)){
+        print(paste(i/length(IDs)*100, "% Done", sep="")      )      }
+
+      }
   }
   study_data <- as.data.frame(study_data)
 
-  study_data$database <- rep("PubMed_scrape", nrow(study_data))
+  study_data$database <- rep("pubmed_scrape", nrow(study_data))
 
   if(writefile==TRUE){
     write.csv(study_data, "pubmed_hits.csv")
@@ -699,8 +742,11 @@ scrape_pubmed <- function(search_terms, writefile=TRUE){
 #' @description Scrapes hits from CAB Direct. Query length is limited by server requests, which can be triggered either by excessively long queries. Must login through institutional access.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_CABDirect <- function(search_terms, writefile=TRUE){
+#' @param verbose if TRUE, prints which page of hits it has finished
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_CABDirect <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
   base_URL <- "https://www.cabdirect.org/cabdirect/search/?q="
 
   if(writefile==TRUE){if(utils::menu(c("yes", "no"),
@@ -709,7 +755,7 @@ scrape_CABDirect <- function(search_terms, writefile=TRUE){
   }
   }
 
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE, stemming=FALSE)
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
   search_strat <- gsub("\"", "%22", gsub("\\)", "%29", gsub("\\(", "%28", gsub(" ", "%20", gsub("\\\\", "",  gsub(" OR ", "%20OR%20", search_strat))))))
 
   firstURL <- paste(base_URL, search_strat, "&rows=100", sep="")
@@ -774,10 +820,13 @@ scrape_CABDirect <- function(search_terms, writefile=TRUE){
     if(i>1){
       study_data <- rbind(study_data, page_data)
     }
+if(verbose==TRUE){print(paste("Done with page", i, "out of", npages))
   }
+
+      }
   study_data <- as.data.frame(study_data)
 
-  study_data$database <- rep("CABDirect_scrape", nrow(study_data))
+  study_data$database <- rep("cabdirect_scrape", nrow(study_data))
 
   if(writefile==TRUE){
     write.csv(study_data, "CABDirect_hits.csv")
@@ -793,12 +842,14 @@ scrape_CABDirect <- function(search_terms, writefile=TRUE){
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
 #' @param verbose if TRUE, prints which page of hits it has finished
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_oatd <- function(search_terms, writefile=TRUE, verbose=TRUE){
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_oatd <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
 
   base_URL <- "https://oatd.org/oatd/search?q="
 
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE)
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
   search_strat <- gsub("\\)","%29",gsub("\\(", "%28", gsub("\"", "%22", gsub(" ", "+", gsub(" \\)", "%29", gsub("\\( ", "%28", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))))
 
   firstURL <- paste(base_URL, search_strat, sep="")
@@ -850,14 +901,15 @@ scrape_oatd <- function(search_terms, writefile=TRUE, verbose=TRUE){
 
   }
 
-
 #' Scrapes results from the NDLTD Global ETD Search
 #' @description Scrapes hits from the Networked Digital Library of Theses and Dissertations Global ETD Search.
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
 #' @param verbose if TRUE, prints which page of hits it has finished
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_ndltd <- function(search_terms, writefile=TRUE, verbose=TRUE){
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_ndltd <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
 
   if(writefile==TRUE){
     if(utils::menu(c("yes", "no"), title="This will write results to a .csv file. Do you want to save the results to a .csv file?")==2){
@@ -867,7 +919,7 @@ scrape_ndltd <- function(search_terms, writefile=TRUE, verbose=TRUE){
 
   base_URL <- "http://search.ndltd.org/search.php?q="
 
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE)
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
   search_strat <- gsub("\\)","%29",gsub("\\(", "%28", gsub("\"", "%22", gsub(" ", "+", gsub(" \\)", "%29", gsub("\\( ", "%28", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))))
 
   firstURL <- paste(base_URL, search_strat, "&start=", "0", sep="")
@@ -927,8 +979,10 @@ scrape_ndltd <- function(search_terms, writefile=TRUE, verbose=TRUE){
 #' @param search_terms a list of character strings with grouped search terms
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
 #' @param verbose if TRUE, prints which page of hits it has finished
-#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-scrape_openthesis <- function(search_terms, writefile=TRUE, verbose=TRUE){
+#' @param languages which language to search in; available languages can be viewed with available_languages().
+#' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+scrape_openthesis <- function(search_terms, writefile=TRUE, verbose=TRUE, languages="English", stemming=TRUE, exactphrase=TRUE){
 
   if(writefile==TRUE){
     if(utils::menu(c("yes", "no"), title="This will write results to a .csv file. Do you want to save the results to a .csv file?")==2){
@@ -936,7 +990,7 @@ scrape_openthesis <- function(search_terms, writefile=TRUE, verbose=TRUE){
     }
   }
 
-  search_strat <- litsearchr::write_search(search_terms, languages= "English", exactphrase=TRUE)
+  search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
   search_strat <- gsub("\\)","%29",gsub("\\(", "%28", gsub("\"", "%22", gsub(" ", "+", gsub(" \\)", "%29", gsub("\\( ", "%28", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))))
   base_URL1 <- "http://www.openthesis.org/search/search.html?queryString="
   base_URL2 <- "&repeatSearch=true&from=searchResults&offset="
