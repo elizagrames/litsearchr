@@ -16,13 +16,13 @@ detect_database <- function(df){
   if(stringr::str_detect(database_signature, "oatd_scrape")){database <- "OATD"}
   if(stringr::str_detect(database_signature, "openthesis_scrape")){database <- "OpenThesis"}
 
-  if(stringr::str_detect(database_signature, "googlescholar_scrape")){database <- "google_scholar"}
-  if(stringr::str_detect(database_signature, "jstor_scrape")){database <- "jstor"}
+  if(stringr::str_detect(database_signature, "googlescholar_scrape")){database <- "googlescholar_scrape"}
+  if(stringr::str_detect(database_signature, "jstor_scrape")){database <- "jstor_scrape"}
   if(stringr::str_detect(database_signature, "scopus_scrape")){database <- "scopus_scrape"}
-  if(stringr::str_detect(database_signature, "cabdirect_scrape")){database <- "cabdirect"}
-  if(stringr::str_detect(database_signature, "ingenta_scrape")){database <- "ingenta"}
-  if(stringr::str_detect(database_signature, "pubmed_scrape")){database <- "pubmed"}
-  if(stringr::str_detect(database_signature, "worldcat_scrape")){database <- "worldcat"}
+  if(stringr::str_detect(database_signature, "cabdirect_scrape")){database <- "cabdirect_scrape"}
+  if(stringr::str_detect(database_signature, "ingenta_scrape")){database <- "ingenta_scrape"}
+  if(stringr::str_detect(database_signature, "pubmed_scrape")){database <- "pubmed_scrape"}
+  if(stringr::str_detect(database_signature, "worldcat_scrape")){database <- "worldcat_scrape"}
   if(stringr::str_detect(database_signature, "wos_scrape")){database <- "wos_scrape"}
 
   if (length(database)>0){return(database)}
@@ -34,22 +34,31 @@ detect_database <- function(df){
 
 }
 
-#' Import results of a scoping search
-#' @description Imports the results of a scoping search, combines them into a single dataset, and (optionally) removes duplicate hits based on document similarity. Duplicates can be removed subsequently with custom similarity cutoffs using deduplicate() on the full dataset.
+#' Print databases/platform exports that litsearchr can import
+#' @description Prints a data frame of platforms, databases, and download methods that litsearchr recognizes
+importable_databases <- function(){
+  print(litsearchr::database_list)
+}
+
+#' Import results of a search
+#' @description Imports the results of a search, combines them into a single dataset, and (optionally) removes duplicate hits based on document similarity. Duplicates can be removed subsequently with custom similarity cutoffs using deduplicate() on the full dataset.
 #' @param directory the full path to the directory in which the searches are saved
 #' @param remove_duplicates if TRUE, removes duplicates based on document similarity
 #' @param clean_dataset if TRUE, removes excess punctuation and standardizes keywords
 #' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
 #' @param verbose if TRUE, prints which file is currently being imported
 #' @return a data frame of all the search results combined
-import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TRUE,
-                         save_full_dataset = FALSE, verbose = TRUE){
+import_results <- function(directory, remove_duplicates = TRUE, clean_dataset = TRUE,
+                           save_full_dataset = FALSE, verbose = TRUE){
   if(save_full_dataset==TRUE){
     if(utils::menu(c("yes", "no"),
-            title="This will save the full dataset to a .csv file in your working directory. Do you want litsearchr to save the full dataset?")==2){
+                   title="This will save the full dataset to a .csv file in your working directory. Do you want litsearchr to save the full dataset?")==2){
       save_full_dataset <- FALSE
     }
   }
+
+  directory <- "./repeated_hits/"
+
   import_files <- paste(directory, list.files(path = directory),
                         sep = "")
   for (i in 1:length(import_files)) {
@@ -73,7 +82,7 @@ import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TR
 
     if(verbose==TRUE){print(paste("Importing file", import_files[i]))}
     database <- c()
-    database <- detect_database(df)
+    database <- litsearchr::detect_database(df)
     if(database == "Scopus"){
       df <- as.data.frame(cbind(id = df$EID, title = df$Title,
                                 abstract = df$Abstract, keywords = df$Author.Keywords,
@@ -93,6 +102,7 @@ import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TR
                                 year = df$PY, volume = df$VL, issue = df$IS,
                                 startpage = df$PS, doi = df$DI, language = df$LA))
       df$startpage <- as.character(df$startpage)
+      df$endpage <- rep("", nrow(df))
       temp <- strsplit(as.character(df$startpage), "-")
       if (length(temp) > 0) {
         for (j in 1:length(temp)) {
@@ -275,11 +285,13 @@ import_naive <- function(directory, remove_duplicates = TRUE, clean_dataset = TR
     }
     if(database == "cabdirect_scrape"){
       df <- as.data.frame(cbind(title=df$title, authors=df$authors,
-                                abstract=df$abstract, source=df$source, volume=df$pubinfo))
+                                source=df$source))
       df$id <- rep("", nrow(df))
       df$year <- rep("", nrow(df))
       df$issue <- rep("", nrow(df))
+      df$abstract <- rep("", nrow(df))
       df$startpage <- rep("", nrow(df))
+      df$volume <- rep("", nrow(df))
       df$endpage <- rep("", nrow(df))
       df$doi <- rep("", nrow(df))
       df$keywords <- rep("", nrow(df))

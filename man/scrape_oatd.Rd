@@ -4,11 +4,14 @@
 \alias{scrape_oatd}
 \title{Scrapes results from Open Access Theses and Dissertations}
 \usage{
-scrape_oatd(search_terms, writefile = TRUE, verbose = TRUE,
-  languages = "English", stemming = TRUE, exactphrase = TRUE)
+scrape_oatd(search_terms = NULL, URL = NULL, writefile = TRUE,
+  verbose = TRUE, languages = "English", stemming = TRUE,
+  exactphrase = TRUE)
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms}
+
+\item{URL}{the URL from conducting a search in the database}
 
 \item{writefile}{if TRUE, writes results to a .csv file in the working directory}
 

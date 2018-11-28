@@ -35,20 +35,16 @@
 
 #' Databases that can be imported with litsearchr
 #'
-#' A dataset containing the database signatures (i.e. the column names
-#' that are automatically exported with the full report option) for
-#' databases that litsearchr can import.
+#' A dataset containing the platforms, databases, and download methods
+#' that litsearchr recognizes and can import.
 #'
-#' @format A list with 6 entries:
+#' @format A database with 25 rows of 3 variables
 #' \describe{
-#'   \item{BIOSIS CITATION INDEX}{}
-#'   \item{EBSCO databases}{}
-#'   \item{Scopus}{}
-#'   \item{Zoological Record}{}
-#'   \item{Web of Science - All Databases}{}
-#'   \item{MEDLINE}{}
+#'   \item{Platform}{the platform used to access a database}
+#'   \item{Database}{the database accessed}
+#'   \item{Download_method}{the way results must be downloaded for litsearchr to recognize the format}
 #' }
-"importable_databases"
+"database_list"
 
 
 #' Languages litsearchr can write searches in

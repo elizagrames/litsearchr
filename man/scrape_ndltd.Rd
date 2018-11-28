@@ -4,11 +4,14 @@
 \alias{scrape_ndltd}
 \title{Scrapes results from the NDLTD Global ETD Search}
 \usage{
-scrape_ndltd(search_terms, writefile = TRUE, verbose = TRUE,
-  languages = "English", stemming = TRUE, exactphrase = TRUE)
+scrape_ndltd(search_terms = NULL, URL = NULL, writefile = TRUE,
+  verbose = TRUE, languages = "English", stemming = TRUE,
+  exactphrase = TRUE, where = c("description", "title"))
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms}
+
+\item{URL}{the URL from conducting a search in the database}
 
 \item{writefile}{if TRUE, writes results to a .csv file in the working directory}
 
