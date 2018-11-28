@@ -6,7 +6,7 @@
 \usage{
 scrape_ndltd(search_terms = NULL, URL = NULL, writefile = TRUE,
   verbose = TRUE, languages = "English", stemming = TRUE,
-  exactphrase = TRUE, where = c("description", "title"))
+  exactphrase = TRUE, where = "description")
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms}
@@ -22,6 +22,11 @@ scrape_ndltd(search_terms = NULL, URL = NULL, writefile = TRUE,
 \item{stemming}{if TRUE, keywords will be truncated and stem from root word forms (only if language is English)}
 
 \item{exactphrase}{if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)}
+
+\item{where}{where in a thesis or dissertation to search (options are description or title)}
+}
+\value{
+a data frame containing the results of the search
 }
 \description{
 Scrapes hits from the Networked Digital Library of Theses and Dissertations Global ETD Search.

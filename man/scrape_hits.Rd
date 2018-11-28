@@ -10,8 +10,11 @@ scrape_hits(search_terms = NULL, URL = NULL, database = c("oatd",
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms.}
 
-\item{database}{a character with the database to scrape.
-#' @param verbose if TRUE, prints which page of hits it has finished}
+\item{URL}{the URL from searching in OATD, NDLTD, or OpenThesis}
+
+\item{database}{a character with the database to scrape.}
+
+\item{verbose}{if TRUE, prints which page of hits it has finished}
 
 \item{writefile}{if TRUE, writes results to a .csv file in the working directory}
 }

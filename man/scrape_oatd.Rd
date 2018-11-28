@@ -23,6 +23,9 @@ scrape_oatd(search_terms = NULL, URL = NULL, writefile = TRUE,
 
 \item{exactphrase}{if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)}
 }
+\value{
+a data frame containing the results of the search
+}
 \description{
 Scrapes hits from OATD. Query length is limited by server requests, which can be triggered either by excessively long queries.
 }
