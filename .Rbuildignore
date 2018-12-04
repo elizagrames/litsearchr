@@ -8,5 +8,7 @@
 .litsearchr.Rproj
 src/
 revdep/
+_testinglitsearchr/*
 _testinglitsearchr/
 to-do-list.md
+

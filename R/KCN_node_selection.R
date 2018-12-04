@@ -189,3 +189,63 @@ make_ngram_graph <- function(graph, min_ngrams=2, unigrams=FALSE){
   return(ngram_graph)
 }
 
+#' Condense a keyword co-occurrence network by removing irrelevant terms
+#' @description Eliminates the rejected terms from the manual keyword review and rebuilds the network with the eliminated terms removing, making it recentralize on the terms marked as relevant in the manual stage.
+#' @param full_graph the full graph produced with create_network()
+#' @param rejected_terms a character vector of terms rejected in the manual review stage
+#' @param previous_rejected_terms a list of character vectors rejected in previous manual reviews. If this is the first iteration, it should be set to NULL.
+#' @return the full graph with the rejected term nodes deleted
+condense_network <- function(full_graph, rejected_terms, previous_rejected_terms=NULL){
+  old_nodenames <- names(igraph::V(full_graph))
+
+  for(i in 1:length(rejected_terms)){
+    position <- which(old_nodenames==rejected_terms[i])
+    if(i==1){removals <- position}
+    if(i>1){removals <- append(removals, position)}
+  }
+
+  if(!is.null(previous_rejected_terms)){
+    for(i in 1:length(previous_rejected_terms)){
+      terms <- previous_rejected_terms[[i]]
+      for(j in 1:length(terms)){
+      position <- which(old_nodenames==terms[j])
+      removals <- append(removals, position)
+      }
+    }
+
+  }
+
+  new_graph <- igraph::delete.vertices(full_graph, removals)
+  return(new_graph)
+
+}
+
+
+#' Extracts new terms from a condensed network for manual consideration
+#' @description Given a reduced graph after reducing the new graph returned from condense_network() and the previous reduced graphs considered, this function outputs any new search terms found in the condensed network that haven't been previously considered.
+#' @param reduced_graph the reduced form of the condensed graph
+#' @param previous_graphs a list object of any previously considered reduced graphs. If this is the first iteration, this should only be the reduced graph of the full network.
+#' @return a character vector of new search terms to consider
+get_condensed_terms <- function(reduced_graph, previous_graphs){
+
+  for(i in 1:length(previous_graphs)){
+    if(i==1){
+      considered_terms <- names(igraph::V(previous_graphs[[i]]))
+      }
+    if(i>1){
+      considered_terms <- unique(append(considered_terms, names(igraph::V(previous_graphs[[i]]))))
+    }
+  }
+
+  search_terms <- litsearchr::get_keywords(reduced_graph=reduced_graph, savekeywords = FALSE, makewordle = FALSE)
+
+  new_terms <- c()
+  for(i in 1:length(search_terms)){
+    if(sum(which(stringr::str_detect(considered_terms, search_terms[i])==TRUE))==0){
+      new_terms <- append(new_terms, search_terms[i])
+    }
+  }
+
+  return(new_terms)
+
+}

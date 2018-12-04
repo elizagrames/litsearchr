@@ -34,9 +34,9 @@ detect_database <- function(df){
 
 }
 
-#' Print databases/platform exports that litsearchr can import
+#' Print databases/platform exports that litsearchr can import or search in
 #' @description Prints a data frame of platforms, databases, and download methods that litsearchr recognizes
-importable_databases <- function(){
+usable_databases <- function(){
   print(litsearchr::database_list)
 }
 
@@ -57,8 +57,6 @@ import_results <- function(directory, remove_duplicates = TRUE, clean_dataset = 
     }
   }
 
-  directory <- "./repeated_hits/"
-
   import_files <- paste(directory, list.files(path = directory),
                         sep = "")
   for (i in 1:length(import_files)) {
@@ -70,6 +68,10 @@ import_results <- function(directory, remove_duplicates = TRUE, clean_dataset = 
       df <- read.table(import_files[i], sep = "\t", header = TRUE,
                        comment.char = "#", na.strings = ".", stringsAsFactors = FALSE,
                        quote = "", fill = TRUE)
+    }
+    if (stringr::str_detect(import_files[i], ".xls") == TRUE) {
+      df <- xlsx::read.xlsx(import_files[i], 1)
+      df[] <- lapply(df, function(x) if(is.factor(x)) as.character(x) else x)
     }
 
     if (stringr::str_detect(paste(colnames(df), collapse=" "), "\\.\\.")){
