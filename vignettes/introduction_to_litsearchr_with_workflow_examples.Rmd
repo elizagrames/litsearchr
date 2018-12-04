@@ -57,7 +57,6 @@ All results of naive searches should be placed into a single directory. The resu
 
 ```{r}
 list.files("../inst/extdata/")
-
 ```
 
 Now that we have naive search results, we need to import these to our working environment with the function import_results(). This function will identify any .txt, .csv, or .xls files in a dataset and import them accordingly. If importing .xls files, the gdata package is required. After loading in files, import_results() identifies the database that produced the downloaded file (currently, only BIOSIS, Zoological Record, Scopus, and ProQuest are supported), and standardizes their columns. 
@@ -75,7 +74,6 @@ All the files from the directory are bound to a single dataset which records the
 BBWO_import <- litsearchr::import_results("../inst/extdata/", remove_duplicates = FALSE, clean_dataset = TRUE, save_full_dataset = FALSE)
 BBWO_data <- litsearchr::deduplicate(BBWO_import, use_abstracts = FALSE, use_titles=TRUE, title_method = "tokens", title_sim = .8)
 BBWO_data <- litsearchr::deduplicate(BBWO_import, use_abstracts = TRUE, use_titles=FALSE, doc_sim = .8)
-
 ```
 
 
@@ -89,22 +87,18 @@ The amount of time this function takes depends on the size of your database; for
 
 ```{r}
 raked_keywords <- litsearchr::extract_terms(BBWO_data, type="RAKE", new_stopwords = NULL, min_freq = 1, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
-
 # When we check the results, some of these are definitely not important keywords (e.g. "eglin air force base")
 # But, not to worry, these sorts of keywords will disappear once we check their frequency in the entire dataset later
 head(raked_keywords, 20)
-
 ```
 
 Next, we want to extract the author/database-tagged keywords from our naive search.
 
 ```{r}
 real_keywords <- litsearchr::extract_terms(BBWO_data, ngrams = TRUE, n=2, type ="tagged")
-
 # At first glance, these keywords seem more relevant, but are also pretty vague (e.g. "abiotic factors")
 # This is why a combined approach is best to really capture the full range of possible keywords
 head(real_keywords, 20)
-
 ```
 
 In order to create a document-term matrix that only includes our potential keywords, we need to make a dictionary object to pass to the quanteda package. We also need to create a corpus object for it to read. The corpus and dictionary are passed to create_dfm, which calls the quanteda function dfm(). This creates a document-term matrix (quanteda calls it a document-feature matrix) that contains each document as a row and each term as a column with a count of the number of times the term is used in the corresponding spot. This matrix is going to be the basis for determining which keywords are central to the field. 
@@ -112,12 +106,9 @@ In order to create a document-term matrix that only includes our potential keywo
 ```{r}
 BBWO_dict <- litsearchr::make_dictionary(terms=list(raked_keywords, real_keywords))
 BBWO_corpus <- litsearchr::make_corpus(BBWO_data)
-
 BBWO_dfm <- litsearchr::create_dfm(BBWO_corpus, my_dic=BBWO_dict)
-
 # If you want to see the most frequently occurring terms, call the topfeatures() function from the quanteda package. 
 quanteda::topfeatures(BBWO_dfm, 20)
-
 ```
 
 ## Step 3: Create keyword co-occurrence network and select nodes
@@ -152,8 +143,6 @@ For the cumulative method, the only decision is what percent of the total networ
 
 ```{r}
 cutoffs_spline <- litsearchr::find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 4, diagnostics = TRUE, importance_method = "strength")
-
-
 cutoffs_cumulative <- litsearchr::find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .8, diagnostics = TRUE, importance_method = "strength")
 ```
 
@@ -162,14 +151,10 @@ Both the spline and cumulative fits seem pretty good and are roughly in agreemen
 
 ```{r}
 reduced_graph <- litsearchr::reduce_graph(BBWO_graph, cutoff_strength = cutoffs_spline[1])
-
 # note: you need to have the wordcloud package installed to use makewordle
 search_terms <- litsearchr::get_keywords(reduced_graph, savekeywords = FALSE, makewordle = TRUE)
-
 length(search_terms)
-
 head(sort(search_terms), 20)
-
 ```
 
 ## Step 4: Group terms into concepts
@@ -183,9 +168,7 @@ At this stage, you can also add in additional terms that you've thought of that 
 ```{r}
 #write.csv(search_terms, "./BBWO-potential-keywords.csv")
 #read.csv("./BBWO-potential-keywords-grouped.csv", stringsAsFactors=FALSE)
-
 grouped_keywords <- litsearchr::BBWO_grouped_keywords
-
 # We append our original search terms for a category with the newly identified terms
 process_group <- unique(append(
   c("nest success", "mechanism"),
@@ -194,13 +177,10 @@ process_group <- unique(append(
 fire_group <- unique(append(
   c("fire","burn", "wildfire"),
   grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "fire"))]))
-
 bird_group <- unique(append(
   c("woodpecker", "sapsucker", "Veniliornis", "Picoides", "Dendropicoides", "Melanerpes", "Sphyrapicus"),
   grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "bird"))]))
-
 my_search_terms <- list(process_group, fire_group, bird_group)
-
 ```
 
 ## Step 5: Write Boolean searches
@@ -222,30 +202,22 @@ To write English language searches, set languages to "English". Writing stemmed 
 
 ```{r}
 # translate_API <- readLines("~/Google-Translate-API")
-
 my_key_topics <- c("biology", "conservation", "ecology", "forestry")
-
 # Depending on how many languages you choose to search in and how many search terms you have, this can take some time
 # If verbose is set to TRUE, as each language is written, the console will print "Russian is written!" etc...
 # "All done!" will print when all languages are written
 litsearchr::choose_languages(lang_data=litsearchr::get_language_data(key_topics = my_key_topics)[1:10,])
-
 litsearchr::language_graphs(lang_data = litsearchr::get_language_data(key_topics = my_key_topics), no_return = 15, key_topics = my_key_topics)
-
 my_search <- litsearchr::write_search(groupdata = my_search_terms, 
                                       languages = c("English"), stemming = TRUE,
                                       exactphrase = TRUE, writesearch = FALSE, verbose = TRUE)
-
-
 ```
 
 
 Now we can inspect our written searches. Non-english characters will be in unicode, but if you open them in a web browser, you can copy and paste them into search databases (assuming you have the appropriate fonts on your computer to display them). Alternatively, you can change writesearch to TRUE in the code above and a plain text file will be saved to your working directory. 
 
 ```{r}
-
 my_search
-
 ```
 
 # References

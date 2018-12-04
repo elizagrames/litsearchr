@@ -10,4 +10,4 @@ This is an initial submission.
 There were no ERRORs or WARNINGs or NOTEs.
 
 ## Downstream dependencies
-I also ran R CMD check on downstream dependencies. All packages passed.
+There are currently no downstream dependencies for this package.

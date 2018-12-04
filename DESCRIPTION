@@ -30,6 +30,7 @@ Suggests:
     wordcloud,
     knitr,
     rmarkdown,
-    rgl
+    rgl,
+    xlsx
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
