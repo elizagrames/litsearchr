@@ -4,12 +4,12 @@ Title: Automated Search Term Selection and Search Strategy for Systematic Review
 Version: 0.1.0
 Author: Eliza Grames, Andrew Stillman, Carolyn Mills, Morgan Tingley, Chris Elphick
 Maintainer: Eliza Grames <eliza.grames@uconn.edu>
-Description: searchr automates the process of choosing search terms and writing search 
+Description: litsearchr automates the process of choosing search terms and writing search 
     strategies for systematic reviews. It determines which keywords are most important 
-    in a field of research based on a naive search of scientific databases including
-    Scopus, BIOSIS, Zoological Record, and ProQuest. After keywords are selected and 
-    manually grouped into concept categories, searchr writes Boolean searches in up to 
-    53 different languages with stemming support for English.
+    in a field of research based on a naive search of databases. After keywords are selected 
+    and manually grouped into concept categories, litsearchr writes Boolean searches in up to 
+    53 different languages with stemming support for English. It can also check the results 
+    of a search strategy against known relevant articles to get search performance metrics.
 License: GPL-3
 LazyData: true
 RoxygenNote: 6.1.0
