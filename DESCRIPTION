@@ -4,12 +4,20 @@ Title: Automated Search Term Selection and Search Strategy for Systematic Review
 Version: 0.1.0
 Author: Eliza Grames, Andrew Stillman, Carolyn Mills, Morgan Tingley, Chris Elphick
 Maintainer: Eliza Grames <eliza.grames@uconn.edu>
-Description: litsearchr automates the process of choosing search terms and writing search 
-    strategies for systematic reviews. It determines which keywords are most important 
-    in a field of research based on a naive search of databases. After keywords are selected 
-    and manually grouped into concept categories, litsearchr writes Boolean searches in up to 
-    53 different languages with stemming support for English. It can also check the results 
-    of a search strategy against known relevant articles to get search performance metrics.
+Description: Systematic review, meta-analysis, and other forms of evidence 
+    synthesis require researchers to identify the body of evidence relevant 
+    to their research question. Partially automating evidence synthesis 
+    would reduce the amount of human time and effort needed to conduct 
+    a systematic review and reduce bias in keyword selection when researchers 
+    develop search strategies. This package facilitates quick, objective, 
+    reproducible search strategy development using text-mining and 
+    keyword co-occurrence networks to identify important terms to include 
+    in a search strategy. It can automatically write Boolean search strings 
+    in up to 53 different languages, with stemming support for English.
+    It also automatically assembles and deduplicates search results from 
+    a set of commonly used databases for systematic reviews. To assess the 
+    quality of a search, it can also check the results of a search against 
+    a set of known, relevant articles to get performance metrics.
 License: GPL-3
 LazyData: true
 RoxygenNote: 6.1.0

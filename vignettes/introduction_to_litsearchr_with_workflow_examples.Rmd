@@ -72,8 +72,8 @@ All the files from the directory are bound to a single dataset which records the
 
 ```{r}
 BBWO_import <- litsearchr::import_results("../inst/extdata/", remove_duplicates = FALSE, clean_dataset = TRUE, save_full_dataset = FALSE)
-BBWO_data <- litsearchr::deduplicate(BBWO_import, use_abstracts = FALSE, use_titles=TRUE, title_method = "tokens", title_sim = .8)
-BBWO_data <- litsearchr::deduplicate(BBWO_import, use_abstracts = TRUE, use_titles=FALSE, doc_sim = .8)
+BBWO_data1 <- litsearchr::deduplicate(BBWO_import, use_abstracts = FALSE, use_titles=TRUE, title_method = "tokens", title_sim = .8)
+BBWO_data <- litsearchr::deduplicate(BBWO_data1, use_abstracts = TRUE, use_titles=FALSE, doc_sim = .8)
 ```
 
 
@@ -142,7 +142,7 @@ First, we run the spline method and save those cutoff points. Each knot is a pot
 For the cumulative method, the only decision is what percent of the total network node strength you want to capture. In this case, we left it at the default of 80%. Diagnostics for the cumulative curve are not actually diagnostic and simply show the cutoff point in terms of rank and strength. 
 
 ```{r}
-cutoffs_spline <- litsearchr::find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 4, diagnostics = TRUE, importance_method = "strength")
+cutoffs_spline <- litsearchr::find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 3, diagnostics = TRUE, importance_method = "strength")
 cutoffs_cumulative <- litsearchr::find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .8, diagnostics = TRUE, importance_method = "strength")
 ```
 

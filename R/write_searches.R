@@ -185,11 +185,26 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
 
           if(stemming==TRUE){
             stemyes <- "stemmed-"
-            translated_terms <- current_group[[1]]
-
             for (m in 1:length(current_group[[1]])){
-              translated_terms[m] <- litsearchr::should_stem(current_group[[1]][m])
+              prestar[m] <- litsearchr::should_stem(current_group[[1]][m])
+              if(m==length(current_group[[1]])){prestar <- unique(prestar)}
             }
+
+            for(n in 1:length(prestar)){
+              if(n==1){redundant <- c()}
+              if(stringr::str_detect(paste(prestar[-n], collapse=" "), prestar[n])){
+                detections <- which(stringr::str_detect(prestar, prestar[n])==TRUE)
+                redundant <- append(redundant, detections[-which(detections==n)])
+              }
+              if(n==length(prestar)){
+                redundant <- unique(redundant)
+                prestar <- prestar[-redundant]
+              }
+            }
+
+            translated_terms <- unique(paste(prestar, "*", sep=""))
+
+
 
           }
           each_line <- paste("\\(", "\\(", translated_terms[1],  "*", "\\)")
@@ -255,16 +270,29 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
 
         if (current_lang=="English"){
           if(stemming==FALSE){
-
             translated_terms <- current_group[[1]]
           }
           if(stemming==TRUE){
             stemyes <- "stemmed-"
-            translated_terms <- current_group[[1]]
+
             for (m in 1:length(current_group[[1]])){
-              prestar <- should_stem(current_group[[1]][m])
-              translated_terms[m] <- paste(prestar, "*", sep="")
+              prestar[m] <- litsearchr::should_stem(current_group[[1]][m])
+              if(m==length(current_group[[1]])){prestar <- unique(prestar)}
             }
+
+            for(n in 1:length(prestar)){
+              if(n==1){redundant <- c()}
+              if(stringr::str_detect(paste(prestar[-n], collapse=" "), prestar[n])){
+                detections <- which(stringr::str_detect(prestar, prestar[n])==TRUE)
+                redundant <- append(redundant, detections[-which(detections==n)])
+              }
+              if(n==length(prestar)){
+                redundant <- unique(redundant)
+                prestar <- prestar[-redundant]
+              }
+            }
+
+            translated_terms <- unique(paste(prestar, "*", sep=""))
 
           }
           each_line <- paste("\\(", "\"", translated_terms[1], "\"", sep="")
