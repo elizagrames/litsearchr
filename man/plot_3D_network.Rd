@@ -17,3 +17,6 @@ an RGL plot of the graph
 \description{
 Plots a keyword co-occurrence network as an interactive, 3D RGL object. Doesn't really serve any purpose other than seeing node density, but it looks cool. Node sizes are the square root of node strength; edge widths are fixed at .25. Depends on the rgl package.
 }
+\examples{
+plot_3D_network(reduce_graph(litsearchr::BBWO_graph, 15, importance_method="strength"))
+}

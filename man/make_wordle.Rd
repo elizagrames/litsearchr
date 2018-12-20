@@ -17,3 +17,6 @@ plots a wordcloud
 \description{
 Makes a wordcloud of keywords identified as important and changes size of text to correspond to node strength.
 }
+\examples{
+make_wordle(reduce_graph(litsearchr::BBWO_graph, 15, importance_method="strength"))
+}

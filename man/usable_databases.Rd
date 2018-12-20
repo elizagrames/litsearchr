@@ -9,3 +9,6 @@ usable_databases()
 \description{
 Prints a data frame of platforms, databases, and download methods that litsearchr recognizes
 }
+\examples{
+usable_databases()
+}

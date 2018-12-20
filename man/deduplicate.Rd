@@ -5,16 +5,17 @@
 \title{Remove duplicate articles}
 \usage{
 deduplicate(df, use_abstracts = TRUE, use_titles = TRUE,
-  title_method = "tokens", doc_sim = 0.85, title_sim = 0.95)
+  method = c("quick", "levenshtein", "tokens"), doc_sim = 0.85,
+  title_sim = 0.95)
 }
 \arguments{
 \item{df}{a data frame created with import_scope()}
 
-\item{use_abstracts}{if TRUE, tokenizes and computes similarity scores for all abstracts}
+\item{use_abstracts}{if TRUE, computes similarity scores for all abstracts}
 
 \item{use_titles}{if TRUE, computes similarity based on titles}
 
-\item{title_method}{if "tokens", tokenizes titles to compute similarity; if "quick", removes punctuation and capitalization then removes exact duplicates}
+\item{method}{if "tokens", tokenizes titles to compute similarity; if "quick", removes punctuation and capitalization then removes exact duplicates; if "levenshtein", uses levenshtein distances to compute similarity}
 
 \item{doc_sim}{the minimum similarity between two abstracts to be marked as duplicated}
 
@@ -24,5 +25,8 @@ deduplicate(df, use_abstracts = TRUE, use_titles = TRUE,
 a data frame with duplicates removed
 }
 \description{
-Uses similarity of tokenized abstracts and titles to detect duplicates and remove them from the dataset.
+Uses similarity of abstracts and titles to detect duplicates and remove them from the dataset.
+}
+\examples{
+deduplicate(df=litsearchr::BBWO_import, use_abstracts=FALSE, use_titles=TRUE, method="tokens", title_sim=.95)
 }

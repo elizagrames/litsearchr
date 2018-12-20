@@ -4,8 +4,10 @@
 \alias{import_results}
 \title{Import results of a search}
 \usage{
-import_results(directory, remove_duplicates = TRUE,
-  clean_dataset = TRUE, save_full_dataset = FALSE, verbose = TRUE)
+import_results(directory, remove_duplicates = FALSE,
+  duplicate_methods = c("tokens", "quick", "levenshtein"),
+  clean_dataset = TRUE, save_full_dataset = FALSE, verbose = TRUE,
+  save_directory = "./")
 }
 \arguments{
 \item{directory}{the full path to the directory in which the searches are saved}
@@ -17,10 +19,15 @@ import_results(directory, remove_duplicates = TRUE,
 \item{save_full_dataset}{if TRUE, saves a .csv of the full dataset in the working directory}
 
 \item{verbose}{if TRUE, prints which file is currently being imported}
+
+\item{save_directory}{the directory to save results to if save_full_dataset=TRUE}
 }
 \value{
 a data frame of all the search results combined
 }
 \description{
 Imports the results of a search, combines them into a single dataset, and (optionally) removes duplicate hits based on document similarity. Duplicates can be removed subsequently with custom similarity cutoffs using deduplicate() on the full dataset.
+}
+\examples{
+/examples/import_results.R
 }

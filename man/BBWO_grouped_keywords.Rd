@@ -3,18 +3,19 @@
 \docType{data}
 \name{BBWO_grouped_keywords}
 \alias{BBWO_grouped_keywords}
-\title{Grouped keywords for the BBWO vignette}
-\format{A data frame with 429 rows of 2 variables:
-\describe{
-  \item{group}{concept group to which a term belongs}
-  \item{term}{the term or phrase output by litsearchr}
-}}
+\title{Example BBWO document-feature matrix}
+\format{A document-feature matrix with 775 documents and 2 features
+
+Grouped keywords for the BBWO vignette
+
+A dataset containing the keyword groupings used in the
+vignette about Black-backed Woodpecker occupancy of
+post-fire forest systems.}
 \usage{
 BBWO_grouped_keywords
 }
 \description{
-A dataset containing the keyword groupings used in the
-vignette about Black-backed Woodpecker occupancy of
-post-fire forest systems.
+A document-feature matrix containing two example terms
+from the vignette dictionary and imported naive search.
 }
 \keyword{datasets}

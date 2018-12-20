@@ -19,3 +19,6 @@ a plot of the full network structure
 \description{
 Passes plotting parameters to igraph to suppress node names and show the structure of the full network.
 }
+\examples{
+plot_full_network(reduce_graph(litsearchr::BBWO_graph, 15, importance_method="strength"))
+}

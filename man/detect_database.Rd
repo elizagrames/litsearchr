@@ -15,3 +15,6 @@ a character vector with the name of the database or an error that the database w
 \description{
 Uses the column names from databases to identify which database a search is from. This function can detect searches done in Web of Science databases (BIOSIS, Zoological Record, or MEDLINE), Scopus, and any EBSCO-indexed database.
 }
+\examples{
+detect_database(df=scopus_example)
+}
