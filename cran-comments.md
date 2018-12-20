@@ -1,5 +1,9 @@
 ## Resubmission
-This is a resubmission. I corrected the DESCRIPTION so that the Description field doesn't start with the name of the package. There is not a reference about the method that I can add at this time; co-authors are currently revising the manuscript before I submit it for peer review.
+This is a resubmission. I made the following changes:
+ - Every function has an executable example except for those requiring an API or that require internet access to scrape html.
+ - I changed the default in all functions to not save output and the examples use tempdir().
+ - I added in some new options within a couple of functions (e.g. deduplicate); I hope it was okay to make changes like that during the submission process.
+ - I also deleted a few redundant or unnecessary functions to reduce the package size. 
 
 ## Test environments
 * local OS X 10.14.1 install, R 3.5.1
