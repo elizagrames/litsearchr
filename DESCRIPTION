@@ -2,7 +2,7 @@ Package: litsearchr
 Type: Package
 Title: Automated Search Term Selection and Search Strategy for Systematic Reviews
 Version: 0.1.0
-Author: Eliza Grames, Andrew Stillman, Carolyn Mills, Morgan Tingley, Chris Elphick
+Author: Eliza Grames, Andrew Stillman, Morgan Tingley, Chris Elphick
 Maintainer: Eliza Grames <eliza.grames@uconn.edu>
 Description: Systematic review, meta-analysis, and other forms of evidence 
     synthesis require researchers to identify the body of evidence relevant 
