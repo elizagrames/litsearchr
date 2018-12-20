@@ -1,3 +1,12 @@
+#' Example BBWO document-feature matrix
+#'
+#' A document-feature matrix containing two example terms
+#' from the vignette dictionary and imported naive search.
+#'
+#' @format A document-feature matrix with 775 documents and 2 features
+#'
+
+
 #' Grouped keywords for the BBWO vignette
 #'
 #' A dataset containing the keyword groupings used in the

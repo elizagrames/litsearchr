@@ -3,6 +3,7 @@
 #' @description Uses the column names from databases to identify which database a search is from. This function can detect searches done in Web of Science databases (BIOSIS, Zoological Record, or MEDLINE), Scopus, and any EBSCO-indexed database.
 #' @param df an exported dataset from any supported database
 #' @return a character vector with the name of the database or an error that the database was not identified
+#' @examples detect_database(df=scopus_example)
 detect_database <- function(df){
   database <- ""
   database_signature <- paste(df[1,], collapse=" ")
@@ -36,6 +37,7 @@ detect_database <- function(df){
 
 #' Print databases/platform exports that litsearchr can import or search in
 #' @description Prints a data frame of platforms, databases, and download methods that litsearchr recognizes
+#' @examples usable_databases()
 usable_databases <- function(){
   print(litsearchr::database_list)
 }
@@ -47,9 +49,11 @@ usable_databases <- function(){
 #' @param clean_dataset if TRUE, removes excess punctuation and standardizes keywords
 #' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
 #' @param verbose if TRUE, prints which file is currently being imported
+#' @param save_directory the directory to save results to if save_full_dataset=TRUE
 #' @return a data frame of all the search results combined
-import_results <- function(directory, remove_duplicates = TRUE, clean_dataset = TRUE,
-                           save_full_dataset = FALSE, verbose = TRUE){
+#' @examples /examples/import_results.R
+import_results <- function(directory, remove_duplicates = FALSE, duplicate_methods=c("tokens", "quick", "levenshtein"), clean_dataset = TRUE,
+                           save_full_dataset = FALSE, verbose = TRUE, save_directory="./"){
   if(save_full_dataset==TRUE){
     if(utils::menu(c("yes", "no"),
                    title="This will save the full dataset to a .csv file in your working directory. Do you want litsearchr to save the full dataset?")==2){
@@ -59,8 +63,25 @@ import_results <- function(directory, remove_duplicates = TRUE, clean_dataset = 
 
   import_files <- paste(directory, list.files(path = directory),
                         sep = "")
+
+  for(i in 1:length(import_files)){
+    if(i==1){removals <- c()}
+    if(stringr::str_detect(import_files[i], ".csv")){}else{
+      if(stringr::str_detect(import_files[i], ".txt")){}else{
+        if(stringr::str_detect(import_files[i], ".xls")==FALSE){
+          print(paste("File format is not recognized. Skipping", import_files[i]))
+          removals <- append(removals, i)}}
+    }
+    if(i==length(import_files)){
+      if(length(removals) > 0){
+      import_files <- import_files[-removals]
+      }
+    }
+  }
+
   for (i in 1:length(import_files)) {
     df <- c()
+
     if (stringr::str_detect(import_files[i], ".csv") == TRUE) {
       df <- read.csv(import_files[i], header = TRUE, stringsAsFactors = FALSE)
     }
@@ -402,12 +423,12 @@ import_results <- function(directory, remove_duplicates = TRUE, clean_dataset = 
 
 
   if (save_full_dataset == TRUE) {
-    write.csv(search_hits, "./full_dataset.csv")
+    write.csv(search_hits, paste(save_directory, "full_dataset.csv", sep=""))
     print("Complete dataset written to .csv file.")
   }
   if (remove_duplicates == TRUE) {
     print("Removing duplicates.")
-    search_hits <- deduplicate(search_hits)
+    search_hits <- deduplicate(search_hits, method = duplicate_methods)
   }
   if (clean_dataset == TRUE) {
     print("Cleaning dataset.")
@@ -417,21 +438,24 @@ import_results <- function(directory, remove_duplicates = TRUE, clean_dataset = 
 }
 
 #' Remove duplicate articles
-#' @description Uses similarity of tokenized abstracts and titles to detect duplicates and remove them from the dataset.
+#' @description Uses similarity of abstracts and titles to detect duplicates and remove them from the dataset.
 #' @param df a data frame created with import_scope()
-#' @param use_abstracts if TRUE, tokenizes and computes similarity scores for all abstracts
+#' @param use_abstracts if TRUE, computes similarity scores for all abstracts
 #' @param use_titles if TRUE, computes similarity based on titles
-#' @param title_method if "tokens", tokenizes titles to compute similarity; if "quick", removes punctuation and capitalization then removes exact duplicates
+#' @param method if "tokens", tokenizes titles to compute similarity; if "quick", removes punctuation and capitalization then removes exact duplicates; if "levenshtein", uses levenshtein distances to compute similarity
 #' @param doc_sim the minimum similarity between two abstracts to be marked as duplicated
 #' @param title_sim the minimum similarity between two titles to be marked as duplicated
 #' @return a data frame with duplicates removed
-deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, title_method="tokens", doc_sim=.85, title_sim=.95){
+#' @examples deduplicate(df=litsearchr::BBWO_import, use_abstracts=FALSE, use_titles=TRUE, method="tokens", title_sim=.95)
+deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, method=c("quick", "levenshtein", "tokens"), doc_sim=.85, title_sim=.95){
 
   remove_abstracts <- c()
   remove_titles <- c()
 
   if (use_abstracts==TRUE){
-    dfA <- as.data.frame(cbind(id=as.character(df$id), text=as.character(df$text)))
+
+    if(method=="tokens"){
+      dfA <- as.data.frame(cbind(id=as.character(df$id), text=as.character(df$text)))
     dfA$text <- as.character(dfA$text)
     full_dfm <- quanteda::dfm(make_corpus(dfA),
                               remove = quanteda::stopwords("english"),
@@ -451,14 +475,41 @@ deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, title_method="t
     indices$doc1 <- rownames(sim_mat)[indices$ind.row]
     indices$doc2 <- colnames(sim_mat)[indices$ind.col]
     remove_abstracts <- sort(unique(as.numeric(gsub("text", "", indices$doc2))))
+    }
+
+    if(method=="quick"){
+      remove_abstracts <- which(duplicated(tolower(tm::removePunctuation(df$text)))==TRUE)
+    }
+
+    if(method=="levenshtein"){
+      lev_sim <- utils::adist(df$text)
+      x <- df$text
+      y <- df$text
+
+      for(i in 1:length(x)){
+        x[i] <- paste(quanteda::tokens_remove(quanteda::tokens(x[i]), litsearchr::custom_stopwords), collapse=" ")
+        for(j in 1:length(y)){
+          y[j] <- paste(quanteda::tokens_remove(quanteda::tokens(y[j]), litsearchr::custom_stopwords), collapse=" ")
+          lev_sim[i,j] <- 1 - utils::adist(x[i], y[j])/max(nchar(x[i]), nchar(y[j]))
+        }
+      }
+
+      lev_sim[lower.tri(lev_sim, diag=TRUE)] <- NA
+
+      indices <- data.frame(ind = which(lev_sim > doc_sim, arr.ind=TRUE))
+
+      remove_abstracts <- sort(unique(as.numeric(indices$ind.col)))
+    }
   }
 
+
+
   if (use_titles==TRUE){
-    if (title_method=="quick"){
+    if (method=="quick"){
       remove_titles <- which(duplicated(tolower(tm::removePunctuation(df$title)))==TRUE)
     }
 
-    if (title_method=="tokens"){
+    if (method=="tokens"){
 
       dfT <- as.data.frame(cbind(id=as.character(df$id), text=as.character(df$title)))
       dfT$text <- as.character(dfT$text)
@@ -482,6 +533,26 @@ deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, title_method="t
       remove_titles <- sort(unique(as.numeric(gsub("text", "", indices$doc2))))
 
     }
+    if(method=="levenshtein"){
+      lev_sim <- adist(df$title)
+      x <- df$title
+      y <- df$title
+
+      for(i in 1:length(x)){
+        x[i] <- paste(quanteda::tokens_remove(quanteda::tokens(x[i]), custom_stopwords), collapse=" ")
+        for(j in 1:length(y)){
+          y[j] <- paste(quanteda::tokens_remove(quanteda::tokens(y[j]), custom_stopwords), collapse=" ")
+          lev_sim[i,j] <- 1 - adist(x[i], y[j])/max(nchar(x[i]), nchar(y[j]))
+        }
+      }
+
+      lev_sim[lower.tri(lev_sim, diag=TRUE)] <- NA
+
+      indices <- data.frame(ind = which(lev_sim > title_sim, arr.ind=TRUE))
+
+      remove_titles <- sort(unique(as.numeric(indices$ind.col)))
+    }
+
   }
 
   remove_documents <- unique(append(remove_abstracts, remove_titles))
@@ -496,6 +567,7 @@ deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, title_method="t
 #' @description Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
 #' @param df a data frame from import_scope() to deduplicate
 #' @return a data frame with keyword punctuation standardized
+#' @examples clean_keywords(df=litsearchr::BBWO_import)
 clean_keywords <- function(df){
   df$keywords <- tolower(as.character(df$keywords))
   removals <- c("\\(",
@@ -529,6 +601,11 @@ clean_keywords <- function(df){
   for (i in 1:length(replacements)){
     df$keywords <- gsub(replacements[i], df$keywords, replacement=";")
   }
+
+  df$keywords <- gsub("  ", " ", df$keywords)
+  df$keywords <- gsub("; ", ";", df$keywords)
+  df$keywords <- gsub(" ;", ";", df$keywords)
+  df$keywords <- gsub(";;", ";", df$keywords)
 
   return(df)
 }

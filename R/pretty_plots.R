@@ -3,6 +3,7 @@
 #' @param graph a reduced graph of only important nodes
 #' @param colorchoice a vector listing colors to use for the wordcloud
 #' @return plots a wordcloud
+#' @examples make_wordle(reduce_graph(litsearchr::BBWO_graph, 15, importance_method="strength"))
 make_wordle <- function(graph, colorchoice=c("#006E6D")){
   wordle <- as.data.frame(cbind(names(igraph::V(graph)), igraph::strength(graph)))
   colnames(wordle) <- c("label", "size")
@@ -22,6 +23,7 @@ make_wordle <- function(graph, colorchoice=c("#006E6D")){
 #' @param graphcolor a color choice for the graph edges and node frames
 #' @param color_gradient if TRUE, the intensity of the color for each node scales with node strength
 #' @return a plot of the full network structure
+#' @examples plot_full_network(reduce_graph(litsearchr::BBWO_graph, 15, importance_method="strength"))
 plot_full_network <- function(graph, graphcolor="#006E6D", color_gradient=TRUE){
   node_color <- graphcolor
   if (color_gradient==TRUE){
@@ -45,6 +47,7 @@ plot_full_network <- function(graph, graphcolor="#006E6D", color_gradient=TRUE){
 #' @param graph an igraph object
 #' @param graphcolor a valid color name or hex code for the graph nodes
 #' @return an RGL plot of the graph
+#' @examples plot_3D_network(reduce_graph(litsearchr::BBWO_graph, 15, importance_method="strength"))
 plot_3D_network <- function(graph, graphcolor="#006E6D"){
   if (!requireNamespace("rgl", quietly = TRUE)){
     stop("rgl needed for this function to work. Please install it.",
