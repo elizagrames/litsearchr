@@ -23,5 +23,5 @@ a list of potential keywords to consider
 Extracts keywords identified as important.
 }
 \examples{
-get_keywords(reduce_graph(litsearchr::BBWO_graph), savekeywords=FALSE, makewordle=FALSE)
+get_keywords(reduce_graph(litsearchr::BBWO_graph, cutoff_strength=15))
 }

@@ -18,5 +18,5 @@ a data frame of node strengths, ranks, and names
 Selects only the node strength data from a graph.
 }
 \examples{
-make_importance(graph=litsearchr::BBWO_graph, importance_method="strength")
+make_importance(graph=BBWO_graph, importance_method="strength")
 }

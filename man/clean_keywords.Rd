@@ -16,5 +16,5 @@ a data frame with keyword punctuation standardized
 Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
 }
 \examples{
-clean_keywords(df=litsearchr::BBWO_import)
+clean_keywords(BBWO_data)
 }

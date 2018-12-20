@@ -21,5 +21,8 @@ a bubble plot of non-English languages used by journals in a discipline sized by
 Creates a bubble graph showing the number of journals in each language from the languages used by journals in given topics.
 }
 \examples{
-language_graphs(lang_data=get_language_data(key_topics=c("biology", "conservation", "ecology")), no_return=15, key_topics=c("biology", "conservation", "ecology"))
+language_graphs(
+  lang_data=get_language_data(key_topics=c("biology", "conservation", "ecology")),
+  no_return=15,
+  key_topics=c("biology", "conservation", "ecology"))
 }

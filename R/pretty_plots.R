@@ -42,25 +42,3 @@ plot_full_network <- function(graph, graphcolor="#006E6D", color_gradient=TRUE){
                       edge.width=.25, edge.color="black", edge.arrow.size=.25)
 }
 
-#' Plot a co-occurrence network in 3D
-#' @description Plots a keyword co-occurrence network as an interactive, 3D RGL object. Doesn't really serve any purpose other than seeing node density, but it looks cool. Node sizes are the square root of node strength; edge widths are fixed at .25. Depends on the rgl package.
-#' @param graph an igraph object
-#' @param graphcolor a valid color name or hex code for the graph nodes
-#' @return an RGL plot of the graph
-#' @examples plot_3D_network(reduce_graph(litsearchr::BBWO_graph, 15, importance_method="strength"))
-plot_3D_network <- function(graph, graphcolor="#006E6D"){
-  if (!requireNamespace("rgl", quietly = TRUE)){
-    stop("rgl needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
-  if (requireNamespace("rgl", quietly=TRUE)){
-    igraph::rglplot(graph,
-                    layout=igraph::layout.fruchterman.reingold(graph, dim=3),
-                    vertex.label.color="#000000", vertex.label.cex=.5,
-                    vertex.size=sqrt(igraph::strength(graph)),
-                    vertex.color=graphcolor, vertex.frame.color=graphcolor,
-                    edge.width=.25, edge.color="black", edge.arrow.size=.25)
-  }
-
- }
-

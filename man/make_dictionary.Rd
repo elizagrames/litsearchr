@@ -16,5 +16,5 @@ a quanteda dictionary object
 Combines actual keywords and likely keywords into a dictionary object using the as.dictionary function from quanteda.
 }
 \examples{
-make_dictionary(terms=extract_terms(df=BBWO_import, type="RAKE", min_freq=3))
+make_dictionary(terms=extract_terms(BBWO_data, type="RAKE", min_freq=3))
 }

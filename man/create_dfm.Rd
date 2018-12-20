@@ -21,5 +21,7 @@ a quanteda dfm object
 Calls the dfm function from quanteda to create a document-term matrix of terms included in a custom dictionary of potential terms.
 }
 \examples{
-create_dfm(BBWO_corpus, make_dictionary(extract_terms(df=BBWO_import, type="RAKE", min_freq=3)))
+create_dfm(make_corpus(BBWO_data),
+           make_dictionary(extract_terms(
+             df=BBWO_data, type="RAKE", min_freq=3)))
 }

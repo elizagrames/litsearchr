@@ -32,5 +32,9 @@ a list of search strings
 Takes search terms grouped by concept group and writes Boolean searches in which terms within concept groups are separated by "OR" and concept groups are separated by "AND". Searches can be written in up to 53 languages, though the function defaults to only searching the top ten most used languages in a discipline using the choose_languages() function. The default for language options relies on searching a database of journals by discipline based on Ulrich's Periodicals Directory. Only scientific fields are included in this database. All supported languages can be seen with available_languages().
 }
 \examples{
-write_search(groupdata=list(c("black-backed woodpecker", "picoides arcticus"), c("post-fire forest", "time since fire")), languages="English", exactphrase=TRUE, stemming=TRUE, verbose=TRUE, writesearch=FALSE)
+write_search(
+  groupdata=list(c("black-backed woodpecker", "picoides arcticus"),
+                 c("post-fire forest", "time since fire")),
+  languages="English",
+  exactphrase=TRUE, stemming=TRUE, verbose=FALSE, writesearch=FALSE)
 }

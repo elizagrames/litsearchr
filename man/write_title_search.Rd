@@ -16,5 +16,8 @@ a text string
 Given a set of titles, writes a Boolean search that can be used in database title fields to check whether a search strategy retrieves titles.
 }
 \examples{
-write_title_search(c("Cross-scale occupancy dynamics of a postfire specialist in response to variation across a fire regime", "Variation in home-range size of Black-backed Woodpeckers"))
+write_title_search(
+  c("Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+    "Variation in home-range size of Black-backed Woodpeckers"))
 }

@@ -16,5 +16,5 @@ a corpus object
 Calls the corpus function from quanteda to create a corpus from the data frame with search hits.
 }
 \examples{
- make_corpus(data.frame=litsearchr::BBWO_import, stringsAsFactors = FALSE))
+ make_corpus(df=BBWO_data)
 }

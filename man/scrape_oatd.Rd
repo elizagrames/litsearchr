@@ -32,5 +32,5 @@ a data frame containing the results of the search
 Scrapes hits from OATD. Query length is limited by server requests, which can be triggered either by excessively long queries.
 }
 \examples{
-scrape_oatd(search_terms=list(c("black-backed woodpecker", "picoides arcticus")))
+\dontrun{scrape_oatd(search_terms=list(c("black-backed woodpecker", "picoides arcticus")))}
 }

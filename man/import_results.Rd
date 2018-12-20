@@ -14,6 +14,8 @@ import_results(directory, remove_duplicates = FALSE,
 
 \item{remove_duplicates}{if TRUE, removes duplicates based on document similarity}
 
+\item{duplicate_methods}{the method to pass to deduplicate() if remove_duplicates is TRUE}
+
 \item{clean_dataset}{if TRUE, removes excess punctuation and standardizes keywords}
 
 \item{save_full_dataset}{if TRUE, saves a .csv of the full dataset in the working directory}
@@ -29,5 +31,7 @@ a data frame of all the search results combined
 Imports the results of a search, combines them into a single dataset, and (optionally) removes duplicate hits based on document similarity. Duplicates can be removed subsequently with custom similarity cutoffs using deduplicate() on the full dataset.
 }
 \examples{
-/examples/import_results.R
+write.csv(litsearchr::scopus_example, paste(tempdir(), "/scopus.csv", sep=""))
+naive_results <- import_results(paste(tempdir(), "/", sep=""))
+
 }

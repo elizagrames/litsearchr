@@ -34,5 +34,5 @@ a data frame containing the results of the search
 Scrapes hits from the Networked Digital Library of Theses and Dissertations Global ETD Search.
 }
 \examples{
-scrape_ndltd(search_terms=list(c("black backed woodpecker", "picoides arcticus")))
+\dontrun{scrape_ndltd(search_terms=list(c("black backed woodpecker", "picoides arcticus")))}
 }

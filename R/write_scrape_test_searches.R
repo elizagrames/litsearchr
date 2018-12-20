@@ -2,7 +2,7 @@
 #' @description This function chooses the best non-English languages to conduct searches in based on the topic of the review. The topics query a database of non-English language journals compiled from Ulrich; currently only STEM fields are supported.
 #' @param key_topics a character vector of topics related to the topic of the search
 #' @return a data frame of languages used by journals tagged with the key topics and a count of how many journals use that language.
-#'@examples  get_language_data(c("ecology", "conservation", "ornithology"))
+#' @examples  get_language_data(c("ecology", "conservation", "ornithology"))
 get_language_data <- function(key_topics){
   subset_these <- c()
 
@@ -52,7 +52,7 @@ get_language_data <- function(key_topics){
 #' Select search languages
 #' @description Checks which languages returned from get_language_data() are possible to use and returns a character vector of languages to use. Called from inside write_search().
 #' @param lang_data a table of language data exported from get_language_data()
-#'@examples  chooose_languages(lang_data=get_language_data(key_topics = "biology"))
+#'@examples  choose_languages(lang_data=get_language_data(key_topics = "biology"))
 choose_languages <- function(lang_data=get_language_data(key_topics = "biology")){
 
   language_output <- lang_data[,1:2]
@@ -68,7 +68,7 @@ choose_languages <- function(lang_data=get_language_data(key_topics = "biology")
 #' @param no_return the maximum number of languages to include in the graph
 #' @param key_topics a character vector of the same key topics used in choose_languages()
 #' @return a bubble plot of non-English languages used by journals in a discipline sized by count
-#'@example /examples/language_graphs.R
+#'@example inst/examples/language_graphs.R
 language_graphs <- function(lang_data=get_language_data(key_topics=NULL), no_return=15,
                             key_topics=NULL){
   lang_data$x <- as.numeric(row.names(lang_data))^.1
@@ -157,7 +157,7 @@ should_stem <- function(word){
 #' @param verbose if TRUE, prints when each language is finished writing
 #' @param writesearch if TRUE, saves the searches to .txt files in the specified directory
 #' @return a list of search strings
-#'@example /examples/write_search.R
+#'@example inst/examples/write_search.R
 write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FALSE, directory="./", stemming=TRUE, verbose=TRUE, writesearch=FALSE){
   if(writesearch==TRUE){
     if(utils::menu(c("yes", "no"),
@@ -206,7 +206,9 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
               }
               if(n==length(prestar)){
                 redundant <- unique(redundant)
+                if(length(redundant > 0)){
                 prestar <- prestar[-redundant]
+                }
               }
             }
 
@@ -297,7 +299,9 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
               }
               if(n==length(prestar)){
                 redundant <- unique(redundant)
+                if(length(redundant > 0)){
                 prestar <- prestar[-redundant]
+                }
               }
             }
 
@@ -372,7 +376,7 @@ available_languages <- function(){
 #' @description Given a set of titles, writes a Boolean search that can be used in database title fields to check whether a search strategy retrieves titles.
 #' @param titles a character vector of titles
 #' @return a text string
-#'@example /examples/write_titles.R
+#'@example inst/examples/write_titles.R
 write_title_search <- function(titles){
   titlekeys <- quanteda::tokens_remove(
     quanteda::tokens(tolower(titles),
@@ -400,7 +404,7 @@ write_title_search <- function(titles){
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
 #' @param directory the directory to save results to if writefile=TRUE
 #' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-#' @examples scrape_hits(search_terms=list(c("black-backed woodpecker", "picoides arcticus")), database="ndltd", verbose=TRUE, writefile=FALSE)
+#' @examples \dontrun{scrape_hits(search_terms=list(c("picoides arcticus")), database="ndltd")}
 scrape_hits <- function(search_terms=NULL, URL=NULL, database=c("oatd", "ndltd", "openthesis"),
                         verbose=TRUE, writefile=FALSE, directory="./"){
   if(database=="oatd"){
@@ -428,7 +432,7 @@ scrape_hits <- function(search_terms=NULL, URL=NULL, database=c("oatd", "ndltd",
 #' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 #' @param directory the directory to save results to if writefile=TRUE
 #' @return a data frame containing the results of the search
-#' @examples scrape_oatd(search_terms=list(c("black-backed woodpecker", "picoides arcticus")))
+#' @examples \dontrun{scrape_oatd(search_terms=list(c("black-backed woodpecker", "picoides arcticus")))}
 scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TRUE, languages="English", stemming=FALSE, exactphrase=TRUE, directory="./"){
 
   if(is.null(URL)==FALSE){
@@ -509,7 +513,7 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
 #' @param where where in a thesis or dissertation to search (options are description or title)
 #' @param directory the directory to save results to if writefile=TRUE
 #' @return a data frame containing the results of the search
-#' @examples scrape_ndltd(search_terms=list(c("black backed woodpecker", "picoides arcticus")))
+#' @examples \dontrun{scrape_ndltd(search_terms=list(c("black backed woodpecker", "picoides arcticus")))}
 scrape_ndltd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TRUE, languages="English",
                          stemming=FALSE, exactphrase=TRUE, where="description", directory="./"){
 
@@ -601,7 +605,7 @@ scrape_ndltd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=T
 #' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 #' @param directory the directory to save results to if writefile=TRUE
 #' @return a data frame containing the results of the search
-#' @examples scrape_openthesis(search_terms=list(c("black-backed woodpecker", "picoides arcticus")))
+#' @examples \dontrun{scrape_openthesis(search_terms=list(c("picoides arcticus")))}
 scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TRUE, languages="English", stemming=FALSE, exactphrase=TRUE, directory="./"){
 
   if(is.null(URL)==FALSE){

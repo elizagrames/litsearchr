@@ -32,5 +32,5 @@ a character vector of potential keyword terms
 Uses the RAKE (Rapid Automatic Keyword Extractor) from rapidraker to extract potential keyword terms from titles and abstracts.
 }
 \examples{
-extract_terms(df=litsearchr::BBWO_import, type="RAKE")
+extract_terms(df=BBWO_data, type="RAKE")
 }

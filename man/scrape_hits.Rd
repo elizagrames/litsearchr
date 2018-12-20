@@ -28,5 +28,5 @@ a database of hits (if yes is selected from the menu prompt, the hits will also 
 Provides a wrapper function to scrape hits from databases that litsearchr can scrape
 }
 \examples{
-scrape_hits(search_terms=list(c("black-backed woodpecker", "picoides arcticus")), database="ndltd", verbose=TRUE, writefile=FALSE)
+\dontrun{scrape_hits(search_terms=list(c("picoides arcticus")), database="ndltd")}
 }

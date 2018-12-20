@@ -18,5 +18,6 @@ a character vector of new search terms to consider
 Given a reduced graph after reducing the new graph returned from condense_network() and the previous reduced graphs considered, this function outputs any new search terms found in the condensed network that haven't been previously considered.
 }
 \examples{
-get_condensed_terms(reduce_graph(BBWO_graph, cutoff_strength=15), BBWO_graph)
+get_condensed_terms(reduced_graph=reduce_graph(BBWO_graph, cutoff_strength=15),
+                                previous_graphs=list(reduce_graph(BBWO_graph, cutoff_strength=20)))
 }

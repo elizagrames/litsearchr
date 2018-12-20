@@ -50,8 +50,9 @@ usable_databases <- function(){
 #' @param save_full_dataset if TRUE, saves a .csv of the full dataset in the working directory
 #' @param verbose if TRUE, prints which file is currently being imported
 #' @param save_directory the directory to save results to if save_full_dataset=TRUE
+#' @param duplicate_methods the method to pass to deduplicate() if remove_duplicates is TRUE
 #' @return a data frame of all the search results combined
-#' @examples /examples/import_results.R
+#' @example inst/examples/import_results.R
 import_results <- function(directory, remove_duplicates = FALSE, duplicate_methods=c("tokens", "quick", "levenshtein"), clean_dataset = TRUE,
                            save_full_dataset = FALSE, verbose = TRUE, save_directory="./"){
   if(save_full_dataset==TRUE){
@@ -446,7 +447,7 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
 #' @param doc_sim the minimum similarity between two abstracts to be marked as duplicated
 #' @param title_sim the minimum similarity between two titles to be marked as duplicated
 #' @return a data frame with duplicates removed
-#' @examples deduplicate(df=litsearchr::BBWO_import, use_abstracts=FALSE, use_titles=TRUE, method="tokens", title_sim=.95)
+#' @examples deduplicate(BBWO_import, use_abstracts=FALSE, use_titles=TRUE, method="tokens", title_sim=.95)
 deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, method=c("quick", "levenshtein", "tokens"), doc_sim=.85, title_sim=.95){
 
   remove_abstracts <- c()
@@ -534,15 +535,15 @@ deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, method=c("quick
 
     }
     if(method=="levenshtein"){
-      lev_sim <- adist(df$title)
+      lev_sim <- utils::adist(df$title)
       x <- df$title
       y <- df$title
 
       for(i in 1:length(x)){
-        x[i] <- paste(quanteda::tokens_remove(quanteda::tokens(x[i]), custom_stopwords), collapse=" ")
+        x[i] <- paste(quanteda::tokens_remove(quanteda::tokens(x[i]), litsearchr::custom_stopwords), collapse=" ")
         for(j in 1:length(y)){
-          y[j] <- paste(quanteda::tokens_remove(quanteda::tokens(y[j]), custom_stopwords), collapse=" ")
-          lev_sim[i,j] <- 1 - adist(x[i], y[j])/max(nchar(x[i]), nchar(y[j]))
+          y[j] <- paste(quanteda::tokens_remove(quanteda::tokens(y[j]), litsearchr::custom_stopwords), collapse=" ")
+          lev_sim[i,j] <- 1 - utils::adist(x[i], y[j])/max(nchar(x[i]), nchar(y[j]))
         }
       }
 
@@ -567,7 +568,7 @@ deduplicate <- function(df, use_abstracts=TRUE, use_titles=TRUE, method=c("quick
 #' @description Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
 #' @param df a data frame from import_scope() to deduplicate
 #' @return a data frame with keyword punctuation standardized
-#' @examples clean_keywords(df=litsearchr::BBWO_import)
+#' @examples clean_keywords(BBWO_data)
 clean_keywords <- function(df){
   df$keywords <- tolower(as.character(df$keywords))
   removals <- c("\\(",

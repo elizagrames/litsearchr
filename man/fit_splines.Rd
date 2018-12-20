@@ -22,5 +22,6 @@ a fitted spline model
 Fits a basis spline to the curve of ranked unique node strengths.
 }
 \examples{
-fit_splines(importance_data=data.frame(rank=c(1:5), importance=c(0.2, 0.2, 0.3, 0.35, 0.9)), degrees=2, knot_num=1, knots=2.99)
+fit_splines(importance_data=data.frame(rank=c(1:5), importance=c(20,20,30,35,90)),
+            degrees=2, knot_num=1, knots=2.99)
 }

@@ -28,5 +28,5 @@ a data frame with duplicates removed
 Uses similarity of abstracts and titles to detect duplicates and remove them from the dataset.
 }
 \examples{
-deduplicate(df=litsearchr::BBWO_import, use_abstracts=FALSE, use_titles=TRUE, method="tokens", title_sim=.95)
+deduplicate(BBWO_import, use_abstracts=FALSE, use_titles=TRUE, method="tokens", title_sim=.95)
 }

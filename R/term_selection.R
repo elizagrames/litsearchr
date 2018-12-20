@@ -2,7 +2,7 @@
 #' @description Calls the corpus function from quanteda to create a corpus from the data frame with search hits.
 #' @param df a data frame where at least one column is called 'text'
 #' @return a corpus object
-#' @examples  make_corpus(data.frame=litsearchr::BBWO_import, stringsAsFactors = FALSE))
+#' @examples  make_corpus(df=BBWO_data)
 make_corpus <- function(df){
   search_corpus <- quanteda::corpus(df)
   return(search_corpus)
@@ -12,7 +12,7 @@ make_corpus <- function(df){
 #' @description Allows the user to add additional stopwords to the built-in English stopwords list.
 #' @param new_stopwords a character vector of new words to add
 #' @return an updated vector of custom stopwords to remove from text
-#' @examples add_stopwords(c("19th century", "abiotic factors", "elsevier direct"))
+#' @examples add_stopwords(new_stopwords=c("19th century", "abiotic factors", "elsevier direct"))
 add_stopwords <- function(new_stopwords){
   custom_stopwords <- sort(unique(append(litsearchr::custom_stopwords, new_stopwords)))
   return(custom_stopwords)
@@ -29,7 +29,7 @@ add_stopwords <- function(new_stopwords){
 #' @param ngrams if TRUE, only extracts phrases with word count greater than a specified n
 #' @param n the minimum word count for ngrams
 #' @return a character vector of potential keyword terms
-#' @examples extract_terms(df=litsearchr::BBWO_import, type="RAKE")
+#' @examples extract_terms(df=BBWO_data, type="RAKE")
 extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
   if(type=="RAKE"){
   if (title == TRUE){
@@ -80,7 +80,7 @@ extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_
 #' @description Combines actual keywords and likely keywords into a dictionary object using the as.dictionary function from quanteda.
 #' @param terms a list object including at least one character vector of search terms
 #' @return a quanteda dictionary object
-#' @examples make_dictionary(terms=extract_terms(df=BBWO_import, type="RAKE", min_freq=3))
+#' @examples make_dictionary(terms=extract_terms(BBWO_data, type="RAKE", min_freq=3))
 make_dictionary <- function(terms=NULL){
   complete_keywords <- terms[[1]]
   for(i in 1:length(terms)){
@@ -101,7 +101,7 @@ make_dictionary <- function(terms=NULL){
 #' @param my_dic a dictionary object
 #' @param custom_stopwords a character vector of words to ignore
 #' @return a quanteda dfm object
-#' @examples create_dfm(BBWO_corpus, make_dictionary(extract_terms(df=BBWO_import, type="RAKE", min_freq=3)))
+#' @example inst/examples/create_dfm.R
 create_dfm <- function(corpus=make_corpus(df), my_dic=make_dictionary(), custom_stopwords=add_stopwords(NULL)){
 
   search_dfm <- quanteda::dfm(corpus,
@@ -127,7 +127,7 @@ create_dfm <- function(corpus=make_corpus(df), my_dic=make_dictionary(), custom_
 #' @param min_studies the minimum number of studies a term must occur in to be included
 #' @param min_occurrences the minimum total number of times a term must occur (counting repeats in the same document)
 #' @return an igraph weighted graph
-#' @examples create_network(search_dfm=litsearchr::BBWO_dfm)
+#' @examples create_network(BBWO_dfm)
 create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
   trimmed_mat <- quanteda::dfm_trim(search_dfm, min_termfreq = min_occurrences, min_docfreq = min_studies)
   search_mat <- quanteda::fcm(trimmed_mat, context = "document", count = "boolean", tri=FALSE)
@@ -144,7 +144,7 @@ create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
 #' @param graph an igraph graph
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node strengths, ranks, and names
-#' @examples make_importance(graph=litsearchr::BBWO_graph, importance_method="strength")
+#' @examples make_importance(graph=BBWO_graph, importance_method="strength")
 make_importance <- function(graph, importance_method){
   if (importance_method=="strength") {importance <- sort(igraph::strength(graph))}
   if (importance_method=="eigencentrality"){importance <- sort(igraph::eigen_centrality(graph))}
@@ -193,7 +193,7 @@ select_unigrams <- function(graph, importance_method="strength"){
 #' @param degrees the degree of the polynomial for the curve of unique node strengths
 #' @param knot_num the number of knots to allow
 #' @return a vector of knot placements
-#' @example examples/find_knots.R
+#' @example inst/examples/find_knots.R
 find_knots <- function(importance_data, degrees=2, knot_num=1){
   knotselect <- freeknotsplines::freepsgen(importance_data$rank, importance_data$importance,
                                            degree=degrees, numknot=knot_num, seed=5, stream=0)
@@ -208,7 +208,7 @@ find_knots <- function(importance_data, degrees=2, knot_num=1){
 #' @param knot_num the same number of knots used to find knot placement in \code{find_knots}
 #' @param knots The vector of optimal knots returned from \code{find_knots}
 #' @return a fitted spline model
-#' @example /examples/fit_splines.R
+#' @example inst/examples/fit_splines.R
 fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
   spline_b <- splines2::bSpline(as.numeric(importance_data$rank), knots=knots, degree=degrees, numknot=knot_num, intercept=TRUE)
   spline_fit <- lm(as.numeric(importance_data$importance) ~ spline_b)
@@ -279,7 +279,7 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
 #' @param makewordle if TRUE, creates a wordcloud image of the important keywords sized relative to node strength
 #' @param directory the directory to save results to if savekeywords=TRUE
 #' @return a list of potential keywords to consider
-#' @examples get_keywords(reduce_graph(litsearchr::BBWO_graph), savekeywords=FALSE, makewordle=FALSE)
+#' @examples get_keywords(reduce_graph(litsearchr::BBWO_graph, cutoff_strength=15))
 get_keywords <- function(reduced_graph, savekeywords=FALSE, makewordle=FALSE, directory="./"){
   if(savekeywords==TRUE){
     if(utils::menu(c("yes", "no"), title="This will write keywords to a plain text file. Do you want to save keywords to a file?")==2){
@@ -361,7 +361,7 @@ condense_network <- function(full_graph, rejected_terms, previous_rejected_terms
 #' @param reduced_graph the reduced form of the condensed graph
 #' @param previous_graphs a list object of any previously considered reduced graphs. If this is the first iteration, this should only be the reduced graph of the full network.
 #' @return a character vector of new search terms to consider
-#' @examples get_condensed_terms(reduce_graph(BBWO_graph, cutoff_strength=15), BBWO_graph)
+#' @example inst/examples/get_condensed_terms.R
 get_condensed_terms <- function(reduced_graph, previous_graphs){
 
   for(i in 1:length(previous_graphs)){

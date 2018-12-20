@@ -13,5 +13,5 @@ choose_languages(lang_data = get_language_data(key_topics = "biology"))
 Checks which languages returned from get_language_data() are possible to use and returns a character vector of languages to use. Called from inside write_search().
 }
 \examples{
- chooose_languages(lang_data=get_language_data(key_topics = "biology"))
+ choose_languages(lang_data=get_language_data(key_topics = "biology"))
 }

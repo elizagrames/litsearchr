@@ -16,5 +16,5 @@ an updated vector of custom stopwords to remove from text
 Allows the user to add additional stopwords to the built-in English stopwords list.
 }
 \examples{
-add_stopwords(c("19th century", "abiotic factors", "elsevier direct"))
+add_stopwords(new_stopwords=c("19th century", "abiotic factors", "elsevier direct"))
 }

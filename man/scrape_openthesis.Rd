@@ -32,5 +32,5 @@ a data frame containing the results of the search
 Scrapes hits from OpenThesis.
 }
 \examples{
-scrape_openthesis(search_terms=list(c("black-backed woodpecker", "picoides arcticus")))
+\dontrun{scrape_openthesis(search_terms=list(c("picoides arcticus")))}
 }
