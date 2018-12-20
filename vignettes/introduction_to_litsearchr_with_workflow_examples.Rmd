@@ -72,8 +72,8 @@ All the files from the directory are bound to a single dataset which records the
 
 ```{r}
 BBWO_import <- litsearchr::import_results("../inst/extdata/", remove_duplicates = FALSE, clean_dataset = TRUE, save_full_dataset = FALSE)
-BBWO_data1 <- litsearchr::deduplicate(BBWO_import, use_abstracts = FALSE, use_titles=TRUE, title_method = "tokens", title_sim = .8)
-BBWO_data <- litsearchr::deduplicate(BBWO_data1, use_abstracts = TRUE, use_titles=FALSE, doc_sim = .8)
+BBWO_data1 <- litsearchr::deduplicate(BBWO_import, use_abstracts = FALSE, use_titles=TRUE, method = "tokens", title_sim = .8)
+BBWO_data <- litsearchr::deduplicate(BBWO_data1, use_abstracts = TRUE, use_titles=FALSE, doc_sim = .8, method="tokens")
 ```
 
 
@@ -86,9 +86,8 @@ First, we use the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010
 The amount of time this function takes depends on the size of your database; for ~500 articles it is under one minute. 
 
 ```{r}
-raked_keywords <- litsearchr::extract_terms(BBWO_data, type="RAKE", new_stopwords = NULL, min_freq = 1, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
-# When we check the results, some of these are definitely not important keywords (e.g. "eglin air force base")
-# But, not to worry, these sorts of keywords will disappear once we check their frequency in the entire dataset later
+raked_keywords <- litsearchr::extract_terms(BBWO_data, type="RAKE", new_stopwords = NULL, min_freq = 3, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
+
 head(raked_keywords, 20)
 ```
 
@@ -96,8 +95,7 @@ Next, we want to extract the author/database-tagged keywords from our naive sear
 
 ```{r}
 real_keywords <- litsearchr::extract_terms(BBWO_data, ngrams = TRUE, n=2, type ="tagged")
-# At first glance, these keywords seem more relevant, but are also pretty vague (e.g. "abiotic factors")
-# This is why a combined approach is best to really capture the full range of possible keywords
+
 head(real_keywords, 20)
 ```
 
@@ -118,7 +116,7 @@ Before we can select important keywords, we need to create a keyword co-occurren
 We pass our BBWO_dfm matrix to create_network() and specify that a keyword must occur at least three times in the entire dataset and in a minimum of three studies - these can be adjusted according to how stringent you want to be. Optionally at this point, you can look at the structure of the complete original network; if it is a large graph this can take a while. 
 
 ```{r}
-BBWO_graph <- litsearchr::create_network(BBWO_dfm, min_studies=3, min_occurrences = 3)
+BBWO_graph <- litsearchr::create_network(BBWO_dfm, min_studies=1, min_occurrences = 1)
 ```
 
 Since we have a weighted network, node importance is judged based on whichever measure of node importance you select: strength, eigencentrality, alpha centrality, betweenness, hub score, or power centrality. For a description of each of these measures, please refer to the igraph package documentation. The default measure of importance in litsearchr is node strength because it makes intuitive sense for keywords. Stronger nodes are more important in the field and co-occur more often with other strong nodes. Weak nodes occur in the field less frequently and can likely be disregarded. 
@@ -143,16 +141,15 @@ For the cumulative method, the only decision is what percent of the total networ
 
 ```{r}
 cutoffs_spline <- litsearchr::find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 3, diagnostics = TRUE, importance_method = "strength")
-cutoffs_cumulative <- litsearchr::find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .8, diagnostics = TRUE, importance_method = "strength")
+cutoffs_cumulative <- litsearchr::find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .75, diagnostics = TRUE, importance_method = "strength")
 ```
 
 
-Both the spline and cumulative fits seem pretty good and are roughly in agreement. For this example, we're opting for the spline cutoff and will pass this cutoff strength to the reduce_graph() function which creates a new igraph object that only contains nodes from the original network that surpass a minimum strength threshold at the cutoff. From the reduced graph, we use get_keywords() to save the keywords to a plain text file and also generate a wordcloud. 
+Both the spline and cumulative fits seem pretty good and are roughly in agreement. For this example, we're opting for the spline cutoff and will pass this cutoff strength to the reduce_graph() function which creates a new igraph object that only contains nodes from the original network that surpass a minimum strength threshold at the cutoff. From the reduced graph, we use get_keywords() extract the keywords from the reduced network. 
 
 ```{r}
 reduced_graph <- litsearchr::reduce_graph(BBWO_graph, cutoff_strength = cutoffs_spline[1])
-# note: you need to have the wordcloud package installed to use makewordle
-search_terms <- litsearchr::get_keywords(reduced_graph, savekeywords = FALSE, makewordle = TRUE)
+search_terms <- litsearchr::get_keywords(reduced_graph, savekeywords = FALSE, makewordle = FALSE)
 length(search_terms)
 head(sort(search_terms), 20)
 ```
@@ -166,8 +163,7 @@ We think it is easiest to sort potential keywords in a .csv file outside of R, s
 At this stage, you can also add in additional terms that you've thought of that weren't in your naive search and weren't found by litsearchr. litsearchr is merely meant as a tool to identify additional keywords - not to restrict your search. 
 
 ```{r}
-#write.csv(search_terms, "./BBWO-potential-keywords.csv")
-#read.csv("./BBWO-potential-keywords-grouped.csv", stringsAsFactors=FALSE)
+
 grouped_keywords <- litsearchr::BBWO_grouped_keywords
 # We append our original search terms for a category with the newly identified terms
 process_group <- unique(append(
