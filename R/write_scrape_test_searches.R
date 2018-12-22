@@ -138,12 +138,31 @@ translate_search <- function(search_terms, target_language, source_language="en"
 #' @description Checks if the stemmed form of a word is longer than 3 characters. Not intended as a standalone function and is called from write_search().
 #'@examples  should_stem("habitat fragmentation")
 should_stem <- function(word){
-  wordcut <- SnowballC::wordStem(word, language="en")
-  splitup <- strsplit(wordcut, " ")[[1]]
-  stem_length <- nchar(splitup[length(splitup)])
-  new_word <- word
-  if (stem_length > 3){new_word <- SnowballC::wordStem(word, language="en")}
-  return(new_word)
+  splitup <- strsplit(word, " ")[[1]]
+  for(i in 1:length(splitup)){
+    wordcut <- SnowballC::wordStem(splitup[i], language="en")
+    stem_length <- nchar(wordcut)
+
+    if(i==1){
+      if(stem_length > 3){
+        words <- paste(wordcut, "* ", sep="")
+      }
+      if(stem_length <= 3){
+        words <- paste(splitup[i], "* ", sep="")
+      }
+    }
+    if(i > 1){
+      if(stem_length > 3){
+        words <- paste(words, wordcut, "* ", sep="")
+      }
+      if(stem_length <= 3){
+        words <- paste(words, splitup[i], "* ", sep="")
+      }
+    }
+  }
+
+  words <- stringr::str_trim(words)
+  return(words)
 }
 
 #' Write Boolean searches
