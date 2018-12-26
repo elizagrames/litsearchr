@@ -231,18 +231,18 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
               }
             }
 
-            translated_terms <- unique(paste(prestar, "*", sep=""))
+            translated_terms <- unique(paste(prestar, "", sep=""))
 
 
 
           }
-          each_line <- paste("\\(", "\\(", translated_terms[1],  "*", "\\)")
+          each_line <- paste("\\(", "\\(", translated_terms[1],  "", "\\)")
 
 
         }
 
         for (k in 2:length(translated_terms)){
-          each_line <- paste(each_line, " OR \\(", translated_terms[k],"\\)", "*",  sep="")
+          each_line <- paste(each_line, " OR \\(", translated_terms[k],"\\)", "",  sep="")
         }
 
         each_line <- paste(each_line, "\\)")
@@ -324,7 +324,7 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
               }
             }
 
-            translated_terms <- unique(paste(prestar, "*", sep=""))
+            translated_terms <- unique(paste(prestar, "", sep=""))
 
           }
           each_line <- paste("\\(", "\"", translated_terms[1], "\"", sep="")
