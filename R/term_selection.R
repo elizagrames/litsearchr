@@ -391,8 +391,9 @@ get_condensed_terms <- function(reduced_graph, previous_graphs){
 #' @param grouped_terms a list of character vectors with terms
 #' @param graph a graph object of the full keyword co-occurrence
 #' @param considered_terms a character vector of terms you already considered and rejected
+#' @param ignore_terms a character vector of unigrams that should NOT be used to retrieve similar terms
 #' @return a named number vector of node strengths
-get_similar_terms <- function(grouped_terms, graph, considered_terms=NULL){
+get_similar_terms <- function(grouped_terms, graph, considered_terms=NULL, ignore_terms=NULL){
 
   all_terms <- names(igraph::V(graph))
   all_strengths <- igraph::strength(graph)
@@ -405,8 +406,23 @@ get_similar_terms <- function(grouped_terms, graph, considered_terms=NULL){
   }
 
   unigrams <- strsplit(paste(my_terms, collapse=" "), " ")[[1]]
+  if(length(ignore_terms)>0){
+    for(m in 1:length(ignore_terms)){
+      if(m==1){removals <- c()}
+      detections <- which(unigrams==ignore_terms[m])
+      if(length(detections)>0){
+        removals <- append(removals,detections)
+      }
+      if(m==length(ignore_terms)){
+        unigrams <- unigrams[-unique(removals)]
+      }
+    }
+  }
+
   for(i in 1:length(unigrams)){
     current_term <- litsearchr::should_stem(unigrams[i])
+    current_term <- gsub("\\*", "", current_term)
+
     if(i==1){potential_terms <- c()}
     for(j in 1:length(all_terms)){
       if(stringr::str_detect(all_terms[j], current_term)){

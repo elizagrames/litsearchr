@@ -396,7 +396,7 @@ available_languages <- function(){
 #'@example inst/examples/write_titles.R
 write_title_search <- function(titles){
   titlekeys <- quanteda::tokens_remove(
-    quanteda::tokens(tolower(titles),
+    quanteda::tokens(quanteda::char_tolower(titles),
                      remove_numbers=TRUE, remove_hyphens=FALSE, remove_punct=TRUE), litsearchr::custom_stopwords)
 
   title <- c()
