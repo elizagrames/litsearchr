@@ -381,8 +381,6 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
 
 
 
-
-
 #' Print possible search languages
 #' @description Prints a list of languages that write_search() can write searches in.
 #'@examples available_languages()

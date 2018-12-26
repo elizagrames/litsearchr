@@ -385,3 +385,48 @@ get_condensed_terms <- function(reduced_graph, previous_graphs){
   return(new_terms)
 
 }
+
+#' Retrieves terms similar to included terms
+#' @description Given a list of terms selected for inclusion, returns other terms from the network that are similar.
+#' @param grouped_terms a list of character vectors with terms
+#' @param graph a graph object of the full keyword co-occurrence
+#' @param considered_terms a character vector of terms you already considered and rejected
+#' @return a named number vector of node strengths
+get_similar_terms <- function(grouped_terms, graph, considered_terms=NULL){
+
+  all_terms <- names(igraph::V(graph))
+  all_strengths <- igraph::strength(graph)
+
+  for(h in 1:length(grouped_terms)){
+    if(h==1){my_terms <- grouped_terms[[h]]}
+    if(h>1){
+      my_terms <- append(my_terms, grouped_terms[[h]])
+    }
+  }
+
+  unigrams <- strsplit(paste(my_terms, collapse=" "), " ")[[1]]
+  for(i in 1:length(unigrams)){
+    current_term <- litsearchr::should_stem(unigrams[i])
+    if(i==1){potential_terms <- c()}
+    for(j in 1:length(all_terms)){
+      if(stringr::str_detect(all_terms[j], current_term)){
+        if(stringr::str_detect(paste(my_terms, considered_terms, collapse="; "), all_terms[j])==FALSE){
+          potential_terms <- unique(append(potential_terms, all_terms[j]))
+        }
+      }
+    }
+    if(i==length(unigrams)){
+      for(k in 1:length(potential_terms)){
+        x <- which(all_terms==potential_terms[k])
+        if(k==1){
+          NS <- all_strengths[x]
+        }
+        if(k>1){
+          NS <- append(NS, all_strengths[x])
+        }
+      }
+    }
+  }
+  return(NS)
+}
+
