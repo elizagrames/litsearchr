@@ -86,7 +86,7 @@ First, we use the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010
 The amount of time this function takes depends on the size of your database; for ~500 articles it is under one minute. 
 
 ```{r}
-raked_keywords <- litsearchr::extract_terms(BBWO_data, type="RAKE", new_stopwords = NULL, min_freq = 3, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
+raked_keywords <- litsearchr::extract_terms(BBWO_data, type="RAKE", new_stopwords = NULL, min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
 
 head(raked_keywords, 20)
 ```
@@ -164,19 +164,43 @@ At this stage, you can also add in additional terms that you've thought of that 
 
 ```{r}
 
-grouped_keywords <- litsearchr::BBWO_grouped_keywords
+grouped_keywords <- BBWO_grouped_keywords
 # We append our original search terms for a category with the newly identified terms
+
 process_group <- unique(append(
-  c("nest success", "mechanism"),
+  c("home range size"),
   grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "process"))]))
                                                   
 fire_group <- unique(append(
-  c("fire","burn", "wildfire"),
+  c("wildfire"),
   grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "fire"))]))
 bird_group <- unique(append(
   c("woodpecker", "sapsucker", "Veniliornis", "Picoides", "Dendropicoides", "Melanerpes", "Sphyrapicus"),
   grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "bird"))]))
-my_search_terms <- list(process_group, fire_group, bird_group)
+
+response_group <- unique(append(
+  c("occupancy"),
+  grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "response"))]))
+
+my_search_terms <- list(process_group, fire_group, bird_group, response_group)
+
+similar_terms <- litsearchr::get_similar_terms(my_search_terms, graph = BBWO_graph)
+
+write.csv(similar_terms, "~/Documents/BBWO_similar_terms.csv")
+
+new_terms <- read.csv("~/Documents/BBWO_search_terms_grouped.csv", stringsAsFactors = FALSE)
+
+fire_group <- unique(append(fire_group,
+                                new_terms$term[which(stringr::str_detect(new_terms$group, "fire"))]))
+bird_group <- unique(append(bird_group,
+                                new_terms$term[which(stringr::str_detect(new_terms$group, "bird"))]))
+response_group <- unique(append(response_group,
+                                  new_terms$term[which(stringr::str_detect(new_terms$group, "response"))]))
+process_group <- unique(append(process_group,
+                                 new_terms$term[which(stringr::str_detect(new_terms$group, "process"))]))
+
+my_search_terms <- list(fire_group, bird_group, response_group, process_group)
+
 ```
 
 ## Step 5: Write Boolean searches

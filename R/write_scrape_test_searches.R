@@ -704,39 +704,55 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
 #' @return a table of the best match for each true title from the search results along with a title similarity score
 #' @examples check_recall(true_hits=c("Picoides arcticus"), retrieved_articles=c("Picoides tridactylus"))
 check_recall <- function (true_hits, retrieved_articles, min_sim = 0.6, new_stopwords = NULL) {
-  x <- tolower(true_hits)
-  y <- tolower(retrieved_articles)
-  lev_sim <- utils::adist(x=x, y=y)
+  custom_stopwords <- litsearchr::add_stopwords(new_stopwords = new_stopwords)
+  titlekeys <- quanteda::tokens_remove(quanteda::tokens(tm::removePunctuation(quanteda::char_tolower(true_hits))),
+                                       custom_stopwords)
+  positions <- list()
+  length(positions) <- length(titlekeys)
+  for (i in 1:length(titlekeys)) {
+    article <- titlekeys[[i]]
+    for (j in 1:length(article)) {
+      temp <- stringr::str_detect(tm::removePunctuation(quanteda::char_tolower(retrieved_articles)),
+                                  article[j])
+      hits <- which(temp == TRUE)
+      if (length(hits) > 0) {
+        for (k in 1:length(hits)) {
+          if (i == 1) {
+            if (k == 1) {
+              positions[[i]] <- hits[k]
+            }
+            if (k > 1) {
+              positions[[i]] <- c(positions[[i]], hits[k])
+            }
+          }
+          if (i > 1) {
+            positions[[i]] <- c(positions[[i]], hits[k])
+          }
+        }
+      }
+    }
 
-  for(i in 1:length(x)){
-    x[i] <- paste(quanteda::tokens_remove(quanteda::tokens(x[i]), litsearchr::custom_stopwords), collapse=" ")
-    for(j in 1:length(y)){
-      y[j] <- paste(quanteda::tokens_remove(quanteda::tokens(y[j]), litsearchr::custom_stopwords), collapse=" ")
-      lev_sim[i,j] <- 1 - utils::adist(x[i], y[j])/max(nchar(x[i]), nchar(y[j]))
+    similarity <- table(positions[[i]])/length(article)
+
+    similarity <- sort(similarity[which(similarity > min_sim)],
+                       decreasing = TRUE)
+    if (length(similarity) > 0){
+      best_match <- similarity[1]
+      similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]),
+                                              as.character(retrieved_articles[as.numeric(names(best_match))]),
+                                              as.numeric(best_match)))}
+
+    if (length(similarity)==0){
+      similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]), "NA", "NA"))
+    }
+
+    if (i == 1) {
+      similarity_table <- similarity_entry
+    }
+    if (i > 1) {
+      similarity_table <- rbind(similarity_table, similarity_entry)
     }
   }
-
-  colnames(lev_sim) <- y
-  rownames(lev_sim) <- x
-
-  for(i in 1:nrow(lev_sim)){
-    matches <- lev_sim[i,]==max(lev_sim[i,])
-    best_match <- colnames(lev_sim)[which(matches==TRUE)]
-    sim <- lev_sim[i, which(matches==TRUE)]
-    if(sim < min_sim){
-      sim <- NA
-      best_match <- NA}
-
-    entry <- cbind(rownames(lev_sim)[i], best_match, sim)
-
-    if(i==1){
-      similarity_table <- entry
-    }
-    if(i>1){
-      similarity_table <- rbind(similarity_table, entry)
-    }
-  }
-
   colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
   return(similarity_table)
 }
