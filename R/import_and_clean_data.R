@@ -5,13 +5,21 @@
 #' @return a character vector with the name of the database or an error that the database was not identified
 #' @examples detect_database(df=scopus_example)
 detect_database <- function(df){
-  database <- ""
+  database <- NULL
   database_signature <- paste(df[1,], collapse=" ")
   if(stringr::str_detect(database_signature, "ZOOREC:ZOOR")){database <- "ZooRec"}
+  if(stringr::str_detect(database_signature, "BIOABS:BACD")){database <- "BIOSIS"}
+  if(stringr::str_detect(database_signature, "BIOSIS:PREV")){database <- "BIOSIS"}
+  if(stringr::str_detect(database_signature, "WOS:")){database <- "Core"}
+  if(stringr::str_detect(database_signature, "CCC:")){database <- "BIOSIS"}
+  if(stringr::str_detect(database_signature, "KJD:")){database <- "OtherWoS"}
+  if(stringr::str_detect(database_signature, "RSCI:")){database <- "OtherWoS"}
+  if(stringr::str_detect(database_signature, "SCIELO:")){database <- "OtherWoS"}
   if(stringr::str_detect(database_signature, "BCI:BCI")){database <- "BIOSIS"}
   if(stringr::str_detect(database_signature, "www.scopus.com")){database <- "Scopus"}
   if(stringr::str_detect(database_signature, "search.proquest.com")){database <- "ProQuest"}
   if(stringr::str_detect(database_signature, "ebscohost.com")){database <- "EBSCO"}
+  if(stringr::str_detect(database_signature, "Engineering Village")){database <- "EngVill"}
 
   if(stringr::str_detect(database_signature, "ndltd_scrape")){database <- "NDLTD"}
   if(stringr::str_detect(database_signature, "oatd_scrape")){database <- "OATD"}
@@ -26,9 +34,9 @@ detect_database <- function(df){
   if(stringr::str_detect(database_signature, "worldcat_scrape")){database <- "worldcat_scrape"}
   if(stringr::str_detect(database_signature, "wos_scrape")){database <- "wos_scrape"}
 
-  if (length(database)>0){return(database)}
+  if(length(database)>0){return(database)}
 
-  if (length(database)==0){
+  if(length(database)==0){
     database <- "Unknown"
     print("Database format not recognized.")
   }
@@ -75,7 +83,7 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
     }
     if(i==length(import_files)){
       if(length(removals) > 0){
-      import_files <- import_files[-removals]
+        import_files <- import_files[-removals]
       }
     }
   }
@@ -89,7 +97,11 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
     if (stringr::str_detect(import_files[i], ".txt") == TRUE) {
       df <- read.table(import_files[i], sep = "\t", header = TRUE,
                        comment.char = "#", na.strings = ".", stringsAsFactors = FALSE,
-                       quote = "", fill = TRUE)
+                       quote = "", fill = TRUE, row.names = NULL)
+      if(colnames(df)[1]=="row.names"){
+        colnames(df) <- append(colnames(df[2:length(df)]), "X")
+      }
+
     }
     if (stringr::str_detect(import_files[i], ".xls") == TRUE) {
       df <- xlsx::read.xlsx(import_files[i], 1)
@@ -99,7 +111,8 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
     if (stringr::str_detect(paste(colnames(df), collapse=" "), "\\.\\.")){
       temp_cn <- strsplit(as.character(colnames(df)[1]), "\\.\\.")
       if (length(temp_cn[[1]]) > 1) {
-        colnames(df)[1] <- temp_cn[[1]][2]
+        dotremoved <- gsub("\\.", "", temp_cn[[1]][2])
+        colnames(df)[1] <- dotremoved
       }
     }
     if(length(which(colnames(df)=="X"))>0){df <- df[, -which(colnames(df)=="X")]}
@@ -148,6 +161,27 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
                                 doi = df$DI, language = df$LA))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
+    if(database == "Core"){
+      df <- as.data.frame(cbind(id = df$UT, title = df$TI,
+                                abstract = df$AB, methods = df$MQ, keywords = df$DE,
+                                type = df$DT, authors = df$AU, affiliation = df$C1,
+                                source = df$SO, year = df$PY, volume = df$VL,
+                                issue = df$IS, startpage = df$BP, endpage = df$EP,
+                                doi = df$DI, language = df$LA))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+    }
+    if(database == "OtherWoS"){
+      df <- as.data.frame(cbind(id = df$UT, title = df$TI,
+                                abstract = df$AB, keywords = df$DE,
+                                type = df$DT, authors = df$AU,
+                                source = df$SO, year = df$PY, volume = df$VL,
+                                issue = df$IS, startpage = df$BP, endpage = df$EP,
+                                doi = df$DI, language = df$LA))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+      df$methods <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+    }
+
     if(database == "MEDLINE"){
       df <- as.data.frame(cbind(id = df$AN, title = df$TI,
                                 abstract = df$AB, keywords = df$ID, type = df$DT,
@@ -165,6 +199,28 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
           }
         }
       }
+    }
+    if(database == "EngVill"){
+      df <- as.data.frame(cbind(id = df$Accession.number, title = df$Title,
+                                abstract = df$Abstract, keywords = df$Controlled.Subject.terms,
+                                type = df$Document.type, authors = df$Author, affiliation = df$Author.affiliation,
+                                source = df$Source, year = df$Publication.year, volume = df$Volume,
+                                issue = df$Issue, startpage = df$Pages,
+                                doi = df$DOI, language = df$Language))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+      df$methods <- rep("", nrow(df))
+      df$startpage <- as.character(df$startpage)
+      temp <- strsplit(as.character(df$startpage), "-")
+      if (length(temp) > 0) {
+        for (j in 1:length(temp)) {
+          df$startpage[j] <- temp[[j]][1]
+          if (length(temp[[j]]) > 1) {
+            df$endpage[j] <- temp[[j]][2]
+          }
+        }
+      }
+
+
     }
     if(database == "EBSCO"){
       df <- as.data.frame(cbind(id = df$Accession.Number,
