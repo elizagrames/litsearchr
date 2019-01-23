@@ -256,15 +256,15 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
       }
       total_search <- paste("\\(", total_search, "\\)")
 
-      this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
-      trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
+      #this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
+      #trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
 
-      converted_search <- iconv(total_search, "UTF-8", trans_encod)
-      converted_search <- gsub("\\\\", "\\", converted_search)
+      #total_search <- iconv(total_search, "UTF-8", trans_encod)
+      #total_search <- gsub("\\\\", "\\", total_search)
 
       if(writesearch==TRUE){
         filename <- paste(directory, "search-in-", current_lang, ".txt", sep="")
-        writeLines(converted_search, filename)
+        writeLines(total_search, filename)
         if(verbose==TRUE){
           print(paste(current_lang, "is written"))
         }
@@ -274,7 +274,7 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
         search_list <- list()
         length(search_list) <- length(i)
       }
-      search_list[[i]] <- converted_search
+      search_list[[i]] <- total_search
       names(search_list)[[i]] <- current_lang
 
     }
@@ -345,11 +345,11 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
       }
       total_search <- paste("\\(", total_search, "\\)")
 
-      this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
-      trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
+      #this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
+      #trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
 
-      converted_search <- iconv(total_search, "UTF-8", trans_encod)
-      converted_search <- gsub("\\\\", "\\", converted_search)
+#      total_search <- iconv(total_search, "UTF-8", trans_encod)
+#      total_search <- gsub("\\\\", "\\", total_search)
 
       if(stemming==FALSE){filename <- paste("search-in-", current_lang, ".txt", sep="")}
       if(stemming==TRUE){
@@ -358,7 +358,7 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
       }
 
       if(writesearch==TRUE){
-        writeLines(converted_search, filename)
+        writeLines(total_search, filename)
         if(verbose==TRUE){
           print(paste(current_lang, "is written"))
           }
@@ -368,7 +368,7 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
         search_list <- list()
         length(search_list) <- length(i)
       }
-      search_list[[i]] <- converted_search
+      search_list[[i]] <- total_search
       names(search_list)[[i]] <- current_lang
 
 
