@@ -256,12 +256,6 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
       }
       total_search <- paste("\\(", total_search, "\\)")
 
-      #this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
-      #trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
-
-      #total_search <- iconv(total_search, "UTF-8", trans_encod)
-      #total_search <- gsub("\\\\", "\\", total_search)
-
       if(writesearch==TRUE){
         filename <- paste(directory, "search-in-", current_lang, ".txt", sep="")
         writeLines(total_search, filename)
@@ -345,11 +339,6 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
       }
       total_search <- paste("\\(", total_search, "\\)")
 
-      #this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, current_lang)==TRUE)
-      #trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
-
-#      total_search <- iconv(total_search, "UTF-8", trans_encod)
-#      total_search <- gsub("\\\\", "\\", total_search)
 
       if(stemming==FALSE){filename <- paste("search-in-", current_lang, ".txt", sep="")}
       if(stemming==TRUE){
@@ -375,6 +364,8 @@ write_search <- function(groupdata, API_key=NULL, languages=NULL, exactphrase=FA
     }
 
   }
+
+  search_list <- gsub("&#39;", "'", search_list)
 
   return(search_list)
   }
