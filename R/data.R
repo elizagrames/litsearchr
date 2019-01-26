@@ -202,4 +202,5 @@
 #' \describe{
 #' \item{group} the group we assigned
 #' \item{term} the similar search term}
+#' }
 "BBWO_similar_grouped"

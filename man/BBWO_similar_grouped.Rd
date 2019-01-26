@@ -4,10 +4,7 @@
 \name{BBWO_similar_grouped}
 \alias{BBWO_similar_grouped}
 \title{Similar terms from example}
-\format{A database with 922 rows of 2 variables
-\describe{
-\item{group} the group we assigned
-\item{term} the similar search term}}
+\format{An object of class \code{data.frame} with 922 rows and 2 columns.}
 \usage{
 BBWO_similar_grouped
 }

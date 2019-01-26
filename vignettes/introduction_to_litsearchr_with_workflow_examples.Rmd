@@ -219,7 +219,7 @@ my_search_terms <- list(fire_group, bird_group, response_group, process_group)
 
 ## Step 5: Write Boolean searches
 
-litsearchr provides functions to write simple Boolean searches that work in at least 14 tested databases which can be viewed with the function usable_databases(). Note that this number may be higher than what is written here as we keep testing more databases and adding them to the output of usable_databases() but don't update the vignette as often. 
+litsearchr provides functions to write simple Boolean searches that work in at least 14 tested databases which can be viewed with the function usable_databases(). Note that this number may be higher than what is written here as we keep testing more databases and adding them to the output of usable_databases() but don't update the vignette as often. The write_search() function also removes terms that are redundant because they contain other terms or have the same stemmed form. 
 
 ```{r}
 litsearchr::usable_databases()
