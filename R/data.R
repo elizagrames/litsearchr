@@ -191,3 +191,15 @@
 #' }
 "ulrich"
 
+
+
+#' Similar terms from example
+#'
+#' A dataset of terms marked as similar when we were
+#' building an example search strategy.
+#'
+#' @format A database with 922 rows of 2 variables
+#' \describe{
+#' \item{group} the group we assigned
+#' \item{term} the similar search term}
+"BBWO_similar_grouped"
