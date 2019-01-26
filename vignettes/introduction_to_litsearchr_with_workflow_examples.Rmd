@@ -23,9 +23,14 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-The **litsearchr** package for R is designed to partially automate search term selection and write search strategies for systematic reviews. It uses the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010) to identify potential keywords from a sample of titles and abstracts and combines them with author- and database-tagged keywords to create a pool of possible keywords relevant to a field of study. Important keywords in a field are identified from their importance in a keyword co-occurrence network. After keywords are grouped into concept groups, **litsearchr** writes Boolean searches in up to 53 languages, with stemming support for English. The searches are tested and work fully in at least 14 commonly used search databases with partial support in six additional databases.
+The **litsearchr** package for R is designed to partially automate search term selection and write search strategies for systematic reviews. It uses the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010) to identify potential keywords from a sample of titles and abstracts and combines them with author- and database-tagged keywords to create a pool of possible keywords relevant to a field of study. Important keywords in a field are identified from their importance in a keyword co-occurrence network. After keywords are grouped into concept groups, **litsearchr** writes Boolean searches in up to 53 languages, with stemming support for English. The searches are tested and work fully in at least 14 commonly used search databases with partial support in six additional databases. 
+```{r}
+# print a list of platforms and databases we have tested along with how we exported results
+litsearchr::usable_databases()
+```
 
-Our intent in creating **litsearchr** is to make the process of designing a search strategy for systematic reviews easier for researchers in fields that lack standardized terms (e.g. Medical Subject Headings). By partially automating keyword selection, **litsearchr** reduces investigator bias in keyword selection and increases the repeatability of systematic reviews. It also reduces errors in creating database-specific searches by generating searches that work across a wide range of databases. Our hope is that **litsearchr** can be used to facilitate systematic reviews and contribute to automating evidence synthesis. 
+
+Our intent in creating **litsearchr** is to make the process of designing a search strategy for systematic reviews easier for researchers in fields that lack standardized terms or ontologies. By partially automating keyword selection, **litsearchr** reduces investigator bias in keyword selection and increases the repeatability of systematic reviews. It also reduces errors in creating database-specific searches by generating searches that work across a wide range of databases. Our hope is that **litsearchr** can be used to facilitate systematic reviews and contribute to automating evidence synthesis. 
 
 ## Comments, suggestions, bugs, and questions
 
@@ -47,7 +52,7 @@ Naive search: ( (occup\* OR occur\* OR presen\* OR coloniz\* OR colonis\* OR abu
 
 Searches were conducted on 10/22/18 with no date restrictions. We searched two databases on Web of Science (BIOSIS Citation Index and Zoological Record) and Scopus. Number of hits were as follows: BIOSIS (212), Zoological Record (179), and Scopus (592).
 
-Although other databases could also be used, the import functions of this package are only set up to work with commonly used databases and platforms in ecology. Search results should be exported as .csv files from Scopus and EBSCO and as tab-delimited (.txt) from BIOSIS and Zoological Record. For Web of Science databases (BIOSIS Citation Index, Zoological Record, and MEDLINE), any EBSCO databases, or any ProQuest databases, you should export the full record; in Scopus the citation information and abstract and keywords should be exported. 
+Although other databases could also be used, the import functions of this package are set up to work with commonly used databases and platforms in ecology or with .bib or .ris files from other databases. Instructions on how to export files to match what litsearchr is expecting are viewable with usable_databases(). 
 
 The original export files should not be altered at all - none of the columns need to be removed and default headers should be left alone. These are used as signatures to detect which database a file originated from. If one of your naive searches results in more than 500 hits and you need to export multiple files from BIOSIS or Zoological Record, they can be left as separate files and don't need to be manually combined -litsearchr will do this for you. However, note that if your naive search returns more than 500 hits, the search terms are likely too broad. This lack of specificity may mean that the updated search terms returned by litsearchr will not adequately capture the desired level of inference. 
 
@@ -61,7 +66,7 @@ list.files("../inst/extdata/")
 
 Now that we have naive search results, we need to import these to our working environment with the function import_results(). This function will identify any .txt, .csv, or .xls files in a dataset and import them accordingly. If importing .xls files, the gdata package is required. After loading in files, import_results() identifies the database that produced the downloaded file (currently, only BIOSIS, Zoological Record, Scopus, and ProQuest are supported), and standardizes their columns. 
 
-If you have naive search results from a different database, format them (we suggest using the select() function in dplyr) to have the following columns in order: id, text, title, abstract, keywords, methods, type, authors, affiliation, source, year, volume, issue, startpage, endpage, doi, language, database. Columns can be left blank, but all the columns need to be included and ordered correctly so that you can then rbind() your data frame to the data frame created with import_results(). If you have suggestions for additional databases to support in the import_results() function, please email eliza.grames\@uconn.edu.
+If you have naive search results from a different database, format them (we suggest using the select() function in dplyr) to have the following columns in order: id, text, title, abstract, keywords, methods, type, authors, affiliation, source, year, volume, issue, startpage, endpage, doi, language, database. Columns can be left blank, but all the columns need to be included and ordered correctly so that you can then rbind() your data frame to the data frame created with import_results(). If you have suggestions for additional databases to support in the import_results() function, please email eliza.grames\@uconn.edu. Note that the function can recognize .ris and .bib files from any database by relying on the revtools package.
 
 If remove_duplicates is set to TRUE, duplicate articles that share the same journal title, volume number, and start page are removed. This is advised because using multiple databases for the naive search is likely to result in duplicates because the supported databases overlap in which journals and years they index. Removing duplicates avoids double-counting keywords from the same article which would inflate their importance in the field. However, if you have a lot of records to import at once, you may want to use the function deduplicate() after reading in records — this will allow you to reduce how long it takes to deduplicate articles by selecting different deduplication methods (e.g. doing a quick removal of exactly duplicated articles before deduplicating by tokenized text similarity). This can be broken up into different steps as shown. 
 
@@ -83,7 +88,7 @@ The next step is to use this body of text to identify and extract all potential 
 
 First, we use the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010) in the package rapidraker to scrape potential keywords from abstracts and titles. The default options are used, which means (1) we aren't adding new stopwords to ignore, (2) a term must occur at least twice in the entire dataframe to be considered (this eliminates weird phrases that just happen to have no stopwords), and (3) we want to scrape both titles and abstracts.
 
-The amount of time this function takes depends on the size of your database; for ~500 articles it is under one minute. 
+The amount of time this function takes depends on the size of your database; for ~500 articles it took under one minute. 
 
 ```{r}
 raked_keywords <- litsearchr::extract_terms(BBWO_data, type="RAKE", new_stopwords = NULL, min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
@@ -116,7 +121,8 @@ Before we can select important keywords, we need to create a keyword co-occurren
 We pass our BBWO_dfm matrix to create_network() and specify that a keyword must occur at least three times in the entire dataset and in a minimum of three studies - these can be adjusted according to how stringent you want to be. Optionally at this point, you can look at the structure of the complete original network; if it is a large graph this can take a while. 
 
 ```{r}
-BBWO_graph <- litsearchr::create_network(BBWO_dfm, min_studies=1, min_occurrences = 1)
+BBWO_graph <- litsearchr::create_network(BBWO_dfm, min_studies=3, min_occurrences = 3)
+
 ```
 
 Since we have a weighted network, node importance is judged based on whichever measure of node importance you select: strength, eigencentrality, alpha centrality, betweenness, hub score, or power centrality. For a description of each of these measures, please refer to the igraph package documentation. The default measure of importance in litsearchr is node strength because it makes intuitive sense for keywords. Stronger nodes are more important in the field and co-occur more often with other strong nodes. Weak nodes occur in the field less frequently and can likely be disregarded. 
@@ -141,7 +147,7 @@ For the cumulative method, the only decision is what percent of the total networ
 
 ```{r}
 cutoffs_spline <- litsearchr::find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 3, diagnostics = TRUE, importance_method = "strength")
-cutoffs_cumulative <- litsearchr::find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .75, diagnostics = TRUE, importance_method = "strength")
+cutoffs_cumulative <- litsearchr::find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .80, diagnostics = TRUE, importance_method = "strength")
 ```
 
 
@@ -150,7 +156,6 @@ Both the spline and cumulative fits seem pretty good and are roughly in agreemen
 ```{r}
 reduced_graph <- litsearchr::reduce_graph(BBWO_graph, cutoff_strength = cutoffs_spline[1])
 search_terms <- litsearchr::get_keywords(reduced_graph, savekeywords = FALSE, makewordle = FALSE)
-length(search_terms)
 head(sort(search_terms), 20)
 ```
 
@@ -183,12 +188,21 @@ response_group <- unique(append(
   grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "response"))]))
 
 my_search_terms <- list(process_group, fire_group, bird_group, response_group)
+```
 
+
+Next, we wanted to find similar terms to the ones we already included since they may also be relevant. The function get_similar_terms() uses shared unigram stems to locate similar terms. We saved these to a .csv, manually grouped the new suggestions, and read them back in. These are stored in the object BBWO_similar_terms_grouped
+
+```{r}
 similar_terms <- litsearchr::get_similar_terms(my_search_terms, graph = BBWO_graph)
 
-write.csv(similar_terms, "~/Documents/BBWO_similar_terms.csv")
+#write.csv(similar_terms, "BBWO_similar_terms.csv")
+#new_terms <- read.csv("BBWO_similar_terms_grouped.csv", stringsAsFactors = FALSE)
 
-new_terms <- read.csv("~/Documents/BBWO_search_terms_grouped.csv", stringsAsFactors = FALSE)
+# note: the exact number of new_terms below may not match what you get for similar_terms
+# this is because when we did the grouping for similar terms, we had less stringent minimums than the default
+
+new_terms <- litsearchr::BBWO_similar_grouped
 
 fire_group <- unique(append(fire_group,
                                 new_terms$term[which(stringr::str_detect(new_terms$group, "fire"))]))
@@ -205,7 +219,7 @@ my_search_terms <- list(fire_group, bird_group, response_group, process_group)
 
 ## Step 5: Write Boolean searches
 
-litsearchr provides functions to write simple Boolean searches that work in at least 20 tested databases which can be viewed with the function usable_databases().
+litsearchr provides functions to write simple Boolean searches that work in at least 14 tested databases which can be viewed with the function usable_databases(). Note that this number may be higher than what is written here as we keep testing more databases and adding them to the output of usable_databases() but don't update the vignette as often. 
 
 ```{r}
 litsearchr::usable_databases()
