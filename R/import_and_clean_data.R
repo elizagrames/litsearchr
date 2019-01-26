@@ -20,6 +20,10 @@ detect_database <- function(df){
   if(stringr::str_detect(database_signature, "search.proquest.com")){database <- "ProQuest"}
   if(stringr::str_detect(database_signature, "ebscohost.com")){database <- "EBSCO"}
   if(stringr::str_detect(database_signature, "Engineering Village")){database <- "EngVill"}
+  if(all.equal(colnames(df)[2:20], c("Item.Type", "Publication.Year", "Author", "Title",
+                            "Publication.Title", "ISBN", "ISSN", "DOI", "Url",
+                            "Abstract.Note", "Date", "Date.Added", "Date.Modified",
+                            "Access.Date", "Pages", "Num.Pages", "Issue", "Volume", "Number.Of.Volumes"))){database <- "Zotero"}
 
   if(stringr::str_detect(database_signature, "ndltd_scrape")){database <- "NDLTD"}
   if(stringr::str_detect(database_signature, "oatd_scrape")){database <- "OATD"}
@@ -137,6 +141,30 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
           }
         }
       }
+    }
+
+    if(database == "Zotero"){
+      df <- as.data.frame(cbind(id = df$ISBN,
+                                title = df$Title, abstract = df$Abstract.Note,
+                                authors = df$Author, source = df$Publication.Title,
+                                year = df$Publication.Year, volume = df$Volume,
+                                issue = df$Issue, startpage = df$Pages,
+                                doi = df$DOI, keywords = df$Manual.Tags,
+                                type = df$Type, language=df$Language))
+      df$methods <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$text <- paste(df$abstract, df$keywords, sep = " ")
+      df$startpage <- as.character(df$startpage)
+      temp <- strsplit(as.character(df$startpage), "-")
+      if (length(temp) > 0) {
+        for (j in 1:length(temp)) {
+          df$startpage[j] <- temp[[j]][1]
+          if (length(temp[[j]]) > 1) {
+            df$endpage[j] <- temp[[j]][2]
+          }
+        }
+      }
+
     }
 
     if(database == "Scopus"){
