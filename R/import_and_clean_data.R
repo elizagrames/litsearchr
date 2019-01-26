@@ -337,7 +337,7 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
       checks <- c("id", "text", "title", "abstract", "keywords", "methods", "type", "authors", "affiliation", "source",
                   "year", "volume", "issue", "startpage", "endpage", "doi", "language", "database")
       for(c in 1:length(checks)){
-        if(stringr::str_detect(colnames(df), checks[c])==FALSE){
+        if(stringr::str_detect(paste(colnames(df), collapse=" "), checks[c])==FALSE){
           if(c==1){df$id <- 1:nrow(df)}
           if(c==2){df$text <- rep("", nrow(df))}
           if(c==3){df$title <- rep("", nrow(df))}
