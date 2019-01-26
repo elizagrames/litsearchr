@@ -42,3 +42,4 @@ Suggests:
     xlsx
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
+Date: 2019-01-25
