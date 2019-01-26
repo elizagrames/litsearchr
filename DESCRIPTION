@@ -33,7 +33,8 @@ Imports:
     tm,
     rapidraker,
     xml2,
-    utils
+    utils,
+    revtools
 Suggests: 
     wordcloud,
     knitr,
