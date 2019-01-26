@@ -169,7 +169,7 @@ At this stage, you can also add in additional terms that you've thought of that 
 
 ```{r}
 
-grouped_keywords <- BBWO_grouped_keywords
+grouped_keywords <- litsearchr::BBWO_grouped_keywords
 # We append our original search terms for a category with the newly identified terms
 
 process_group <- unique(append(
