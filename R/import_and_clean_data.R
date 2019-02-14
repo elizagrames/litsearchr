@@ -20,14 +20,11 @@ detect_database <- function(df){
   if(stringr::str_detect(database_signature, "search.proquest.com")){database <- "ProQuest"}
   if(stringr::str_detect(database_signature, "ebscohost.com")){database <- "EBSCO"}
   if(stringr::str_detect(database_signature, "Engineering Village")){database <- "EngVill"}
-  if(all.equal(colnames(df)[2:20], c("Item.Type", "Publication.Year", "Author", "Title",
-                            "Publication.Title", "ISBN", "ISSN", "DOI", "Url",
-                            "Abstract.Note", "Date", "Date.Added", "Date.Modified",
-                            "Access.Date", "Pages", "Num.Pages", "Issue", "Volume", "Number.Of.Volumes"))){database <- "Zotero"}
-
+  if(stringr::str_detect(paste(colnames(df), collapse=" "), "Number.Of.Volumes")){database <- "Zotero"}
   if(stringr::str_detect(database_signature, "ndltd_scrape")){database <- "NDLTD"}
   if(stringr::str_detect(database_signature, "oatd_scrape")){database <- "OATD"}
   if(stringr::str_detect(database_signature, "openthesis_scrape")){database <- "OpenThesis"}
+
 
 
   if(length(database)>0){return(database)}
@@ -57,7 +54,7 @@ usable_databases <- function(){
 #' @param duplicate_methods the method to pass to deduplicate() if remove_duplicates is TRUE
 #' @return a data frame of all the search results combined
 #' @example inst/examples/import_results.R
-import_results <- function(directory, remove_duplicates = FALSE, duplicate_methods=c("tokens", "quick", "levenshtein"), clean_dataset = TRUE,
+import_results <- function(directory=NULL, filename=NULL, remove_duplicates = FALSE, duplicate_methods=c("tokens", "quick", "levenshtein"), clean_dataset = TRUE,
                            save_full_dataset = FALSE, verbose = TRUE, save_directory="./"){
   if(save_full_dataset==TRUE){
     if(utils::menu(c("yes", "no"),
@@ -66,8 +63,11 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
     }
   }
 
-  import_files <- paste(directory, list.files(path = directory),
-                        sep = "")
+if(!is.null(directory)){import_files <- paste(directory, list.files(path = directory),
+                        sep = "")}
+if(is.null(directory) & is.null(filename)){print("No input given. Either directory or filename needs to be provided.")}
+
+if(!is.null(filename)){import_files <- filename}
 
   for(i in 1:length(import_files)){
     if(i==1){removals <- c()}
@@ -121,7 +121,8 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
 
 
     if(stringr::str_detect(import_files[i], ".bib")){database <- "use_revtools"} else if(stringr::str_detect(import_files[i], ".ris")){
-      database <- "use_revtools"} else {database <- litsearchr::detect_database(df)}
+      database <- "use_revtools"}else if(stringr::str_detect(import_files[i], ".nbib")){
+        database <- "use_revtools"} else {database <- litsearchr::detect_database(df)}
 
 
     if(database == "use_revtools"){
@@ -217,7 +218,9 @@ import_results <- function(directory, remove_duplicates = FALSE, duplicate_metho
                                 doi = df$DI, language = df$LA))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
     }
-    if(database == "OtherWoS"){
+
+
+        if(database == "OtherWoS"){
       df <- as.data.frame(cbind(id = df$UT, title = df$TI,
                                 abstract = df$AB, keywords = df$DE,
                                 type = df$DT, authors = df$AU,

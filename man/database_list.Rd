@@ -4,7 +4,7 @@
 \name{database_list}
 \alias{database_list}
 \title{Databases that can be imported with litsearchr}
-\format{A database with 25 rows of 3 variables
+\format{A database with 24 rows of 3 variables
 \describe{
   \item{Platform}{the platform used to access a database}
   \item{Database}{the database accessed}
