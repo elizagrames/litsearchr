@@ -21,16 +21,9 @@ detect_database <- function(df){
   if(stringr::str_detect(database_signature, "ebscohost.com")){database <- "EBSCO"}
   if(stringr::str_detect(database_signature, "Engineering Village")){database <- "EngVill"}
   if(stringr::str_detect(paste(colnames(df), collapse=" "), "Number.Of.Volumes")){database <- "Zotero"}
-
   if(stringr::str_detect(database_signature, "ndltd_scrape")){database <- "NDLTD"}
   if(stringr::str_detect(database_signature, "oatd_scrape")){database <- "OATD"}
   if(stringr::str_detect(database_signature, "openthesis_scrape")){database <- "OpenThesis"}
-  if(is.null(database)){
-  if(all.equal(colnames(df)[2:20], c("Item.Type", "Publication.Year", "Author", "Title",
-                                     "Publication.Title", "ISBN", "ISSN", "DOI", "Url",
-                                     "Abstract.Note", "Date", "Date.Added", "Date.Modified",
-                                     "Access.Date", "Pages", "Num.Pages", "Issue", "Volume", "Number.Of.Volumes"))){database <- "Zotero"}}
-
 
   if(length(database)>0){return(database)}
 
@@ -162,6 +155,7 @@ if(!is.null(filename)){import_files <- filename}
       df$affiliation <- rep("", nrow(df))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
       df$startpage <- as.character(df$startpage)
+      df$endpage <- df$startpage
       temp <- strsplit(as.character(df$startpage), "-")
       if (length(temp) > 0) {
         for (j in 1:length(temp)) {
