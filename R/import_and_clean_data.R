@@ -20,11 +20,20 @@ detect_database <- function(df){
   if(stringr::str_detect(database_signature, "search.proquest.com")){database <- "ProQuest"}
   if(stringr::str_detect(database_signature, "ebscohost.com")){database <- "EBSCO"}
   if(stringr::str_detect(database_signature, "Engineering Village")){database <- "EngVill"}
+<<<<<<< HEAD
   if(stringr::str_detect(paste(colnames(df), collapse=" "), "Number.Of.Volumes")){database <- "Zotero"}
+=======
+
+
+>>>>>>> 7c738c2679f697f3557b189180584e6f03661211
   if(stringr::str_detect(database_signature, "ndltd_scrape")){database <- "NDLTD"}
   if(stringr::str_detect(database_signature, "oatd_scrape")){database <- "OATD"}
   if(stringr::str_detect(database_signature, "openthesis_scrape")){database <- "OpenThesis"}
-
+  if(is.null(database)){
+  if(all.equal(colnames(df)[2:20], c("Item.Type", "Publication.Year", "Author", "Title",
+                                     "Publication.Title", "ISBN", "ISSN", "DOI", "Url",
+                                     "Abstract.Note", "Date", "Date.Added", "Date.Modified",
+                                     "Access.Date", "Pages", "Num.Pages", "Issue", "Volume", "Number.Of.Volumes"))){database <- "Zotero"}}
 
 
   if(length(database)>0){return(database)}
