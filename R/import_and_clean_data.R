@@ -131,6 +131,7 @@ if(!is.null(filename)){import_files <- filename}
       df$methods <- rep("", length(df$id))
       df$text <- paste(df$abstract, df$keywords, sep = " ")
       df$startpage <- as.character(df$startpage)
+      df$endpage <- as.character(df$startpage)
       temp <- strsplit(as.character(df$startpage), "-")
       if (length(temp) > 0) {
         for (j in 1:length(temp)) {
@@ -140,7 +141,7 @@ if(!is.null(filename)){import_files <- filename}
           }
         }
       }
-      database <- paste(strsplit(import_files[i], " "), collapse="_")
+      database <- import_files[i]
     }
 
     if(database == "Zotero"){
@@ -165,6 +166,7 @@ if(!is.null(filename)){import_files <- filename}
           }
         }
       }
+      database <- import_files[i]
 
     }
 
@@ -386,7 +388,7 @@ if(!is.null(filename)){import_files <- filename}
           if(c==15){df$endpage <- rep("", nrow(df))}
           if(c==16){df$doi <- rep("", nrow(df))}
           if(c==17){df$language <- rep("", nrow(df))}
-          if(c==17){df$database <- rep("", nrow(df))}
+          if(c==18){df$database <- rep("", nrow(df))}
 
         }
       }
