@@ -72,10 +72,11 @@ if(!is.null(filename)){import_files <- filename}
     if(stringr::str_detect(import_files[i], ".csv")){}else{
       if(stringr::str_detect(import_files[i], ".bib")){}else{
         if(stringr::str_detect(import_files[i], ".ris")){}else{
+          if(stringr::str_detect(import_files[i], ".xml")){}else{
           if(stringr::str_detect(import_files[i], ".txt")){}else{
         if(stringr::str_detect(import_files[i], ".xls")==FALSE){
           print(paste("File format is not recognized. Skipping", import_files[i]))
-          removals <- append(removals, i)}}}}
+          removals <- append(removals, i)}}}}}
     }
     if(i==length(import_files)){
       if(length(removals) > 0){
@@ -89,6 +90,9 @@ if(!is.null(filename)){import_files <- filename}
 
     if (stringr::str_detect(import_files[i], ".csv") == TRUE) {
       df <- read.csv(import_files[i], header = TRUE, stringsAsFactors = FALSE)
+    }
+    if(stringr::str_detect(import_files[i], ".xml")==TRUE){
+      df <- as.character(xml2::read_xml(import_files[i]))
     }
     if (stringr::str_detect(import_files[i], ".txt") == TRUE) {
       df <- read.table(import_files[i], sep = "\t", header = TRUE,
@@ -120,7 +124,7 @@ if(!is.null(filename)){import_files <- filename}
 
     if(stringr::str_detect(import_files[i], ".bib")){database <- "use_revtools"} else if(stringr::str_detect(import_files[i], ".ris")){
       database <- "use_revtools"}else if(stringr::str_detect(import_files[i], ".nbib")){
-        database <- "use_revtools"} else {database <- litsearchr::detect_database(df)}
+        database <- "use_revtools"} else if(stringr::str_detect(strsplit(as.character(df), "</"), "PubMed")){database <- "PubMed"}else{database <- litsearchr::detect_database(df)}
 
 
     if(database == "use_revtools"){
@@ -364,6 +368,61 @@ if(!is.null(filename)){import_files <- filename}
 
       df$text <- paste(df$abstract, df$keywords, sep=" ")
     }
+
+    if(database=="PubMed"){
+      articlesplit <- strsplit(df, "<PubmedArticle>")[[1]][-1]
+
+      for(p in 1:length(articlesplit)){
+        current_article <- articlesplit[p]
+        id <- strsplit(strsplit(current_article, "</PMID>")[[1]][1], ">")[[1]]
+        id <- id[length(id)]
+
+        year <- strsplit(strsplit(strsplit(current_article, "PubDate")[[1]][2], "</Year>")[[1]][1], "<Year>")[[1]][2]
+        source <- strsplit(strsplit(strsplit(current_article, "</Journal>")[[1]][1], "<Title>")[[1]][2], "</Title")[[1]][1]
+
+        title <- strsplit(strsplit(current_article, "<ArticleTitle>")[[1]][2], "</ArticleTitle>")[[1]][1]
+        abstract <- strsplit(strsplit(current_article, "<AbstractText>")[[1]][2], "</AbstractText>")[[1]][1]
+
+        authorlist <- strsplit(strsplit(strsplit(current_article, "<AuthorList")[[1]][2], "</AuthorList>")[[1]][1], "<LastName>")[[1]][-1]
+
+        all_authors <- c()
+
+        for(a in 1:length(authorlist)){
+          lastname <- strsplit(authorlist[a], "</LastName>")[[1]][1]
+          firstname <- strsplit(strsplit(authorlist[a], "<ForeName>")[[1]][2], "</ForeName")[[1]][1]
+          all_authors[a] <- paste(firstname, lastname)
+        }
+
+        authors <- paste(all_authors, collapse="; ")
+
+        language <- strsplit(strsplit(current_article, "<Language>")[[1]][2], "</Language>")[[1]][1]
+
+        type <- strsplit(strsplit(current_article, "</PublicationType>")[[1]][1], ">")[[1]]
+        type <- type[length(type)]
+
+        keywordlist <- strsplit(strsplit(strsplit(current_article, "<KeywordList")[[1]][2], "</KeywordList")[[1]][1], "</Keyword>\n      ")[[1]]
+        keywords <- c()
+        for(k in 1:length(keywordlist)){
+          if(k==1){keywordlist[k] <- strsplit(keywordlist[k],"\n        ")[[1]][2]}
+          keywords[k] <- strsplit(keywordlist[k], ">")[[1]][2]
+        }
+        keywords <- paste(keywords, collapse = "; ")
+
+        entry <- cbind(id, year, source, title, abstract, authors, language, type, keywords)
+        if(p==1){df <- entry}
+        if(p>1){df <- as.data.frame(rbind(df, entry))}
+      }
+
+      df$doi <- rep("", nrow(df))
+      df$methods <- rep("", nrow(df))
+      df$issue <- rep("", nrow(df))
+      df$volume <- rep("", nrow(df))
+      df$startpage <- rep("", nrow(df))
+      df$endpage <- rep("", nrow(df))
+      df$affiliation <- rep("", nrow(df))
+      df$text <- paste(df$title, df$abstract, df$keywords, collapse=" ")
+    }
+
 
     if (database != "Unknown") {
       df$database <- rep(database, nrow(df))
