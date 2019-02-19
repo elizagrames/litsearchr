@@ -25,12 +25,12 @@ detect_database <- function(df){
   if(stringr::str_detect(database_signature, "oatd_scrape")){database <- "OATD"}
   if(stringr::str_detect(database_signature, "openthesis_scrape")){database <- "OpenThesis"}
 
-  if(length(database)>0){return(database)}
 
   if(length(database)==0){
     database <- "Unknown"
-    print("Database format not recognized.")
   }
+
+  if(length(database)>0){return(database)}
 
 }
 
@@ -425,7 +425,6 @@ if(!is.null(filename)){import_files <- filename}
       print(paste("Warning: Unable to recognize format for", import_files[i]))
     }
   }
-
 
   if (save_full_dataset == TRUE) {
     write.csv(search_hits, paste(save_directory, "full_dataset.csv", sep=""))
