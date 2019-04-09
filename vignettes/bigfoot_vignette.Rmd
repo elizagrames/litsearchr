@@ -1,10 +1,10 @@
 ---
-title: "Introduction to litsearchr with an example of writing a systematic review search strategy for black-backed woodpecker occupancy of post-fire forest systems"
-author: "Eliza Grames and Andrew Stillman"
+title: "Effectiveness of interventions to reduce risky behavior in hominid cryptids"
+author: ""
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to litsearchr with an example of writing a systematic review search strategy for black-backed woodpecker occupancy of post-fire forest systems}
+  %\VignetteIndexEntry{}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,34 +21,9 @@ knitr::opts_chunk$set(
 
 # About litsearchr 
 
-## Introduction
-
-The **litsearchr** package for R is designed to partially automate search term selection and write search strategies for systematic reviews. It uses the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010) to identify potential keywords from a sample of titles and abstracts and combines them with author- and database-tagged keywords to create a pool of possible keywords relevant to a field of study. Important keywords in a field are identified from their importance in a keyword co-occurrence network. After keywords are grouped into concept groups, **litsearchr** writes Boolean searches in up to 53 languages, with stemming support for English. The searches are tested and work fully in at least 14 commonly used search databases with partial support in six additional databases. 
-```{r}
-# print a list of platforms and databases we have tested along with how we exported results
-litsearchr::usable_databases()
-```
+Naive search: TS=("barmanou" OR "batutut" OR "sasquatch" OR "bigfoot" OR "monkey man" OR chuchunya OR "ebu gogo" OR "fouke monster" OR "honey island swamp monster" OR "swamp monster" OR "mogollon monster" OR "orang-bati" OR "orang mawas" OR "skunk ape" OR "yeren" OR ("yeti" AND NOT "yeti crab") OR "yowie" OR "cryptid" OR ((hominin* OR hominid) NEAR/2 (pseudo* OR crypto* OR folklore*)))
 
 
-Our intent in creating **litsearchr** is to make the process of designing a search strategy for systematic reviews easier for researchers in fields that lack standardized terms or ontologies. By partially automating keyword selection, **litsearchr** reduces investigator bias in keyword selection and increases the repeatability of systematic reviews. It also reduces errors in creating database-specific searches by generating searches that work across a wide range of databases. Our hope is that **litsearchr** can be used to facilitate systematic reviews and contribute to automating evidence synthesis. 
-
-## Comments, suggestions, bugs, and questions
-
-**litsearchr** is a work in progress - any and all comments, suggestions, bugs, or questions are welcome! Please email eliza.grames\@uconn.edu or open an issue at  https://github.com/elizagrames/litsearchr.
-
-# Workflow example: Preparing a search strategy for a systematic review
-
-There are lots of reasons to do a systematic literature review; for example, this package could be used to identify research gaps in a field of study or prepare a search strategy as part of a meta-analysis. In this example, we're developing a complete search strategy for a systematic review of papers that could potentially answer the question: What processes lead to increased black-backed woodpecker (*Picoides arcticus*) occupancy following forest fire and subsequent occupancy declines over time?  Black-backed woodpeckers are known to colonize post-fire areas soon after wildfire, and their numbers gradually decrease as the number of years since fire increases (Tingley et al. 2018). We would like to conduct a systematic literature review that draws on literature from similar systems to identify potential mechanisms that might produce this pattern.
-
-We start with a naive search, which is a search of a few databases (namely, Scopus, BIOSIS, and Zoological Record). We will then use litsearchr to identify additional relevant keywords that are used in the literature but aren't included in our naive search. Finally, we will write new Boolean searches using the newly identified search terms to conduct a systematic review in multiple languages.
-
-## Step 1: Conduct and import the naive search
-
-When writing a naive search, the first step is to clearly articulate the research question. This serves as the basis for identifying concept groups and naive search terms. In our case, the research question is "What processes lead to the decline in black-backed woodpecker occupancy of post-fire forest systems with time since fire?" Although the exact concept groups needed for a review will vary on a case-by-case basis, the PICO (Population Intervention Control Outcome) model used in public health and medical reviews can be transformed to work for ecology. Instead of a population, we have a study system; intervention becomes predictor variables; outcome becomes response variables. The control category doesn't translate well to ecological reviews and can generally be omitted from the search. In our case, we are interested in either the predictor (processes) or response (occupancy) variables in our system (woodpeckers in post-fire forest systems), so our search will combine the concept groups as ( (processes OR occupancy) AND fire AND woodpecker ). The "OR" operator will include all hits that have either a process term or an occupancy term. The "AND" operator will require all hits to also have a term both the fire and woodpecker category. The parentheses work just like basic order of operations; items inside parentheses are considered before items outside of parentheses. 
-
-We truncated terms to include word forms by adding an asterisk (\*) to the end of a word stem. For example, occup\* will pick up occupancy, occupance, occupied, occupy, occupying, etc... We included alternate spellings (i.e. colonization and colonisation) when possible, though we did not truncate one letter earlier because coloni\* would also pick up colonies or colonial, which has a different meaning altogether. Because there are multiple ways to describe nest success, we represented this concept with two groups of terms separated by W/3. This operator forces a word to occur within a certain number of words to another word (in this case, 3 words). By combining the OR operator with W/3, we can get any articles that include the concept of nesting and success next to each other. For example, an article about "success of nestlings" would be captured because the terms occur within three words of each other and nest* captures nestlings. Because we want our naive search to be discrete (i.e. only capture results most relevant to our question to yield better keyword suggestions), we decided to only include birds in the tribe Dendropicini. We included both common names (woodpecker, sapsucker) and genus names to capture studies which used only latin species names. The bird terms were only searched in the full text because study systems are often not specified in the title, abstract, or keywords. Genus names were truncated to account for studies that refer to groups with the suffix "-ids".
-
-Naive search: ( (occup\* OR occur\* OR presen\* OR coloniz\* OR colonis\* OR abundan\* OR "population size"  OR "habitat suitability" OR "habitat selection" OR persist\*) OR ( (nest\* OR reproduct* OR breed\* OR fledg\*) W/3 (succe\* OR fail\* OR surviv\*) ) OR ( surviv\* OR mortalit\* OR death\* ) OR ( "food availab\*" OR forag\* OR provision\*) OR  ( emigrat\* OR immigrat\* OR dispers\*) ) AND (fire\* OR burn\* OR wildfire\*) ) AND (woodpecker\* OR sapsucker\* OR Veniliorn\* OR Picoid\* OR Dendropic\* OR Melanerp\* OR Sphyrapic\*)
 
 Searches were conducted on 10/22/18 with no date restrictions. We searched two databases on Web of Science (BIOSIS Citation Index and Zoological Record) and Scopus. Number of hits were as follows: BIOSIS (212), Zoological Record (179), and Scopus (592).
 
