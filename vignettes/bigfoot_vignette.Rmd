@@ -24,16 +24,9 @@ knitr::opts_chunk$set(
 Naive search: TS=("barmanou" OR "batutut" OR "sasquatch" OR "bigfoot" OR "monkey man" OR chuchunya OR "ebu gogo" OR "fouke monster" OR "honey island swamp monster" OR "swamp monster" OR "mogollon monster" OR "orang-bati" OR "orang mawas" OR "skunk ape" OR "yeren" OR ("yeti" AND NOT "yeti crab") OR "yowie" OR "cryptid" OR ((hominin* OR hominid) NEAR/2 (pseudo* OR crypto* OR folklore*)))
 
 
+Searches were conducted on April 10, 2019 with no date restrictions. We searched Scopus (1970-2019) and seven databases in Web of Science: the Web of Science Core Collection (1900-2019), BIOSIS Previews (1926-2019), Current Contents Connect (1998-2019), MEDLINE (1950-2019), Russian Science Citation Index (2005-2019), SciELO Citation Index (1997-2019), and Zoological Record (1945-2019).
 
-Searches were conducted on 10/22/18 with no date restrictions. We searched two databases on Web of Science (BIOSIS Citation Index and Zoological Record) and Scopus. Number of hits were as follows: BIOSIS (212), Zoological Record (179), and Scopus (592).
 
-Although other databases could also be used, the import functions of this package are set up to work with commonly used databases and platforms in ecology or with .bib or .ris files from other databases. Instructions on how to export files to match what litsearchr is expecting are viewable with usable_databases(). 
-
-The original export files should not be altered at all - none of the columns need to be removed and default headers should be left alone. These are used as signatures to detect which database a file originated from. If one of your naive searches results in more than 500 hits and you need to export multiple files from BIOSIS or Zoological Record, they can be left as separate files and don't need to be manually combined -litsearchr will do this for you. However, note that if your naive search returns more than 500 hits, the search terms are likely too broad. This lack of specificity may mean that the updated search terms returned by litsearchr will not adequately capture the desired level of inference. 
-
-Optionally, if you want to return extremely specific keywords, you can conduct a critical appraisal of your naive search results to remove articles that you know aren't relevant to your question. However, if these articles are relatively rare, their keywords should be filtered out by litsearchr as unimportant. 
-
-All results of naive searches should be placed into a single directory. The results of the black-backed woodpecker example searches are included in the package in ./inst/extdata/ [Note: you may need to change the directory reference depending on your current working directory.]
 
 ```{r}
 list.files("../inst/extdata/")
