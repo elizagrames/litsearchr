@@ -1,0 +1,260 @@
+---
+title: "Introduction to litsearchr with an example of writing a systematic review search strategy for black-backed woodpecker occupancy of post-fire forest systems"
+author: "Eliza Grames and Andrew Stillman"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to litsearchr with an example of writing a systematic review search strategy for black-backed woodpecker occupancy of post-fire forest systems}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  fig.width = 6,
+  fig.height = 6
+)
+```
+
+# About litsearchr 
+
+## Introduction
+
+The **litsearchr** package for R is designed to partially automate search term selection and write search strategies for systematic reviews. It uses the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010) to identify potential keywords from a sample of titles and abstracts and combines them with author- and database-tagged keywords to create a pool of possible keywords relevant to a field of study. Important keywords in a field are identified from their importance in a keyword co-occurrence network. After keywords are grouped into concept groups, **litsearchr** writes Boolean searches in up to 53 languages, with stemming support for English. The searches are tested and work fully in at least 14 commonly used search databases with partial support in six additional databases. 
+```{r}
+# print a list of platforms and databases we have tested along with how we exported results
+litsearchr::usable_databases()
+```
+
+
+Our intent in creating **litsearchr** is to make the process of designing a search strategy for systematic reviews easier for researchers in fields that lack standardized terms or ontologies. By partially automating keyword selection, **litsearchr** reduces investigator bias in keyword selection and increases the repeatability of systematic reviews. It also reduces errors in creating database-specific searches by generating searches that work across a wide range of databases. Our hope is that **litsearchr** can be used to facilitate systematic reviews and contribute to automating evidence synthesis. 
+
+## Comments, suggestions, bugs, and questions
+
+**litsearchr** is a work in progress - any and all comments, suggestions, bugs, or questions are welcome! Please email eliza.grames\@uconn.edu or open an issue at  https://github.com/elizagrames/litsearchr.
+
+# Workflow example: Preparing a search strategy for a systematic review
+
+There are lots of reasons to do a systematic literature review; for example, this package could be used to identify research gaps in a field of study or prepare a search strategy as part of a meta-analysis. In this example, we're developing a complete search strategy for a systematic review of papers that could potentially answer the question: What processes lead to increased black-backed woodpecker (*Picoides arcticus*) occupancy following forest fire and subsequent occupancy declines over time?  Black-backed woodpeckers are known to colonize post-fire areas soon after wildfire, and their numbers gradually decrease as the number of years since fire increases (Tingley et al. 2018). We would like to conduct a systematic literature review that draws on literature from similar systems to identify potential mechanisms that might produce this pattern.
+
+We start with a naive search, which is a search of a few databases (namely, Scopus, BIOSIS, and Zoological Record). We will then use litsearchr to identify additional relevant keywords that are used in the literature but aren't included in our naive search. Finally, we will write new Boolean searches using the newly identified search terms to conduct a systematic review in multiple languages.
+
+## Step 1: Conduct and import the naive search
+
+When writing a naive search, the first step is to clearly articulate the research question. This serves as the basis for identifying concept groups and naive search terms. In our case, the research question is "What processes lead to the decline in black-backed woodpecker occupancy of post-fire forest systems with time since fire?" Although the exact concept groups needed for a review will vary on a case-by-case basis, the PICO (Population Intervention Control Outcome) model used in public health and medical reviews can be transformed to work for ecology. Instead of a population, we have a study system; intervention becomes predictor variables; outcome becomes response variables. The control category doesn't translate well to ecological reviews and can generally be omitted from the search. In our case, we are interested in either the predictor (processes) or response (occupancy) variables in our system (woodpeckers in post-fire forest systems), so our search will combine the concept groups as ( (processes OR occupancy) AND fire AND woodpecker ). The "OR" operator will include all hits that have either a process term or an occupancy term. The "AND" operator will require all hits to also have a term both the fire and woodpecker category. The parentheses work just like basic order of operations; items inside parentheses are considered before items outside of parentheses. 
+
+We truncated terms to include word forms by adding an asterisk (\*) to the end of a word stem. For example, occup\* will pick up occupancy, occupance, occupied, occupy, occupying, etc... We included alternate spellings (i.e. colonization and colonisation) when possible, though we did not truncate one letter earlier because coloni\* would also pick up colonies or colonial, which has a different meaning altogether. Because there are multiple ways to describe nest success, we represented this concept with two groups of terms separated by W/3. This operator forces a word to occur within a certain number of words to another word (in this case, 3 words). By combining the OR operator with W/3, we can get any articles that include the concept of nesting and success next to each other. For example, an article about "success of nestlings" would be captured because the terms occur within three words of each other and nest* captures nestlings. Because we want our naive search to be discrete (i.e. only capture results most relevant to our question to yield better keyword suggestions), we decided to only include birds in the tribe Dendropicini. We included both common names (woodpecker, sapsucker) and genus names to capture studies which used only latin species names. The bird terms were only searched in the full text because study systems are often not specified in the title, abstract, or keywords. Genus names were truncated to account for studies that refer to groups with the suffix "-ids".
+
+Naive search: ( (occup\* OR occur\* OR presen\* OR coloniz\* OR colonis\* OR abundan\* OR "population size"  OR "habitat suitability" OR "habitat selection" OR persist\*) OR ( (nest\* OR reproduct* OR breed\* OR fledg\*) W/3 (succe\* OR fail\* OR surviv\*) ) OR ( surviv\* OR mortalit\* OR death\* ) OR ( "food availab\*" OR forag\* OR provision\*) OR  ( emigrat\* OR immigrat\* OR dispers\*) ) AND (fire\* OR burn\* OR wildfire\*) ) AND (woodpecker\* OR sapsucker\* OR Veniliorn\* OR Picoid\* OR Dendropic\* OR Melanerp\* OR Sphyrapic\*)
+
+Searches were conducted on 10/22/18 with no date restrictions. We searched two databases on Web of Science (BIOSIS Citation Index and Zoological Record) and Scopus. Number of hits were as follows: BIOSIS (212), Zoological Record (179), and Scopus (592).
+
+Although other databases could also be used, the import functions of this package are set up to work with commonly used databases and platforms in ecology or with .bib or .ris files from other databases. Instructions on how to export files to match what litsearchr is expecting are viewable with usable_databases(). 
+
+The original export files should not be altered at all - none of the columns need to be removed and default headers should be left alone. These are used as signatures to detect which database a file originated from. If one of your naive searches results in more than 500 hits and you need to export multiple files from BIOSIS or Zoological Record, they can be left as separate files and don't need to be manually combined -litsearchr will do this for you. However, note that if your naive search returns more than 500 hits, the search terms are likely too broad. This lack of specificity may mean that the updated search terms returned by litsearchr will not adequately capture the desired level of inference. 
+
+Optionally, if you want to return extremely specific keywords, you can conduct a critical appraisal of your naive search results to remove articles that you know aren't relevant to your question. However, if these articles are relatively rare, their keywords should be filtered out by litsearchr as unimportant. 
+
+All results of naive searches should be placed into a single directory. The results of the black-backed woodpecker example searches are included in the package in ./inst/extdata/ [Note: you may need to change the directory reference depending on your current working directory.]
+
+```{r}
+list.files("../inst/extdata/")
+```
+
+Now that we have naive search results, we need to import these to our working environment with the function import_results(). This function will identify any .txt, .csv, or .xls files in a dataset and import them accordingly. If importing .xls files, the gdata package is required. After loading in files, import_results() identifies the database that produced the downloaded file (currently, only BIOSIS, Zoological Record, Scopus, and ProQuest are supported), and standardizes their columns. 
+
+If you have naive search results from a different database, format them (we suggest using the select() function in dplyr) to have the following columns in order: id, text, title, abstract, keywords, methods, type, authors, affiliation, source, year, volume, issue, startpage, endpage, doi, language, database. Columns can be left blank, but all the columns need to be included and ordered correctly so that you can then rbind() your data frame to the data frame created with import_results(). If you have suggestions for additional databases to support in the import_results() function, please email eliza.grames\@uconn.edu. Note that the function can recognize .ris and .bib files from any database by relying on the revtools package.
+
+If remove_duplicates is set to TRUE, duplicate articles that share the same journal title, volume number, and start page are removed. This is advised because using multiple databases for the naive search is likely to result in duplicates because the supported databases overlap in which journals and years they index. Removing duplicates avoids double-counting keywords from the same article which would inflate their importance in the field. However, if you have a lot of records to import at once, you may want to use the function deduplicate() after reading in records — this will allow you to reduce how long it takes to deduplicate articles by selecting different deduplication methods (e.g. doing a quick removal of exactly duplicated articles before deduplicating by tokenized text similarity). This can be broken up into different steps as shown. 
+
+If clean_dataset is set to TRUE, keyword punctuation is cleaned up and standardized to be separated with a semicolon. 
+
+All the files from the directory are bound to a single dataset which records the database they originated from.
+
+
+```{r}
+BBWO_import <- litsearchr::import_results("../inst/extdata/", remove_duplicates = FALSE, clean_dataset = TRUE, save_full_dataset = FALSE)
+BBWO_data1 <- litsearchr::deduplicate(BBWO_import, use_abstracts = FALSE, use_titles=TRUE, method = "tokens", title_sim = .8)
+BBWO_data <- litsearchr::deduplicate(BBWO_data1, use_abstracts = TRUE, use_titles=FALSE, doc_sim = .8, method="tokens")
+```
+
+
+## Step 2: Identify all potential keywords
+
+The next step is to use this body of text to identify and extract all potential keywords that we may not have included when selecting words for our naive search. There are two approaches to this in litsearchr: 1) considering just author/database-tagged keywords already attached to articles and 2) scraping the titles and/or abstracts of all articles to identify new keywords. In this example, we'll use both approaches and combine them. 
+
+First, we use the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010) in the package rapidraker to scrape potential keywords from abstracts and titles. The default options are used, which means (1) we aren't adding new stopwords to ignore, (2) a term must occur at least twice in the entire dataframe to be considered (this eliminates weird phrases that just happen to have no stopwords), and (3) we want to scrape both titles and abstracts.
+
+The amount of time this function takes depends on the size of your database; for ~500 articles it took under one minute. 
+
+```{r}
+raked_keywords <- litsearchr::extract_terms(BBWO_data, type="RAKE", new_stopwords = NULL, min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
+
+head(raked_keywords, 20)
+```
+
+Next, we want to extract the author/database-tagged keywords from our naive search.
+
+```{r}
+real_keywords <- litsearchr::extract_terms(BBWO_data, ngrams = TRUE, n=2, type ="tagged")
+
+head(real_keywords, 20)
+```
+
+In order to create a document-term matrix that only includes our potential keywords, we need to make a dictionary object to pass to the quanteda package. We also need to create a corpus object for it to read. The corpus and dictionary are passed to create_dfm, which calls the quanteda function dfm(). This creates a document-term matrix (quanteda calls it a document-feature matrix) that contains each document as a row and each term as a column with a count of the number of times the term is used in the corresponding spot. This matrix is going to be the basis for determining which keywords are central to the field. 
+
+```{r}
+BBWO_dict <- litsearchr::make_dictionary(terms=list(raked_keywords, real_keywords))
+BBWO_corpus <- litsearchr::make_corpus(BBWO_data)
+BBWO_dfm <- litsearchr::create_dfm(BBWO_corpus, my_dic=BBWO_dict)
+# If you want to see the most frequently occurring terms, call the topfeatures() function from the quanteda package. 
+quanteda::topfeatures(BBWO_dfm, 20)
+```
+
+## Step 3: Create keyword co-occurrence network and select nodes
+
+Before we can select important keywords, we need to create a keyword co-occurrence network. A network is stronger than a matrix for node selection because we can examine things like node centrality, degrees, and strength rather than just frequency or other properties we could get from the matrix. 
+
+We pass our BBWO_dfm matrix to create_network() and specify that a keyword must occur at least three times in the entire dataset and in a minimum of three studies - these can be adjusted according to how stringent you want to be. Optionally at this point, you can look at the structure of the complete original network; if it is a large graph this can take a while. 
+
+```{r}
+BBWO_graph <- litsearchr::create_network(BBWO_dfm, min_studies=3, min_occurrences = 3)
+
+```
+
+Since we have a weighted network, node importance is judged based on whichever measure of node importance you select: strength, eigencentrality, alpha centrality, betweenness, hub score, or power centrality. For a description of each of these measures, please refer to the igraph package documentation. The default measure of importance in litsearchr is node strength because it makes intuitive sense for keywords. Stronger nodes are more important in the field and co-occur more often with other strong nodes. Weak nodes occur in the field less frequently and can likely be disregarded. 
+
+### Using the full network to identify important nodes
+
+There are two ways to identify important nodes in the litsearchr package: fitting a spline model to the node importance to select tipping points or finding the minimum number of nodes to capture a large percent (e.g. 80%) of the total importance of the network. Which way you decide to identify important nodes depends both on how the node importance of your graph are distributed and your personal preference. In this example, we will consider both.
+
+The first thing to do is look at the distribution of node importance (in this case, node strength). From the density and histogram plots, it looks like this network has a lot of fairly weak nodes with a long tail. We're interested in the long tail. There appears to be a pretty sharp cutoff, so a spline model is an appropriate method to identify the cutoff threshold for keyword importance. The cumulative approach is more appropriate when there aren't clear breaks in the data.
+
+When using a spline model, we need to specify where to place knots (i.e. where should the fitted model parameters be allowed to change). Looking at the plot of ranked node importance, we should use a second-degree polynomial for the spline and should probably allow four knots. 
+
+```{r}
+hist(igraph::strength(BBWO_graph), 100, main="Histogram of node strengths", xlab="Node strength")
+plot(sort(igraph::strength(BBWO_graph)), ylab="Node strength", main="Ranked node strengths", xlab="Rank")
+```
+
+
+First, we run the spline method and save those cutoff points. Each knot is a potential cutoff point, though in this case we plan to use the lowest knot to capture more potential terms and be less conservative. For more complex node strength curves a different knot might be appropriate. To print the residuals from the spline model fit and the model fit itself, set diagnostics to TRUE. The residuals should resemble a funnel plot centered on zero; large residuals with an increase in both rank and strength are expected. 
+
+For the cumulative method, the only decision is what percent of the total network node strength you want to capture. In this case, we left it at the default of 80%. Diagnostics for the cumulative curve are not actually diagnostic and simply show the cutoff point in terms of rank and strength. 
+
+```{r}
+cutoffs_spline <- litsearchr::find_cutoff(BBWO_graph, method = "spline", degrees = 2, knot_num = 3, diagnostics = TRUE, importance_method = "strength")
+cutoffs_cumulative <- litsearchr::find_cutoff(BBWO_graph, method = "cumulative", cum_pct = .80, diagnostics = TRUE, importance_method = "strength")
+```
+
+
+Both the spline and cumulative fits seem pretty good and are roughly in agreement. For this example, we're opting for the spline cutoff and will pass this cutoff strength to the reduce_graph() function which creates a new igraph object that only contains nodes from the original network that surpass a minimum strength threshold at the cutoff. From the reduced graph, we use get_keywords() extract the keywords from the reduced network. 
+
+```{r}
+reduced_graph <- litsearchr::reduce_graph(BBWO_graph, cutoff_strength = cutoffs_spline[1])
+search_terms <- litsearchr::get_keywords(reduced_graph, savekeywords = FALSE, makewordle = FALSE)
+head(sort(search_terms), 20)
+```
+
+## Step 4: Group terms into concepts
+
+We're still only interested in search terms that fall under one of our concept categories: woodpecker, fire, and process/outcome. From the list of potential search terms returned, we need to manually go through and select which ones belong in a concept category and add it as a character vector. Any of the original search terms not included in the keywords from the network (e.g. woodpecker) should also be added back in. 
+
+We think it is easiest to sort potential keywords in a .csv file outside of R, so we wrote the search terms to a .csv to go through and assign them to process groups or disregard them. We've done this by adding a column to the .csv for group and assigning terms to either "no" or one or more of the groups. If a term fits in two categories (e.g. "woodpecker nest site selection" then it can be tagged as both and will work logically with the automated way litsearchr compiles search strings. Normally, you will want to read in your grouped .csv file; we have the BBWO keywords saved to the litsearchr data here instead.
+
+At this stage, you can also add in additional terms that you've thought of that weren't in your naive search and weren't found by litsearchr. litsearchr is merely meant as a tool to identify additional keywords - not to restrict your search. 
+
+```{r}
+
+grouped_keywords <- litsearchr::BBWO_grouped_keywords
+# We append our original search terms for a category with the newly identified terms
+
+process_group <- unique(append(
+  c("home range size"),
+  grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "process"))]))
+                                                  
+fire_group <- unique(append(
+  c("wildfire"),
+  grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "fire"))]))
+bird_group <- unique(append(
+  c("woodpecker", "sapsucker", "Veniliornis", "Picoides", "Dendropicoides", "Melanerpes", "Sphyrapicus"),
+  grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "bird"))]))
+
+response_group <- unique(append(
+  c("occupancy"),
+  grouped_keywords$term[which(stringr::str_detect(grouped_keywords$group, "response"))]))
+
+my_search_terms <- list(process_group, fire_group, bird_group, response_group)
+```
+
+
+Next, we wanted to find similar terms to the ones we already included since they may also be relevant. The function get_similar_terms() uses shared unigram stems to locate similar terms. We saved these to a .csv, manually grouped the new suggestions, and read them back in. These are stored in the object BBWO_similar_terms_grouped
+
+```{r}
+similar_terms <- litsearchr::get_similar_terms(my_search_terms, graph = BBWO_graph)
+
+#write.csv(similar_terms, "BBWO_similar_terms.csv")
+#new_terms <- read.csv("BBWO_similar_terms_grouped.csv", stringsAsFactors = FALSE)
+
+# note: the exact number of new_terms below may not match what you get for similar_terms
+# this is because when we did the grouping for similar terms, we had less stringent minimums than the default
+
+new_terms <- litsearchr::BBWO_similar_grouped
+
+fire_group <- unique(append(fire_group,
+                                new_terms$term[which(stringr::str_detect(new_terms$group, "fire"))]))
+bird_group <- unique(append(bird_group,
+                                new_terms$term[which(stringr::str_detect(new_terms$group, "bird"))]))
+response_group <- unique(append(response_group,
+                                  new_terms$term[which(stringr::str_detect(new_terms$group, "response"))]))
+process_group <- unique(append(process_group,
+                                 new_terms$term[which(stringr::str_detect(new_terms$group, "process"))]))
+
+my_search_terms <- list(fire_group, bird_group, response_group, process_group)
+
+```
+
+## Step 5: Write Boolean searches
+
+litsearchr provides functions to write simple Boolean searches that work in at least 14 tested databases which can be viewed with the function usable_databases(). Note that this number may be higher than what is written here as we keep testing more databases and adding them to the output of usable_databases() but don't update the vignette as often. The write_search() function also removes terms that are redundant because they contain other terms or have the same stemmed form. 
+
+```{r}
+litsearchr::usable_databases()
+```
+
+ 
+We did not test all of the unlisted EBSCO databases, but we suspect that the search string works in most, if not all, of the databases we left out. If you plan to use a different EBSCO database, check the database rules first. If they do not specify whether truncation is allowed within exact phrases, try checking the results of two phrases that should be equivalent (e.g. ["nest predator" OR "nest predators"] and ["nest predator*"]). If the truncated version returns an equal (or sometimes greater) number of articles, truncation within exact phrases is allowed. 
+
+To write foreign language searches, specify the list of your concept groups, the key topics for journal languages, and whether or not terms should be included in quotes to find exact phrases. The translation is done with the Google Translate API using the translate package. You will need to set up an API key to use this function (https://cloud.google.com/translate/). In this example, we are only writing the search in English. 
+
+To visually see which languages are used in the discipline, we can use the language_graphs() function. If you want to specify the languages to write the search in instead of using the choose_languages() function, simply replace it with a character vector of languages. Available languages can be viewed with available_languages(). 
+
+To write English language searches, set languages to "English". Writing stemmed searches is currently only supported in English.
+
+```{r}
+# translate_API <- readLines("~/Google-Translate-API")
+my_key_topics <- c("biology", "conservation", "ecology", "forestry")
+# Depending on how many languages you choose to search in and how many search terms you have, this can take some time
+# If verbose is set to TRUE, as each language is written, the console will print "Russian is written!" etc...
+# "All done!" will print when all languages are written
+litsearchr::choose_languages(lang_data=litsearchr::get_language_data(key_topics = my_key_topics)[1:10,])
+litsearchr::language_graphs(lang_data = litsearchr::get_language_data(key_topics = my_key_topics), no_return = 15, key_topics = my_key_topics)
+my_search <- litsearchr::write_search(groupdata = my_search_terms, 
+                                      languages = c("English"), stemming = TRUE,
+                                      exactphrase = TRUE, writesearch = FALSE, verbose = TRUE)
+```
+
+
+Now we can inspect our written searches. Non-english characters will be in unicode, but if you open them in a web browser, you can copy and paste them into search databases (assuming you have the appropriate fonts on your computer to display them). Alternatively, you can change writesearch to TRUE in the code above and a plain text file will be saved to your working directory. 
+
+```{r}
+my_search
+```
+
+# References
+Rose S,  Engel D,  Cramer N,  Cowley W. (2010). Automatic Keyword Extraction from Individual Documents, chapter 1, pages 1-20. Wiley-Blackwell.
+
+Tingley MW, Stillman AN, Wilkerson RL, Howell CA, Sawyer SC, Siegel RB. (2018). Cross-scale occupancy dynamics of a postfire specialist in response to variation across a fire regime. Journal of Animal Ecology, 87:1484-1496. https://doi.org/10.1111/1365-2656.12851
