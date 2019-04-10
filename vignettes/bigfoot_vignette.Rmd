@@ -112,3 +112,45 @@ woodpecker_search <- litsearchr::write_search(groupdata = mysearchterms,
 woodpecker_search
 
 ```
+
+
+## Import search results
+
+```{r}
+data1 <- read_bibliography("../inst/extdata/borealis/final_search/bibs/WoS_corecollection_final_1.bib")
+data2 <- read_bibliography("../inst/extdata/borealis/final_search/bibs/WoS_corecollection_final_2.bib")
+data3 <- read_bibliography("../inst/extdata/borealis/final_search/bibs/scopus_final.bib")
+
+reducing.fields <- c("label","title","author","journal","issn",
+                         "volume","pages","year","doi","abstract")
+
+data_all <- rbind(data1[,reducing.fields], data2[,reducing.fields], data3[,reducing.fields])
+
+```
+
+
+## Deduplicate across databases
+
+```{r}
+
+matches <- find_duplicates(
+  data = data_all,
+  match_variable = "title",
+  group_variable = NULL,
+  match_function = "fuzzdist",
+  method = "fuzz_m_ratio",
+  threshold = 0.1
+)
+
+data_unique <- extract_unique_references(data_all, matches)
+
+```
+
+
+## Screening titles and/or abstracts
+
+```{r}
+
+screen_duplicates(data_unique)
+
+```
