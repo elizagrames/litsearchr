@@ -31,11 +31,11 @@ Imports:
     Rcpp,
     quanteda,
     tm,
-    rapidraker,
-    xml2,
     utils,
     revtools
 Suggests: 
+    xml2,
+    rapidraker,
     wordcloud,
     knitr,
     rmarkdown,
