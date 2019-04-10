@@ -13,11 +13,10 @@ vignette: >
 
 Naive search: TS=(("picoides borealis" OR "red-cockaded woodpecker*" OR "red cockaded woodpecker" OR "leuconotopicus borealis" OR woodpecker) AND ("prescribed burn*" OR "prescribed fire*" OR fire* OR wildfire* OR burn*) AND (abundan* OR presen* OR occup* OR occur* OR (popul* NEAR/2 (densit* OR size))))
 
-Searches were conducted on April 10, 2019 with no date restrictions. We searched Scopus (1970-2019) and seven databases in Web of Science: the Web of Science Core Collection (1900-2019), BIOSIS Previews (1926-2019), Current Contents Connect (1998-2019), MEDLINE (1950-2019), Russian Science Citation Index (2005-2019), SciELO Citation Index (1997-2019), and Zoological Record (1945-2019).
-
+Searches were conducted on April 10, 2019 with no date restrictions. We searched Scopus (1970-2019) and five databases in Web of Science: the Web of Science Core Collection (1900-2019), BIOSIS Previews (1926-2019), Current Contents Connect (1998-2019), MEDLINE (1950-2019), and Zoological Record (1945-2019).
 
 ```{r}
-search_directory <- "~/inst/extdata/borealis/"
+search_directory <- "~/litsearchr/inst/extdata/borealis/"
 
 naiveimport <- litsearchr::import_results(directory = search_directory, remove_duplicates = FALSE, clean_dataset = TRUE, save_full_dataset = FALSE)
 
@@ -31,8 +30,8 @@ naiveresults <- dedupe_stage2
 ## Identify potential keywords
 
 ```{r}
-rakedkeywords <- litsearchr::extract_terms(naiveresults, type="RAKE", new_stopwords = NULL, min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
-taggedkeywords <- litsearchr::extract_terms(naiveresults, type="tagged", new_stopwords = NULL, min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
+rakedkeywords <- litsearchr::extract_terms(naiveresults, type="RAKE", min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
+taggedkeywords <- litsearchr::extract_terms(naiveresults, type="tagged", min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
 
 ```
 
@@ -42,7 +41,7 @@ taggedkeywords <- litsearchr::extract_terms(naiveresults, type="tagged", new_sto
 naivedictionary <- litsearchr::make_dictionary(terms=list(rakedkeywords, taggedkeywords))
 naivecorpus <- litsearchr::make_corpus(naiveresults)
 naivedfm <- litsearchr::create_dfm(naivecorpus, my_dic=naivedictionary)
-naivegraph <- litsearchr::create_network(naivedfm, min_studies=2, min_occurrences = 2)
+naivegraph <- litsearchr::create_network(naivedfm, min_studies=1, min_occurrences = 1)
 ```
 
 ## Identify change points in keyword importance 
@@ -63,22 +62,53 @@ searchterms <- litsearchr::get_keywords(reducedgraph, savekeywords = FALSE, make
 ```
 
 ## Group terms into concepts
-
+point counts
+woodpecker
 ```{r}
+searchterms
+groupedterms <- c()
+for(i in 1:length(searchterms)){
+print(searchterms[i])
+  decision <- menu(choices = c("woodpecker", "fire", "abundance", "none", "multiple"), title = "Which concept group does this term belong to?")
+    if(decision==1){
+  groupedterms[i] <- "woodpecker"}
+  if(decision==2){
+  groupedterms[i] <- "fire"
+}else if(decision==3){
+  groupedterms[i] <- "abundance"
+}else if(decision==4){
+  groupedterms[i] <- "x"
+}else if(decision==5){
+  groupedterms[i] <- "multiple"
+}
+}
+
+term_groups <- cbind(searchterms, groupedterms)
+
+woodpeckers <- unique(append(
+  c("woodpecker", "red-cockaded woodpecker", "leuconotopicus borealis", "picoides borealis"),
+  term_groups[which(term_groups[,2]=="woodpecker"), 1]))
+
+fire <- unique(append(
+  c("fire", "prescribed fire", "prescribed burn", "fire treatment"),
+  term_groups[which(term_groups[,2]=="fire"), 1]))
+
+abundance <- unique(append(
+  c("species abundance", "species presence", "species density", "population density", "population size"),
+  term_groups[which(term_groups[,2]=="abundance"), 1]))
+
+mysearchterms <- list(woodpeckers, fire, abundance)
 
 ```
 
 ## Write Boolean searches
 
 ```{r}
-litsearchr::usable_databases()
-```
-
-```{r}
-bigfootsearch <- litsearchr::write_search(groupdata = mysearchterms, 
+woodpecker_search <- litsearchr::write_search(groupdata = mysearchterms, 
                                           languages = "English", stemming = TRUE,
                                           exactphrase = TRUE, writesearch = FALSE, 
                                           verbose = TRUE)
 
-bigfootsearch
+woodpecker_search
+
 ```
