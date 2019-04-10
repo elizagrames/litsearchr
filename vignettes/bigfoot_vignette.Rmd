@@ -11,12 +11,13 @@ vignette: >
 
 # Write and conduct naive search
 
-Naive search: TS=("barmanou" OR "batutut" OR "sasquatch" OR "bigfoot" OR "monkey man" OR chuchunya OR "ebu gogo" OR "fouke monster" OR "honey island swamp monster" OR "swamp monster" OR "mogollon monster" OR "orang-bati" OR "orang mawas" OR "skunk ape" OR "yeren" OR ("yeti" AND NOT "yeti crab") OR "yowie" OR "cryptid" OR ((hominin* OR hominid) NEAR/2 (pseudo* OR crypto* OR folklore*)))
+Naive search: TS=(("picoides borealis" OR "red-cockaded woodpecker*" OR "red cockaded woodpecker" OR "leuconotopicus borealis" OR woodpecker) AND ("prescribed burn*" OR "prescribed fire*" OR fire* OR wildfire* OR burn*) AND (abundan* OR presen* OR occup* OR occur* OR (popul* NEAR/2 (densit* OR size))))
 
 Searches were conducted on April 10, 2019 with no date restrictions. We searched Scopus (1970-2019) and seven databases in Web of Science: the Web of Science Core Collection (1900-2019), BIOSIS Previews (1926-2019), Current Contents Connect (1998-2019), MEDLINE (1950-2019), Russian Science Citation Index (2005-2019), SciELO Citation Index (1997-2019), and Zoological Record (1945-2019).
 
+
 ```{r}
-search_directory <- "~/"
+search_directory <- "~/inst/extdata/borealis/"
 
 naiveimport <- litsearchr::import_results(directory = search_directory, remove_duplicates = FALSE, clean_dataset = TRUE, save_full_dataset = FALSE)
 
@@ -26,7 +27,6 @@ dedupe_stage2 <- litsearchr::deduplicate(dedupe_stage1, use_abstracts = TRUE, us
 naiveresults <- dedupe_stage2
 
 ```
-
 
 ## Identify potential keywords
 
