@@ -30,8 +30,9 @@ add_stopwords <- function(new_stopwords){
 #' @param n the minimum word count for ngrams
 #' @return a character vector of potential keyword terms
 #' @examples extract_terms(df=BBWO_data, type="RAKE")
-extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
-  if(type=="RAKE"){
+extract_terms <- function(df, type=c("RAKE", "slowRAKE", "tagged"), new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
+
+  if((type == "RAKE") | (type == "slowRAKE")){
   if (title == TRUE){
     if (abstract == TRUE){
       article_subjects <- paste(df$title, df$abstract, collapse=". ")
@@ -47,9 +48,17 @@ extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_
     if (abstract == FALSE){print("You aren't selecting any text to pass to RAKE!")}
   }
 
-  possible_terms <- rapidraker::rapidrake(tolower(article_subjects),
+  if(type == "RAKE") {
+    possible_terms <- rapidraker::rapidrake(tolower(article_subjects),
                                           stop_words = add_stopwords(new_stopwords),
                                           stem=FALSE)
+  } else if (type == "slowRAKE") {
+    possible_terms <- slowraker::slowrake(tolower(article_subjects),
+                                          stop_words = add_stopwords(new_stopwords),
+                                          stop_pos = NULL,
+                                          stem=TRUE)
+  }
+
   likely_terms <- possible_terms[[1]]$keyword[which(possible_terms[[1]]$freq >= min_freq)]
   if (ngrams==TRUE){
     likely_terms <- likely_terms[which(sapply(strsplit(as.character(likely_terms), " "), length) >= n)]
