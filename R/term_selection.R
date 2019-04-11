@@ -18,37 +18,53 @@ add_stopwords <- function(new_stopwords){
   return(custom_stopwords)
 }
 
+
 #' Extract potential keywords from abstracts and titles
 #' @description Uses the RAKE (Rapid Automatic Keyword Extractor) from rapidraker to extract potential keyword terms from titles and abstracts.
 #' @param df a dataframe created with import_scope
 #' @param type if generating keywords from title and/or abstract, use "RAKE"; if extracting author or database tagged keywords, use "tagged"
-#' @param new_stopwords a character vector of stopwords to ignore
 #' @param min_freq a number, the minimum occurrences of a potential term
 #' @param title include titles if TRUE
 #' @param abstract include abstracts if TRUE
 #' @param ngrams if TRUE, only extracts phrases with word count greater than a specified n
 #' @param n the minimum word count for ngrams
+#' @param language the language of input data to use for stopwords
 #' @return a character vector of potential keyword terms
 #' @examples extract_terms(df=BBWO_data, type="RAKE")
-extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
+extract_terms <- function(df, type=c("fakerake", "RAKE", "tagged"), min_freq=2,
+                          title=TRUE, abstract=TRUE, ngrams=TRUE, n=2, language="English"){
+
+
   if(type=="RAKE"){
+    this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
+    language_code <- as.character(litsearchr::possible_langs$Short[this_language])
+
   if (title == TRUE){
     if (abstract == TRUE){
+      language_abs <- which(cld3::detect_language(df$abstract)==language_code)
+      language_titles <- which(cld3::detect_language(df$title)==language_code)
+      df <- df[unique(language_abs, language_titles), ]
+
       article_subjects <- paste(df$title, df$abstract, collapse=". ")
     }
     if (abstract == FALSE){
+
+      df <- df[which(cld3::detect_language(df$title)==language_code),]
       article_subjects <- paste(df$title, collapse=". ")
     }
   }
   if (title == FALSE){
     if (abstract == TRUE){
+      df <- df[which(cld3::detect_language(df$abstract)==language_code),]
       article_subjects <- paste(df$abstract, collapse=". ")
     }
     if (abstract == FALSE){print("You aren't selecting any text to pass to RAKE!")}
   }
 
+
+
   possible_terms <- rapidraker::rapidrake(tolower(article_subjects),
-                                          stop_words = add_stopwords(new_stopwords),
+                                          stop_words = quanteda::stopwords(language=language_code, source = "snowball"),
                                           stem=FALSE)
   likely_terms <- possible_terms[[1]]$keyword[which(possible_terms[[1]]$freq >= min_freq)]
   if (ngrams==TRUE){
@@ -75,6 +91,38 @@ extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_
   }
 
 }
+
+
+#' Quick keyword extraction
+#' @description Extracts potential keywords from text separated by stopwords
+#' @param text A string object to extract terms from
+#' @param stopwords A character vector of stopwords to remove
+#' @return A character vector of potential keywords
+fakerake <- function(text, stopwords){
+
+  stops <- paste("\\b", stopwords, "\\b", sep="")
+  stops <- unique(append(stops, c(",", "\\.", ":", ";", "\\[", "\\]", "/", "\\(", "\\)", "\"", "&", "=", "<", ">")))
+  hyphens <- c(" - ", " -", "- ")
+  for(i in 1:length(hyphens)){
+    text <- gsub(hyphens[i], "-", text)
+  }
+
+  text <- tolower(text)
+
+  for(i in 1:length(stops)){
+    text <- gsub(stops[i], "__", text)
+  }
+
+  split_terms <- strsplit(text, "__")[[1]]
+  removals <- unique(append(which(split_terms==" "), which(split_terms=="")))
+  pre_terms <- sapply(split_terms[-removals], stringr::str_trim)
+  terms <- pre_terms[-which(nchar(pre_terms)<3)]
+  names(terms) <- NULL
+
+  return(terms)
+}
+
+
 
 #' Make a dictionary from keywords
 #' @description Combines actual keywords and likely keywords into a dictionary object using the as.dictionary function from quanteda.
