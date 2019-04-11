@@ -46,7 +46,11 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
   }
 
   if(method=="RAKE"){
-    if(is.null(text)){print("You need to specify a body of text from which to extract terms.")}else{
+    if(is.null(text)){print("You need to specify a body of text from which to extract terms.")
+      }else if (!requireNamespace("rapidraker", quietly = TRUE)){
+      stop("You need to have rapidraker and rJava installed in order to use the RAKE algorithm. Please install rapidraker or choose a different method of extracting terms.",
+           call. = FALSE)} else {
+
     terms <- rapidraker::rapidrake(text, stop_words=stopwords, stem=FALSE)}
   }
 
@@ -109,12 +113,12 @@ make_dictionary <- function(terms=NULL){
     complete_keywords <- unique(tolower(append(complete_keywords, terms[[i]])))
   }
 
-  my_dic <- as.data.frame(cbind(complete_keywords, complete_keywords))
-  colnames(my_dic) <- c("word", "sentiment")
+  my_dictionary <- as.data.frame(cbind(complete_keywords, complete_keywords))
+  colnames(my_dictionary) <- c("word", "sentiment")
 
-  my_dic <- quanteda::as.dictionary(my_dic)
+  my_dictionary <- quanteda::as.dictionary(my_dictionary)
 
-  return(my_dic)
+  return(my_dictionary)
 }
 
 #' Create document-term matrix
@@ -124,7 +128,8 @@ make_dictionary <- function(terms=NULL){
 #' @param custom_stopwords a character vector of words to ignore
 #' @return a quanteda dfm object
 #' @example inst/examples/create_dfm.R
-create_dfm <- function(corpus=make_corpus(df), my_dic=make_dictionary(), custom_stopwords=add_stopwords(NULL)){
+create_dfm <- function(corpus=make_corpus(df), my_dictionary=make_dictionary(),
+                       custom_stopwords=add_stopwords(NULL)){
 
   search_dfm <- quanteda::dfm(corpus,
                               stem = FALSE,
@@ -136,7 +141,7 @@ create_dfm <- function(corpus=make_corpus(df), my_dic=make_dictionary(), custom_
                               remove_twitter=TRUE,
                               remove_hyphens=TRUE,
                               remove_url=TRUE,
-                              dictionary=my_dic,
+                              dictionary=my_dictionary,
                               tolower=TRUE)
 
   return(search_dfm)
@@ -167,7 +172,7 @@ create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node strengths, ranks, and names
 #' @examples make_importance(graph=BBWO_graph, importance_method="strength")
-make_importance <- function(graph, importance_method){
+make_importance <- function(graph, importance_method="strength"){
   if (importance_method=="strength") {importance <- sort(igraph::strength(graph))}
   if (importance_method=="eigencentrality"){importance <- sort(igraph::eigen_centrality(graph))}
   if (importance_method=="alpha"){importance <- sort(igraph::alpha_centrality(graph))}
