@@ -222,7 +222,7 @@ select_unigrams <- function(graph, importance_method="strength"){
 #' @return a vector of knot placements
 #' @example inst/examples/find_knots.R
 find_knots <- function(importance_data, degrees=2, knot_num=1){
-  knotselect <- freeknotsplines::freepsgen(importance_data$rank, importance_data$importance,
+  knotselect <- freeknotsplines::freelsgen(importance_data$rank, importance_data$importance,
                                            degree=degrees, numknot=knot_num, seed=5, stream=0)
   knots <- knotselect@optknot
   return(knots)
