@@ -41,12 +41,12 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
     stopwords <- quanteda::stopwords(language=language_code, source = "snowball")}
 
   if(method=="fakerake"){
-    if(is.null(text)){print("You need to specify a body of text from which to extract terms.")}else{
+    if(is.null(text)){print("Please specify a body of text from which to extract terms.")}else{
     terms <- litsearchr::fakerake(text, stopwords)}
   }
 
   if(method=="RAKE"){
-    if(is.null(text)){print("You need to specify a body of text from which to extract terms.")
+    if(is.null(text)){print("Please specify a body of text from which to extract terms.")
       }else if (!requireNamespace("rapidraker", quietly = TRUE)){
       stop("You need to have rapidraker and rJava installed in order to use the RAKE algorithm. Please install rapidraker or choose a different method of extracting terms.",
            call. = FALSE)} else {
@@ -55,7 +55,7 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
   }
 
   if(method=="tagged"){
-    if(is.null(keywords)){print("You need to specify a vector of keywords from which to extract terms")} else{
+    if(is.null(keywords)){print("Please specify a vector of keywords from which to extract terms")} else{
       cleaned_keywords <- paste(clean_keywords(keywords), collapse=";")
       terms <- stringr::str_trim(strsplit(cleaned_keywords, ";")[[1]])}
   }
