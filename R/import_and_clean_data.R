@@ -34,6 +34,18 @@ detect_database <- function(df){
 
 }
 
+
+#' Remove punctuation marks
+#'
+#'
+remove_punctuation <- function(text, punctuation=litsearchr::punctuation_chars){
+  for(i in 1:length(punctuation)){
+    text <- gsub(punctuation[i], " ", text)
+    if(i==length(punctuation)){text <- gsub("  ", " ", text)}
+  }
+  return(text)
+}
+
 #' Print databases/platform exports that litsearchr can import or search in
 #' @description Prints a data frame of platforms, databases, and download methods that litsearchr recognizes
 #' @examples usable_databases()
@@ -672,5 +684,6 @@ clean_keywords <- function(df){
 
   return(df)
 }
+
 
 
