@@ -20,78 +20,52 @@ add_stopwords <- function(new_stopwords){
 
 
 #' Extract potential keywords from abstracts and titles
-#' @description Uses the RAKE (Rapid Automatic Keyword Extractor) from rapidraker to extract potential keyword terms from titles and abstracts.
-#' @param df a dataframe created with import_scope
-#' @param type if generating keywords from title and/or abstract, use "RAKE"; if extracting author or database tagged keywords, use "tagged"
+#' @description Extracts potential keyword terms from text (e.g. titles and abstracts)
+#' @param text A character object of text from which to extract terms
+#' @param keywords A character vector of keywords tagged by authors and/or databases if using method="tagged"
+#' @param method The method of extracting keywords; options are fakerake (a quick implementation similar to Rapid Automatic Keyword Extraction), RAKE, or tagged for author-tagged keywords
 #' @param min_freq a number, the minimum occurrences of a potential term
-#' @param title include titles if TRUE
-#' @param abstract include abstracts if TRUE
 #' @param ngrams if TRUE, only extracts phrases with word count greater than a specified n
 #' @param n the minimum word count for ngrams
 #' @param language the language of input data to use for stopwords
 #' @return a character vector of potential keyword terms
 #' @examples extract_terms(df=BBWO_data, type="RAKE")
-extract_terms <- function(df, type=c("fakerake", "RAKE", "tagged"), min_freq=2,
-                          title=TRUE, abstract=TRUE, ngrams=TRUE, n=2, language="English"){
+extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE", "tagged"), min_freq=2,
+                          ngrams=TRUE, n=2, language="English"){
 
+  if(length(text)>1){text <- paste(text, collapse = " ")}
+  if(!is.null(text)){text <- tolower(text)}
 
-  if(type=="RAKE"){
-    this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
+  if(language=="English"){stopwords <- litsearchr::custom_stopwords}else{this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
     language_code <- as.character(litsearchr::possible_langs$Short[this_language])
+    stopwords <- quanteda::stopwords(language=language_code, source = "snowball")}
 
-  if (title == TRUE){
-    if (abstract == TRUE){
-      language_abs <- which(cld3::detect_language(df$abstract)==language_code)
-      language_titles <- which(cld3::detect_language(df$title)==language_code)
-      df <- df[unique(language_abs, language_titles), ]
-
-      article_subjects <- paste(df$title, df$abstract, collapse=". ")
-    }
-    if (abstract == FALSE){
-
-      df <- df[which(cld3::detect_language(df$title)==language_code),]
-      article_subjects <- paste(df$title, collapse=". ")
-    }
-  }
-  if (title == FALSE){
-    if (abstract == TRUE){
-      df <- df[which(cld3::detect_language(df$abstract)==language_code),]
-      article_subjects <- paste(df$abstract, collapse=". ")
-    }
-    if (abstract == FALSE){print("You aren't selecting any text to pass to RAKE!")}
+  if(method=="fakerake"){
+    if(is.null(text)){print("You need to specify a body of text from which to extract terms.")}else{
+    terms <- litsearchr::fakerake(text, stopwords)}
   }
 
-
-
-  possible_terms <- rapidraker::rapidrake(tolower(article_subjects),
-                                          stop_words = quanteda::stopwords(language=language_code, source = "snowball"),
-                                          stem=FALSE)
-  likely_terms <- possible_terms[[1]]$keyword[which(possible_terms[[1]]$freq >= min_freq)]
-  if (ngrams==TRUE){
-    likely_terms <- likely_terms[which(sapply(strsplit(as.character(likely_terms), " "), length) >= n)]
-  }
-  return(likely_terms)
+  if(method=="RAKE"){
+    if(is.null(text)){print("You need to specify a body of text from which to extract terms.")}else{
+    terms <- rapidraker::rapidrake(text, stop_words=stopwords, stem=FALSE)}
   }
 
-  if(type=="tagged"){
-    cleaned_keywords <- clean_keywords(df)$keyword
-    possible_terms <- paste(df$keywords, collapse=";")
-    possible_terms <- strsplit(possible_terms, ";")[[1]]
-    possible_terms <- stringr::str_trim(tm::removePunctuation(possible_terms))
-
-    term_freq_table <- table(possible_terms)
-
-    actual_terms <- tolower(names(term_freq_table)[which(term_freq_table >= min_freq)])
-    if(length(which(actual_terms=="")>0)){actual_terms <- actual_terms[-which(actual_terms=="")]}
-    if (ngrams==TRUE){
-      actual_terms <- actual_terms[which(sapply(strsplit(as.character(actual_terms), " "), length) >= n)]
-    }
-
-    return(actual_terms)
+  if(method=="tagged"){
+    if(is.null(keywords)){print("You need to specify a vector of keywords from which to extract terms")} else{
+      cleaned_keywords <- paste(clean_keywords(keywords), collapse=";")
+      terms <- stringr::str_trim(strsplit(cleaned_keywords, ";")[[1]])}
   }
+
+  freq_terms <- names(table(terms))[which(table(terms)>=min_freq)]
+  if(ngrams==TRUE){
+
+    freq_terms <- freq_terms[which(sapply(strsplit(as.character(freq_terms), " "), length) >= n)]
+
+  }
+
+  return(freq_terms)
 
 }
-
 
 #' Quick keyword extraction
 #' @description Extracts potential keywords from text separated by stopwords
@@ -115,14 +89,14 @@ fakerake <- function(text, stopwords){
 
   split_terms <- strsplit(text, "__")[[1]]
   removals <- unique(append(which(split_terms==" "), which(split_terms=="")))
-  pre_terms <- sapply(split_terms[-removals], stringr::str_trim)
-  terms <- pre_terms[-which(nchar(pre_terms)<3)]
+  if(length(removals>0)){split_terms <- split_terms[-removals]}
+  pre_terms <- sapply(split_terms, stringr::str_trim)
+  short_terms <- which(nchar(pre_terms)<3)
+  if(length(short_terms)>0){terms <- pre_terms[-short_terms]}else{terms <- pre_terms}
   names(terms) <- NULL
 
   return(terms)
 }
-
-
 
 #' Make a dictionary from keywords
 #' @description Combines actual keywords and likely keywords into a dictionary object using the as.dictionary function from quanteda.
