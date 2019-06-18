@@ -186,214 +186,95 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
     }
   }
 
+  search_list <- list()
+  length(search_list) <- length(languages)
+
   for(i in 1:length(languages)){
+
+    group_list <- c()
 
     for(j in 1:length(groupdata)){
 
       if(languages[i]!="English"){
-        to_translate <- paste(groupdata[j], collapse="; ")
+        to_translate <- paste(groupdata[[j]], collapse="; ")
         translated_terms <- litsearchr::translate_search(to_translate, target_language = languages[i], API_key = API_key)
         group_terms <- strsplit(translated_terms, "; ")[[1]]
       }
 
       if(languages[i]=="English"){
-        group_terms <- groupdata[j]
+        group_terms <- groupdata[[j]]
         if(stemming==TRUE){
-
+          group_terms <- sapply(group_terms, litsearchr::should_stem)
         }
       }
 
-
-
-
-    }
-
-  }
- ######################### COME BACK TO THIS SPOT
-
-
-  if (exactphrase == FALSE) {
-    for (i in 1:no_langs) {
-      current_lang <- languages[i]
-      translated_groups <- list()
-      length(translated_groups) <- no_groups
-      for (j in 1:no_groups) {
-        current_group <- groupdata[j]
-        if (current_lang != "English") {
-          translated_terms <- (litsearchr::translate_search(search_terms = current_group[[1]],
-                                                            target_language = current_lang, API_key = API_key))
-          each_line <- paste("\\(", "\\(", translated_terms[1],
-                             "\\)")
+      for (n in 1:length(group_terms)) {
+        if (n == 1) {
+          redundant <- c()
         }
-        if (current_lang == "English") {
-          if (stemming == FALSE) {
-            translated_terms <- current_group[[1]]
+        if (stringr::str_detect(paste(group_terms[-n],
+                                      collapse = " "), group_terms[n])) {
+          detections <- which(stringr::str_detect(group_terms,
+                                                  group_terms[n]) == TRUE)
+          redundant <- append(redundant, detections[-which(detections == n)])
+        }
+        if (n == length(group_terms)) {
+          redundant <- unique(redundant)
+          if (length(redundant > 0)) {
+            group_terms <- group_terms[-redundant]
           }
-          if (stemming == TRUE) {
-            stemyes <- "stemmed-"
-            prestar <- c()
-            for (m in 1:length(current_group[[1]])) {
-              prestar[m] <- litsearchr::should_stem(current_group[[1]][m])
-              if (m == length(current_group[[1]])) {
-                prestar <- unique(prestar)
-              }
-            }
-            for (n in 1:length(prestar)) {
-              if (n == 1) {
-                redundant <- c()
-              }
-              if (stringr::str_detect(paste(prestar[-n],
-                                            collapse = " "), prestar[n])) {
-                detections <- which(stringr::str_detect(prestar,
-                                                        prestar[n]) == TRUE)
-                redundant <- append(redundant, detections[-which(detections ==
-                                                                   n)])
-              }
-              if (n == length(prestar)) {
-                redundant <- unique(redundant)
-                if (length(redundant > 0)) {
-                  prestar <- prestar[-redundant]
-                }
-              }
-            }
-            translated_terms <- unique(paste(prestar,
-                                             "", sep = ""))
+        }
+      }
+
+      if(exactphrase==TRUE){
+        for(k in 1:length(group_terms)){
+          if(length(strsplit(group_terms[k], " ")[[1]])>1){
+            group_terms[k] <- paste("\"", group_terms[k], "\"", sep="")
           }
-          each_line <- paste("\\(", "\\(", translated_terms[1],
-                             "", "\\)")
-        }
-        for (k in 2:length(translated_terms)) {
-          each_line <- paste(each_line, " OR \\(", translated_terms[k],
-                             "\\)", "", sep = "")
-        }
-        each_line <- paste(each_line, "\\)")
-        translated_groups[[j]] <- each_line
-      }
-      total_search <- translated_groups[[1]]
-      if(length(translated_groups)>1){
-        for (l in 2:length(translated_groups)) {
-          total_search <- paste(total_search, translated_groups[[l]],
-                                sep = " AND ")
         }
       }
-      total_search <- paste("\\(", total_search, "\\)")
-      if (writesearch == TRUE) {
-        filename <- paste(directory, "search-in-", current_lang,
-                          ".txt", sep = "")
-        writeLines(total_search, filename)
+
+      if(exactphrase==FALSE){
+        for(k in 1:length(group_terms)){
+          if(length(strsplit(group_terms[k], " ")[[1]])>1){
+            group_terms[k] <- paste("\\(", group_terms[k], "\\)", sep="")
+          }
+        }
+      }
+
+      group_terms[1] <- paste("\\(", group_terms[1], sep="")
+      group_terms[length(group_terms)] <- paste(group_terms[length(group_terms)], "\\)", sep="")
+      full_group <- paste(group_terms, collapse=" OR ")
+
+      group_list[j] <- full_group
+
+      if(j==length(groupdata)){
+
+        this_search <- paste(group_list, collapse=" AND ")
+        this_search <- paste("\\(", this_search, "\\)", sep="")
+
+        if(writesearch==TRUE){
+          filename <- paste(directory, "search-in", languages[i], ".txt", sep="")
+          writeLines(this_search, filename)
+        }
+
+        search_list[[i]] <- this_search
+        names(search_list)[[i]] <- languages[i]
+
         if (verbose == TRUE) {
-          print(paste(current_lang, "is written"))
+          print(paste(languages[i], "is written"))
         }
+
+        }
+
       }
-      if (i == 1) {
-        search_list <- list()
-        length(search_list) <- length(i)
-      }
-      search_list[[i]] <- total_search
-      names(search_list)[[i]] <- current_lang
-    }
+
   }
-  if (exactphrase == TRUE) {
-    for (i in 1:no_langs) {
-      current_lang <- languages[i]
-      translated_groups <- list()
-      length(translated_groups) <- no_groups
-      for (j in 1:no_groups) {
-        current_group <- groupdata[j]
-        if (current_lang != "English") {
-          translated_terms <- (translate_search(search_terms = current_group[[1]],
-                                                target_language = current_lang))
-          each_line <- paste("\\(", "\"", translated_terms[1],
-                             "\"", sep = "")
-        }
-        if (current_lang == "English") {
-          if (stemming == FALSE) {
-            translated_terms <- current_group[[1]]
-          }
-          if (stemming == TRUE) {
-            stemyes <- "stemmed-"
-            prestar <- c()
-            for (m in 1:length(current_group[[1]])) {
-              prestar[m] <- litsearchr::should_stem(current_group[[1]][m])
-              if (m == length(current_group[[1]])) {
-                prestar <- unique(prestar)
-              }
-            }
-            for (n in 1:length(prestar)) {
-              if (n == 1) {
-                redundant <- c()
-              }
-              if (stringr::str_detect(paste(prestar[-n],
-                                            collapse = " "), prestar[n])) {
-                detections <- which(stringr::str_detect(prestar,
-                                                        prestar[n]) == TRUE)
-                redundant <- append(redundant, detections[-which(detections ==
-                                                                   n)])
-              }
-              if (n == length(prestar)) {
-                redundant <- unique(redundant)
-                if (length(redundant > 0)) {
-                  prestar <- prestar[-redundant]
-                }
-              }
-            }
-            translated_terms <- unique(paste(prestar,
-                                             "", sep = ""))
-          }
-          each_line <- paste("\\(", "\"", translated_terms[1],
-                             "\"", sep = "")
-        }
-        for (k in 2:length(translated_terms)) {
-
-          if(length(strsplit(translated_terms[k], " ")>1)){
-            each_line <- paste(each_line, " OR ", "\"",
-                               translated_terms[k], "\"", sep = "")
-
-          }
-        }
-        each_line <- paste(each_line, "\\)")
-        translated_groups[[j]] <- each_line
-      }
-      total_search <- translated_groups[[1]]
-      if(length(translated_groups)>1){
-        for (l in 2:length(translated_groups)) {
-          total_search <- paste(total_search, translated_groups[[l]],
-                                sep = " AND ")
-        }}
-      total_search <- paste("\\(", total_search, "\\)")
-      if (stemming == FALSE) {
-        filename <- paste("search-in-", current_lang,
-                          ".txt", sep = "")
-      }
-      if (stemming == TRUE) {
-        if (current_lang != "English") {
-          filename <- paste("search-in-", current_lang,
-                            ".txt", sep = "")
-        }
-        if (current_lang == "English") {
-          filename <- paste("search-in-stemmed-", current_lang,
-                            ".txt", sep = "")
-        }
-      }
-      if (writesearch == TRUE) {
-        writeLines(total_search, filename)
-        if (verbose == TRUE) {
-          print(paste(current_lang, "is written"))
-        }
-      }
-      if (i == 1) {
-        search_list <- list()
-        length(search_list) <- length(i)
-      }
-      search_list[[i]] <- total_search
-      names(search_list)[[i]] <- current_lang
-    }
-  }
-
 
   search_list <- gsub("&#39;", "'", search_list)
-  return(search_list)
-}
+    return(search_list)
+
+  }
 
 
 #' Print possible search languages
