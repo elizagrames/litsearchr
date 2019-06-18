@@ -1,12 +1,3 @@
-#' Create a corpus from a data frame
-#' @description Calls the corpus function from quanteda to create a corpus from the data frame with search hits.
-#' @param df a data frame where at least one column is called 'text'
-#' @return a corpus object
-#' @examples  make_corpus(df=BBWO_data)
-make_corpus <- function(df){
-  search_corpus <- quanteda::corpus(df)
-  return(search_corpus)
-}
 
 #' Add new stopwords to ignore
 #' @description Allows the user to add additional stopwords to the built-in English stopwords list.
