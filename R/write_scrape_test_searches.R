@@ -148,7 +148,7 @@ should_stem <- function(word){
         words <- paste(wordcut, "* ", sep="")
       }
       if(stem_length <= 3){
-        words <- paste(splitup[i], "* ", sep="")
+        words <- paste(splitup[i], " ", sep="")
       }
     }
     if(i > 1){
@@ -156,7 +156,7 @@ should_stem <- function(word){
         words <- paste(words, wordcut, "* ", sep="")
       }
       if(stem_length <= 3){
-        words <- paste(words, splitup[i], "* ", sep="")
+        words <- paste(words, splitup[i], " ", sep="")
       }
     }
   }
@@ -176,7 +176,7 @@ should_stem <- function(word){
 #' @param verbose if TRUE, prints when each language is finished writing
 #' @param writesearch if TRUE, saves the searches to .txt files in the specified directory
 #' @return a list of search strings
-#'@example inst/examples/write_search.R
+#' @example inst/examples/write_search.R
 write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphrase = FALSE,
                                 directory = "./", stemming = TRUE, verbose = TRUE, writesearch = FALSE){
   if (writesearch == TRUE) {
@@ -185,9 +185,33 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
       writesearch <- FALSE
     }
   }
-  no_groups <- length(groupdata)
-  group_holder <- c()
-  no_langs <- length(languages)
+
+  for(i in 1:length(languages)){
+
+    for(j in 1:length(groupdata)){
+
+      if(languages[i]!="English"){
+        to_translate <- paste(groupdata[j], collapse="; ")
+        translated_terms <- litsearchr::translate_search(to_translate, target_language = languages[i], API_key = API_key)
+        group_terms <- strsplit(translated_terms, "; ")[[1]]
+      }
+
+      if(languages[i]=="English"){
+        group_terms <- groupdata[j]
+        if(stemming==TRUE){
+
+        }
+      }
+
+
+
+
+    }
+
+  }
+ ######################### COME BACK TO THIS SPOT
+
+
   if (exactphrase == FALSE) {
     for (i in 1:no_langs) {
       current_lang <- languages[i]
@@ -320,8 +344,12 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
                              "\"", sep = "")
         }
         for (k in 2:length(translated_terms)) {
-          each_line <- paste(each_line, " OR ", "\"",
-                             translated_terms[k], "\"", sep = "")
+
+          if(length(strsplit(translated_terms[k], " ")>1)){
+            each_line <- paste(each_line, " OR ", "\"",
+                               translated_terms[k], "\"", sep = "")
+
+          }
         }
         each_line <- paste(each_line, "\\)")
         translated_groups[[j]] <- each_line
