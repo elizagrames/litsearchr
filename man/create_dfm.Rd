@@ -2,26 +2,25 @@
 % Please edit documentation in R/term_selection.R
 \name{create_dfm}
 \alias{create_dfm}
-\title{Create document-term matrix}
+\title{Create a document-feature matrix}
 \usage{
-create_dfm(corpus = make_corpus(df), my_dic = make_dictionary(),
-  custom_stopwords = add_stopwords(NULL))
+create_dfm(elements, type = c("tokens", "keywords"),
+  language = "English", keywords = NULL)
 }
 \arguments{
-\item{corpus}{a corpus object}
+\item{elements}{a character vector of document information (e.g. document titles or abstracts)}
 
-\item{my_dic}{a dictionary object}
+\item{type}{whether the dfm should be created based on document tokens or a restricted list of keywords}
 
-\item{custom_stopwords}{a character vector of words to ignore}
+\item{language}{if type="tokens", the language to use for removing stopwords}
+
+\item{keywords}{if type="keywords", a character vector of keywords to use as document features}
 }
 \value{
-a quanteda dfm object
+a matrix with documents as rows and terms as columns
+
+a matrix with documents as rows and terms as columns
 }
 \description{
-Calls the dfm function from quanteda to create a document-term matrix of terms included in a custom dictionary of potential terms.
-}
-\examples{
-create_dfm(make_corpus(BBWO_data),
-           make_dictionary(extract_terms(
-             df=BBWO_data, type="RAKE", min_freq=3)))
+Given a character vector of document information, creates a document-feature matrix.
 }

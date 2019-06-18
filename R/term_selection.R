@@ -73,7 +73,7 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
 
   if(language=="English"){stopwords <- litsearchr::custom_stopwords}else{this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
   language_code <- as.character(litsearchr::possible_langs$Short[this_language])
-  stopwords <- quanteda::stopwords(language=language_code, source = "snowball")}
+  stopwords <- stopwords::stopwords(language=language_code, source = "stopwords-iso")}
 
   if(method=="fakerake"){
     if(is.null(text)){print("Please specify a body of text from which to extract terms.")}else{
@@ -138,9 +138,12 @@ fakerake <- function(text, stopwords){
 }
 
 #' Create a document-feature matrix
-#' @description Given a character vector of document information and a language, calls the synthesisr function creae_dfm to construct a document-feature matrix.
+#' @description Given a character vector of document information, creates a document-feature matrix.
 #' @param elements a character vector of document information (e.g. document titles or abstracts)
-#' @param language the language to use for tokenizing documents
+#' @param type whether the dfm should be created based on document tokens or a restricted list of keywords
+#' @param language if type="tokens", the language to use for removing stopwords
+#' @param keywords if type="keywords", a character vector of keywords to use as document features
+#' @return a matrix with documents as rows and terms as columns
 #' @return a matrix with documents as rows and terms as columns
 create_dfm <- function(elements, type=c("tokens", "keywords"), language="English", keywords=NULL){
   dfm <- synthesisr::create_dfm(elements=elements, type=type, language=language, keywords=keywords)

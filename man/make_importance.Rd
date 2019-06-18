@@ -4,7 +4,7 @@
 \alias{make_importance}
 \title{Subset strength data from a graph}
 \usage{
-make_importance(graph, importance_method)
+make_importance(graph, importance_method = "strength")
 }
 \arguments{
 \item{graph}{an igraph graph}

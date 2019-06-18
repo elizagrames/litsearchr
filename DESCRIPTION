@@ -24,9 +24,11 @@ RoxygenNote: 6.1.0
 Imports: 
     SnowballC,
     Rcpp,
-    quanteda,
     tm,
     utils,
+    igraph,
+    synthesisr,
+    stopwords
 Suggests: 
     xml2,
     rapidraker,
@@ -34,12 +36,10 @@ Suggests:
     knitr,
     rmarkdown,
     xlsx,
-    revtools,
     stringr,
     freeknotsplines,
     splines2,
-    translate,
-    SnowballC
+    translate
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
 Date: 2019-06-18
