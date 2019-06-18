@@ -81,21 +81,21 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
   if(!is.null(text)){text <- tolower(text)}
 
   if(language=="English"){stopwords <- litsearchr::custom_stopwords}else{this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
-    language_code <- as.character(litsearchr::possible_langs$Short[this_language])
-    stopwords <- quanteda::stopwords(language=language_code, source = "snowball")}
+  language_code <- as.character(litsearchr::possible_langs$Short[this_language])
+  stopwords <- quanteda::stopwords(language=language_code, source = "snowball")}
 
   if(method=="fakerake"){
     if(is.null(text)){print("Please specify a body of text from which to extract terms.")}else{
-    terms <- litsearchr::fakerake(text, stopwords)}
+      terms <- litsearchr::fakerake(text, stopwords)}
   }
 
   if(method=="RAKE"){
     if(is.null(text)){print("Please specify a body of text from which to extract terms.")
-      }else if (!requireNamespace("rapidraker", quietly = TRUE)){
+    }else if (!requireNamespace("rapidraker", quietly = TRUE)){
       stop("You need to have rapidraker and rJava installed in order to use the RAKE algorithm. Please install rapidraker or choose a different method of extracting terms.",
            call. = FALSE)} else {
 
-    terms <- rapidraker::rapidrake(text, stop_words=stopwords, stem=FALSE)}
+             terms <- rapidraker::rapidrake(text, stop_words=stopwords, stem=FALSE)}
   }
 
   if(method=="tagged"){
@@ -146,51 +146,19 @@ fakerake <- function(text, stopwords){
   return(terms)
 }
 
-#' Make a dictionary from keywords
-#' @description Combines actual keywords and likely keywords into a dictionary object using the as.dictionary function from quanteda.
-#' @param terms a list object including at least one character vector of search terms
-#' @return a quanteda dictionary object
-#' @examples make_dictionary(terms=extract_terms(BBWO_data, type="RAKE", min_freq=3))
-make_dictionary <- function(terms=NULL){
-  complete_keywords <- terms[[1]]
-  for(i in 1:length(terms)){
-    complete_keywords <- unique(tolower(append(complete_keywords, terms[[i]])))
-  }
 
-  my_dictionary <- as.data.frame(cbind(complete_keywords, complete_keywords))
-  colnames(my_dictionary) <- c("word", "sentiment")
-
-  my_dictionary <- quanteda::as.dictionary(my_dictionary)
-
-  return(my_dictionary)
+#' Create a document-feature matrix
+#' @description Given a character vector of document information and a language, calls the synthesisr function creae_dfm to construct a document-feature matrix.
+#' @param elements a character vector of document information (e.g. document titles or abstracts)
+#' @param language the language to use for tokenizing documents
+#' @return a matrix with documents as rows and terms as columns
+create_dfm <- function(elements, language){
+  dfm <- synthesisr::create_dfm(elements=elements,
+                                language=language)
+  return(dfm)
 }
 
-#' Create document-term matrix
-#' @description Calls the dfm function from quanteda to create a document-term matrix of terms included in a custom dictionary of potential terms.
-#' @param corpus a corpus object
-#' @param my_dic a dictionary object
-#' @param custom_stopwords a character vector of words to ignore
-#' @return a quanteda dfm object
-#' @example inst/examples/create_dfm.R
-create_dfm <- function(corpus=make_corpus(df), my_dictionary=make_dictionary(),
-                       custom_stopwords=add_stopwords(NULL)){
 
-  search_dfm <- quanteda::dfm(corpus,
-                              stem = FALSE,
-                              remove=litsearchr::custom_stopwords,
-                              remove_numbers=TRUE,
-                              remove_punct=TRUE,
-                              remove_symbols=TRUE,
-                              remove_separators=TRUE,
-                              remove_twitter=TRUE,
-                              remove_hyphens=TRUE,
-                              remove_url=TRUE,
-                              dictionary=my_dictionary,
-                              tolower=TRUE)
-
-  return(search_dfm)
-
-}
 
 #' Create a keyword co-occurrence network
 #' @description Creates a keyword co-occurrence network from an adjacency matrix trimmed to remove rare terms.
@@ -200,15 +168,33 @@ create_dfm <- function(corpus=make_corpus(df), my_dictionary=make_dictionary(),
 #' @return an igraph weighted graph
 #' @examples create_network(BBWO_dfm)
 create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
-  trimmed_mat <- quanteda::dfm_trim(search_dfm, min_termfreq = min_occurrences, min_docfreq = min_studies)
-  search_mat <- quanteda::fcm(trimmed_mat, context = "document", count = "boolean", tri=FALSE)
-  search_mat <- as.matrix(search_mat)
-  search_graph <- igraph::graph.adjacency(t(search_mat),
+  presences <- search_dfm
+  presences[which(presences>0)] <- 1
+  study_counts <- which(as.numeric(colSums(presences))<min_studies)
+  if(length(study_counts)>0){
+    search_dfm <- search_dfm[,-study_counts]
+  }
+
+  occur_counts <- which(colSums(search_dfm)<min_occurrences)
+  if(length(occur_counts)>0){
+    search_dfm <- search_dfm[,-occur_counts]
+  }
+
+  dropped_studies <- which(rowSums(search_dfm)<1)
+
+  if(length(dropped_studies)>0){
+    search_dfm <- search_dfm[-dropped_studies,]
+  }
+  trimmed_mat <- t(search_dfm) %*% search_dfm
+
+  search_mat <- as.matrix(trimmed_mat)
+  search_graph <- igraph::graph.adjacency(search_mat,
                                           weighted=TRUE,
                                           mode="undirected",
                                           diag=FALSE)
   return(search_graph)
 }
+
 
 #' Subset strength data from a graph
 #' @description Selects only the node strength data from a graph.
