@@ -18,6 +18,50 @@ add_stopwords <- function(new_stopwords){
   return(custom_stopwords)
 }
 
+#' Remove duplicate studies and punctuation
+#' @description Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
+#' @param df a data frame from import_scope() to deduplicate
+#' @return a data frame with keyword punctuation standardized
+#' @examples clean_keywords(BBWO_data)
+clean_keywords <- function(df) {
+  df$keywords <- tolower(as.character(df$keywords))
+  removals <- c("\\(",
+                "\\)",
+                ":",
+                "=",
+                "%",
+                "\\+",
+                "<",
+                ">",
+                "\\?",
+                "\\\\",
+                "&",
+                "!",
+                "\\$",
+                "\\*")
+  for (i in 1:length(removals)) {
+    df$keywords <- gsub(removals[i], df$keywords, replacement = "")
+  }
+
+  # replace keyword separators with standardized semicolon
+  replacements <- c(", ",
+                    ",",
+                    "/",
+                    ";;",
+                    ", ",
+                    "\\[",
+                    "\\]")
+  for (i in 1:length(replacements)) {
+    df$keywords <- gsub(replacements[i], df$keywords, replacement = ";")
+  }
+
+  df$keywords <- gsub("  ", " ", df$keywords)
+  df$keywords <- gsub("; ", ";", df$keywords)
+  df$keywords <- gsub(" ;", ";", df$keywords)
+  df$keywords <- gsub(";;", ";", df$keywords)
+
+  return(df)
+}
 
 #' Extract potential keywords from abstracts and titles
 #' @description Extracts potential keyword terms from text (e.g. titles and abstracts)
@@ -56,7 +100,7 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
 
   if(method=="tagged"){
     if(is.null(keywords)){print("Please specify a vector of keywords from which to extract terms")} else{
-      cleaned_keywords <- paste(clean_keywords(keywords), collapse=";")
+      cleaned_keywords <- paste(litsearchr::clean_keywords(keywords), collapse=";")
       terms <- stringr::str_trim(strsplit(cleaned_keywords, ";")[[1]])}
   }
 
