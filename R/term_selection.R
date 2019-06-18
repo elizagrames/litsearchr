@@ -146,19 +146,15 @@ fakerake <- function(text, stopwords){
   return(terms)
 }
 
-
 #' Create a document-feature matrix
 #' @description Given a character vector of document information and a language, calls the synthesisr function creae_dfm to construct a document-feature matrix.
 #' @param elements a character vector of document information (e.g. document titles or abstracts)
 #' @param language the language to use for tokenizing documents
 #' @return a matrix with documents as rows and terms as columns
-create_dfm <- function(elements, language){
-  dfm <- synthesisr::create_dfm(elements=elements,
-                                language=language)
+create_dfm <- function(elements, type=c("tokens", "keywords"), language="English", keywords=NULL){
+  dfm <- synthesisr::create_dfm(elements=elements, type=type, language=language, keywords=keywords)
   return(dfm)
 }
-
-
 
 #' Create a keyword co-occurrence network
 #' @description Creates a keyword co-occurrence network from an adjacency matrix trimmed to remove rare terms.
