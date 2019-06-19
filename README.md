@@ -1,6 +1,6 @@
 litsearchr <img src="litsearchr-hex.png" align="right" width="20%" height="20%" />
+  ==================
 
-==========
 
 The ``litsearchr`` package for R is designed to partially automate search term selection and writing search strategies for systematic reviews. It uses the Rapid Automatic Keyword Extraction algorithm (Rose et al. 2010) to identify potential keywords from a sample of titles and abstracts and combines them with author- and database-tagged keywords to create a pool of possible keywords relevant to a field of study. Important keywords in a field are identified from their importance in a keyword co-occurrence network. After keywords are grouped into concept groups, ``litsearchr`` writes Boolean searches in up to 53 languages, with stemming support for English. The searches are tested and work fully in at least 14 commonly used search databases with partial support in six additional databases.
 
