@@ -28,7 +28,8 @@ Imports:
     utils,
     igraph,
     stopwords,
-    stringr
+    stringr,
+    synthesisr
 Suggests: 
     xml2,
     rapidraker,
