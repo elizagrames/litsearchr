@@ -1,13 +1,3 @@
-#' Example document-feature matrix
-#'
-#' A document-feature matrix containing a subset of example
-#' Black-backed Woodpecker (Picoides arcticus) articles
-#' and keywords.
-#'
-#' @format A document-feature matrix with 36 documents and 79 features
-#'
-"BBWO_dfm"
-
 #' Example deduplicated articles
 #'
 #' A data frame containing a subset of example imported
@@ -200,7 +190,7 @@
 #'
 #' @format A database with 922 rows of 2 variables
 #' \describe{
-#' \item{group} the group we assigned
-#' \item{term} the similar search term}
+#' \item{group}{the group we assigned}
+#' \item{term}{the similar search term}
 #' }
 "BBWO_similar_grouped"

@@ -10,11 +10,12 @@ make_wordle <- function(graph, colorchoice=c("#006E6D")){
   if (!requireNamespace("wordcloud", quietly = TRUE)){
     stop("wordcloud needed for this function to work. Please install it.",
          call. = FALSE)
-  }
+  } else {
   wordcloud::wordcloud(words = as.character(wordle$label),
                        freq = (as.numeric(wordle$size)^2), min.freq = 1,
                        max.words=1000, random.order=FALSE, rot.per=0.2,
                        colors=colorchoice, scale=c(2,.5))
+  }
 }
 
 #' Plot full keyword co-occurrence network
@@ -23,8 +24,8 @@ make_wordle <- function(graph, colorchoice=c("#006E6D")){
 #' @param graphcolor a color choice for the graph edges and node frames
 #' @param color_gradient if TRUE, the intensity of the color for each node scales with node strength
 #' @return a plot of the full network structure
-#' @examples plot_full_network(reduce_graph(litsearchr::BBWO_graph, 15, importance_method="strength"))
-plot_full_network <- function(graph, graphcolor="#006E6D", color_gradient=TRUE){
+#' @examples plot_network(reduce_graph(litsearchr::BBWO_graph, 15, importance_method="strength"))
+plot_network <- function(graph, graphcolor="#006E6D", color_gradient=TRUE){
   node_color <- graphcolor
   if (color_gradient==TRUE){
     color_intensity <- igraph::strength(graph)

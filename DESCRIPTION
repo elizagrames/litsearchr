@@ -23,23 +23,23 @@ LazyData: true
 RoxygenNote: 6.1.0
 Imports: 
     SnowballC,
-    stringr,
-    freeknotsplines,
-    igraph,
-    splines2,
-    translate,
     Rcpp,
-    quanteda,
     tm,
-    rapidraker,
-    xml2,
     utils,
-    revtools
+    igraph,
+    synthesisr,
+    stopwords,
+    stringr
 Suggests: 
+    xml2,
+    rapidraker,
     wordcloud,
     knitr,
     rmarkdown,
-    xlsx
+    xlsx,
+    freeknotsplines,
+    splines2,
+    translate
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
-Date: 2019-01-25
+Date: 2019-06-18

@@ -4,33 +4,31 @@
 \alias{extract_terms}
 \title{Extract potential keywords from abstracts and titles}
 \usage{
-extract_terms(df, type = c("RAKE", "tagged"), new_stopwords = NULL,
-  min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE,
-  n = 2)
+extract_terms(text = NULL, keywords = NULL, method = c("fakerake",
+  "RAKE", "tagged"), min_freq = 2, ngrams = TRUE, n = 2,
+  language = "English")
 }
 \arguments{
-\item{df}{a dataframe created with import_scope}
+\item{text}{A character object of text from which to extract terms}
 
-\item{type}{if generating keywords from title and/or abstract, use "RAKE"; if extracting author or database tagged keywords, use "tagged"}
+\item{keywords}{A character vector of keywords tagged by authors and/or databases if using method="tagged"}
 
-\item{new_stopwords}{a character vector of stopwords to ignore}
+\item{method}{The method of extracting keywords; options are fakerake (a quick implementation similar to Rapid Automatic Keyword Extraction), RAKE, or tagged for author-tagged keywords}
 
 \item{min_freq}{a number, the minimum occurrences of a potential term}
-
-\item{title}{include titles if TRUE}
-
-\item{abstract}{include abstracts if TRUE}
 
 \item{ngrams}{if TRUE, only extracts phrases with word count greater than a specified n}
 
 \item{n}{the minimum word count for ngrams}
+
+\item{language}{the language of input data to use for stopwords}
 }
 \value{
 a character vector of potential keyword terms
 }
 \description{
-Uses the RAKE (Rapid Automatic Keyword Extractor) from rapidraker to extract potential keyword terms from titles and abstracts.
+Extracts potential keyword terms from text (e.g. titles and abstracts)
 }
 \examples{
-extract_terms(df=BBWO_data, type="RAKE")
+extract_terms(text=BBWO_data$text[1:10], method="fakerake")
 }

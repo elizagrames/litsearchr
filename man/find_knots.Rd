@@ -20,6 +20,9 @@ a vector of knot placements
 This function finds optimal knot placement given the degrees of your unique node strength graph and how many knots to allow. Degrees refers to the polynomial degree; for straight lines, use degree of 1 or for a curve use degree 2. Increasing the number of knots increases the fit and flexibility of the spline curve and presents more options for the cutoff strength.
 }
 \examples{
-find_knots(importance_data=make_importance(BBWO_graph, importance_method = "strength"),
-           degrees=2, knot_num=1)
+find_knots(
+  importance_data = make_importance(BBWO_graph, importance_method = "strength"),
+  degrees = 2,
+  knot_num = 1
+)
 }

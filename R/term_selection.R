@@ -1,12 +1,3 @@
-#' Create a corpus from a data frame
-#' @description Calls the corpus function from quanteda to create a corpus from the data frame with search hits.
-#' @param df a data frame where at least one column is called 'text'
-#' @return a corpus object
-#' @examples  make_corpus(df=BBWO_data)
-make_corpus <- function(df){
-  search_corpus <- quanteda::corpus(df)
-  return(search_corpus)
-}
 
 #' Add new stopwords to ignore
 #' @description Allows the user to add additional stopwords to the built-in English stopwords list.
@@ -18,107 +9,152 @@ add_stopwords <- function(new_stopwords){
   return(custom_stopwords)
 }
 
+#' Clean and standardize keyword punctuation
+#' @description Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
+#' @param keywords a character vector of keywords
+#' @return a character vector of keywords with standardized punctuation
+#' @examples clean_keywords(BBWO_data$keywords)
+clean_keywords <- function(keywords) {
+  keywords <- tolower(as.character(keywords))
+  removals <- c("\\(",
+                "\\)",
+                ":",
+                "=",
+                "%",
+                "\\+",
+                "<",
+                ">",
+                "\\?",
+                "\\\\",
+                "&",
+                "!",
+                "\\$",
+                "\\*")
+  for (i in 1:length(removals)) {
+    keywords <- gsub(removals[i], keywords, replacement = "")
+  }
+
+  # replace keyword separators with standardized semicolon
+  replacements <- c(", ",
+                    ",",
+                    "/",
+                    ";;",
+                    ", ",
+                    "\\[",
+                    "\\]")
+  for (i in 1:length(replacements)) {
+    keywords <- gsub(replacements[i], keywords, replacement = ";")
+  }
+
+  keywords <- gsub("  ", " ", keywords)
+  keywords <- gsub("; ", ";", keywords)
+  keywords <- gsub(" ;", ";", keywords)
+  keywords <- gsub(";;", ";", keywords)
+
+  return(keywords)
+}
+
 #' Extract potential keywords from abstracts and titles
-#' @description Uses the RAKE (Rapid Automatic Keyword Extractor) from rapidraker to extract potential keyword terms from titles and abstracts.
-#' @param df a dataframe created with import_scope
-#' @param type if generating keywords from title and/or abstract, use "RAKE"; if extracting author or database tagged keywords, use "tagged"
-#' @param new_stopwords a character vector of stopwords to ignore
+#' @description Extracts potential keyword terms from text (e.g. titles and abstracts)
+#' @param text A character object of text from which to extract terms
+#' @param keywords A character vector of keywords tagged by authors and/or databases if using method="tagged"
+#' @param method The method of extracting keywords; options are fakerake (a quick implementation similar to Rapid Automatic Keyword Extraction), RAKE, or tagged for author-tagged keywords
 #' @param min_freq a number, the minimum occurrences of a potential term
-#' @param title include titles if TRUE
-#' @param abstract include abstracts if TRUE
 #' @param ngrams if TRUE, only extracts phrases with word count greater than a specified n
 #' @param n the minimum word count for ngrams
+#' @param language the language of input data to use for stopwords
 #' @return a character vector of potential keyword terms
-#' @examples extract_terms(df=BBWO_data, type="RAKE")
-extract_terms <- function(df, type=c("RAKE", "tagged"), new_stopwords=NULL, min_freq=2, title=TRUE, abstract=TRUE, ngrams=TRUE, n=2){
-  if(type=="RAKE"){
-  if (title == TRUE){
-    if (abstract == TRUE){
-      article_subjects <- paste(df$title, df$abstract, collapse=". ")
-    }
-    if (abstract == FALSE){
-      article_subjects <- paste(df$title, collapse=". ")
-    }
-  }
-  if (title == FALSE){
-    if (abstract == TRUE){
-      article_subjects <- paste(df$abstract, collapse=". ")
-    }
-    if (abstract == FALSE){print("You aren't selecting any text to pass to RAKE!")}
+#' @examples extract_terms(text=BBWO_data$text[1:10], method="fakerake")
+extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE", "tagged"), min_freq=2,
+                          ngrams=TRUE, n=2, language="English"){
+
+  if(length(text)>1){text <- paste(text, collapse = " ")}
+  if(!is.null(text)){text <- tolower(text)}
+
+  if(language=="English"){stopwords <- litsearchr::custom_stopwords}else{this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
+  language_code <- as.character(litsearchr::possible_langs$Short[this_language])
+  stopwords <- stopwords::stopwords(language=language_code, source = "stopwords-iso")}
+
+  if(method=="fakerake"){
+    if(is.null(text)){print("Please specify a body of text from which to extract terms.")}else{
+      terms <- litsearchr::fakerake(text, stopwords)}
   }
 
-  possible_terms <- rapidraker::rapidrake(tolower(article_subjects),
-                                          stop_words = add_stopwords(new_stopwords),
-                                          stem=FALSE)
-  likely_terms <- possible_terms[[1]]$keyword[which(possible_terms[[1]]$freq >= min_freq)]
-  if (ngrams==TRUE){
-    likely_terms <- likely_terms[which(sapply(strsplit(as.character(likely_terms), " "), length) >= n)]
+  if(method=="RAKE"){
+    if(is.null(text)){print("Please specify a body of text from which to extract terms.")
+    }else if (!requireNamespace("rapidraker", quietly = TRUE)){
+      stop("You need to have rapidraker and rJava installed in order to use the RAKE algorithm. Please install rapidraker or choose a different method of extracting terms.",
+           call. = FALSE)} else {
+
+             terms <- rapidraker::rapidrake(text, stop_words=stopwords, stem=FALSE)}
   }
-  return(likely_terms)
+
+  if(method=="tagged"){
+    if(is.null(keywords)){print("Please specify a vector of keywords from which to extract terms")} else{
+      cleaned_keywords <- paste(litsearchr::clean_keywords(keywords), collapse=";")
+      terms <- stringr::str_trim(strsplit(cleaned_keywords, ";")[[1]])}
   }
 
-  if(type=="tagged"){
-    cleaned_keywords <- clean_keywords(df)$keyword
-    possible_terms <- paste(df$keywords, collapse=";")
-    possible_terms <- strsplit(possible_terms, ";")[[1]]
-    possible_terms <- stringr::str_trim(tm::removePunctuation(possible_terms))
+  terms <- stringr::str_trim(synthesisr::remove_punctuation(terms))
 
-    term_freq_table <- table(possible_terms)
 
-    actual_terms <- tolower(names(term_freq_table)[which(term_freq_table >= min_freq)])
-    if(length(which(actual_terms=="")>0)){actual_terms <- actual_terms[-which(actual_terms=="")]}
-    if (ngrams==TRUE){
-      actual_terms <- actual_terms[which(sapply(strsplit(as.character(actual_terms), " "), length) >= n)]
-    }
+  freq_terms <- names(table(terms))[which(table(terms)>=min_freq)]
+  if(ngrams==TRUE){
 
-    return(actual_terms)
+    freq_terms <- freq_terms[which(sapply(strsplit(as.character(freq_terms), " "), length) >= n)]
+
   }
+
+  return(freq_terms)
 
 }
 
-#' Make a dictionary from keywords
-#' @description Combines actual keywords and likely keywords into a dictionary object using the as.dictionary function from quanteda.
-#' @param terms a list object including at least one character vector of search terms
-#' @return a quanteda dictionary object
-#' @examples make_dictionary(terms=extract_terms(BBWO_data, type="RAKE", min_freq=3))
-make_dictionary <- function(terms=NULL){
-  complete_keywords <- terms[[1]]
-  for(i in 1:length(terms)){
-    complete_keywords <- unique(tolower(append(complete_keywords, terms[[i]])))
+#' Quick keyword extraction
+#' @description Extracts potential keywords from text separated by stopwords
+#' @param text A string object to extract terms from
+#' @param stopwords A character vector of stopwords to remove
+#' @return A character vector of potential keywords
+fakerake <- function(text, stopwords){
+
+  stops <- paste("\\b", stopwords, "\\b", sep="")
+  stops <- unique(append(stops, c(",", "\\.", ":", ";", "\\[", "\\]", "/", "\\(", "\\)", "\"", "&", "=", "<", ">")))
+  hyphens <- c(" - ", " -", "- ", "-")
+  for(i in 1:length(hyphens)){
+    text <- gsub(hyphens[i], "_", text)
   }
 
-  my_dic <- as.data.frame(cbind(complete_keywords, complete_keywords))
-  colnames(my_dic) <- c("word", "sentiment")
+  text <- tolower(text)
 
-  my_dic <- quanteda::as.dictionary(my_dic)
+  for(i in 1:length(stops)){
+    text <- gsub(stops[i], "__", text)
+  }
 
-  return(my_dic)
+  split_terms <- strsplit(text, "__")[[1]]
+  removals <- unique(append(which(split_terms==" "), which(split_terms=="")))
+  if(length(removals>0)){split_terms <- split_terms[-removals]}
+  pre_terms <- sapply(split_terms, stringr::str_trim)
+  short_terms <- which(nchar(pre_terms)<3)
+  if(length(short_terms)>0){terms <- pre_terms[-short_terms]}else{terms <- pre_terms}
+  names(terms) <- NULL
+
+  terms <- gsub("_", "-", terms)
+
+  terms <- stringr::str_trim(synthesisr::remove_punctuation(terms))
+
+  return(terms)
 }
 
-#' Create document-term matrix
-#' @description Calls the dfm function from quanteda to create a document-term matrix of terms included in a custom dictionary of potential terms.
-#' @param corpus a corpus object
-#' @param my_dic a dictionary object
-#' @param custom_stopwords a character vector of words to ignore
-#' @return a quanteda dfm object
-#' @example inst/examples/create_dfm.R
-create_dfm <- function(corpus=make_corpus(df), my_dic=make_dictionary(), custom_stopwords=add_stopwords(NULL)){
-
-  search_dfm <- quanteda::dfm(corpus,
-                              stem = FALSE,
-                              remove=litsearchr::custom_stopwords,
-                              remove_numbers=TRUE,
-                              remove_punct=TRUE,
-                              remove_symbols=TRUE,
-                              remove_separators=TRUE,
-                              remove_twitter=TRUE,
-                              remove_hyphens=TRUE,
-                              remove_url=TRUE,
-                              dictionary=my_dic,
-                              tolower=TRUE)
-
-  return(search_dfm)
-
+#' Create a document-feature matrix
+#' @description Given a character vector of document information, creates a document-feature matrix.
+#' @param elements a character vector of document information (e.g. document titles or abstracts)
+#' @param type whether the dfm should be created based on document tokens or a restricted list of keywords
+#' @param language if type="tokens", the language to use for removing stopwords
+#' @param keywords if type="keywords", a character vector of keywords to use as document features
+#' @return a matrix with documents as rows and terms as columns
+#' @return a matrix with documents as rows and terms as columns
+create_dfm <- function(elements, type=c("tokens", "keywords"), language="English", keywords=NULL){
+  dfm <- synthesisr::create_dfm(elements=elements, type=type, language=language, keywords=keywords)
+  return(dfm)
 }
 
 #' Create a keyword co-occurrence network
@@ -127,17 +163,35 @@ create_dfm <- function(corpus=make_corpus(df), my_dic=make_dictionary(), custom_
 #' @param min_studies the minimum number of studies a term must occur in to be included
 #' @param min_occurrences the minimum total number of times a term must occur (counting repeats in the same document)
 #' @return an igraph weighted graph
-#' @examples create_network(BBWO_dfm)
+#' @examples create_network(create_dfm(BBWO_data$text[1:10]))
 create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
-  trimmed_mat <- quanteda::dfm_trim(search_dfm, min_termfreq = min_occurrences, min_docfreq = min_studies)
-  search_mat <- quanteda::fcm(trimmed_mat, context = "document", count = "boolean", tri=FALSE)
-  search_mat <- as.matrix(search_mat)
-  search_graph <- igraph::graph.adjacency(t(search_mat),
+  presences <- search_dfm
+  presences[which(presences>0)] <- 1
+  study_counts <- which(as.numeric(colSums(presences))<min_studies)
+  if(length(study_counts)>0){
+    search_dfm <- search_dfm[,-study_counts]
+  }
+
+  occur_counts <- which(colSums(search_dfm)<min_occurrences)
+  if(length(occur_counts)>0){
+    search_dfm <- search_dfm[,-occur_counts]
+  }
+
+  dropped_studies <- which(rowSums(search_dfm)<1)
+
+  if(length(dropped_studies)>0){
+    search_dfm <- search_dfm[-dropped_studies,]
+  }
+  trimmed_mat <- t(search_dfm) %*% search_dfm
+
+  search_mat <- as.matrix(trimmed_mat)
+  search_graph <- igraph::graph.adjacency(search_mat,
                                           weighted=TRUE,
                                           mode="undirected",
                                           diag=FALSE)
   return(search_graph)
 }
+
 
 #' Subset strength data from a graph
 #' @description Selects only the node strength data from a graph.
@@ -145,7 +199,7 @@ create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node strengths, ranks, and names
 #' @examples make_importance(graph=BBWO_graph, importance_method="strength")
-make_importance <- function(graph, importance_method){
+make_importance <- function(graph, importance_method="strength"){
   if (importance_method=="strength") {importance <- sort(igraph::strength(graph))}
   if (importance_method=="eigencentrality"){importance <- sort(igraph::eigen_centrality(graph))}
   if (importance_method=="alpha"){importance <- sort(igraph::alpha_centrality(graph))}
@@ -195,10 +249,14 @@ select_unigrams <- function(graph, importance_method="strength"){
 #' @return a vector of knot placements
 #' @example inst/examples/find_knots.R
 find_knots <- function(importance_data, degrees=2, knot_num=1){
-  knotselect <- freeknotsplines::freepsgen(importance_data$rank, importance_data$importance,
+  if (!requireNamespace("freeknotsplines", quietly = TRUE)){
+    stop("freeknotsplines needed to select knots using the spline method. Please install it.",
+         call. = FALSE)
+  } else {
+  knotselect <- freeknotsplines::freelsgen(importance_data$rank, importance_data$importance,
                                            degree=degrees, numknot=knot_num, seed=5, stream=0)
   knots <- knotselect@optknot
-  return(knots)
+  return(knots)}
 }
 
 #' Fit spline model to node strengths
@@ -210,9 +268,13 @@ find_knots <- function(importance_data, degrees=2, knot_num=1){
 #' @return a fitted spline model
 #' @example inst/examples/fit_splines.R
 fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
+  if (!requireNamespace("splines2", quietly = TRUE)){
+    stop("splines2 needed to use the spline method. Please install it.",
+         call. = FALSE)
+  } else {
   spline_b <- splines2::bSpline(as.numeric(importance_data$rank), knots=knots, degree=degrees, numknot=knot_num, intercept=TRUE)
   spline_fit <- lm(as.numeric(importance_data$importance) ~ spline_b)
-  return(spline_fit)
+  return(spline_fit)}
 }
 
 
@@ -220,14 +282,14 @@ fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
 #' @description Find the minimum node strength to use as a cutoff point for important nodes.
 #' @param graph The complete graph.
 #' @param method The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
-#' @param cum_pct if using method cumulative, the total percent of node strength to capture
+#' @param percent if using method cumulative, the total percent of node strength to capture
 #' @param degrees if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths
 #' @param knot_num if using method spline, the number of knots to allow
 #' @param diagnostics if set to TRUE, prints plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a vector of suggested node cutoff strengths
-#' @examples find_cutoff(litsearchr::BBWO_graph, method="cumulative", cum_pct=0.8, diagnostics=FALSE)
-find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
+#' @examples find_cutoff(litsearchr::BBWO_graph, method="cumulative", percent=0.8, diagnostics=FALSE)
+find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
 
   importance_data <- make_importance(graph, importance_method=importance_method)
 
@@ -255,7 +317,7 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
 
   if (method == "cumulative"){
     cum_str <- max(cumsum(sort(importance_data$importance)))
-    cut_point <- (which(cumsum(sort(importance_data$importance, decreasing = TRUE))>=cum_str*cum_pct))[1]
+    cut_point <- (which(cumsum(sort(importance_data$importance, decreasing = TRUE))>=cum_str*percent))[1]
     cut_strengths <- as.numeric(sort(as.numeric(importance_data$importance), decreasing = TRUE)[cut_point])
 
     if (diagnostics == TRUE){
