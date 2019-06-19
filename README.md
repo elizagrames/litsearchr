@@ -6,6 +6,10 @@ The ``litsearchr`` package for R is designed to partially automate search term s
 
 Our intent in creating ``litsearchr`` is to make the process of designing a search strategy for systematic reviews easier for researchers in fields that lack standardized terms. By partially automating keyword selection, ``litsearchr`` reduces investigator bias in keyword selection and increases the repeatability of systematic reviews. It also reduces errors in creating database-specific searches by generating searches that work across a wide range of databases. Our hope is that ``litsearchr`` can be used to facilitate systematic reviews and contribute to automating evidence synthesis.
 
+Getting started
+------------------------------------------
+Check out the litsearchr website at elizagrames.github.io/litsearchr or install the package in R with devtools::install_github("elizagrames/litsearchr"). 
+
 Comments, suggestions, bugs, and questions
 ------------------------------------------
 
