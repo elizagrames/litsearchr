@@ -2,19 +2,19 @@
 % Please edit documentation in R/term_selection.R
 \name{clean_keywords}
 \alias{clean_keywords}
-\title{Remove duplicate studies and punctuation}
+\title{Clean and standardize keyword punctuation}
 \usage{
-clean_keywords(df)
+clean_keywords(keywords)
 }
 \arguments{
-\item{df}{a data frame from import_scope() to deduplicate}
+\item{keywords}{a character vector of keywords}
 }
 \value{
-a data frame with keyword punctuation standardized
+a character vector of keywords with standardized punctuation
 }
 \description{
 Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
 }
 \examples{
-clean_keywords(BBWO_data)
+clean_keywords(BBWO_data$keywords)
 }

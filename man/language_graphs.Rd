@@ -22,7 +22,8 @@ Creates a bubble graph showing the number of journals in each language from the 
 }
 \examples{
 language_graphs(
-  lang_data=get_language_data(key_topics=c("biology", "conservation", "ecology")),
-  no_return=15,
-  key_topics=c("biology", "conservation", "ecology"))
+  lang_data = get_language_data(key_topics = c("biology", "conservation", "ecology")),
+  no_return = 15,
+  key_topics = c("biology", "conservation", "ecology")
+)
 }

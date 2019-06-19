@@ -9,13 +9,13 @@ add_stopwords <- function(new_stopwords){
   return(custom_stopwords)
 }
 
-#' Remove duplicate studies and punctuation
+#' Clean and standardize keyword punctuation
 #' @description Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
-#' @param df a data frame from import_scope() to deduplicate
-#' @return a data frame with keyword punctuation standardized
-#' @examples clean_keywords(BBWO_data)
-clean_keywords <- function(df) {
-  df$keywords <- tolower(as.character(df$keywords))
+#' @param keywords a character vector of keywords
+#' @return a character vector of keywords with standardized punctuation
+#' @examples clean_keywords(BBWO_data$keywords)
+clean_keywords <- function(keywords) {
+  keywords <- tolower(as.character(keywords))
   removals <- c("\\(",
                 "\\)",
                 ":",
@@ -31,7 +31,7 @@ clean_keywords <- function(df) {
                 "\\$",
                 "\\*")
   for (i in 1:length(removals)) {
-    df$keywords <- gsub(removals[i], df$keywords, replacement = "")
+    keywords <- gsub(removals[i], keywords, replacement = "")
   }
 
   # replace keyword separators with standardized semicolon
@@ -43,15 +43,15 @@ clean_keywords <- function(df) {
                     "\\[",
                     "\\]")
   for (i in 1:length(replacements)) {
-    df$keywords <- gsub(replacements[i], df$keywords, replacement = ";")
+    keywords <- gsub(replacements[i], keywords, replacement = ";")
   }
 
-  df$keywords <- gsub("  ", " ", df$keywords)
-  df$keywords <- gsub("; ", ";", df$keywords)
-  df$keywords <- gsub(" ;", ";", df$keywords)
-  df$keywords <- gsub(";;", ";", df$keywords)
+  keywords <- gsub("  ", " ", keywords)
+  keywords <- gsub("; ", ";", keywords)
+  keywords <- gsub(" ;", ";", keywords)
+  keywords <- gsub(";;", ";", keywords)
 
-  return(df)
+  return(keywords)
 }
 
 #' Extract potential keywords from abstracts and titles
@@ -64,7 +64,7 @@ clean_keywords <- function(df) {
 #' @param n the minimum word count for ngrams
 #' @param language the language of input data to use for stopwords
 #' @return a character vector of potential keyword terms
-#' @examples extract_terms(df=BBWO_data, type="RAKE")
+#' @examples extract_terms(text=BBWO_data$text[1:10], method="fakerake")
 extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE", "tagged"), min_freq=2,
                           ngrams=TRUE, n=2, language="English"){
 
@@ -95,6 +95,9 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
       terms <- stringr::str_trim(strsplit(cleaned_keywords, ";")[[1]])}
   }
 
+  terms <- stringr::str_trim(synthesisr::remove_punctuation(terms))
+
+
   freq_terms <- names(table(terms))[which(table(terms)>=min_freq)]
   if(ngrams==TRUE){
 
@@ -115,9 +118,9 @@ fakerake <- function(text, stopwords){
 
   stops <- paste("\\b", stopwords, "\\b", sep="")
   stops <- unique(append(stops, c(",", "\\.", ":", ";", "\\[", "\\]", "/", "\\(", "\\)", "\"", "&", "=", "<", ">")))
-  hyphens <- c(" - ", " -", "- ")
+  hyphens <- c(" - ", " -", "- ", "-")
   for(i in 1:length(hyphens)){
-    text <- gsub(hyphens[i], "-", text)
+    text <- gsub(hyphens[i], "_", text)
   }
 
   text <- tolower(text)
@@ -133,6 +136,10 @@ fakerake <- function(text, stopwords){
   short_terms <- which(nchar(pre_terms)<3)
   if(length(short_terms)>0){terms <- pre_terms[-short_terms]}else{terms <- pre_terms}
   names(terms) <- NULL
+
+  terms <- gsub("_", "-", terms)
+
+  terms <- stringr::str_trim(synthesisr::remove_punctuation(terms))
 
   return(terms)
 }
@@ -156,7 +163,7 @@ create_dfm <- function(elements, type=c("tokens", "keywords"), language="English
 #' @param min_studies the minimum number of studies a term must occur in to be included
 #' @param min_occurrences the minimum total number of times a term must occur (counting repeats in the same document)
 #' @return an igraph weighted graph
-#' @examples create_network(BBWO_dfm)
+#' @examples create_network(create_dfm(BBWO_data$text[1:10]))
 create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
   presences <- search_dfm
   presences[which(presences>0)] <- 1
@@ -242,10 +249,14 @@ select_unigrams <- function(graph, importance_method="strength"){
 #' @return a vector of knot placements
 #' @example inst/examples/find_knots.R
 find_knots <- function(importance_data, degrees=2, knot_num=1){
+  if (!requireNamespace("freeknotsplines", quietly = TRUE)){
+    stop("freeknotsplines needed to select knots using the spline method. Please install it.",
+         call. = FALSE)
+  } else {
   knotselect <- freeknotsplines::freelsgen(importance_data$rank, importance_data$importance,
                                            degree=degrees, numknot=knot_num, seed=5, stream=0)
   knots <- knotselect@optknot
-  return(knots)
+  return(knots)}
 }
 
 #' Fit spline model to node strengths
@@ -257,9 +268,13 @@ find_knots <- function(importance_data, degrees=2, knot_num=1){
 #' @return a fitted spline model
 #' @example inst/examples/fit_splines.R
 fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
+  if (!requireNamespace("splines2", quietly = TRUE)){
+    stop("splines2 needed to use the spline method. Please install it.",
+         call. = FALSE)
+  } else {
   spline_b <- splines2::bSpline(as.numeric(importance_data$rank), knots=knots, degree=degrees, numknot=knot_num, intercept=TRUE)
   spline_fit <- lm(as.numeric(importance_data$importance) ~ spline_b)
-  return(spline_fit)
+  return(spline_fit)}
 }
 
 
@@ -267,14 +282,14 @@ fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
 #' @description Find the minimum node strength to use as a cutoff point for important nodes.
 #' @param graph The complete graph.
 #' @param method The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
-#' @param cum_pct if using method cumulative, the total percent of node strength to capture
+#' @param percent if using method cumulative, the total percent of node strength to capture
 #' @param degrees if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths
 #' @param knot_num if using method spline, the number of knots to allow
 #' @param diagnostics if set to TRUE, prints plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a vector of suggested node cutoff strengths
-#' @examples find_cutoff(litsearchr::BBWO_graph, method="cumulative", cum_pct=0.8, diagnostics=FALSE)
-find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
+#' @examples find_cutoff(litsearchr::BBWO_graph, method="cumulative", percent=0.8, diagnostics=FALSE)
+find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
 
   importance_data <- make_importance(graph, importance_method=importance_method)
 
@@ -302,7 +317,7 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), cum_pct=0.8, de
 
   if (method == "cumulative"){
     cum_str <- max(cumsum(sort(importance_data$importance)))
-    cut_point <- (which(cumsum(sort(importance_data$importance, decreasing = TRUE))>=cum_str*cum_pct))[1]
+    cut_point <- (which(cumsum(sort(importance_data$importance, decreasing = TRUE))>=cum_str*percent))[1]
     cut_strengths <- as.numeric(sort(as.numeric(importance_data$importance), decreasing = TRUE)[cut_point])
 
     if (diagnostics == TRUE){

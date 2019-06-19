@@ -4,7 +4,7 @@
 \alias{find_cutoff}
 \title{Find node cutoff strength}
 \usage{
-find_cutoff(graph, method = c("spline", "cumulative"), cum_pct = 0.8,
+find_cutoff(graph, method = c("spline", "cumulative"), percent = 0.8,
   degrees = 2, knot_num = 1, diagnostics = TRUE,
   importance_method = "strength")
 }
@@ -13,7 +13,7 @@ find_cutoff(graph, method = c("spline", "cumulative"), cum_pct = 0.8,
 
 \item{method}{The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).}
 
-\item{cum_pct}{if using method cumulative, the total percent of node strength to capture}
+\item{percent}{if using method cumulative, the total percent of node strength to capture}
 
 \item{degrees}{if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths}
 
@@ -30,5 +30,5 @@ a vector of suggested node cutoff strengths
 Find the minimum node strength to use as a cutoff point for important nodes.
 }
 \examples{
-find_cutoff(litsearchr::BBWO_graph, method="cumulative", cum_pct=0.8, diagnostics=FALSE)
+find_cutoff(litsearchr::BBWO_graph, method="cumulative", percent=0.8, diagnostics=FALSE)
 }

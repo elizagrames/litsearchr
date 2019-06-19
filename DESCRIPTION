@@ -28,7 +28,8 @@ Imports:
     utils,
     igraph,
     synthesisr,
-    stopwords
+    stopwords,
+    stringr
 Suggests: 
     xml2,
     rapidraker,
@@ -36,7 +37,6 @@ Suggests:
     knitr,
     rmarkdown,
     xlsx,
-    stringr,
     freeknotsplines,
     splines2,
     translate

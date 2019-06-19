@@ -1,0 +1,171 @@
+---
+title: "Search term selection with litsearchr for an example systematic review of the effects of prescribed burning on abundance of red-cockaded woodpeckers (Picoides borealis)"
+
+author: "Eliza M. Grames, Emily A. Hennessey, Rose E. O'Dea, Alfredo Sanchez-Tojar, and Michael Schermann"
+
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Search term selection with litsearchr for an example systematic review of the effects of prescribed burning on abundance of red-cockaded woodpeckers (Picoides borealis)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  fig.width = 6,
+  fig.height = 6
+)
+```
+
+## About the package  
+The *litsearchr* package for R is designed to partially automate search term selection and writing search strategies for systematic reviews. This vignette demonstrates its utility through an example systematic review examining the effects of prescribed burning on woodpecker abundance by demonstrating how the package: (1) Identifies potential keywords through the naive search input, (2) Builds a keyword co-occurence network to assist with building a more precise search strategy, (3) Uses a spline function to identify important changes in keyword importance, (4) Assists with grouping terms into concepts, and (5) Writes a Boolean search as a result of completion of the 4 preliminary steps.
+
+## Write and conduct naive search
+In our empirical example, we begin with a naive search, generated through a scoping review of the literature and expert input for relevant terms. 
+
+Naive search: TS=(("picoides borealis" OR "red-cockaded woodpecker*" OR "red cockaded woodpecker" OR "leuconotopicus borealis" OR woodpecker) AND ("prescribed burn*" OR "prescribed fire*" OR fire* OR wildfire* OR burn*) AND (abundan* OR presen* OR occup* OR occur* OR (popul* NEAR/2 (densit* OR size))))
+
+If you wish to run the naive search and compare the results with the results from the *litsearchr* package, document the databases/hosts searched using the naive strategy and the returns from each location. For example: Using our naive search strategy, searches for relevant literature were conducted on April 10, 2019 with no date restrictions. We searched Scopus (1970-2019) and five databases in Web of Science: the Web of Science Core Collection (1900-2019), BIOSIS Previews (1926-2019), Current Contents Connect (1998-2019), MEDLINE (1950-2019), and Zoological Record (1945-2019).
+
+Next, the naive search is entered into the R environment with the *litsearchr* package installed and called from the library. The naive search is first run using the *import_results* function and next deduplicated using the *remove_duplicates* function. It is best to run the *remove_duplicates* function two or more times to be more efficient by removing exact duplicates first (e.g. once for exact title duplicates and then next for abstract similarity as we have done in the example).
+
+
+```{r}
+
+search_directory <- "../inst/extdata/borealis/"
+
+naiveimport <- litsearchr::import_results(directory = "~/litsearchr/inst/extdata/borealis/", filename = NULL, save_dataset = FALSE)
+
+dedupe_stage1 <- litsearchr::remove_duplicates(naiveimport, field = "title", method = "quick")
+
+dedupe_stage2 <- litsearchr::remove_duplicates(dedupe_stage1, field="abstract", method="similarity")
+
+naiveresults <- dedupe_stage2
+
+```
+
+
+
+## 1. Identify potential keywords
+
+Using the deduplicated records captured from the naive search, the *extract_terms* function will systematically extract all keywords from the reports that have been tagged as such in the record.
+
+```{r}
+
+#rakedkeywords <- litsearchr::extract_terms(naiveresults, type="RAKE", min_freq = 2, title = TRUE, abstract = TRUE, ngrams = TRUE, n=2)
+
+# Note: if you can't run rapidraker due to rJava issues, the output is stored in litsearchr::rakedkeywords
+
+rakedkeywords <- litsearchr::extract_terms(text = naiveresults$text, method = "fakerake", min_freq = 2, ngrams = TRUE, n = 2, language = "English")
+
+taggedkeywords <- litsearchr::extract_terms(keywords = naiveresults$keywords, method="tagged")
+
+```
+
+
+
+## 2. Build the keyword co-occurrence network
+Using the results from *Step 1, Identify potential keywords*, a series of functions are next run to create a co-occurrence network. 
+
+
+```{r}
+
+all_keywords <- unique(append(taggedkeywords, rakedkeywords))
+
+naivedfm <- litsearchr::create_dfm(elements = naiveresults$text, type = "keywords", keywords = all_keywords)
+
+naivegraph <- litsearchr::create_network(search_dfm = naivedfm, min_studies = 3, min_occurrences = 3)
+
+```
+
+
+
+## 3. Identify change points in keyword importance 
+The keyword co-occurrence network can next be quantitatively assessed using a spline function for important changes in the level of importance of a particular keyword to the concept. This will help in making an efficient but comprehensive search.
+
+
+```{r}
+
+plot(sort(igraph::strength(naivegraph)), ylab="Node strength", main="Ranked node strengths", xlab="Rank")
+
+```
+
+
+
+```{r}
+
+cutoff <- litsearchr::find_cutoff(naivegraph, method = "cumulative", percent = .80, 
+                                        
+                                        diagnostics = TRUE, importance_method = "strength")
+
+
+```
+
+
+
+
+
+```{r}
+
+reducedgraph <- litsearchr::reduce_graph(naivegraph, cutoff_strength = cutoff[1])
+
+searchterms <- litsearchr::get_keywords(reducedgraph, savekeywords = FALSE, makewordle = FALSE)
+
+```
+
+
+
+## 4. Group terms into concepts
+Now that the important keywords for the search have been identified, they can be grouped into blocks to build the search strategy. For Boolean searches, terms are grouped into similar concept groups where they can be combined with "OR" statements and the separate blocks combined with "AND" statements.
+
+In our example, all keywords that relate to "woodpecker" would be in a similar concept group (e.g., "woodpecker", "red-cockaded woodpecker", "leuconotopicus borealis", "picoides borealis") while terms relating to "fire" would be in a similar concept group.
+
+We recommend saving the search terms to a .csv file, adding a new column called "group", and entering the group names in it. Terms that fit multiple concept groups can be added to both without changing the logic of the Boolean connections. For example, a term like "black-backed woodpecker abundance" would be added to both concept groups by labeling its group "woodpecker, abundance". Example code for this is below; it is commented out because it cannot be run without the .csv file.
+
+```{r}
+
+# write.csv(searchterms, "./search_terms.csv")
+# manually group terms in the csv
+# grouped_terms <- read.csv("./search_terms_grouped.csv")
+# extract the woodpecker terms from the csv
+# woodpecker_terms <- grouped_terms$term[which(stringr::str_detect(grouped_terms$group, "woodpecker"))]
+# join together a list of manually generated woodpecker terms with the ones from the csv
+# woodpeckers <- unique(append(c("woodpecker", "red-cockaded woodpecker", "leuconotopicus borealis", "picoides borealis")), woodpecker_terms)
+
+# repeat this for the other concept groups (e.g. fire and abundance)
+
+# then merge them into a list, using the code below as an example
+# mysearchterms <- list(woodpeckers, fire, abundance)
+
+```
+
+
+
+## 5. Write Boolean searches
+With the keywords grouped into concept groups and labeled "my search terms", the *write_search* function can be used to write Boolean searches in multiple languages, ready for export and use in chosen databases. The example below demonstrates writing a search in English using the search terms.
+
+
+```{r}
+
+# note: these search terms are a shortened example of a full search for illustration purposes only
+mysearchterms <- list(c("picoides arcticus", "black-backed woodpecker", "picoides borealis", "red-cockaded woodpecker", "cavity-nesting species", "woodpeckers"), c("fire", "forest fire", "wildfire", "prescribed burn", "burned forest", "burned site"), c("species abundance", "species presence", "species occurrence"))
+
+woodpecker_search <- litsearchr::write_search(groupdata = mysearchterms, 
+                                              
+                                              languages = "English", stemming = TRUE,
+                                              
+                                              exactphrase = TRUE, writesearch = FALSE, 
+                                              
+                                              verbose = TRUE)
+
+
+# when writing to a plain text file, the extra \ are required to render the * and " properly
+# if copying straight from the console, simply find and replace them in a text editor
+woodpecker_search
+
+```

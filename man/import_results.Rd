@@ -24,3 +24,8 @@ a data frame of assembled search results
 \description{
 Given a file or directory, calls the import_results function from the synthesisr package to import and assemble search results
 }
+\examples{
+write.csv(litsearchr::scopus_example,
+          paste(tempdir(), "/scopus.csv", sep = ""))
+naive_results <- import_results(paste(tempdir(), "/", sep = ""))
+}

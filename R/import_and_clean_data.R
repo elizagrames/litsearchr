@@ -14,6 +14,7 @@ usable_databases <- function() {
 #' @param save_directory the path to a directory where search results will be saved if save_dataset is set to TRUE
 #' @param verbose if TRUE, prints status updates
 #' @return a data frame of assembled search results
+#' @example inst/examples/import_results.R
 import_results <-  function(directory = NULL,
                             filename = NULL,
                             save_dataset = FALSE,

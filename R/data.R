@@ -1,3 +1,119 @@
+#' Example deduplicated articles
+#'
+#' A data frame containing a subset of example imported
+#' Black-backed Woodpecker (Picoides arcticus) articles
+#' after deduplication.
+#'
+#' @format A data frame with 36 rows of 18 variables for each article:
+#' \describe{
+#'  \item{id}{A unique ID}
+#'  \item{text}{The title, abstract, and/or keywords combined}
+#'  \item{title}{The title}
+#'  \item{abstract}{The abstract}
+#'  \item{keywords}{The author- or database-tagged keywords}
+#'  \item{methods}{Database-tagged methods}
+#'  \item{type}{Type of article (e.g. thesis, journal, book chapter)}
+#'  \item{authors}{Authors of the article}
+#'  \item{affiliation}{Author institutional affiliation}
+#'  \item{source}{Journal or source of publication}
+#'  \item{year}{Year of publication}
+#'  \item{volume}{Volume of publication, if applicable}
+#'  \item{issue}{Issue of publication, if applicable}
+#'  \item{startpage}{The first page of the article}
+#'  \item{endpage}{The last page of the article}
+#'  \item{doi}{The DOI of the article}
+#'  \item{language}{Original language of publication}
+#'  \item{database}{The database from which the article was exported}
+#'  }
+#'
+"BBWO_data"
+
+#' Example imported articles
+#'
+#' A data frame containing a subset of example imported
+#' Black-backed Woodpecker (Picoides arcticus) articles
+#' prior to deduplication.
+#'
+#' @format A data frame with 36 rows of 18 variables for each article:
+#' \describe{
+#'  \item{id}{A unique ID}
+#'  \item{text}{The title, abstract, and/or keywords combined}
+#'  \item{title}{The title}
+#'  \item{abstract}{The abstract}
+#'  \item{keywords}{The author- or database-tagged keywords}
+#'  \item{methods}{Database-tagged methods}
+#'  \item{type}{Type of article (e.g. thesis, journal, book chapter)}
+#'  \item{authors}{Authors of the article}
+#'  \item{affiliation}{Author institutional affiliation}
+#'  \item{source}{Journal or source of publication}
+#'  \item{year}{Year of publication}
+#'  \item{volume}{Volume of publication, if applicable}
+#'  \item{issue}{Issue of publication, if applicable}
+#'  \item{startpage}{The first page of the article}
+#'  \item{endpage}{The last page of the article}
+#'  \item{doi}{The DOI of the article}
+#'  \item{language}{Original language of publication}
+#'  \item{database}{The database from which the article was exported}
+#'  }
+#'
+"BBWO_import"
+
+#' Example keyword co-occurrence network
+#'
+#' An example of a keyword co-occurrence network for a subset of
+#' articles about Black-backed Woodpeckers (Picoides arcticus).
+#'
+#'@format An igraph object
+#'
+"BBWO_graph"
+
+#' An example of exported naive search hits
+#'
+#' A subset of the results of a naive search in Scopus
+#' about Black-backed Woodpeckers (Picoides arcticus).
+#'
+#' @format A dataframe with 10 rows of 22 variables:
+#' \describe{
+#' \item{Authors}{Article authors}
+#' \item{Author.Ids}{Author identifications}
+#' \item{Title}{Article title}
+#' \item{Year}{Year of article publication}
+#' \item{Source.title}{Journal or source title}
+#' \item{Volume}{Volume of publication}
+#' \item{Issue}{Issue of publication}
+#' \item{Art..No.}{Article number in journal, if applicable}
+#' \item{Page.start}{First page of article}
+#' \item{Page.end}{Last page of article}
+#' \item{Page.count}{Total number of pages in article}
+#' \item{Cited.by}{Number of times article has been cited}
+#' \item{DOI}{Article DOI}
+#' \item{Link}{Link to article}
+#' \item{Affiliations}{Author affiliations}
+#' \item{Authors.with.affiliations}{Author affiliations associated with each author}
+#' \item{Abstract}{Article abstract}
+#' \item{Author.keywords}{Author-tagged keywords}
+#' \item{Document.Type}{Type of article (e.g. journal article, book chapter)}
+#' \item{Access.Type}{Whether or not the article is open access}
+#' \item{Source}{The database source}
+#' \item{EID}{The identifier within the source}
+#' }
+#'
+"scopus_example"
+
+#' Grouped keywords for the BBWO vignette
+#'
+#' A dataset containing the keyword groupings used in the
+#' vignette about Black-backed Woodpecker occupancy of
+#' post-fire forest systems.
+#'
+#' @format A data frame with 429 rows of 2 variables:
+#' \describe{
+#'   \item{group}{concept group to which a term belongs}
+#'   \item{term}{the term or phrase output by litsearchr}
+#' }
+"BBWO_grouped_keywords"
+
+
 #' Color transparency conversion numbers
 #'
 #' A dataset containing conversion codes to go from a transparency
@@ -64,3 +180,17 @@
 #'   \item{Language}{the primary language of articles published in the journal}
 #' }
 "ulrich"
+
+
+
+#' Similar terms from example
+#'
+#' A dataset of terms marked as similar when we were
+#' building an example search strategy.
+#'
+#' @format A database with 922 rows of 2 variables
+#' \describe{
+#' \item{group}{the group we assigned}
+#' \item{term}{the similar search term}
+#' }
+"BBWO_similar_grouped"

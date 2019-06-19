@@ -127,8 +127,12 @@ translate_search <- function(search_terms, target_language, source_language="en"
   trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
 
   for (i in 1:length(words)){
+    if (!requireNamespace("translate", quietly = TRUE)){
+      stop("translate package needed in order to translate search terms. Please install it.",
+           call. = FALSE)
+    } else {
     termlist[i] <- translate::translate(words[i], source=source_language, target=trans_lang, key = API_key)[[1]]
-  }
+  }}
 
   return(termlist)
 }
@@ -272,6 +276,7 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
   }
 
   search_list <- gsub("&#39;", "'", search_list)
+  search_list <- gsub("\\\\", "", search_list)
     return(search_list)
 
   }
