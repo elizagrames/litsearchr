@@ -27,7 +27,6 @@ Imports:
     tm,
     utils,
     igraph,
-    synthesisr,
     stopwords,
     stringr
 Suggests: 
@@ -40,6 +39,10 @@ Suggests:
     freeknotsplines,
     splines2,
     translate
+DevPackage:
+    rmetaverse/synthesisr
+Remotes:
+    rmetaverse/synthesisr
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
 Date: 2019-06-18
