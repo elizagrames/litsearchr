@@ -598,7 +598,7 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
 #' @description Checks a list of known articles against the results of a search to see how many the search retrieves.
 #' @param true_hits a character vector of titles for articles that should be returned
 #' @param retrieved_articles a character vector of titles for articles returned by a search
-#' @param min_sim the minimum mean similarity and reciprocal similarity between two titles to be considered for manual review
+#' @param min_sim the minimum mean reciprocal similarity between two titles to be considered for manual review
 #' @param use_stopwords any common words in the titles that should be ignored when computing similarity to avoid false matches
 #' @param language if use_stopwords is TRUE, which language to use for recognizing stopwords
 #' @return a table of the best match for each true title from the search results along with a title similarity score
