@@ -598,62 +598,80 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
 #' @description Checks a list of known articles against the results of a search to see how many the search retrieves.
 #' @param true_hits a character vector of titles for articles that should be returned
 #' @param retrieved_articles a character vector of titles for articles returned by a search
-#' @param min_sim the minimum similarity between two titles to be considered for manual review
-#' @param new_stopwords any common words in the titles that should be ignored when computing similarity to avoid false matches
+#' @param min_sim the minimum mean similarity and reciprocal similarity between two titles to be considered for manual review
+#' @param use_stopwords any common words in the titles that should be ignored when computing similarity to avoid false matches
+#' @param language if use_stopwords is TRUE, which language to use for recognizing stopwords
 #' @return a table of the best match for each true title from the search results along with a title similarity score
 #' @examples check_recall(true_hits=c("Picoides arcticus"), retrieved_articles=c("Picoides tridactylus"))
-check_recall <- function (true_hits, retrieved_articles, min_sim = 0.6, new_stopwords = NULL) {
-  custom_stopwords <- litsearchr::add_stopwords(new_stopwords = new_stopwords)
-  titlekeys <- synthesisr::get_tokens(synthesisr::remove_punctuation(true_hits), "English")
-  positions <- list()
-  length(positions) <- length(titlekeys)
-  for (i in 1:length(titlekeys)) {
-    article <- titlekeys[[i]]
-    for (j in 1:length(article)) {
-      temp <- stringr::str_detect(synthesisr::remove_punctuation(tolower(retrieved_articles)),
-                                  article[j])
-      hits <- which(temp == TRUE)
-      if (length(hits) > 0) {
-        for (k in 1:length(hits)) {
-          if (i == 1) {
-            if (k == 1) {
-              positions[[i]] <- hits[k]
-            }
-            if (k > 1) {
-              positions[[i]] <- c(positions[[i]], hits[k])
-            }
-          }
-          if (i > 1) {
-            positions[[i]] <- c(positions[[i]], hits[k])
-          }
-        }
-      }
-    }
 
-    similarity <- table(positions[[i]])/length(article)
+check_recall <- function(true_hits, retrieved_articles, min_sim=0.6, use_stopwords=TRUE, language="English"){
 
-    similarity <- sort(similarity[which(similarity > min_sim)],
-                       decreasing = TRUE)
-    if (length(similarity) > 0){
-      best_match <- similarity[1]
-      similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]),
-                                              as.character(retrieved_articles[as.numeric(names(best_match))]),
-                                              as.numeric(best_match)))}
+  article_list <- list()
+  length(article_list) <- length(true_hits)
 
-    if (length(similarity)==0){
-      similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]), "NA", "NA"))
-    }
+  for(i in 1:length(true_hits)){
+    article <- true_hits[i]
+    article <- gsub("-", " ", article)
+    article <- gsub("\\.", " ", article)
 
-    if (i == 1) {
-      similarity_table <- similarity_entry
+    if(use_stopwords==TRUE){
+      titlekeys <- synthesisr::get_tokens(synthesisr::remove_punctuation(article), language = language)
+    } else{
+      titlekeys <- strsplit(article, " ")[[1]]
     }
-    if (i > 1) {
-      similarity_table <- rbind(similarity_table, similarity_entry)
-    }
+    article_list[[i]] <- titlekeys
   }
-  colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
-  return(similarity_table)
+
+  retrieved_titles <- list()
+  length(retrieved_titles) <- length(retrieved_articles)
+
+
+
+  for(i in 1:length(retrieved_articles)){
+    article <- retrieved_articles[i]
+    article <- gsub("-", " ", article)
+    article <- gsub("\\.", " ", article)
+
+    if(use_stopwords==TRUE){
+      titlekeys <- synthesisr::get_tokens(synthesisr::remove_punctuation(article), "English")
+    } else{
+      titlekeys <- strsplit(article, " ")[[1]]
+    }
+    retrieved_titles[[i]] <- titlekeys
+  }
+
+  temp <- c()
+
+  for(i in 1:length(article_list)){
+    temp <- c()
+    recip <- c()
+
+    for(j in 1:length(retrieved_titles)){
+      hits <- article_list[[i]] %in% retrieved_titles[[j]]
+      temp[j] <- sum(as.numeric(hits))/length(hits)
+      reciphits <- retrieved_titles[[j]] %in% article_list[[i]]
+      recip[j] <- sum(as.numeric(reciphits))/length(reciphits)
+    }
+
+    similarity <- (temp + recip)/2
+
+    if(any(similarity>min_sim)){
+      best_match <- which(similarity==max(similarity))
+      if(length(best_match)>1){
+        title <- paste(retrieved_articles[best_match], collapse = "\n AND \n")
+      } else {title <- retrieved_articles[best_match]}
+    } else {
+      title <- "NA"
+      similarity <- 0
+    }
+
+    entry <- cbind(true_hits[i], title, max(similarity))
+    if(i==1){dataset <- entry}else{dataset <- rbind(dataset, entry)}
+
+  }
+  return(dataset)
 }
+
 
 #' Get precision and recall of a search
 #' @description Measures the performance of a search by precision (specificity) and recall (sensitivity).
