@@ -73,11 +73,13 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
 
   if(language=="English"){stopwords <- litsearchr::custom_stopwords}else{this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
   language_code <- as.character(litsearchr::possible_langs$Short[this_language])
-  stopwords <- stopwords::stopwords(language=language_code, source = "stopwords-iso")}
+  stopwords <- stopwords::stopwords(language=language_code, source = "stopwords-iso")
+  }
 
   if(method=="fakerake"){
     if(is.null(text)){print("Please specify a body of text from which to extract terms.")}else{
-      terms <- litsearchr::fakerake(text, stopwords)}
+      terms <- litsearchr::fakerake(text, stopwords)
+      }
   }
 
   if(method=="RAKE"){
@@ -86,7 +88,12 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
       stop("You need to have rapidraker and rJava installed in order to use the RAKE algorithm. Please install rapidraker or choose a different method of extracting terms.",
            call. = FALSE)} else {
 
-             terms <- rapidraker::rapidrake(text, stop_words=stopwords, stem=FALSE)}
+             rakedterms <- rapidraker::rapidrake(text, stop_words=stopwords, stem=FALSE)[[1]]
+             terms <- c()
+             for(i in 1:nrow(rakedterms)){
+               terms <- append(terms, rep(rakedterms$keyword[i], rakedterms$freq[i]))
+             }
+             }
   }
 
   if(method=="tagged"){
