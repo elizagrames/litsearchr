@@ -296,13 +296,15 @@ available_languages <- function(){
 #' @return a text string
 #'@example inst/examples/write_titles.R
 write_title_search <- function(titles){
-  titlekeys <- synthesisr::get_tokens(synthesisr::remove_punctuation(titles), "English")
+  titles <- synthesisr::remove_punctuation(titles)
 
   title <- c()
-  for (i in 1:length(titlekeys)){
-    temp <- paste(titlekeys[[i]], collapse=" ")
+  for(i in 1:length(titles)){
+    keys <- synthesisr::get_tokens(titles[i], "English")
+    temp <- paste(keys, collapse=" ")
     title[i] <- paste("\\(", temp, "\\)")
   }
+
 
   title_search <- paste(title, collapse=" OR ")
   title_search <- gsub("\\\\", "", title_search)
