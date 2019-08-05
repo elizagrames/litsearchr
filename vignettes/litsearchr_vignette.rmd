@@ -1,7 +1,7 @@
 ---
 title: "Search term selection with litsearchr for an example systematic review of the effects of prescribed burning on abundance of red-cockaded woodpeckers (Picoides borealis)"
 
-author: "Eliza M. Grames, Emily A. Hennessgy, Rose E. O'Dea, Alfredo Sanchez-Tojar, and Michael Schermann"
+author: "Eliza M. Grames, Emily A. Hennessy, Rose E. O'Dea, Alfredo Sanchez-Tojar, and Michael Schermann"
 
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
