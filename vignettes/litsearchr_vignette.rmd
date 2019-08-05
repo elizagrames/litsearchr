@@ -1,7 +1,7 @@
 ---
 title: "Search term selection with litsearchr for an example systematic review of the effects of prescribed burning on abundance of red-cockaded woodpeckers (Picoides borealis)"
 
-author: "Eliza M. Grames, Emily A. Hennessey, Rose E. O'Dea, Alfredo Sanchez-Tojar, and Michael Schermann"
+author: "Eliza M. Grames, Emily A. Hennessgy, Rose E. O'Dea, Alfredo Sanchez-Tojar, and Michael Schermann"
 
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -62,7 +62,7 @@ Using the deduplicated records captured from the naive search, the *extract_term
 # Note: if you can't run rapidraker due to rJava issues, the output is stored in litsearchr::rakedkeywords
 
 rakedkeywords <- litsearchr::extract_terms(text = naiveresults$text, method = "fakerake", min_freq = 2, ngrams = TRUE, n = 2, language = "English")
-
+RAKEwords <- litsearchr::extract_terms(text = naiveresults$text, method = "RAKE", min_freq = 2, ngrams = TRUE, n = 2, language = "English")
 taggedkeywords <- litsearchr::extract_terms(keywords = naiveresults$keywords, method="tagged")
 
 ```
