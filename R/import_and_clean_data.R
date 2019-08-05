@@ -53,4 +53,5 @@ remove_duplicates <-  function(df,
       language = language,
       cutoff_distance = cutoff_distance
     )
+  return(df)
 }
