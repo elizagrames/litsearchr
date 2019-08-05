@@ -21,7 +21,7 @@ Description: Systematic review, meta-analysis, and other forms of evidence
 License: GPL-3
 LazyData: true
 RoxygenNote: 6.1.0
-Imports: 
+Imports:
     SnowballC,
     Rcpp,
     tm,
@@ -30,7 +30,7 @@ Imports:
     stopwords,
     stringr,
     synthesisr
-Suggests: 
+Suggests:
     xml2,
     rapidraker,
     wordcloud,

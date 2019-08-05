@@ -386,7 +386,7 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
     npages <- c(seq(1, floor(total_hits), 30))
 
     for (k in 1:length(npages)){
-      URLpage <- paste(base_site, "&amp;start=", npages[k], sep="")
+      URLpage <- paste(base_site, "&start=", npages[k], sep="")
       webpage <- xml2::read_html(URLpage)
       OATD <- as.character(webpage)
       sploatd <- strsplit(OATD, "div class=\"result\"")[[1]][-1]
@@ -415,9 +415,11 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
     dataset$database <- rep("oatd_scrape", nrow(dataset))
 
     if(writefile==TRUE){write.csv(dataset, paste(directory, "oatd_hits.csv", sep=""))}
-    return(dataset)
 
-  }}
+  }
+  return(dataset)
+
+  }
 
 #' Scrapes results from the NDLTD Global ETD Search
 #' @description Scrapes hits from the Networked Digital Library of Theses and Dissertations Global ETD Search.
@@ -533,8 +535,8 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
   if(is.null(search_terms)==FALSE){
     search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
     search_strat <- gsub("\\)","%29",gsub("\\(", "%28", gsub("\"", "%22", gsub(" ", "+", gsub(" \\)", "%29", gsub("\\( ", "%28", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))))
-
   }
+
   if(length(search_strat)==0){
     print("Error. No search terms or URL provided. Aborting.")
   }
