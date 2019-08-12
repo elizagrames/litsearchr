@@ -209,6 +209,7 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
         group_terms <- groupdata[[j]]
         if(stemming==TRUE){
           group_terms <- sapply(group_terms, litsearchr::should_stem)
+          group_terms <- gsub("i\\*", "*", group_terms)
         }
       }
 
@@ -259,6 +260,10 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
 
         if(writesearch==TRUE){
           filename <- paste(directory, "search-in", languages[i], ".txt", sep="")
+          encode <- litsearchr::possible_langs$Encoding[which(litsearchr::possible_langs$Language==languages[i])]
+          Encoding(this_search) <- as.character(encode)
+          this_search <- gsub("&#39;", "'", this_search)
+          this_search <- gsub("\\\\", "", this_search)
           writeLines(this_search, filename)
         }
 
@@ -658,7 +663,9 @@ check_recall <- function(true_hits, retrieved_articles, min_sim=0.6, use_stopwor
     }
 
     similarity <- (temp + recip)/2
-
+    if(any(is.na(similarity))){
+      similarity[is.na(similarity)] <- 0
+    }
     if(any(similarity>min_sim)){
       best_match <- which(similarity==max(similarity))
       if(length(best_match)>1){
