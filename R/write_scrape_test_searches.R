@@ -181,8 +181,8 @@ should_stem <- function(word){
 #' @param writesearch if TRUE, saves the searches to .txt files in the specified directory
 #' @return a list of search strings
 #' @example inst/examples/write_search.R
-write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphrase = FALSE,
-                                directory = "./", stemming = TRUE, verbose = TRUE, writesearch = FALSE){
+write_search  <- function (groupdata, API_key = NULL, languages = NULL, exactphrase = FALSE,
+                           directory = "./", stemming = TRUE, verbose = TRUE, writesearch = FALSE){
   if (writesearch == TRUE) {
     if (utils::menu(c("yes", "no"), title = "This is going to write .txt files to your computer containing the search strings. Are you sure you want to write the files?") ==
         2) {
@@ -209,8 +209,10 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
         group_terms <- groupdata[[j]]
         if(stemming==TRUE){
           group_terms <- sapply(group_terms, litsearchr::should_stem)
-          group_terms <- gsub("i\\*", "*", group_terms)
+          group_terms <- gsub("\\*", "#", group_terms)
+          group_terms <- unique(group_terms)
         }
+
       }
 
       for (n in 1:length(group_terms)) {
@@ -228,6 +230,12 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
           if (length(redundant > 0)) {
             group_terms <- group_terms[-redundant]
           }
+        }
+      }
+
+      if(languages[i]=="English"){
+        if(stemming==TRUE){
+          group_terms <- gsub("#", "*", group_terms)
         }
       }
 
@@ -274,17 +282,17 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
           print(paste(languages[i], "is written"))
         }
 
-        }
-
       }
+
+    }
 
   }
 
   search_list <- gsub("&#39;", "'", search_list)
   search_list <- gsub("\\\\", "", search_list)
-    return(search_list)
+  return(search_list)
 
-  }
+}
 
 
 #' Print possible search languages
