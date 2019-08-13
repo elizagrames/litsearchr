@@ -210,6 +210,9 @@ write_search  <- function (groupdata, API_key = NULL, languages = NULL, exactphr
         if(stemming==TRUE){
           group_terms <- sapply(group_terms, litsearchr::should_stem)
           group_terms <- gsub("\\*", "#", group_terms)
+
+          # corrects the issue with Porter's stemming algorithm for plurals
+          group_terms <- gsub("i#", "#", group_terms)
           group_terms <- unique(group_terms)
         }
 
