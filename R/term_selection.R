@@ -66,14 +66,22 @@ clean_keywords <- function(keywords) {
 #' @return a character vector of potential keyword terms
 #' @examples extract_terms(text=BBWO_data$text[1:10], method="fakerake")
 extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE", "tagged"), min_freq=2,
-                          ngrams=TRUE, n=2, language="English"){
+                          ngrams=TRUE, n=2, remove_numbers=TRUE, language="English", new_stopwords=NULL){
 
   if(length(text)>1){text <- paste(text, collapse = " ")}
   if(!is.null(text)){text <- tolower(text)}
 
+  if(remove_numbers==TRUE){
+    text <- tm::removeNumbers(text)
+  }
+
   if(language=="English"){stopwords <- litsearchr::custom_stopwords}else{this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
   language_code <- as.character(litsearchr::possible_langs$Short[this_language])
   stopwords <- stopwords::stopwords(language=language_code, source = "stopwords-iso")
+  }
+
+  if(!is.null(new_stopwords)){
+    stopwords <- litsearchr::add_stopwords(new_stopwords=new_stopwords)
   }
 
   if(method=="fakerake"){
@@ -126,6 +134,7 @@ fakerake <- function(text, stopwords){
   stops <- paste("\\b", stopwords, "\\b", sep="")
   stops <- unique(append(stops, c(",", "\\.", ":", ";", "\\[", "\\]", "/", "\\(", "\\)", "\"", "&", "=", "<", ">")))
   hyphens <- c(" - ", " -", "- ", "-")
+  text <- gsub("  ", " ", text)
   for(i in 1:length(hyphens)){
     text <- gsub(hyphens[i], "_", text)
   }
