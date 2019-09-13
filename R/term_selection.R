@@ -71,9 +71,13 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
   if(length(text)>1){text <- paste(text, collapse = " ")}
   if(!is.null(text)){text <- tolower(text)}
 
+if(method!="tagged"){
   if(remove_numbers==TRUE){
     text <- tm::removeNumbers(text)
   }
+} else{
+  keywords <- tm::removeNumbers(keywords)
+}
 
   if(language=="English"){stopwords <- litsearchr::custom_stopwords}else{this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
   language_code <- as.character(litsearchr::possible_langs$Short[this_language])
