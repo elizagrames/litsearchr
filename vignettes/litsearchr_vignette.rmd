@@ -135,7 +135,7 @@ We recommend saving the search terms to a .csv file, adding a new column called 
 # extract the woodpecker terms from the csv
 # woodpecker_terms <- grouped_terms$term[which(stringr::str_detect(grouped_terms$group, "woodpecker"))]
 # join together a list of manually generated woodpecker terms with the ones from the csv
-# woodpeckers <- unique(append(c("woodpecker", "red-cockaded woodpecker", "leuconotopicus borealis", "picoides borealis")), woodpecker_terms)
+# woodpeckers <- unique(append(c("woodpecker", "red-cockaded woodpecker", "leuconotopicus borealis", "picoides borealis"), woodpecker_terms))
 
 # repeat this for the other concept groups (e.g. fire and abundance)
 
