@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 ```
 
 ## About the package  
-The *litsearchr* package for R is designed to partially automate search term selection and writing search strategies for systematic reviews. This vignette demonstrates its utility through an example systematic review examining the effects of prescribed burning on woodpecker abundance by demonstrating how the package: (1) Identifies potential keywords through the naive search input, (2) Builds a keyword co-occurence network to assist with building a more precise search strategy, (3) Uses a spline function to identify important changes in keyword importance, (4) Assists with grouping terms into concepts, and (5) Writes a Boolean search as a result of completion of the 4 preliminary steps.
+The *litsearchr* package for R is designed to partially automate search term selection and writing search strategies for systematic reviews. This vignette demonstrates its utility through an example systematic review examining the effects of prescribed burning on woodpecker abundance by demonstrating how the package: (1) Identifies potential keywords through the naive search input, (2) Builds a keyword co-occurence network to assist with selecting search terms, (3) Uses a spline function to identify important changes in keyword importance, (4) Assists with grouping terms into concepts, and (5) Writes a Boolean search as a result of completion of the 4 preliminary steps.
 
 ## Write and conduct naive search
 In our empirical example, we begin with a naive search, generated through a scoping review of the literature and expert input for relevant terms. 
@@ -39,11 +39,17 @@ Next, the naive search is entered into the R environment with the *litsearchr* p
 
 search_directory <- "../inst/extdata/borealis/"
 
-naiveimport <- litsearchr::import_results(directory = "~/litsearchr/inst/extdata/borealis/", filename = NULL, save_dataset = FALSE)
+naiveimport <-
+  litsearchr::import_results(directory = search_directory,
+                             filename = NULL,
+                             save_dataset = FALSE)
 
-dedupe_stage1 <- litsearchr::remove_duplicates(naiveimport, field = "title", method = "quick")
+dedupe_stage1 <-
+  litsearchr::remove_duplicates(naiveimport, field = "title", method = "quick")
 
-dedupe_stage2 <- litsearchr::remove_duplicates(dedupe_stage1, field="abstract", method="similarity")
+dedupe_stage2 <-
+  litsearchr::remove_duplicates(dedupe_stage1, field = "abstract", method =
+                                  "similarity")
 
 naiveresults <- dedupe_stage2
 
@@ -61,9 +67,26 @@ Using the deduplicated records captured from the naive search, the *extract_term
 
 # Note: if you can't run rapidraker due to rJava issues, the output is stored in litsearchr::rakedkeywords
 
-rakedkeywords <- litsearchr::extract_terms(text = naiveresults$text, method = "fakerake", min_freq = 2, ngrams = TRUE, n = 2, language = "English")
-RAKEwords <- litsearchr::extract_terms(text = naiveresults$text, method = "RAKE", min_freq = 2, ngrams = TRUE, n = 2, language = "English")
-taggedkeywords <- litsearchr::extract_terms(keywords = naiveresults$keywords, method="tagged")
+rakedkeywords <-
+  litsearchr::extract_terms(
+    text = naiveresults$text,
+    method = "fakerake",
+    min_freq = 2,
+    ngrams = TRUE,
+    n = 2,
+    language = "English"
+  )
+RAKEwords <-
+  litsearchr::extract_terms(
+    text = naiveresults$text,
+    method = "RAKE",
+    min_freq = 2,
+    ngrams = TRUE,
+    n = 2,
+    language = "English"
+  )
+taggedkeywords <-
+  litsearchr::extract_terms(keywords = naiveresults$keywords, method = "tagged")
 
 ```
 
@@ -91,7 +114,12 @@ The keyword co-occurrence network can next be quantitatively assessed using a sp
 
 ```{r}
 
-plot(sort(igraph::strength(naivegraph)), ylab="Node strength", main="Ranked node strengths", xlab="Rank")
+plot(
+  sort(igraph::strength(naivegraph)),
+  ylab = "Node strength",
+  main = "Ranked node strengths",
+  xlab = "Rank"
+)
 
 ```
 
@@ -99,9 +127,14 @@ plot(sort(igraph::strength(naivegraph)), ylab="Node strength", main="Ranked node
 
 ```{r}
 
-cutoff <- litsearchr::find_cutoff(naivegraph, method = "cumulative", percent = .80, 
-                                        
-                                        diagnostics = TRUE, importance_method = "strength")
+cutoff <-
+  litsearchr::find_cutoff(
+    naivegraph,
+    method = "cumulative",
+    percent = .80,
+    diagnostics = TRUE,
+    importance_method = "strength"
+  )
 
 
 ```
@@ -153,15 +186,36 @@ With the keywords grouped into concept groups and labeled "my search terms", the
 ```{r}
 
 # note: these search terms are a shortened example of a full search for illustration purposes only
-mysearchterms <- list(c("picoides arcticus", "black-backed woodpecker", "picoides borealis", "red-cockaded woodpecker", "cavity-nesting species", "woodpeckers"), c("fire", "forest fire", "wildfire", "prescribed burn", "burned forest", "burned site"), c("species abundance", "species presence", "species occurrence"))
+mysearchterms <-
+  list(
+    c(
+      "picoides arcticus",
+      "black-backed woodpecker",
+      "picoides borealis",
+      "red-cockaded woodpecker",
+      "cavity-nesting species",
+      "woodpeckers"
+    ),
+    c(
+      "fire",
+      "forest fire",
+      "wildfire",
+      "prescribed burn",
+      "burned forest",
+      "burned site"
+    ),
+    c("species abundance", "species presence", "species occurrence")
+  )
 
-woodpecker_search <- litsearchr::write_search(groupdata = mysearchterms, 
-                                              
-                                              languages = "English", stemming = TRUE,
-                                              
-                                              exactphrase = TRUE, writesearch = FALSE, 
-                                              
-                                              verbose = TRUE)
+woodpecker_search <-
+  litsearchr::write_search(
+    groupdata = mysearchterms,
+    languages = "English",
+    stemming = TRUE,
+    exactphrase = TRUE,
+    writesearch = FALSE,
+    verbose = TRUE
+  )
 
 
 # when writing to a plain text file, the extra \ are required to render the * and " properly
