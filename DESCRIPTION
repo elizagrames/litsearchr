@@ -33,7 +33,6 @@ Imports:
 Suggests:
     xml2,
     rapidraker,
-    wordcloud,
     knitr,
     rmarkdown,
     xlsx,
