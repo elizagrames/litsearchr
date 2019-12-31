@@ -62,54 +62,6 @@ choose_languages <- function(lang_data=get_language_data(key_topics = "biology")
 
 }
 
-#' Generates a graph of languages to search
-#' @description Creates a bubble graph showing the number of journals in each language from the languages used by journals in given topics.
-#' @param lang_data a table of language data returned from choose_languages()
-#' @param no_return the maximum number of languages to include in the graph
-#' @param key_topics a character vector of the same key topics used in choose_languages()
-#' @return a bubble plot of non-English languages used by journals in a discipline sized by count
-#'@example inst/examples/language_graphs.R
-language_graphs <- function(lang_data=get_language_data(key_topics=NULL), no_return=15,
-                            key_topics=NULL){
-  lang_data$x <- as.numeric(row.names(lang_data))^.1
-  lang_data$y <- sample(1:100, length(lang_data$language))*(as.numeric((lang_data$count)))*as.numeric(rownames(lang_data))
-
-  label <- key_topics[1]
-  if (length(key_topics) > 1){
-    for (i in 2:length(key_topics)){
-      label <- paste(label, "or", key_topics[i])
-    }}
-
-  if (length(lang_data$x) <= no_return){
-    symbols(lang_data$x, lang_data$y,
-            circles=lang_data$count,
-            bg=rainbow(length(lang_data$x)),
-            axes=FALSE, xlab="", ylab="",
-            main=paste("Non-English languages for", label, "journals", sep=" "))
-    text(lang_data$x, lang_data$y, lang_data$language, cex=.75)
-    legend("topright",
-           legend=c(paste(lang_data$language, lang_data$count, sep=", ")),
-           pch=20,
-           col=rainbow(length(lang_data$x)))
-  }
-
-  if (length(lang_data$x) > no_return){
-    symbols(lang_data$x, lang_data$y,
-            circles=lang_data$count,
-            bg=rainbow(length(lang_data$x[1:no_return])),
-            axes=FALSE, xlab="", ylab="",
-            main=paste("Non-English languages for", label, "journals", sep=" "))
-    text(lang_data$x, lang_data$y, lang_data$language, cex=.75)
-    legend("topright",
-           legend=c(paste(head(lang_data$language, no_return),
-                          head(lang_data$count, no_return), sep=", ")),
-           pch=20,
-           col=head(rainbow(length(lang_data$x[1:no_return])),no_return))
-
-  }
-
-}
-
 #' Translate search terms
 #' @param search_terms a character vector of search terms
 #' @param target_language a character vector of the language(s) to translate the search to

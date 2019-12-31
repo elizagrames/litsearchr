@@ -67,39 +67,6 @@
 #'
 "BBWO_graph"
 
-#' An example of exported naive search hits
-#'
-#' A subset of the results of a naive search in Scopus
-#' about Black-backed Woodpeckers (Picoides arcticus).
-#'
-#' @format A dataframe with 10 rows of 22 variables:
-#' \describe{
-#' \item{Authors}{Article authors}
-#' \item{Author.Ids}{Author identifications}
-#' \item{Title}{Article title}
-#' \item{Year}{Year of article publication}
-#' \item{Source.title}{Journal or source title}
-#' \item{Volume}{Volume of publication}
-#' \item{Issue}{Issue of publication}
-#' \item{Art..No.}{Article number in journal, if applicable}
-#' \item{Page.start}{First page of article}
-#' \item{Page.end}{Last page of article}
-#' \item{Page.count}{Total number of pages in article}
-#' \item{Cited.by}{Number of times article has been cited}
-#' \item{DOI}{Article DOI}
-#' \item{Link}{Link to article}
-#' \item{Affiliations}{Author affiliations}
-#' \item{Authors.with.affiliations}{Author affiliations associated with each author}
-#' \item{Abstract}{Article abstract}
-#' \item{Author.keywords}{Author-tagged keywords}
-#' \item{Document.Type}{Type of article (e.g. journal article, book chapter)}
-#' \item{Access.Type}{Whether or not the article is open access}
-#' \item{Source}{The database source}
-#' \item{EID}{The identifier within the source}
-#' }
-#'
-"scopus_example"
-
 #' Grouped keywords for the BBWO vignette
 #'
 #' A dataset containing the keyword groupings used in the
@@ -133,20 +100,6 @@
 #'
 #' @format A character vector with 593 entries
 "custom_stopwords"
-
-
-#' Databases that can be imported with litsearchr
-#'
-#' A dataset containing the platforms, databases, and download methods
-#' that litsearchr recognizes and can import.
-#'
-#' @format A database with 24 rows of 3 variables
-#' \describe{
-#'   \item{Platform}{the platform used to access a database}
-#'   \item{Database}{the database accessed}
-#'   \item{Download_method}{the way results must be downloaded for litsearchr to recognize the format}
-#' }
-"database_list"
 
 
 #' Languages litsearchr can write searches in
