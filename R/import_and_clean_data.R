@@ -1,33 +1,21 @@
-#' Print databases/platform exports that litsearchr can import or search in
-#' @description Prints a data frame of platforms, databases, and download methods that litsearchr recognizes
-#' @examples usable_databases()
-usable_databases <- function() {
-  print(litsearchr::database_list)
-}
-
-
 #' Import results of a search
 #' @description Given a file or directory, calls the import_results function from the synthesisr package to import and assemble search results
 #' @param directory a path to a directory containing search results to import
-#' @param filename a path to a filename containing search results to import
-#' @param save_dataset if TRUE, saves the full search results to a .csv
-#' @param save_directory the path to a directory where search results will be saved if save_dataset is set to TRUE
+#' @param filename a file of search results to import
 #' @param verbose if TRUE, prints status updates
 #' @return a data frame of assembled search results
-#' @example inst/examples/import_results.R
-import_results <-  function(directory = NULL,
-                            filename = NULL,
-                            save_dataset = FALSE,
-                            verbose = TRUE,
-                            save_directory = "./") {
-  df <- synthesisr::import_results(
-    directory = directory,
-    filename = filename,
-    save_dataset = save_dataset,
-    save_directory = save_directory,
-    verbose = verbose
-  )
+import_results <-  function(directory = NULL, file=NULL,
+                            verbose = TRUE) {
+  if(!is.null(directory)){
+    filename <- paste(directory, list.files(directory), sep="")
+  }else if(!is.null(file)){
+    filename <- file
+  }else{stop(print("Supply either a directory or a file containing search results."))}
 
+  df <-
+    synthesisr::import_refs(filename = filename,
+                            return_df = TRUE,
+                            verbose = verbose)
   return(df)
 }
 
@@ -36,21 +24,20 @@ import_results <-  function(directory = NULL,
 #' @description Calls the deduplicate function from synthesisr to flag and remove duplicate entries from a data frame
 #' @param df the data frame to deduplicate
 #' @param field the name or index of the column to check for duplicate values
-#' @param method the manner of duplicate detection; quick removes exact text duplicates, similarity removes duplicates below a similarity threshold, and fuzzy uses fuzzdist matching
-#' @param language the language to use if method is set to similarity
-#' @param cutoff_distance the threshold below which articles are marked as duplicates by the similarity method
+#' @param method the manner of duplicate detection; exact removes exact text duplicates, stringdist removes duplicates below a similarity threshold, and fuzzy uses fuzzdist matching
 #' @return a deduplicated data frame
 remove_duplicates <-  function(df,
                                field,
-                               method = c("quick", "similarity", "fuzzy"),
-                               language = "English",
-                               cutoff_distance = 2) {
-  df <-
-    synthesisr::deduplicate(
-      df = df,
-      field = field,
-      method = method,
-      language = language,
-      cutoff_distance = cutoff_distance
+                               method = c("stringdist",  "fuzzdist", "exact")) {
+  dups <-
+    synthesisr::find_duplicates(
+      data = df,
+      match_variable = field,
+      match_function = method,
+      to_lower = TRUE,
+      remove_punctuation = TRUE
     )
+  df <- synthesisr::deduplicate(df, dups)
+  return(df)
+
 }

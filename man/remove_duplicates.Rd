@@ -4,19 +4,15 @@
 \alias{remove_duplicates}
 \title{Remove duplicate entries from a data frame}
 \usage{
-remove_duplicates(df, field, method = c("quick", "similarity", "fuzzy"),
-  language = "English", cutoff_distance = 2)
+remove_duplicates(df, field, method = c("stringdist", "fuzzdist",
+  "exact"))
 }
 \arguments{
 \item{df}{the data frame to deduplicate}
 
 \item{field}{the name or index of the column to check for duplicate values}
 
-\item{method}{the manner of duplicate detection; quick removes exact text duplicates, similarity removes duplicates below a similarity threshold, and fuzzy uses fuzzdist matching}
-
-\item{language}{the language to use if method is set to similarity}
-
-\item{cutoff_distance}{the threshold below which articles are marked as duplicates by the similarity method}
+\item{method}{the manner of duplicate detection; exact removes exact text duplicates, stringdist removes duplicates below a similarity threshold, and fuzzy uses fuzzdist matching}
 }
 \value{
 a deduplicated data frame

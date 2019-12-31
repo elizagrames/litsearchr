@@ -65,8 +65,12 @@ clean_keywords <- function(keywords) {
 #' @param language the language of input data to use for stopwords
 #' @return a character vector of potential keyword terms
 #' @examples extract_terms(text=BBWO_data$text[1:10], method="fakerake")
-extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE", "tagged"), min_freq=2,
-                          ngrams=TRUE, n=2, language="English"){
+extract_terms <- function(text=NULL,
+                          keywords=NULL,
+                          method=c("fakerake", "RAKE", "tagged"),
+                          min_freq=2,
+                          ngrams=TRUE, n=2,
+                          language="English"){
 
   if(length(text)>1){text <- paste(text, collapse = " ")}
   if(!is.null(text)){text <- tolower(text)}
@@ -95,7 +99,7 @@ extract_terms <- function(text=NULL, keywords=NULL, method=c("fakerake", "RAKE",
       terms <- stringr::str_trim(strsplit(cleaned_keywords, ";")[[1]])}
   }
 
-  terms <- stringr::str_trim(synthesisr::remove_punctuation(terms))
+  terms <- synthesisr::remove_punctuation(terms)
 
 
   freq_terms <- names(table(terms))[which(table(terms)>=min_freq)]
@@ -119,8 +123,9 @@ fakerake <- function(text, stopwords){
   stops <- paste("\\b", stopwords, "\\b", sep="")
   stops <- unique(append(stops, c(",", "\\.", ":", ";", "\\[", "\\]", "/", "\\(", "\\)", "\"", "&", "=", "<", ">")))
   hyphens <- c(" - ", " -", "- ", "-")
+
   for(i in 1:length(hyphens)){
-    text <- gsub(hyphens[i], "_", text)
+    text <- gsub(hyphens[i], "--", text)
   }
 
   text <- tolower(text)
@@ -137,9 +142,21 @@ fakerake <- function(text, stopwords){
   if(length(short_terms)>0){terms <- pre_terms[-short_terms]}else{terms <- pre_terms}
   names(terms) <- NULL
 
-  terms <- gsub("_", "-", terms)
+  terms <- gsub("--", "-", terms)
 
-  terms <- stringr::str_trim(synthesisr::remove_punctuation(terms))
+  terms <- synthesisr::remove_punctuation(terms, remove_hyphens = FALSE)
+  terms <- synthesisr::remove_numbers(terms)
+
+  if(any(grepl("  ", terms))){
+    while(any(grepl("  ", terms))){
+      terms <- gsub("  ", " ", terms)
+    }
+  }
+
+  # remove trailing spaces
+  if(requireNamespace("stringr", quietly=TRUE)){
+    terms <- stringr::str_trim(terms)
+  }
 
   return(terms)
 }
@@ -152,10 +169,16 @@ fakerake <- function(text, stopwords){
 #' @param keywords if type="keywords", a character vector of keywords to use as document features
 #' @return a matrix with documents as rows and terms as columns
 #' @return a matrix with documents as rows and terms as columns
-create_dfm <- function(elements, type=c("tokens", "keywords"), language="English", keywords=NULL){
-  dfm <- synthesisr::create_dfm(elements=elements, type=type, language=language, keywords=keywords)
-  return(dfm)
-}
+create_dfm <-
+  function(elements, features, closure="full") {
+    dfm <-
+      synthesisr::create_dfm(
+        elements = elements,
+features=features,
+closure=closure,
+ignore_case=TRUE)
+    return(dfm)
+  }
 
 #' Create a keyword co-occurrence network
 #' @description Creates a keyword co-occurrence network from an adjacency matrix trimmed to remove rare terms.
