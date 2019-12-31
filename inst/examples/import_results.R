@@ -1,3 +1,5 @@
-write.csv(litsearchr::scopus_example,
-          paste(tempdir(), "/scopus.csv", sep = ""))
-naive_results <- import_results(paste(tempdir(), "/", sep = ""))
+file_location <- system.file(
+  "extdata",
+  "avian_ecology_bibliography.ris",
+  package = "revtools")
+naive_results <- import_results(file=file_location)
