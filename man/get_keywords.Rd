@@ -4,20 +4,13 @@
 \alias{get_keywords}
 \title{Extract potential keywords}
 \usage{
-get_keywords(reduced_graph, savekeywords = FALSE, makewordle = FALSE,
-  directory = "./")
+get_keywords(reduced_graph)
 }
 \arguments{
 \item{reduced_graph}{a reduced graph with only important nodes created with reduce_grah()}
-
-\item{savekeywords}{if TRUE, saves the keywords to a plain text file}
-
-\item{makewordle}{if TRUE, creates a wordcloud image of the important keywords sized relative to node strength}
-
-\item{directory}{the directory to save results to if savekeywords=TRUE}
 }
 \value{
-a list of potential keywords to consider
+a character vector of potential keywords to consider
 }
 \description{
 Extracts keywords identified as important.

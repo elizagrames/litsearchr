@@ -1,10 +1,11 @@
 #' Import results of a search
 #' @description Given a file or directory, calls the import_results function from the synthesisr package to import and assemble search results
 #' @param directory a path to a directory containing search results to import
-#' @param filename a file of search results to import
+#' @param file a file of search results to import
 #' @param verbose if TRUE, prints status updates
 #' @return a data frame of assembled search results
-import_results <-  function(directory = NULL, file=NULL,
+import_results <-  function(directory = NULL,
+                            file=NULL,
                             verbose = TRUE) {
   if(!is.null(directory)){
     filename <- paste(directory, list.files(directory), sep="")

@@ -20,5 +20,16 @@ an igraph weighted graph
 Creates a keyword co-occurrence network from an adjacency matrix trimmed to remove rare terms.
 }
 \examples{
-create_network(create_dfm(BBWO_data$text[1:10]))
+litsearchr::create_network(
+  search_dfm = create_dfm(
+    BBWO_data$abstract[1:10],
+    features = extract_terms(
+      text = BBWO_data$abstract[1:10],
+      method = "fakerake",
+      min_freq = 2,
+      ngrams = TRUE,
+      n = 2
+    )
+  )
+)
 }

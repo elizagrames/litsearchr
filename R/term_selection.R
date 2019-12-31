@@ -164,11 +164,10 @@ fakerake <- function(text, stopwords){
 #' Create a document-feature matrix
 #' @description Given a character vector of document information, creates a document-feature matrix.
 #' @param elements a character vector of document information (e.g. document titles or abstracts)
-#' @param type whether the dfm should be created based on document tokens or a restricted list of keywords
-#' @param language if type="tokens", the language to use for removing stopwords
-#' @param keywords if type="keywords", a character vector of keywords to use as document features
+#' @param features a character vector of terms to use as document features
+#' @param closure restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms.
 #' @return a matrix with documents as rows and terms as columns
-#' @return a matrix with documents as rows and terms as columns
+#' @example inst/examples/create_dfm.R
 create_dfm <-
   function(elements, features, closure="full") {
     dfm <-
@@ -186,7 +185,7 @@ ignore_case=TRUE)
 #' @param min_studies the minimum number of studies a term must occur in to be included
 #' @param min_occurrences the minimum total number of times a term must occur (counting repeats in the same document)
 #' @return an igraph weighted graph
-#' @examples create_network(create_dfm(BBWO_data$text[1:10]))
+#' @example inst/examples/create_network.R
 create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
   presences <- search_dfm
   presences[which(presences>0)] <- 1
@@ -360,20 +359,10 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, de
 #' Extract potential keywords
 #' @description Extracts keywords identified as important.
 #' @param reduced_graph a reduced graph with only important nodes created with reduce_grah()
-#' @param savekeywords if TRUE, saves the keywords to a plain text file
-#' @param makewordle if TRUE, creates a wordcloud image of the important keywords sized relative to node strength
-#' @param directory the directory to save results to if savekeywords=TRUE
-#' @return a list of potential keywords to consider
+#' @return a character vector of potential keywords to consider
 #' @examples get_keywords(reduce_graph(litsearchr::BBWO_graph, cutoff_strength=15))
-get_keywords <- function(reduced_graph, savekeywords=FALSE, makewordle=FALSE, directory="./"){
-  if(savekeywords==TRUE){
-    if(utils::menu(c("yes", "no"), title="This will write keywords to a plain text file. Do you want to save keywords to a file?")==2){
-      savekeywords <- FALSE
-    }
-  }
+get_keywords <- function(reduced_graph){
   potential_keys <- names(igraph::V(reduced_graph))
-  if (savekeywords == TRUE){writeLines(potential_keys, paste(directory, "potential-keywords.txt", sep="")) }
-  if (makewordle == TRUE) {make_wordle(reduced_graph)}
   return(potential_keys)
 }
 
@@ -458,7 +447,7 @@ get_condensed_terms <- function(reduced_graph, previous_graphs){
     }
   }
 
-  search_terms <- litsearchr::get_keywords(reduced_graph=reduced_graph, savekeywords = FALSE, makewordle = FALSE)
+  search_terms <- litsearchr::get_keywords(reduced_graph=reduced_graph)
 
   new_terms <- c()
   for(i in 1:length(search_terms)){

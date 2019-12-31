@@ -9,17 +9,27 @@ create_dfm(elements, features, closure = "full")
 \arguments{
 \item{elements}{a character vector of document information (e.g. document titles or abstracts)}
 
-\item{type}{whether the dfm should be created based on document tokens or a restricted list of keywords}
+\item{features}{a character vector of terms to use as document features}
 
-\item{language}{if type="tokens", the language to use for removing stopwords}
-
-\item{keywords}{if type="keywords", a character vector of keywords to use as document features}
+\item{closure}{restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms.}
 }
 \value{
-a matrix with documents as rows and terms as columns
-
 a matrix with documents as rows and terms as columns
 }
 \description{
 Given a character vector of document information, creates a document-feature matrix.
+}
+\examples{
+head(as.matrix(
+  create_dfm(
+    BBWO_data$abstract[1:10],
+    features = extract_terms(
+      text = BBWO_data$abstract[1:10],
+      method = "fakerake",
+      min_freq = 2,
+      ngrams = TRUE,
+      n = 2
+    )
+  )
+))
 }

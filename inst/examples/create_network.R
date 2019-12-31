@@ -1,5 +1,5 @@
-head(as.matrix(
-  create_dfm(
+litsearchr::create_network(
+  search_dfm = create_dfm(
     BBWO_data$abstract[1:10],
     features = extract_terms(
       text = BBWO_data$abstract[1:10],
@@ -9,4 +9,4 @@ head(as.matrix(
       n = 2
     )
   )
-))
+)

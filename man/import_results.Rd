@@ -9,9 +9,9 @@ import_results(directory = NULL, file = NULL, verbose = TRUE)
 \arguments{
 \item{directory}{a path to a directory containing search results to import}
 
-\item{verbose}{if TRUE, prints status updates}
+\item{file}{a file of search results to import}
 
-\item{filename}{a file of search results to import}
+\item{verbose}{if TRUE, prints status updates}
 }
 \value{
 a data frame of assembled search results
