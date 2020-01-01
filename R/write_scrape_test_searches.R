@@ -101,14 +101,16 @@ should_stem <- function(word){
 #' @param API_key your Google Translate API key
 #' @param languages a character vector of supported languages to write searches in.
 #' @param exactphrase if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes
-#' @param directory the path to the directory where you want to save searches (defaults to current working directory)
 #' @param stemming if TRUE, writes stemmed search (only when the current language is English)
-#' @param verbose if TRUE, prints when each language is finished writing
+#' @param closure restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms.
+#' @param directory the path to the directory where you want to save searches (defaults to current working directory)
 #' @param writesearch if TRUE, saves the searches to .txt files in the specified directory
+#' @param verbose if TRUE, prints when each language is finished writing
 #' @return a list of search strings
 #' @example inst/examples/write_search.R
-write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphrase = FALSE,
-                                directory = "./", stemming = TRUE, verbose = TRUE, writesearch = FALSE){
+write_search <- function (groupdata, API_key = NULL, languages = NULL,
+                          exactphrase = FALSE, stemming = TRUE, closure=c("left", "right", "full", "none"),
+                          directory = "./", writesearch = FALSE,  verbose = TRUE){
   if (writesearch == TRUE) {
     if (utils::menu(c("yes", "no"), title = "This is going to write .txt files to your computer containing the search strings. Are you sure you want to write the files?") ==
         2) {
@@ -124,7 +126,7 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
     group_list <- c()
 
     for(j in 1:length(groupdata)){
-      group_terms <- litsearchr::remove_redundancies(groupdata[[j]])
+      group_terms <- litsearchr::remove_redundancies(groupdata[[j]], closure = closure)
 
       if(languages[i]!="English"){
         translated_terms <- litsearchr::translate_search(paste(group_terms, collapse="; "), target_language = languages[i], API_key = API_key)

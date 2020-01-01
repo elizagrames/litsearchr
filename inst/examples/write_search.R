@@ -6,6 +6,7 @@ write_search(
   languages = "English",
   exactphrase = TRUE,
   stemming = TRUE,
-  verbose = FALSE,
-  writesearch = FALSE
+  closure = "left",
+  writesearch = FALSE,
+  verbose = FALSE
 )

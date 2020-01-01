@@ -24,7 +24,6 @@ RoxygenNote: 6.1.1
 Imports: 
     SnowballC,
     Rcpp,
-    tm,
     utils,
     igraph,
     synthesisr,

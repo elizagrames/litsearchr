@@ -5,8 +5,9 @@
 \title{Write Boolean searches}
 \usage{
 write_search(groupdata, API_key = NULL, languages = NULL,
-  exactphrase = FALSE, directory = "./", stemming = TRUE,
-  verbose = TRUE, writesearch = FALSE)
+  exactphrase = FALSE, stemming = TRUE, closure = c("left", "right",
+  "full", "none"), directory = "./", writesearch = FALSE,
+  verbose = TRUE)
 }
 \arguments{
 \item{groupdata}{a list of character vectors, each of which is a concept group}
@@ -17,13 +18,15 @@ write_search(groupdata, API_key = NULL, languages = NULL,
 
 \item{exactphrase}{if set to \code{TRUE}, stemmed search terms with multiple words will be enclosed in quotes}
 
-\item{directory}{the path to the directory where you want to save searches (defaults to current working directory)}
-
 \item{stemming}{if TRUE, writes stemmed search (only when the current language is English)}
 
-\item{verbose}{if TRUE, prints when each language is finished writing}
+\item{closure}{restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms.}
+
+\item{directory}{the path to the directory where you want to save searches (defaults to current working directory)}
 
 \item{writesearch}{if TRUE, saves the searches to .txt files in the specified directory}
+
+\item{verbose}{if TRUE, prints when each language is finished writing}
 }
 \value{
 a list of search strings
@@ -40,7 +43,8 @@ write_search(
   languages = "English",
   exactphrase = TRUE,
   stemming = TRUE,
-  verbose = FALSE,
-  writesearch = FALSE
+  closure = "left",
+  writesearch = FALSE,
+  verbose = FALSE
 )
 }
