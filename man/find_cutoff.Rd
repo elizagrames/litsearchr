@@ -27,5 +27,5 @@ a vector of suggested node cutoff strengths
 Find the minimum node strength to use as a cutoff point for important nodes.
 }
 \examples{
-find_cutoff(litsearchr::BBWO_graph, method="cumulative", percent=0.8, diagnostics=FALSE)
+find_cutoff(litsearchr::BBWO_graph, method="cumulative", percent=0.8)
 }
