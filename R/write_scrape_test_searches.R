@@ -44,7 +44,10 @@ translate_search <- function(search_terms, target_language, source_language="en"
 
   termlist <- words
 
-  this_one <- which(stringr::str_detect(litsearchr::possible_langs$Language, target_language)==TRUE)
+  if(nchar(target_language)>2){
+    this_one <- which(grepl(target_language, litsearchr::possible_langs$Language))
+  }else{this_one <- which(grepl(target_language, litsearchr::possible_langs$Short))}
+
   trans_lang <- as.character(litsearchr::possible_langs$Short[this_one])
   trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
 
@@ -87,7 +90,8 @@ should_stem <- function(word){
     }
   }
 
-  words <- stringr::str_trim(words)
+    words <- stringr::str_trim(words)
+
   return(words)
 }
 
@@ -120,35 +124,16 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
     group_list <- c()
 
     for(j in 1:length(groupdata)){
+      group_terms <- litsearchr::remove_redundancies(groupdata[[j]])
 
       if(languages[i]!="English"){
-        to_translate <- paste(groupdata[[j]], collapse="; ")
-        translated_terms <- litsearchr::translate_search(to_translate, target_language = languages[i], API_key = API_key)
+        translated_terms <- litsearchr::translate_search(paste(group_terms, collapse="; "), target_language = languages[i], API_key = API_key)
         group_terms <- strsplit(translated_terms, "; ")[[1]]
       }
 
       if(languages[i]=="English"){
-        group_terms <- groupdata[[j]]
         if(stemming==TRUE){
           group_terms <- sapply(group_terms, litsearchr::should_stem)
-        }
-      }
-
-      for (n in 1:length(group_terms)) {
-        if (n == 1) {
-          redundant <- c()
-        }
-        if (stringr::str_detect(paste(group_terms[-n],
-                                      collapse = " "), group_terms[n])) {
-          detections <- which(stringr::str_detect(group_terms,
-                                                  group_terms[n]) == TRUE)
-          redundant <- append(redundant, detections[-which(detections == n)])
-        }
-        if (n == length(group_terms)) {
-          redundant <- unique(redundant)
-          if (length(redundant > 0)) {
-            group_terms <- group_terms[-redundant]
-          }
         }
       }
 
@@ -202,6 +187,44 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL, exactphra
     return(search_list)
 
   }
+
+#' Remove redundant terms
+#' @description Given a list of terms, removes redundant terms based on plurals, stemming, or partial matches
+#' @param terms a character vector of terms
+#' @param closure restrictions on how matches are detected; left requires matches to start with a term (e.g "burn" matches "burning"), right requires matches to end with a term (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows terms to be embedded within matches.
+#' @return a character vector with redundant terms removed
+remove_redundancies <- function(terms, closure=c("left", "right", "full", "none")){
+
+  terms <- switch (closure,
+          "left" = {terms <- paste("__", terms, sep="")},
+          "right" = {terms <- paste(terms, "\\b", sep="")},
+          "full" = {terms <- paste("\\b", terms, "\\b", sep="")},
+          "none" = {terms <- terms}
+  )
+
+  for (n in 1:length(terms)) {
+    if (n == 1) {
+      redundant <- c()
+    }
+
+    if(any(grep(terms[n], terms[-n]))) {
+      detections <- grep(terms[n], terms)
+      redundant <- append(redundant, detections[-which(detections == n)])
+    }
+    if (n == length(terms)) {
+      redundant <- unique(redundant)
+      if (length(redundant > 0)) {
+        terms <- terms[-redundant]
+      }
+    }
+  }
+  if(closure!="none"){
+    terms <- gsub("\\\\b", "", terms)
+    terms <- gsub("__", "", terms)
+  }
+  return(terms)
+}
+
 
 
 #' Print possible search languages
