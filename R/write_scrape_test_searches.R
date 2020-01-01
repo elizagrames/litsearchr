@@ -3,48 +3,34 @@
 #' @param key_topics a character vector of topics related to the topic of the search
 #' @return a data frame of languages used by journals tagged with the key topics and a count of how many journals use that language.
 #' @examples  get_language_data(c("ecology", "conservation", "ornithology"))
-get_language_data <- function(key_topics){
-  subset_these <- c()
+get_language_data <- function(key_topics, include_English=FALSE){
 
-  for (i in 1:length(key_topics)){
-    subset_these <- append(subset_these, which(stringr::str_detect(litsearchr::ulrich$SubjectCodes, key_topics[i])==TRUE))
-  }
+  #key_topics <- c("conservation", "ecology")
+  langs <- litsearchr::ulrich$Language[which(rowSums(sapply(key_topics, grepl, litsearchr::ulrich$SubjectCodes))>0)]
 
-  my_subject <- litsearchr::ulrich[subset_these,]
-  langs <- my_subject$Language
+  combined_langs <- paste(langs, collapse=" | ")
 
-  combined_langs <- c()
-  for (i in 1:length(langs)){
-    combined_langs <- paste(combined_langs, langs[i])
-  }
-
-  split_langs <- strsplit(combined_langs, "\ | ")
-  all_langs <- split_langs[[1]]
+  all_langs <- synthesisr::remove_punctuation(strsplit(combined_langs, " | ")[[1]])
 
   remove_these <- c(which(all_langs=="null"),
                     which(all_langs=="Yes"),
-                    which(all_langs=="English"),
                     which(all_langs=="Multiple"),
                     which(all_langs=="languages"),
                     which(all_langs==""),
                     which(all_langs==","),
-                    which(all_langs=="in"),
-                    which(all_langs=="|" ))
+                    which(all_langs=="in"))
 
-  good_langs <- all_langs[-remove_these]
+  if(include_English==TRUE){
+    remove_these <- append(remove_these, which(all_langs=="English"))
+  }
+if(any(remove_these)){
+  all_langs <- all_langs[-unique(remove_these)]
+}
 
-  label <- key_topics[1]
-  if (length(key_topics) > 1){
-    for (i in 2:length(key_topics)){
-      label <- paste(label, "or", key_topics[i])
-    }}
+  lang_table <- sort(table(all_langs), decreasing = TRUE)
 
-  lang_table <- sort(table(good_langs), decreasing = TRUE)
-
-  lang_data <- as.data.frame(matrix(c(""), nrow=length(lang_table), ncol=2))
+  lang_data <- as.data.frame(lang_table)
   colnames(lang_data) <- c("language", "count")
-  lang_data$language <- names(lang_table)
-  lang_data$count <- as.numeric(lang_table)
 
   return(lang_data)
 }
