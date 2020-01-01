@@ -5,8 +5,7 @@
 \title{Find node cutoff strength}
 \usage{
 find_cutoff(graph, method = c("spline", "cumulative"), percent = 0.8,
-  degrees = 2, knot_num = 1, diagnostics = TRUE,
-  importance_method = "strength")
+  degrees = 2, knot_num = 1, importance_method = "strength")
 }
 \arguments{
 \item{graph}{The complete graph.}
@@ -18,8 +17,6 @@ find_cutoff(graph, method = c("spline", "cumulative"), percent = 0.8,
 \item{degrees}{if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths}
 
 \item{knot_num}{if using method spline, the number of knots to allow}
-
-\item{diagnostics}{if set to TRUE, prints plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point}
 
 \item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }

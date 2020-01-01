@@ -307,11 +307,11 @@ fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
 #' @param percent if using method cumulative, the total percent of node strength to capture
 #' @param degrees if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths
 #' @param knot_num if using method spline, the number of knots to allow
-#' @param diagnostics if set to TRUE, prints plots of either the fit splines and residuals or the curve of cumulative node strength and cutoff point
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a vector of suggested node cutoff strengths
-#' @examples find_cutoff(litsearchr::BBWO_graph, method="cumulative", percent=0.8, diagnostics=FALSE)
-find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, degrees=2, knot_num=1, diagnostics=TRUE, importance_method="strength"){
+#' @examples find_cutoff(litsearchr::BBWO_graph, method="cumulative", percent=0.8)
+find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, degrees=2,
+                        knot_num=1, importance_method="strength"){
 
   importance_data <- make_importance(graph, importance_method=importance_method)
 
@@ -320,38 +320,12 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, de
     cut_points <- floor(knots)
     cut_strengths <- (importance_data$importance)[cut_points]
 
-    if (diagnostics == TRUE){
-      spline_fit <- fit_splines(importance_data, degrees=degrees, knot_num=knot_num, knots=knots)
-      plot(importance_data$rank, importance_data$importance,
-           main="Spline model fit",
-           xlab="Rank", ylab="Node importance (unique)")
-      lines(importance_data$rank,spline_fit$fit,col="red",lwd=3)
-      abline(v=knots, col="blue", lwd=2)
-
-      plot(importance_data$rank, spline_fit$resid, xlab="Rank", ylab="Residual", main="Residuals along the x-axis (rank)")
-      abline(h=0, col="red")
-      abline(lm(spline_fit$resid ~ importance_data$rank), col="blue", lty=2)
-      plot(importance_data$importance, spline_fit$resid, xlab="Importance", ylab="Residual", main="Residuals along the y-axis (importance)")
-      abline(lm(spline_fit$resid ~ importance_data$importance), col="blue", lty=2)
-      abline(h=0, col="red")
-    }
   }
 
   if (method == "cumulative"){
     cum_str <- max(cumsum(sort(importance_data$importance)))
     cut_point <- (which(cumsum(sort(importance_data$importance, decreasing = TRUE))>=cum_str*percent))[1]
     cut_strengths <- as.numeric(sort(as.numeric(importance_data$importance), decreasing = TRUE)[cut_point])
-
-    if (diagnostics == TRUE){
-      plot(cumsum(sort(importance_data$importance)), type="l", ylab="Cumulative node importance", main="Cumulative sum of ranked node importance")
-      abline(v=cut_point, col="blue")
-      legend("topleft", legend = c("Cutoff rank"), lwd=2, col="blue")
-
-      hist(importance_data$importance, 100,
-           main="Histogram of node importance", xlab="Node importance")
-      abline(v=cut_strengths, col="blue")
-      legend("topright", legend = c("Node importance cutoff"), lwd=2, col="blue")
-    }
   }
   return(cut_strengths)
 }

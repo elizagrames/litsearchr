@@ -81,19 +81,6 @@
 "BBWO_grouped_keywords"
 
 
-#' Color transparency conversion numbers
-#'
-#' A dataset containing conversion codes to go from a transparency
-#' setting to an alpha code appended to a hex code.
-#'
-#' @format A data frame with 256 rows of 2 variables:
-#' \describe{
-#'   \item{code}{the alpha code}
-#'   \item{intensity}{the percent color transparency to which a code corresponds}
-#' }
-"color_alphas"
-
-
 #' Stopwords to remove from keywords
 #'
 #' A dataset of common terms to use as stopwords when tokenizing texts.
