@@ -2,8 +2,8 @@
 #' @description This function chooses the best non-English languages to conduct searches in based on the topic of the review. The topics query a database of non-English language journals compiled from Ulrich; currently only STEM fields are supported.
 #' @param key_topics a character vector of topics related to the topic of the search
 #' @return a data frame of languages used by journals tagged with the key topics and a count of how many journals use that language.
-#' @examples  get_language_data(c("ecology", "conservation", "ornithology"))
-get_language_data <- function(key_topics, include_English=FALSE){
+#' @examples  get_languages(c("ecology", "conservation", "ornithology"))
+get_languages <- function(key_topics){
 
   #key_topics <- c("conservation", "ecology")
   langs <- litsearchr::ulrich$Language[which(rowSums(sapply(key_topics, grepl, litsearchr::ulrich$SubjectCodes))>0)]
@@ -20,33 +20,17 @@ get_language_data <- function(key_topics, include_English=FALSE){
                     which(all_langs==","),
                     which(all_langs=="in"))
 
-  if(include_English==TRUE){
-    remove_these <- append(remove_these, which(all_langs=="English"))
-  }
 if(any(remove_these)){
   all_langs <- all_langs[-unique(remove_these)]
 }
 
-  lang_table <- sort(table(all_langs), decreasing = TRUE)
-
-  lang_data <- as.data.frame(lang_table)
-  colnames(lang_data) <- c("language", "count")
+  lang_data <- as.data.frame(sort(table(all_langs), decreasing = TRUE))
+  lang_data$translatable <- lang_data[,1] %in% litsearchr::possible_langs$Language
+  colnames(lang_data) <- c("language", "count", "translatable")
 
   return(lang_data)
 }
 
-#' Select search languages
-#' @description Checks which languages returned from get_language_data() are possible to use and returns a character vector of languages to use. Called from inside write_search().
-#' @param lang_data a table of language data exported from get_language_data()
-#'@examples  choose_languages(lang_data=get_language_data(key_topics = "biology"))
-choose_languages <- function(lang_data=get_language_data(key_topics = "biology")){
-
-  language_output <- lang_data[,1:2]
-  language_output <- language_output[which((language_output$language %in% litsearchr::possible_langs$Language)==TRUE),1]
-
-  return(language_output)
-
-}
 
 #' Translate search terms
 #' @param search_terms a character vector of search terms
