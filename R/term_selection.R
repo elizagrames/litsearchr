@@ -175,7 +175,7 @@ create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
 #' @param graph an igraph graph
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node strengths, ranks, and names
-#' @examples make_importance(graph=BBWO_graph, importance_method="strength")
+#' @example inst/examples/make_importance.R
 make_importance <- function(graph, importance_method="strength"){
   if (importance_method=="strength") {importance <- sort(igraph::strength(graph))}
   if (importance_method=="eigencentrality"){importance <- sort(igraph::eigen_centrality(graph))}
@@ -198,7 +198,7 @@ make_importance <- function(graph, importance_method="strength"){
 #' @param n a minimum number of words in an n-gram
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node names, strengths, rank
-#' @examples select_ngrams(graph=litsearchr::BBWO_graph, n=2, importance_method="strength")
+#' @example inst/examples/select_ngrams.R
 select_ngrams <- function(graph, n=2, importance_method="strength"){
   importance_data <- make_importance(graph, importance_method = importance_method)
   ngrams <- importance_data[which(sapply(strsplit(as.character(importance_data$nodename), " "), length) >= n),]
@@ -211,7 +211,7 @@ select_ngrams <- function(graph, n=2, importance_method="strength"){
 #' @param graph an igraph object
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node names, strengths, rank
-#' @examples select_unigrams(graph=litsearchr::BBWO_graph, importance_method="strength")
+#' @example inst/examples/select_ngrams.R
 select_unigrams <- function(graph, importance_method="strength"){
   importance_data <- make_importance(graph, importance_method = importance_method)
   unigrams <- importance_data[which(sapply(strsplit(as.character(importance_data$nodename), " "), length) == 1),]
@@ -289,7 +289,7 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, de
 #' @description Extracts keywords identified as important.
 #' @param reduced_graph a reduced graph with only important nodes created with reduce_grah()
 #' @return a character vector of potential keywords to consider
-#' @examples inst/examples/get_keywords.R
+#' @example inst/examples/get_keywords.R
 get_keywords <- function(reduced_graph){
   potential_keys <- names(igraph::V(reduced_graph))
   return(potential_keys)
@@ -302,27 +302,11 @@ get_keywords <- function(reduced_graph){
 #' @param cutoff_strength the minimum node importance to be included in the reduced graph
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return an igraph graph with only important nodes
-#' @examples reduce_graph(graph=litsearchr::BBWO_graph, cutoff_strength=15, importance_method="strength")
+#' @example inst/examples/reduce_graph.R
 reduce_graph <- function(graph, cutoff_strength, importance_method="strength"){
   importance_data <- make_importance(graph, importance_method = importance_method)
   important_nodes <- importance_data$nodename[which(importance_data$importance >= cutoff_strength)]
   reduced_graph <- igraph::induced_subgraph(graph, v=important_nodes)
   return(reduced_graph)
-}
-
-
-#' Create keyword co-occurrence network with only ngrams
-#' @description Reduces the full keyword co-occurrence network to only include nodes with 2+ words or only unigrams. This is useful for separating commonly used words from distinct phrases.
-#' @param graph an igraph object
-#' @param min_ngrams a number; the minimum number of words to consider an ngram
-#' @param unigrams if TRUE, returns a subset of the network where each node is a unigram
-#' @return an igraph object
-#' @examples make_ngram_graph(graph=litsearchr::BBWO_graph, min_ngrams=2, unigrams=FALSE)
-make_ngram_graph <- function(graph, min_ngrams=2, unigrams=FALSE){
-  if (unigrams==FALSE){ngrams <- select_ngrams(graph, min_ngrams)}
-  if (unigrams==TRUE){ngrams <- select_unigrams(graph)}
-
-  ngram_graph <- igraph::induced_subgraph(graph, v=ngrams$nodename)
-  return(ngram_graph)
 }
 

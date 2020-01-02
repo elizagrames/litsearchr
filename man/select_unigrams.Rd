@@ -18,5 +18,19 @@ a data frame of node names, strengths, rank
 Selects only nodes from a graph whose node names are at single words.
 }
 \examples{
-select_unigrams(graph=litsearchr::BBWO_graph, importance_method="strength")
+my_graph <- create_network(
+  search_dfm = create_dfm(
+    c(
+      "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+      "Variation in home-range size of Black-backed Woodpeckers"
+    ),
+    features = c("occupancy", "variation", "woodpecker"),
+    closure = "none"
+  ),
+  min_studies = 1,
+  min_occurrences = 1
+)
+
+select_ngrams(my_graph, importance_method = "strength")
 }
