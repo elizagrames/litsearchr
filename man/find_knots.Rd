@@ -20,8 +20,23 @@ a vector of knot placements
 This function finds optimal knot placement given the degrees of your unique node strength graph and how many knots to allow. Degrees refers to the polynomial degree; for straight lines, use degree of 1 or for a curve use degree 2. Increasing the number of knots increases the fit and flexibility of the spline curve and presents more options for the cutoff strength.
 }
 \examples{
+my_graph <- create_network(
+  search_dfm = create_dfm(
+    c(
+      "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+      "Variation in home-range size of Black-backed Woodpeckers"
+    ),
+    features = c("occupancy", "variation", "woodpecker"),
+    closure = "none"
+  ),
+  min_studies = 1,
+  min_occurrences = 1
+)
+
+
 find_knots(
-  importance_data = make_importance(BBWO_graph, importance_method = "strength"),
+  importance_data = make_importance(graph=my_graph, importance_method = "strength"),
   degrees = 2,
   knot_num = 1
 )

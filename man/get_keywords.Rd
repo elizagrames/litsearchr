@@ -16,5 +16,5 @@ a character vector of potential keywords to consider
 Extracts keywords identified as important.
 }
 \examples{
-get_keywords(reduce_graph(litsearchr::BBWO_graph, cutoff_strength=15))
+inst/examples/get_keywords.R
 }

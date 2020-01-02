@@ -27,5 +27,21 @@ a vector of suggested node cutoff strengths
 Find the minimum node strength to use as a cutoff point for important nodes.
 }
 \examples{
-find_cutoff(litsearchr::BBWO_graph, method="cumulative", percent=0.8)
+my_network <- create_network(
+  search_dfm = create_dfm(
+    c(
+      "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+      "Variation in home-range size of Black-backed Woodpeckers",
+      "Black-backed woodpecker occupancy in burned and beetle-killed forests"
+    ),
+    features = c("occupancy", "variation", "woodpecker", "burn"),
+    closure = "none"
+  ),
+  min_studies = 1,
+  min_occurrences = 1
+)
+
+find_cutoff(my_network,method = "cumulative", percent = .9)
+
 }

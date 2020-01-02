@@ -1,12 +1,9 @@
-head(as.matrix(
-  create_dfm(
-    BBWO_data$abstract[1:10],
-    features = extract_terms(
-      text = BBWO_data$abstract[1:10],
-      method = "fakerake",
-      min_freq = 2,
-      ngrams = TRUE,
-      n = 2
-    )
-  )
-))
+create_dfm(
+  c(
+    "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+    "Variation in home-range size of Black-backed Woodpeckers"
+  ),
+  features = c("occupancy", "variation", "woodpecker"),
+  closure = "none"
+)

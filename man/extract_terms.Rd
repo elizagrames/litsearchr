@@ -30,5 +30,12 @@ a character vector of potential keyword terms
 Extracts potential keyword terms from text (e.g. titles and abstracts)
 }
 \examples{
-extract_terms(text=BBWO_data$text[1:10], method="fakerake")
+extract_terms(
+  text = c(
+    "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+    "Variation in home-range size of Black-backed Woodpeckers"
+  ),
+  method = "fakerake"
+)
 }

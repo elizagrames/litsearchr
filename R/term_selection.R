@@ -9,51 +9,6 @@ add_stopwords <- function(new_stopwords){
   return(custom_stopwords)
 }
 
-#' Clean and standardize keyword punctuation
-#' @description Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
-#' @param keywords a character vector of keywords
-#' @return a character vector of keywords with standardized punctuation
-#' @examples clean_keywords(BBWO_data$keywords)
-clean_keywords <- function(keywords) {
-  keywords <- tolower(as.character(keywords))
-  removals <- c("\\(",
-                "\\)",
-                ":",
-                "=",
-                "%",
-                "\\+",
-                "<",
-                ">",
-                "\\?",
-                "\\\\",
-                "&",
-                "!",
-                "\\$",
-                "\\*")
-  for (i in 1:length(removals)) {
-    keywords <- gsub(removals[i], keywords, replacement = "")
-  }
-
-  # replace keyword separators with standardized semicolon
-  replacements <- c(", ",
-                    ",",
-                    "/",
-                    ";;",
-                    ", ",
-                    "\\[",
-                    "\\]")
-  for (i in 1:length(replacements)) {
-    keywords <- gsub(replacements[i], keywords, replacement = ";")
-  }
-
-  keywords <- gsub("  ", " ", keywords)
-  keywords <- gsub("; ", ";", keywords)
-  keywords <- gsub(" ;", ";", keywords)
-  keywords <- gsub(";;", ";", keywords)
-
-  return(keywords)
-}
-
 #' Extract potential keywords from abstracts and titles
 #' @description Extracts potential keyword terms from text (e.g. titles and abstracts)
 #' @param text A character object of text from which to extract terms
@@ -64,7 +19,7 @@ clean_keywords <- function(keywords) {
 #' @param n the minimum word count for ngrams
 #' @param language the language of input data to use for stopwords
 #' @return a character vector of potential keyword terms
-#' @examples extract_terms(text=BBWO_data$text[1:10], method="fakerake")
+#' @example inst/examples/extract_terms.R
 extract_terms <- function(text=NULL,
                           keywords=NULL,
                           method=c("fakerake", "RAKE", "tagged"),
@@ -95,7 +50,7 @@ extract_terms <- function(text=NULL,
 
   if(method=="tagged"){
     if(is.null(keywords)){print("Please specify a vector of keywords from which to extract terms")} else{
-      cleaned_keywords <- paste(litsearchr::clean_keywords(keywords), collapse=";")
+      cleaned_keywords <- paste(gsub("([-])[[:punct:]]", ";", keywords), collapse=";")
       terms <- stringr::str_trim(strsplit(cleaned_keywords, ";")[[1]])}
   }
 
@@ -309,7 +264,7 @@ fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
 #' @param knot_num if using method spline, the number of knots to allow
 #' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a vector of suggested node cutoff strengths
-#' @examples find_cutoff(litsearchr::BBWO_graph, method="cumulative", percent=0.8)
+#' @example inst/examples/find_cutoff.R
 find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, degrees=2,
                         knot_num=1, importance_method="strength"){
 
@@ -334,7 +289,7 @@ find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, de
 #' @description Extracts keywords identified as important.
 #' @param reduced_graph a reduced graph with only important nodes created with reduce_grah()
 #' @return a character vector of potential keywords to consider
-#' @examples get_keywords(reduce_graph(litsearchr::BBWO_graph, cutoff_strength=15))
+#' @examples inst/examples/get_keywords.R
 get_keywords <- function(reduced_graph){
   potential_keys <- names(igraph::V(reduced_graph))
   return(potential_keys)
@@ -369,128 +324,5 @@ make_ngram_graph <- function(graph, min_ngrams=2, unigrams=FALSE){
 
   ngram_graph <- igraph::induced_subgraph(graph, v=ngrams$nodename)
   return(ngram_graph)
-}
-
-#' Condense a keyword co-occurrence network by removing irrelevant terms
-#' @description Eliminates the rejected terms from the manual keyword review and rebuilds the network with the eliminated terms removing, making it recentralize on the terms marked as relevant in the manual stage.
-#' @param full_graph the full graph produced with create_network()
-#' @param rejected_terms a character vector of terms rejected in the manual review stage
-#' @param previous_rejected_terms a list of character vectors rejected in previous manual reviews. If this is the first iteration, it should be set to NULL.
-#' @return the full graph with the rejected term nodes deleted
-#' @examples condense_network(full_graph=litsearchr::BBWO_graph, rejected_terms=c("actual increase"))
-condense_network <- function(full_graph, rejected_terms, previous_rejected_terms=NULL){
-  old_nodenames <- names(igraph::V(full_graph))
-
-  for(i in 1:length(rejected_terms)){
-    position <- which(old_nodenames==rejected_terms[i])
-    if(i==1){removals <- position}
-    if(i>1){removals <- append(removals, position)}
-  }
-
-  if(!is.null(previous_rejected_terms)){
-    for(i in 1:length(previous_rejected_terms)){
-      terms <- previous_rejected_terms[[i]]
-      for(j in 1:length(terms)){
-        position <- which(old_nodenames==terms[j])
-        removals <- append(removals, position)
-      }
-    }
-
-  }
-
-  new_graph <- igraph::delete.vertices(full_graph, removals)
-  return(new_graph)
-
-}
-
-
-#' Extracts new terms from a condensed network for manual consideration
-#' @description Given a reduced graph after reducing the new graph returned from condense_network() and the previous reduced graphs considered, this function outputs any new search terms found in the condensed network that haven't been previously considered.
-#' @param reduced_graph the reduced form of the condensed graph
-#' @param previous_graphs a list object of any previously considered reduced graphs. If this is the first iteration, this should only be the reduced graph of the full network.
-#' @return a character vector of new search terms to consider
-#' @example inst/examples/get_condensed_terms.R
-get_condensed_terms <- function(reduced_graph, previous_graphs){
-
-  for(i in 1:length(previous_graphs)){
-    if(i==1){
-      considered_terms <- names(igraph::V(previous_graphs[[i]]))
-    }
-    if(i>1){
-      considered_terms <- unique(append(considered_terms, names(igraph::V(previous_graphs[[i]]))))
-    }
-  }
-
-  search_terms <- litsearchr::get_keywords(reduced_graph=reduced_graph)
-
-  new_terms <- c()
-  for(i in 1:length(search_terms)){
-    if(sum(which(stringr::str_detect(considered_terms, search_terms[i])==TRUE))==0){
-      new_terms <- append(new_terms, search_terms[i])
-    }
-  }
-
-  return(new_terms)
-
-}
-
-#' Retrieves terms similar to included terms
-#' @description Given a list of terms selected for inclusion, returns other terms from the network that are similar.
-#' @param grouped_terms a list of character vectors with terms
-#' @param graph a graph object of the full keyword co-occurrence
-#' @param considered_terms a character vector of terms you already considered and rejected
-#' @param ignore_terms a character vector of unigrams that should NOT be used to retrieve similar terms
-#' @return a named number vector of node strengths
-get_similar_terms <- function(grouped_terms, graph, considered_terms=NULL, ignore_terms=NULL){
-
-  all_terms <- names(igraph::V(graph))
-  all_strengths <- igraph::strength(graph)
-
-  for(h in 1:length(grouped_terms)){
-    if(h==1){my_terms <- grouped_terms[[h]]}
-    if(h>1){
-      my_terms <- append(my_terms, grouped_terms[[h]])
-    }
-  }
-
-  unigrams <- strsplit(paste(my_terms, collapse=" "), " ")[[1]]
-  if(length(ignore_terms)>0){
-    for(m in 1:length(ignore_terms)){
-      if(m==1){removals <- c()}
-      detections <- which(unigrams==ignore_terms[m])
-      if(length(detections)>0){
-        removals <- append(removals,detections)
-      }
-      if(m==length(ignore_terms)){
-        unigrams <- unigrams[-unique(removals)]
-      }
-    }
-  }
-
-  for(i in 1:length(unigrams)){
-    current_term <- litsearchr::should_stem(unigrams[i])
-    current_term <- gsub("\\*", "", current_term)
-
-    if(i==1){potential_terms <- c()}
-    for(j in 1:length(all_terms)){
-      if(stringr::str_detect(all_terms[j], current_term)){
-        if(stringr::str_detect(paste(my_terms, considered_terms, collapse="; "), all_terms[j])==FALSE){
-          potential_terms <- unique(append(potential_terms, all_terms[j]))
-        }
-      }
-    }
-    if(i==length(unigrams)){
-      for(k in 1:length(potential_terms)){
-        x <- which(all_terms==potential_terms[k])
-        if(k==1){
-          NS <- all_strengths[x]
-        }
-        if(k>1){
-          NS <- append(NS, all_strengths[x])
-        }
-      }
-    }
-  }
-  return(NS)
 }
 

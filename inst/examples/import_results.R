@@ -1,5 +1,2 @@
-file_location <- system.file(
-  "extdata",
-  "avian_ecology_bibliography.ris",
-  package = "revtools")
+file_location <- paste(system.file(package="synthesisr"), "/extdata/scopus.ris", sep="")
 naive_results <- import_results(file=file_location)
