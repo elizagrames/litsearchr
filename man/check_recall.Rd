@@ -4,17 +4,12 @@
 \alias{check_recall}
 \title{Check the recall of a search strategy}
 \usage{
-check_recall(true_hits, retrieved_articles, min_sim = 0.6,
-  new_stopwords = NULL)
+check_recall(true_hits, retrieved_articles)
 }
 \arguments{
 \item{true_hits}{a character vector of titles for articles that should be returned}
 
 \item{retrieved_articles}{a character vector of titles for articles returned by a search}
-
-\item{min_sim}{the minimum similarity between two titles to be considered for manual review}
-
-\item{new_stopwords}{any common words in the titles that should be ignored when computing similarity to avoid false matches}
 }
 \value{
 a table of the best match for each true title from the search results along with a title similarity score
