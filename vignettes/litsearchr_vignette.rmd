@@ -173,3 +173,36 @@ my_search <-
 my_search
 
 ```
+
+
+## 6. Check search strategy precision and recall
+
+Save the titles of the articles you want to retrieve as a character vector called gold_standard. You may want to do this by reading in a .csv file or you can paste/type them out. In this example, we are only using three articles to test our search strategy, though normally you will want to use a longer list of articles identified through expert opinion and/or consulting the list of studies included in previous reviews related to the topic. We will write a simple search of these titles to run in the bibliographic databases we plan to use to check if they are indeed indexed and should be retrieved by our search terms. Any that are not indexed can be ignored for the following step.
+
+
+```{r}
+gold_standard <-
+  c(
+    "Avian top-down control affects invertebrate herbivory and sapling growth more strongly than overstorey species composition in temperate forest fragments",
+    "Bird functional diversity enhances insectivory at forest edges: a transcontinental experiment",
+    "Food shortage in small fragments: evidence from an area-sensitive passerine"
+  )
+
+title_search <- litsearchr::write_title_search(titles=gold_standard)
+
+```
+
+We then read in our full search results and compare them to our gold standard to determine which gold standard articles we retrieved. Note: in this case I am using the naive search results from earlier because this is just a demonstration and this is not a real systematic review, so I did not run the full searches. You will want to do this with your actual full search results. 
+
+```{r}
+search_directory <- paste(system.file(package="synthesisr"), "/extdata/", sep="")
+
+retrieved_articles <- litsearchr::import_results(directory=search_directory)
+retrieved_articles <- litsearchr::remove_duplicates(retrieved_articles, field="title", method="exact")
+
+articles_found <- litsearchr::check_recall(true_hits = gold_standard,
+                                           retrieved_articles = retrieved_articles$title)
+
+articles_found
+```
+
