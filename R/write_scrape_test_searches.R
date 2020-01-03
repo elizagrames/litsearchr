@@ -545,59 +545,11 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
 #' @description Checks a list of known articles against the results of a search to see how many the search retrieves.
 #' @param true_hits a character vector of titles for articles that should be returned
 #' @param retrieved_articles a character vector of titles for articles returned by a search
-#' @param min_sim the minimum similarity between two titles to be considered for manual review
-#' @param new_stopwords any common words in the titles that should be ignored when computing similarity to avoid false matches
 #' @return a table of the best match for each true title from the search results along with a title similarity score
 #' @examples check_recall(true_hits=c("Picoides arcticus"), retrieved_articles=c("Picoides tridactylus"))
-check_recall <- function (true_hits, retrieved_articles, min_sim = 0.6, new_stopwords = NULL) {
-  custom_stopwords <- litsearchr::add_stopwords(new_stopwords = new_stopwords)
-  titlekeys <- synthesisr::get_tokens(synthesisr::remove_punctuation(true_hits), "English")
-  positions <- list()
-  length(positions) <- length(titlekeys)
-  for (i in 1:length(titlekeys)) {
-    article <- titlekeys[[i]]
-    for (j in 1:length(article)) {
-      temp <- stringr::str_detect(synthesisr::remove_punctuation(tolower(retrieved_articles)),
-                                  article[j])
-      hits <- which(temp == TRUE)
-      if (length(hits) > 0) {
-        for (k in 1:length(hits)) {
-          if (i == 1) {
-            if (k == 1) {
-              positions[[i]] <- hits[k]
-            }
-            if (k > 1) {
-              positions[[i]] <- c(positions[[i]], hits[k])
-            }
-          }
-          if (i > 1) {
-            positions[[i]] <- c(positions[[i]], hits[k])
-          }
-        }
-      }
-    }
-
-    similarity <- table(positions[[i]])/length(article)
-
-    similarity <- sort(similarity[which(similarity > min_sim)],
-                       decreasing = TRUE)
-    if (length(similarity) > 0){
-      best_match <- similarity[1]
-      similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]),
-                                              as.character(retrieved_articles[as.numeric(names(best_match))]),
-                                              as.numeric(best_match)))}
-
-    if (length(similarity)==0){
-      similarity_entry <- as.data.frame(cbind(as.character(true_hits[i]), "NA", "NA"))
-    }
-
-    if (i == 1) {
-      similarity_table <- similarity_entry
-    }
-    if (i > 1) {
-      similarity_table <- rbind(similarity_table, similarity_entry)
-    }
-  }
+check_recall <- function (true_hits, retrieved_articles) {
+  matches <- lapply(true_hits, synthesisr::fuzzdist, b=retrieved_articles)
+  similarity_table <- cbind(true_hits, retrieved_articles[unlist(lapply(matches, which.min))], 1-unlist(lapply(matches, min)))
   colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
   return(similarity_table)
 }
