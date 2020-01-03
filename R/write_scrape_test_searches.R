@@ -553,19 +553,3 @@ check_recall <- function (true_hits, retrieved_articles) {
   colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
   return(similarity_table)
 }
-
-#' Get precision and recall of a search
-#' @description Measures the performance of a search by precision (specificity) and recall (sensitivity).
-#' @param no_desired the number of  articles that should be returned
-#' @param no_hits the number of good hits that a search found (can be found with check_recall)
-#' @param no_articles the total number of articles that a search found
-#' @return the sensitivity, precision, and number needed to process
-#' @examples search_performance(no_desired=10, no_hits=9, no_articles=27)
-search_performance <- function(no_desired, no_hits, no_articles){
-  sensitivity <- round(no_hits/no_desired*100, 3)
-  precision <- round(no_hits/no_articles*100, 3)
-  NNP <- round(1/precision*100, 3)
-  output <- rbind(sensitivity, precision, NNP)
-  rownames(output) <- c("Sensitivity (%)", "Precision  (%)", "Number needed to process")
-  return(output)
-}
