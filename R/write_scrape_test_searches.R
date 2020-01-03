@@ -1,5 +1,5 @@
 #' Select non-English languages to search in
-#' @description This function chooses the best non-English languages to conduct searches in based on the topic of the review. The topics query a database of non-English language journals compiled from Ulrich; currently only STEM fields are supported.
+#' @description This function suggests the best non-English languages to conduct searches in based on the topic of the review. The topics query a database of non-English language journals compiled from Ulrich; currently only STEM fields are included in the dataset.
 #' @param key_topics a character vector of topics related to the topic of the search
 #' @return a data frame of languages used by journals tagged with the key topics and a count of how many journals use that language.
 #' @examples  get_languages(c("ecology", "conservation", "ornithology"))
@@ -18,6 +18,7 @@ get_languages <- function(key_topics){
                     which(all_langs=="languages"),
                     which(all_langs==""),
                     which(all_langs==","),
+                    which(all_langs=="English"),
                     which(all_langs=="in"))
 
 if(any(remove_these)){
@@ -34,19 +35,20 @@ if(any(remove_these)){
 
 #' Translate search terms
 #' @param search_terms a character vector of search terms
-#' @param target_language a character vector of the language(s) to translate the search to
-#' @param source_language a character vector of the language the search terms are currently in
-#' @param API_key an API key for Google Translate (not available through litsearchr)
+#' @param target_lang a character vector of the language(s) to translate the search to
+#' @param source_lang a character vector of the language the search terms are currently in
+#' @param API_key an API key for Google Translate
 #' @description Takes groups of search terms and translates them into target language using the Google Translate API. This function is intended for use inside write_search(), not as a standalone function.
-#'@examples  \dontrun{translate_search(search_terms=c("black-backed woodpecker"), target_language="fr")}
-translate_search <- function(search_terms, target_language, source_language="en", API_key=API_key){
+#' @details Users need to sign up for an API key for Google Translate separately from litsearchr.
+#'@examples  \dontrun{translate_search(search_terms=c("black-backed woodpecker"), target_lang="fr")}
+translate_search <- function(search_terms, target_lang, source_lang="en", API_key=API_key){
   words <- search_terms
 
   termlist <- words
 
-  if(nchar(target_language)>2){
-    this_one <- which(grepl(target_language, litsearchr::possible_langs$Language))
-  }else{this_one <- which(grepl(target_language, litsearchr::possible_langs$Short))}
+  if(nchar(target_lang)>2){
+    this_one <- which(grepl(target_lang, litsearchr::possible_langs$Language))
+  }else{this_one <- which(grepl(target_lang, litsearchr::possible_langs$Short))}
 
   trans_lang <- as.character(litsearchr::possible_langs$Short[this_one])
   trans_encod <- as.character(litsearchr::possible_langs$Encoding[this_one])
@@ -56,7 +58,7 @@ translate_search <- function(search_terms, target_language, source_language="en"
       stop("translate package needed in order to translate search terms. Please install it.",
            call. = FALSE)
     } else {
-    termlist[i] <- translate::translate(words[i], source=source_language, target=trans_lang, key = API_key)[[1]]
+    termlist[i] <- translate::translate(words[i], source=source_lang, target=trans_lang, key = API_key)[[1]]
   }}
 
   return(termlist)
@@ -129,7 +131,7 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL,
       group_terms <- litsearchr::remove_redundancies(groupdata[[j]], closure = closure)
 
       if(languages[i]!="English"){
-        translated_terms <- litsearchr::translate_search(paste(group_terms, collapse="; "), target_language = languages[i], API_key = API_key)
+        translated_terms <- litsearchr::translate_search(paste(group_terms, collapse="; "), target_lang = languages[i], API_key = API_key)
         group_terms <- strsplit(translated_terms, "; ")[[1]]
       }
 
@@ -259,17 +261,17 @@ write_title_search <- function(titles){
 
 
 #' Scrapes hits from specified databases
-#' @description Provides a wrapper function to scrape hits from databases that litsearchr can scrape
+#' @description Provides a wrapper function to scrape hits from databases for which litsearchr can recognize formats.
 #' @param search_terms a list of character strings with grouped search terms.
 #' @param URL the URL from searching in OATD, NDLTD, or OpenThesis
-#' @param database a character with the database to scrape.
+#' @param database a character with the database to scrape (either "ndltd", "openthesis", or "oatd").
 #' @param verbose if TRUE, prints which page of hits it has finished
 #' @param writefile if TRUE, writes results to a .csv file in the working directory
 #' @param directory the directory to save results to if writefile=TRUE
 #' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-#' @examples \dontrun{scrape_hits(search_terms=list(c("picoides arcticus")), database="ndltd")}
 scrape_hits <- function(search_terms=NULL, URL=NULL, database=c("oatd", "ndltd", "openthesis"),
                         verbose=TRUE, writefile=FALSE, directory="./"){
+  closure <- "none"
   if(database=="oatd"){
     hits <- litsearchr::scrape_oatd(search_terms = search_terms, URL=URL, verbose=verbose, writefile = writefile, directory=directory)
   }
@@ -292,7 +294,7 @@ scrape_hits <- function(search_terms=NULL, URL=NULL, database=c("oatd", "ndltd",
 #' @param verbose if TRUE, prints which page of hits it has finished
 #' @param languages which language to search in; available languages can be viewed with available_languages().
 #' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
-#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned
 #' @param directory the directory to save results to if writefile=TRUE
 #' @return a data frame containing the results of the search
 #' @examples \dontrun{scrape_oatd(search_terms=list(c("black-backed woodpecker", "picoides arcticus")))}
@@ -372,12 +374,12 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
 #' @param verbose if TRUE, prints which page of hits it has finished
 #' @param languages which language to search in; available languages can be viewed with available_languages().
 #' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
-#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned
 #' @param where where in a thesis or dissertation to search (options are description or title)
 #' @param directory the directory to save results to if writefile=TRUE
 #' @return a data frame containing the results of the search
 #' @examples \dontrun{scrape_ndltd(search_terms=list(c("black backed woodpecker", "picoides arcticus")))}
-scrape_ndltd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TRUE, languages="English",
+  scrape_ndltd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TRUE, languages="English",
                          stemming=FALSE, exactphrase=TRUE, where="description", directory="./"){
 
   if(is.null(URL)==FALSE){
@@ -400,7 +402,7 @@ scrape_ndltd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=T
       }
     }
 
-    base_URL <- paste("http://search.ndltd.org/search.php?q=", where, "%3A", sep="")
+    base_URL <- paste("http://search.ndltd.org/search.php?q=", search_strat, "%3A", sep="")
 
 
     firstURL <- paste(base_URL, search_strat, "&start=", "0", sep="")
@@ -465,8 +467,8 @@ scrape_ndltd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=T
 #' @param verbose if TRUE, prints which page of hits it has finished
 #' @param languages which language to search in; available languages can be viewed with available_languages().
 #' @param stemming if TRUE, keywords will be truncated and stem from root word forms (only if language is English)
-#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
-#' @param directory the directory to save results to if writefile=TRUE
+#' @param exactphrase if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned
+  #' @param directory the directory to save results to if writefile=TRUE
 #' @return a data frame containing the results of the search
 #' @examples \dontrun{scrape_openthesis(search_terms=list(c("picoides arcticus")))}
 scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TRUE, languages="English", stemming=FALSE, exactphrase=TRUE, directory="./"){
@@ -542,11 +544,11 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
 }
 
 #' Check the recall of a search strategy
-#' @description Checks a list of known articles against the results of a search to see how many the search retrieves.
+#' @description Checks a list of known articles against the results of a search to determine which gold standard hits are retrieved.
 #' @param true_hits a character vector of titles for articles that should be returned
 #' @param retrieved_articles a character vector of titles for articles returned by a search
 #' @return a table of the best match for each true title from the search results along with a title similarity score
-#' @examples check_recall(true_hits=c("Picoides arcticus"), retrieved_articles=c("Picoides tridactylus"))
+#' @examples check_recall(true_hits=c("Picoides arcticus"), retrieved_articles=c("Picoides tridactylus", "Seiurus aurocapilla"))
 check_recall <- function (true_hits, retrieved_articles) {
   matches <- lapply(true_hits, synthesisr::fuzzdist, b=retrieved_articles)
   similarity_table <- cbind(true_hits, retrieved_articles[unlist(lapply(matches, which.min))], 1-unlist(lapply(matches, min)))
