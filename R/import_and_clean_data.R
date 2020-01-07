@@ -1,8 +1,9 @@
 #' Import results of a search
-#' @description Given a file or directory, calls the import_results function from the synthesisr package to import and assemble search results
+#' @description Given a file or directory containing bibliographic files, import and assemble search results
 #' @param directory a path to a directory containing search results to import
 #' @param file a file of search results to import
 #' @param verbose if TRUE, prints status updates
+#' @details If a .bib or .ris file returns an error, there is likely a character encoding or formatting issue with the file. Please try uploading your .bib or .ris file to a reference manager (e.g. Zotero) and re-exporting it as a .bib or .ris, which often clears up formatting issues that import_results cannot detect.
 #' @return a data frame of assembled search results
 import_results <-  function(directory = NULL,
                             file=NULL,
@@ -27,6 +28,7 @@ import_results <-  function(directory = NULL,
 #' @param field the name or index of the column to check for duplicate values
 #' @param method the manner of duplicate detection; exact removes exact text duplicates, stringdist removes duplicates below a similarity threshold, and fuzzy uses fuzzdist matching
 #' @return a deduplicated data frame
+#' @example inst/examples/remove_duplicates.R
 remove_duplicates <-  function(df,
                                field,
                                method = c("stringdist",  "fuzzdist", "exact")) {
@@ -36,7 +38,7 @@ remove_duplicates <-  function(df,
       match_variable = field,
       match_function = method,
       to_lower = TRUE,
-      remove_punctuation = TRUE
+      rm_punctuation = TRUE
     )
   df <- synthesisr::deduplicate(df, dups)
   return(df)

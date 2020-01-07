@@ -119,8 +119,8 @@ fakerake <- function(text, stopwords){
 #' Create a document-feature matrix
 #' @description Given a character vector of document information, creates a document-feature matrix.
 #' @param elements a character vector of document information (e.g. document titles or abstracts)
-#' @param features a character vector of terms to use as document features
-#' @param closure restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms.
+#' @param features a character vector of terms to use as document features (e.g. keywords)
+#' @param closure restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms (e.g. "burn" matches "postburning").
 #' @return a matrix with documents as rows and terms as columns
 #' @example inst/examples/create_dfm.R
 create_dfm <-
@@ -138,10 +138,10 @@ ignore_case=TRUE)
 #' @description Creates a keyword co-occurrence network from an adjacency matrix trimmed to remove rare terms.
 #' @param search_dfm a document-feature matrix created with create_dfm()
 #' @param min_studies the minimum number of studies a term must occur in to be included
-#' @param min_occurrences the minimum total number of times a term must occur (counting repeats in the same document)
+#' @param min_occ the minimum total number of times a term must occur (counting repeats in the same document)
 #' @return an igraph weighted graph
 #' @example inst/examples/create_network.R
-create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
+create_network <- function(search_dfm, min_studies=3, min_occ = 3){
   presences <- search_dfm
   presences[which(presences>0)] <- 1
   study_counts <- which(as.numeric(colSums(presences))<min_studies)
@@ -149,7 +149,7 @@ create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
     search_dfm <- search_dfm[,-study_counts]
   }
 
-  occur_counts <- which(colSums(search_dfm)<min_occurrences)
+  occur_counts <- which(colSums(search_dfm)<min_occ)
   if(length(occur_counts)>0){
     search_dfm <- search_dfm[,-occur_counts]
   }
@@ -173,64 +173,64 @@ create_network <- function(search_dfm, min_studies=3, min_occurrences = 3){
 #' Subset strength data from a graph
 #' @description Selects only the node strength data from a graph.
 #' @param graph an igraph graph
-#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
+#' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node strengths, ranks, and names
 #' @example inst/examples/make_importance.R
-make_importance <- function(graph, importance_method="strength"){
-  if (importance_method=="strength") {importance <- sort(igraph::strength(graph))}
-  if (importance_method=="eigencentrality"){importance <- sort(igraph::eigen_centrality(graph))}
-  if (importance_method=="alpha"){importance <- sort(igraph::alpha_centrality(graph))}
-  if (importance_method=="betweenness"){importance <- sort(igraph::betweenness(graph))}
-  if (importance_method=="hub"){importance <- sort(igraph::hub_score(graph))}
-  if (importance_method=="power"){importance <- sort(igraph::power_centrality(graph))}
-  importance_data <- cbind(seq(1, length(importance), 1), as.numeric(importance))
-  colnames(importance_data) <- c("rank", "importance")
-  importance_data <- as.data.frame(importance_data)
-  importance_data$nodename <- names(importance)
-  importance_data$rank <- as.numeric(importance_data$rank)
-  importance_data$importance <- as.numeric(importance_data$importance)
-  return(importance_data)
+make_importance <- function(graph, imp_method="strength"){
+  if (imp_method=="strength") {importance <- sort(igraph::strength(graph))}
+  if (imp_method=="eigencentrality"){importance <- sort(igraph::eigen_centrality(graph))}
+  if (imp_method=="alpha"){importance <- sort(igraph::alpha_centrality(graph))}
+  if (imp_method=="betweenness"){importance <- sort(igraph::betweenness(graph))}
+  if (imp_method=="hub"){importance <- sort(igraph::hub_score(graph))}
+  if (imp_method=="power"){importance <- sort(igraph::power_centrality(graph))}
+  importances <- cbind(seq(1, length(importance), 1), as.numeric(importance))
+  colnames(importances) <- c("rank", "importance")
+  importances <- as.data.frame(importances)
+  importances$nodename <- names(importance)
+  importances$rank <- as.numeric(importances$rank)
+  importances$importance <- as.numeric(importances$importance)
+  return(importances)
 }
 
 #' Subset n-grams from node names
 #' @description Selects only nodes from a graph whose node names are at least n-grams, where n is the minimum number of words in the node name. The default n-gram is a 2+-gram, which captures potential keyword terms that are at least two words long. The reason for this is that unigrams (terms with only one word) are detected more frequently, but are also generally less relevant to finding keyword terms.
 #' @param graph an igraph object
 #' @param n a minimum number of words in an n-gram
-#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
-#' @return a data frame of node names, strengths, rank
+#' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
+#' @return a data frame of node names, strengths, and rank
 #' @example inst/examples/select_ngrams.R
-select_ngrams <- function(graph, n=2, importance_method="strength"){
-  importance_data <- make_importance(graph, importance_method = importance_method)
-  ngrams <- importance_data[which(sapply(strsplit(as.character(importance_data$nodename), " "), length) >= n),]
+select_ngrams <- function(graph, n=2, imp_method="strength"){
+  importances <- make_importance(graph, imp_method = imp_method)
+  ngrams <- importances[which(sapply(strsplit(as.character(importances$nodename), " "), length) >= n),]
   return(ngrams)
 }
 
 
 #' Subset unigrams from node names
-#' @description Selects only nodes from a graph whose node names are at single words.
+#' @description Selects only nodes from a graph whose node names are single words.
 #' @param graph an igraph object
-#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
-#' @return a data frame of node names, strengths, rank
+#' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
+#' @return a data frame of node names, strengths, and rank
 #' @example inst/examples/select_ngrams.R
-select_unigrams <- function(graph, importance_method="strength"){
-  importance_data <- make_importance(graph, importance_method = importance_method)
-  unigrams <- importance_data[which(sapply(strsplit(as.character(importance_data$nodename), " "), length) == 1),]
+select_unigrams <- function(graph, imp_method="strength"){
+  importances <- make_importance(graph, imp_method = imp_method)
+  unigrams <- importances[which(sapply(strsplit(as.character(importances$nodename), " "), length) == 1),]
   return(unigrams)
 }
 
 #' Find optimal knot placements
 #' @description This function finds optimal knot placement given the degrees of your unique node strength graph and how many knots to allow. Degrees refers to the polynomial degree; for straight lines, use degree of 1 or for a curve use degree 2. Increasing the number of knots increases the fit and flexibility of the spline curve and presents more options for the cutoff strength.
-#' @param importance_data a dataset of unique node strengths and their ranks
+#' @param importances a dataset of unique node strengths and their ranks
 #' @param degrees the degree of the polynomial for the curve of unique node strengths
 #' @param knot_num the number of knots to allow
 #' @return a vector of knot placements
 #' @example inst/examples/find_knots.R
-find_knots <- function(importance_data, degrees=2, knot_num=1){
+find_knots <- function(importances, degrees=2, knot_num=1){
   if (!requireNamespace("freeknotsplines", quietly = TRUE)){
     stop("freeknotsplines needed to select knots using the spline method. Please install it.",
          call. = FALSE)
   } else {
-  knotselect <- freeknotsplines::freelsgen(importance_data$rank, importance_data$importance,
+  knotselect <- freeknotsplines::freelsgen(importances$rank, importances$importance,
                                            degree=degrees, numknot=knot_num, seed=5, stream=0)
   knots <- knotselect@optknot
   return(knots)}
@@ -238,49 +238,50 @@ find_knots <- function(importance_data, degrees=2, knot_num=1){
 
 #' Fit spline model to node strengths
 #' @description Fits a basis spline to the curve of ranked unique node strengths.
-#' @param importance_data a dataset of ranked unique node strengths
+#' @param importances a dataset of ranked unique node strengths
 #' @param degrees the same degrees used to find knot placement in \code{find_knots}
 #' @param knot_num the same number of knots used to find knot placement in \code{find_knots}
 #' @param knots The vector of optimal knots returned from \code{find_knots}
 #' @return a fitted spline model
 #' @example inst/examples/fit_splines.R
-fit_splines <- function(importance_data, degrees=2, knot_num=1, knots){
+fit_splines <- function(importances, degrees=2, knot_num=1, knots){
   if (!requireNamespace("splines2", quietly = TRUE)){
     stop("splines2 needed to use the spline method. Please install it.",
          call. = FALSE)
   } else {
-  spline_b <- splines2::bSpline(as.numeric(importance_data$rank), knots=knots, degree=degrees, numknot=knot_num, intercept=TRUE)
-  spline_fit <- lm(as.numeric(importance_data$importance) ~ spline_b)
+  spline_b <- splines2::bSpline(as.numeric(importances$rank), knots=knots, degree=degrees, numknot=knot_num, intercept=TRUE)
+  spline_fit <- lm(as.numeric(importances$importance) ~ spline_b)
   return(spline_fit)}
 }
 
 
 #' Find node cutoff strength
 #' @description Find the minimum node strength to use as a cutoff point for important nodes.
-#' @param graph The complete graph.
-#' @param method The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
+#' @param graph An igraph graph object
+#' @param method the cutoff method to use, either "spline" or "cumulative"
 #' @param percent if using method cumulative, the total percent of node strength to capture
 #' @param degrees if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths
 #' @param knot_num if using method spline, the number of knots to allow
-#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
+#' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
+#' @details The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
 #' @return a vector of suggested node cutoff strengths
 #' @example inst/examples/find_cutoff.R
 find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, degrees=2,
-                        knot_num=1, importance_method="strength"){
+                        knot_num=1, imp_method="strength"){
 
-  importance_data <- make_importance(graph, importance_method=importance_method)
+  importances <- make_importance(graph, imp_method=imp_method)
 
   if (method == "spline") {
-    knots <- find_knots(importance_data, degrees=degrees, knot_num=knot_num)
+    knots <- find_knots(importances, degrees=degrees, knot_num=knot_num)
     cut_points <- floor(knots)
-    cut_strengths <- (importance_data$importance)[cut_points]
+    cut_strengths <- (importances$importance)[cut_points]
 
   }
 
   if (method == "cumulative"){
-    cum_str <- max(cumsum(sort(importance_data$importance)))
-    cut_point <- (which(cumsum(sort(importance_data$importance, decreasing = TRUE))>=cum_str*percent))[1]
-    cut_strengths <- as.numeric(sort(as.numeric(importance_data$importance), decreasing = TRUE)[cut_point])
+    cum_str <- max(cumsum(sort(importances$importance)))
+    cut_point <- (which(cumsum(sort(importances$importance, decreasing = TRUE))>=cum_str*percent))[1]
+    cut_strengths <- as.numeric(sort(as.numeric(importances$importance), decreasing = TRUE)[cut_point])
   }
   return(cut_strengths)
 }
@@ -297,15 +298,15 @@ get_keywords <- function(reduced_graph){
 
 
 #' Create reduced graph of important nodes
-#' Takes the full graph and reduces it to only include nodes (and associated edges) greater than the cutoff strength for important nodes.
+#' @description Takes the full graph and reduces it to only include nodes (and associated edges) greater than the cutoff strength for important nodes.
 #' @param graph the full graph object
 #' @param cutoff_strength the minimum node importance to be included in the reduced graph
-#' @param importance_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
+#' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return an igraph graph with only important nodes
 #' @example inst/examples/reduce_graph.R
-reduce_graph <- function(graph, cutoff_strength, importance_method="strength"){
-  importance_data <- make_importance(graph, importance_method = importance_method)
-  important_nodes <- importance_data$nodename[which(importance_data$importance >= cutoff_strength)]
+reduce_graph <- function(graph, cutoff_strength, imp_method="strength"){
+  importances <- make_importance(graph, imp_method = imp_method)
+  important_nodes <- importances$nodename[which(importances$importance >= cutoff_strength)]
   reduced_graph <- igraph::induced_subgraph(graph, v=important_nodes)
   return(reduced_graph)
 }

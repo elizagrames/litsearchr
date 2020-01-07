@@ -4,19 +4,23 @@
 \alias{check_recall}
 \title{Check the recall of a search strategy}
 \usage{
-check_recall(true_hits, retrieved_articles)
+check_recall(true_hits, retrieved)
 }
 \arguments{
 \item{true_hits}{a character vector of titles for articles that should be returned}
 
-\item{retrieved_articles}{a character vector of titles for articles returned by a search}
+\item{retrieved}{a character vector of titles for articles returned by a search}
 }
 \value{
 a table of the best match for each true title from the search results along with a title similarity score
 }
 \description{
-Checks a list of known articles against the results of a search to see how many the search retrieves.
+Checks a list of known articles against the results of a search to determine which gold standard hits are retrieved.
 }
 \examples{
-check_recall(true_hits=c("Picoides arcticus"), retrieved_articles=c("Picoides tridactylus"))
+check_recall(
+  true_hits = c("Picoides arcticus"),
+  retrieved = c("Picoides tridactylus",
+                         "Seiurus aurocapilla")
+)
 }

@@ -13,7 +13,7 @@ get_languages(key_topics)
 a data frame of languages used by journals tagged with the key topics and a count of how many journals use that language.
 }
 \description{
-This function chooses the best non-English languages to conduct searches in based on the topic of the review. The topics query a database of non-English language journals compiled from Ulrich; currently only STEM fields are supported.
+This function suggests the best non-English languages to conduct searches in based on the topic of the review. The topics query a database of non-English language journals compiled from Ulrich; currently only STEM fields are included in the dataset.
 }
 \examples{
  get_languages(c("ecology", "conservation", "ornithology"))

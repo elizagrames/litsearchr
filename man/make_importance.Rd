@@ -4,12 +4,12 @@
 \alias{make_importance}
 \title{Subset strength data from a graph}
 \usage{
-make_importance(graph, importance_method = "strength")
+make_importance(graph, imp_method = "strength")
 }
 \arguments{
 \item{graph}{an igraph graph}
 
-\item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
+\item{imp_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
 \value{
 a data frame of node strengths, ranks, and names
@@ -23,14 +23,15 @@ my_graph <- create_network(
     c(
       "Cross-scale occupancy dynamics of a postfire specialist
     in response to variation across a fire regime",
-      "Variation in home-range size of Black-backed Woodpeckers"
+      "Variation in home-range size of Black-backed Woodpeckers",
+      "Black-backed woodpecker occupancy in burned and beetle-killed forests"
     ),
-    features = c("occupancy", "variation", "woodpecker"),
+    features = c("occupancy", "variation", "woodpecker", "burn"),
     closure = "none"
   ),
   min_studies = 1,
-  min_occurrences = 1
+  min_occ = 1
 )
 
-make_importance(my_graph, importance_method = "strength")
+make_importance(my_graph, imp_method = "strength")
 }

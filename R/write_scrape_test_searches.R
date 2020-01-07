@@ -305,9 +305,8 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
   }
 
   if(is.null(search_terms)==FALSE){
-    search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
+    search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=FALSE, exactphrase=TRUE, closure="none", verbose = FALSE)[[1]]
     search_strat <- gsub("\\)","%29",gsub("\\(", "%28", gsub("\"", "%22", gsub(" ", "+", gsub(" \\)", "%29", gsub("\\( ", "%28", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))))
-
   }
   if(length(search_strat)==0){
     print("Error. No search terms or URL provided. Aborting.")
@@ -330,7 +329,9 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
 
     tmp <- strsplit(OATD, "total matches.<")
     total_hits <- as.numeric(strsplit(strsplit(tmp[[1]][1], "Showing records ")[[1]][2], "\n")[[1]][2])
-    npages <- c(seq(1, floor(total_hits), 30))
+    if(!is.na(total_hits)){
+      npages <- c(seq(1, floor(total_hits), 30))
+      }else{stop(("No results returned. Check search query."))}
 
     for (k in 1:length(npages)){
       URLpage <- paste(base_site, "&amp;start=", npages[k], sep="")
@@ -387,12 +388,12 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
   }
 
   if(is.null(search_terms)==FALSE){
-    search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
+    search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE, closure = "none", verbose=FALSE)[[1]]
     search_strat <- gsub("\\)","%29",gsub("\\(", "%28", gsub("\"", "%22", gsub(" ", "+", gsub(" \\)", "%29", gsub("\\( ", "%28", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))))
 
   }
   if(length(search_strat)==0){
-    print("Error. No search terms or URL provided. Aborting.")
+    stop("Error. No search terms or URL provided. Aborting.")
   }
 
   if(length(search_strat)>0){
@@ -404,7 +405,6 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
 
     base_URL <- paste("http://search.ndltd.org/search.php?q=", search_strat, "%3A", sep="")
 
-
     firstURL <- paste(base_URL, search_strat, "&start=", "0", sep="")
     ndltd <- as.character(xml2::read_html(firstURL))
 
@@ -412,7 +412,9 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
 
     total_hits <- as.numeric(stringr::str_trim(strsplit(strsplit(
       strsplit(strsplit(ndltd, "Search results")[[1]][2], "seconds")[[1]][1], "of")[[1]][2], "\\(")[[1]][1]))
-    npages <- seq(0, floor(total_hits), 10)
+    if(!is.na(total_hits)){
+      npages <- seq(0, floor(total_hits), 10)
+    }else{stop(("No results returned. Check search query."))}
     if(npages[length(npages)]==total_hits){npages <- npages[-length(npages)]}
 
     for (k in 1:length(npages)){
@@ -473,12 +475,14 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
 #' @examples \dontrun{scrape_openthesis(search_terms=list(c("picoides arcticus")))}
 scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TRUE, languages="English", stemming=FALSE, exactphrase=TRUE, directory="./"){
 
+  closure <- "none"
+
   if(is.null(URL)==FALSE){
     search_strat <- strsplit(strsplit(URL, "?queryString=")[[1]][2], "&from=")[[1]][1]
   }
 
   if(is.null(search_terms)==FALSE){
-    search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE)[[1]]
+    search_strat <- litsearchr::write_search(search_terms, languages=languages, stemming=TRUE, exactphrase=TRUE, closure="none", verbose=FALSE)[[1]]
     search_strat <- gsub("\\)","%29",gsub("\\(", "%28", gsub("\"", "%22", gsub(" ", "+", gsub(" \\)", "%29", gsub("\\( ", "%28", gsub("\\\\", "",  gsub(" OR ", "+OR+", search_strat))))))))
 
   }
@@ -504,8 +508,9 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
 
     nhits <- stringr::str_trim(gsub("</strong>", "", gsub("<strong>", "", strsplit(strsplit(strsplit(strsplit(openth, "class=\"results\"")[[1]][2], "query")[[1]][1], "results")[[1]][1], "of")[[1]][2])))
     nhits <- as.numeric(nhits)
+    if(!is.na(nhits)){
+      npages <- seq(0, floor(nhits/100)*100, 100)
 
-    npages <- seq(0, floor(nhits/100)*100, 100)
 
     for(k in 1:length(npages)){
       URLpage <- paste(base_site, npages[k], "&max=100", sep="")
@@ -540,18 +545,18 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
     if(writefile==TRUE){write.csv(dataset, paste(directory, "openthesis_hits.csv", sep=""))}
     return(dataset)
 
-  }
+  }}else{print(("No results returned. Check search query."))}
 }
 
 #' Check the recall of a search strategy
 #' @description Checks a list of known articles against the results of a search to determine which gold standard hits are retrieved.
 #' @param true_hits a character vector of titles for articles that should be returned
-#' @param retrieved_articles a character vector of titles for articles returned by a search
+#' @param retrieved a character vector of titles for articles returned by a search
 #' @return a table of the best match for each true title from the search results along with a title similarity score
-#' @examples check_recall(true_hits=c("Picoides arcticus"), retrieved_articles=c("Picoides tridactylus", "Seiurus aurocapilla"))
-check_recall <- function (true_hits, retrieved_articles) {
-  matches <- lapply(true_hits, synthesisr::fuzzdist, b=retrieved_articles)
-  similarity_table <- cbind(true_hits, retrieved_articles[unlist(lapply(matches, which.min))], 1-unlist(lapply(matches, min)))
+#' @example inst/examples/check_recall.R
+check_recall <- function (true_hits, retrieved) {
+  matches <- lapply(true_hits, synthesisr::fuzzdist, b=retrieved)
+  similarity_table <- cbind(true_hits, retrieved[unlist(lapply(matches, which.min))], 1-unlist(lapply(matches, min)))
   colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
   return(similarity_table)
 }

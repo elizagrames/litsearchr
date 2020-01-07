@@ -17,5 +17,8 @@ import_results(directory = NULL, file = NULL, verbose = TRUE)
 a data frame of assembled search results
 }
 \description{
-Given a file or directory, calls the import_results function from the synthesisr package to import and assemble search results
+Given a file or directory containing bibliographic files, import and assemble search results
+}
+\details{
+If a .bib or .ris file returns an error, there is likely a character encoding or formatting issue with the file. Please try uploading your .bib or .ris file to a reference manager (e.g. Zotero) and re-exporting it as a .bib or .ris, which often clears up formatting issues that import_results cannot detect.
 }

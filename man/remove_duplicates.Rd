@@ -20,3 +20,7 @@ a deduplicated data frame
 \description{
 Calls the deduplicate function from synthesisr to flag and remove duplicate entries from a data frame
 }
+\examples{
+my_df <- data.frame(title=c("Picoides", "picoides", "Seiurus"), id=c("01", "02", "03"))
+remove_duplicates(my_df, "title", "exact")
+}

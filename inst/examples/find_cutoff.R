@@ -10,7 +10,7 @@ my_network <- create_network(
     closure = "none"
   ),
   min_studies = 1,
-  min_occurrences = 1
+  min_occ = 1
 )
 
 find_cutoff(my_network,method = "cumulative", percent = .9)

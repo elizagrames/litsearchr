@@ -1,7 +1,7 @@
 Package: litsearchr
 Type: Package
 Title: Automated Search Term Selection and Search Strategy for Systematic Reviews
-Version: 0.1.0
+Version: 0.3.0
 Author: Eliza Grames, Andrew Stillman, Morgan Tingley, Chris Elphick
 Maintainer: Eliza Grames <eliza.grames@uconn.edu>
 Description: Systematic review, meta-analysis, and other forms of evidence 
@@ -13,9 +13,7 @@ Description: Systematic review, meta-analysis, and other forms of evidence
     reproducible search strategy development using text-mining and 
     keyword co-occurrence networks to identify important terms to include 
     in a search strategy. It can automatically write Boolean search strings 
-    in up to 53 different languages, with stemming support for English.
-    It also automatically assembles and deduplicates search results from 
-    a set of commonly used databases for systematic reviews. To assess the 
+    in up to 53 different languages, with stemming support for English.  To assess the 
     quality of a search, it can also check the results of a search against 
     a set of known, relevant articles to get performance metrics.
 License: GPL-3
@@ -39,4 +37,4 @@ Suggests:
     translate
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
-Date: 2019-06-18
+Date: 2020-01-02

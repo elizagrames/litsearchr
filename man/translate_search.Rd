@@ -4,21 +4,24 @@
 \alias{translate_search}
 \title{Translate search terms}
 \usage{
-translate_search(search_terms, target_language, source_language = "en",
+translate_search(search_terms, target_lang, source_lang = "en",
   API_key = API_key)
 }
 \arguments{
 \item{search_terms}{a character vector of search terms}
 
-\item{target_language}{a character vector of the language(s) to translate the search to}
+\item{target_lang}{a character vector of the language(s) to translate the search to}
 
-\item{source_language}{a character vector of the language the search terms are currently in}
+\item{source_lang}{a character vector of the language the search terms are currently in}
 
-\item{API_key}{an API key for Google Translate (not available through litsearchr)}
+\item{API_key}{an API key for Google Translate}
 }
 \description{
 Takes groups of search terms and translates them into target language using the Google Translate API. This function is intended for use inside write_search(), not as a standalone function.
 }
+\details{
+Users need to sign up for an API key for Google Translate separately from litsearchr.
+}
 \examples{
- \dontrun{translate_search(search_terms=c("black-backed woodpecker"), target_language="fr")}
+ \dontrun{translate_search(search_terms=c("black-backed woodpecker"), target_lang="fr")}
 }

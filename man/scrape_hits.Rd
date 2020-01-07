@@ -13,7 +13,7 @@ scrape_hits(search_terms = NULL, URL = NULL, database = c("oatd",
 
 \item{URL}{the URL from searching in OATD, NDLTD, or OpenThesis}
 
-\item{database}{a character with the database to scrape.}
+\item{database}{a character with the database to scrape (either "ndltd", "openthesis", or "oatd").}
 
 \item{verbose}{if TRUE, prints which page of hits it has finished}
 
@@ -25,8 +25,5 @@ scrape_hits(search_terms = NULL, URL = NULL, database = c("oatd",
 a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)
 }
 \description{
-Provides a wrapper function to scrape hits from databases that litsearchr can scrape
-}
-\examples{
-\dontrun{scrape_hits(search_terms=list(c("picoides arcticus")), database="ndltd")}
+Provides a wrapper function to scrape hits from databases for which litsearchr can recognize formats.
 }

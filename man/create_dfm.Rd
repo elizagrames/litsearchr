@@ -9,9 +9,9 @@ create_dfm(elements, features, closure = "full")
 \arguments{
 \item{elements}{a character vector of document information (e.g. document titles or abstracts)}
 
-\item{features}{a character vector of terms to use as document features}
+\item{features}{a character vector of terms to use as document features (e.g. keywords)}
 
-\item{closure}{restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms.}
+\item{closure}{restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms (e.g. "burn" matches "postburning").}
 }
 \value{
 a matrix with documents as rows and terms as columns
@@ -24,9 +24,10 @@ create_dfm(
   c(
     "Cross-scale occupancy dynamics of a postfire specialist
     in response to variation across a fire regime",
-    "Variation in home-range size of Black-backed Woodpeckers"
+    "Variation in home-range size of Black-backed Woodpeckers",
+    "Black-backed woodpecker occupancy in burned and beetle-killed forests"
   ),
-  features = c("occupancy", "variation", "woodpecker"),
+  features = c("occupancy", "variation", "woodpecker", "burn"),
   closure = "none"
 )
 }

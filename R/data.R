@@ -22,7 +22,7 @@
 "possible_langs"
 
 
-#' Non-english scientific journal list
+#' Non-English scientific journal list
 #'
 #' A dataset of non-english scientific journals indexed in
 #' Ulrich's Global Serials Directory.

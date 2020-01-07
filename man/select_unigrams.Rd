@@ -4,18 +4,18 @@
 \alias{select_unigrams}
 \title{Subset unigrams from node names}
 \usage{
-select_unigrams(graph, importance_method = "strength")
+select_unigrams(graph, imp_method = "strength")
 }
 \arguments{
 \item{graph}{an igraph object}
 
-\item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
+\item{imp_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
 \value{
-a data frame of node names, strengths, rank
+a data frame of node names, strengths, and rank
 }
 \description{
-Selects only nodes from a graph whose node names are at single words.
+Selects only nodes from a graph whose node names are single words.
 }
 \examples{
 my_graph <- create_network(
@@ -23,14 +23,15 @@ my_graph <- create_network(
     c(
       "Cross-scale occupancy dynamics of a postfire specialist
     in response to variation across a fire regime",
-      "Variation in home-range size of Black-backed Woodpeckers"
+      "Variation in home-range size of Black-backed Woodpeckers",
+      "Black-backed woodpecker occupancy in burned and beetle-killed forests"
     ),
-    features = c("occupancy", "variation", "woodpecker"),
+    features = c("occupancy", "variation", "woodpecker", "burn"),
     closure = "none"
   ),
   min_studies = 1,
-  min_occurrences = 1
+  min_occ = 1
 )
 
-select_ngrams(my_graph, importance_method = "strength")
+select_ngrams(my_graph, imp_method = "strength")
 }

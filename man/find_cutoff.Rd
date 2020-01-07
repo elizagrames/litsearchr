@@ -5,12 +5,12 @@
 \title{Find node cutoff strength}
 \usage{
 find_cutoff(graph, method = c("spline", "cumulative"), percent = 0.8,
-  degrees = 2, knot_num = 1, importance_method = "strength")
+  degrees = 2, knot_num = 1, imp_method = "strength")
 }
 \arguments{
-\item{graph}{The complete graph.}
+\item{graph}{An igraph graph object}
 
-\item{method}{The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).}
+\item{method}{the cutoff method to use, either "spline" or "cumulative"}
 
 \item{percent}{if using method cumulative, the total percent of node strength to capture}
 
@@ -18,13 +18,16 @@ find_cutoff(graph, method = c("spline", "cumulative"), percent = 0.8,
 
 \item{knot_num}{if using method spline, the number of knots to allow}
 
-\item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
+\item{imp_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
 \value{
 a vector of suggested node cutoff strengths
 }
 \description{
 Find the minimum node strength to use as a cutoff point for important nodes.
+}
+\details{
+The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
 }
 \examples{
 my_network <- create_network(
@@ -39,7 +42,7 @@ my_network <- create_network(
     closure = "none"
   ),
   min_studies = 1,
-  min_occurrences = 1
+  min_occ = 1
 )
 
 find_cutoff(my_network,method = "cumulative", percent = .9)

@@ -75,7 +75,7 @@ naivegraph <-
   litsearchr::create_network(
     search_dfm = naivedfm,
     min_studies = 3,
-    min_occurrences = 3
+    min_occ = 3
   )
 ```
 
@@ -90,7 +90,7 @@ cutoff <-
     naivegraph,
     method = "cumulative",
     percent = .90,
-    importance_method = "strength"
+    imp_method = "strength"
   )
 
 reducedgraph <-
@@ -201,7 +201,7 @@ retrieved_articles <- litsearchr::import_results(directory=search_directory)
 retrieved_articles <- litsearchr::remove_duplicates(retrieved_articles, field="title", method="exact")
 
 articles_found <- litsearchr::check_recall(true_hits = gold_standard,
-                                           retrieved_articles = retrieved_articles$title)
+                                           retrieved = retrieved_articles$title)
 
 articles_found
 ```

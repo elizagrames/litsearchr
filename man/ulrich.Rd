@@ -3,7 +3,7 @@
 \docType{data}
 \name{ulrich}
 \alias{ulrich}
-\title{Non-english scientific journal list}
+\title{Non-English scientific journal list}
 \format{A database with 5100 rows of 6 variables:
 \describe{
   \item{Title}{the journal title}

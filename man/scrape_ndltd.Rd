@@ -21,7 +21,7 @@ scrape_ndltd(search_terms = NULL, URL = NULL, writefile = FALSE,
 
 \item{stemming}{if TRUE, keywords will be truncated and stem from root word forms (only if language is English)}
 
-\item{exactphrase}{if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned#' @return a database of hits (if yes is selected from the menu prompt, the hits will also be saved to your working directory)}
+\item{exactphrase}{if TRUE, keyword phrases will be placed in quotes to ensure exact phrases are returned}
 
 \item{where}{where in a thesis or dissertation to search (options are description or title)}
 
