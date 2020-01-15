@@ -1,18 +1,3 @@
-
-
-#' Add new stopwords to ignore
-#' @description Allows the user to add additional stopwords to the built-in English stopwords list.
-#' @param new_stopwords a character vector of new words to add
-#' @return an updated vector of custom stopwords to remove from text
-#' @examples add_stopwords(new_stopwords=c("19th century", "abiotic factors", "elsevier direct"))
-add_stopwords <- function(new_stopwords) {
-  custom_stopwords <-
-    sort(unique(append(
-      litsearchr::custom_stopwords, new_stopwords
-    )))
-  return(custom_stopwords)
-}
-
 #' Extract potential keywords from abstracts and titles
 #' @description Extracts potential keyword terms from text (e.g. titles and abstracts)
 #' @param text A character object of text from which to extract terms
@@ -22,7 +7,8 @@ add_stopwords <- function(new_stopwords) {
 #' @param ngrams Logical: should litsearchr only extracts phrases with word count greater than a specified n?
 #' @param min_n Numeric: the minimum length ngram to consider
 #' @param max_n Numeric: the maximum length ngram to consider
-#' @param language A string indicating the language of input data to use for stopwords
+#' @param stopwords A character vector of stopwords.
+#' @param language A string indicating the language of input data to use for stopwords if none are supplied.
 #' @return Returns a character vector of potential keyword terms.
 #' @example inst/examples/extract_terms.R
 extract_terms <- function(text = NULL,
@@ -32,21 +18,28 @@ extract_terms <- function(text = NULL,
                           ngrams = TRUE,
                           min_n = 2,
                           max_n = 5,
+                          stopwords = NULL,
                           language = "English") {
   if (!is.null(text)) {
     text <- tolower(text)
   }
 
-  if(missing(language)){
+  if (missing(language)) {
     language <- "English"
   }
-  stopwods <- synthesisr::get_stopwords(language)
+
+  if (is.null(stopwords)) {
+    stopwords <- synthesisr::get_stopwords(language)
+  }
+
+
 
   if (method == "fakerake") {
     if (is.null(text)) {
       stop("Please specify a body of text from which to extract terms using fakerake.")
     } else{
-      terms <- litsearchr::fakerake(text, stopwords, min_n=min_n, max_n=max_n)
+      terms <-
+        litsearchr::fakerake(text, stopwords, min_n = min_n, max_n = max_n)
     }
   }
 
@@ -71,10 +64,10 @@ extract_terms <- function(text = NULL,
     if (is.null(keywords)) {
       stop("Please specify a vector of keywords from which to extract terms.")
     } else{
-      keywords <- tolower(paste(keywords, collapse=" and "))
+      keywords <- tolower(paste(keywords, collapse = " and "))
       terms <- strsplit(keywords, " and ")[[1]]
-      if(any(terms=="NA")){
-        terms <- terms[-which(terms=="NA")]
+      if (any(terms == "NA")) {
+        terms <- terms[-which(terms == "NA")]
       }
     }
   }
@@ -95,7 +88,6 @@ extract_terms <- function(text = NULL,
 #' @param stopwords A character vector of stopwords to remove
 #' @param min_n Numeric: the minimum length ngram to consider
 #' @param max_n Numeric: the maximum length ngram to consider
-#' @param min_freq Numeric: the minimum times an ngram must occur to be returned
 #' @return A character vector of potential keywords
 fakerake <- function(text,
                      stopwords,
@@ -151,21 +143,18 @@ fakerake <- function(text,
   for (i in min_n:max_n) {
     if (i == min_n) {
       ngrams <-
-        lapply(
-          text,
-          get_ngrams,
-          n = i,
-          stop_words = stops)
+        lapply(text,
+               get_ngrams,
+               n = i,
+               stop_words = stops)
     } else{
       ngrams <-
         Map(c,
             ngrams,
-            lapply(
-              text,
-              get_ngrams,
-              n = i,
-              stop_words = stops
-            ))
+            lapply(text,
+                   get_ngrams,
+                   n = i,
+                   stop_words = stops))
     }
   }
 
@@ -182,13 +171,23 @@ fakerake <- function(text,
 #' @example inst/examples/create_dfm.R
 create_dfm <-
   function(elements, features, closure = "full") {
+
+    elements <- tolower(elements)
+    z <- synthesisr::replace_ngrams(elements, features)
+    z <- strsplit(z, " ")
+
+    drop_unigrams <- function(m) {
+      unique(append(m[sapply(m, grepl, pattern = "_")], m[sapply(m, grepl, pattern =
+                                                                   "-")]))
+    }
+    docs <- sapply(lapply(z, drop_unigrams), paste, collapse=" ")
+
+
     dfm <-
-      synthesisr::create_dtm(
-        elements = elements,
-        features = features,
-        closure = closure,
-        ignore_case = TRUE
-      )
+      synthesisr::create_dtm(docs, ngram_check = FALSE, min_freq = 1)
+
+    dfm$dimnames$Terms <- synthesisr::remove_punctuation(dfm$dimnames$Terms, preserve_punctuation = "-")
+
     return(dfm)
   }
 
@@ -204,20 +203,21 @@ create_network <- function(search_dfm,
                            min_occ = 3) {
   presences <- search_dfm
   presences[which(presences > 0)] <- 1
-  study_counts <- which(as.numeric(colSums(presences)) < min_studies)
+  study_counts <-
+    which(as.numeric(colSums(presences)) < min_studies)
   if (length(study_counts) > 0) {
-    search_dfm <- search_dfm[, -study_counts]
+    search_dfm <- search_dfm[,-study_counts]
   }
 
   occur_counts <- which(colSums(search_dfm) < min_occ)
   if (length(occur_counts) > 0) {
-    search_dfm <- search_dfm[, -occur_counts]
+    search_dfm <- search_dfm[,-occur_counts]
   }
 
   dropped_studies <- which(rowSums(search_dfm) < 1)
 
   if (length(dropped_studies) > 0) {
-    search_dfm <- search_dfm[-dropped_studies, ]
+    search_dfm <- search_dfm[-dropped_studies,]
   }
   trimmed_mat <- t(search_dfm) %*% search_dfm
 
@@ -279,7 +279,7 @@ select_ngrams <- function(graph,
   ngrams <-
     importances[which(sapply(strsplit(
       as.character(importances$nodename), " "
-    ), length) >= n), ]
+    ), length) >= n),]
   return(ngrams)
 }
 
@@ -295,7 +295,7 @@ select_unigrams <- function(graph, imp_method = "strength") {
   unigrams <-
     importances[which(sapply(strsplit(
       as.character(importances$nodename), " "
-    ), length) == 1), ]
+    ), length) == 1),]
   return(unigrams)
 }
 
@@ -380,7 +380,8 @@ find_cutoff <-
     importances <- make_importance(graph, imp_method = imp_method)
 
     if (method == "spline") {
-      knots <- find_knots(importances, degrees = degrees, knot_num = knot_num)
+      knots <-
+        find_knots(importances, degrees = degrees, knot_num = knot_num)
       cut_points <- floor(knots)
       cut_strengths <- (importances$importance)[cut_points]
 
