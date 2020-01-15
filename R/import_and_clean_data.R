@@ -15,7 +15,7 @@ import_results <-  function(directory = NULL,
   }else{stop(print("Supply either a directory or a file containing search results."))}
 
   df <-
-    synthesisr::import_refs(filename = filename,
+    synthesisr::read_refs(filename = filename,
                             return_df = TRUE,
                             verbose = verbose)
   return(df)

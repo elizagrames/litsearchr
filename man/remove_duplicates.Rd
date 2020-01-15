@@ -4,8 +4,7 @@
 \alias{remove_duplicates}
 \title{Remove duplicate entries from a data frame}
 \usage{
-remove_duplicates(df, field, method = c("stringdist", "fuzzdist",
-  "exact"))
+remove_duplicates(df, field, method = c("stringdist", "fuzzdist", "exact"))
 }
 \arguments{
 \item{df}{the data frame to deduplicate}

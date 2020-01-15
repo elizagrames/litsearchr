@@ -4,10 +4,17 @@
 \alias{write_search}
 \title{Write Boolean searches}
 \usage{
-write_search(groupdata, API_key = NULL, languages = NULL,
-  exactphrase = FALSE, stemming = TRUE, closure = c("left", "right",
-  "full", "none"), directory = "./", writesearch = FALSE,
-  verbose = TRUE)
+write_search(
+  groupdata,
+  API_key = NULL,
+  languages = NULL,
+  exactphrase = FALSE,
+  stemming = TRUE,
+  closure = c("left", "right", "full", "none"),
+  directory = "./",
+  writesearch = FALSE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{groupdata}{a list of character vectors, each of which is a concept group}

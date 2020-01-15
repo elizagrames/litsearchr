@@ -1,0 +1,3902 @@
+﻿FN Clarivate Analytics Web of Science
+VR 1.0
+PT J
+AN ZOOR15512090342
+DT Article
+TI Nest site selection and nest survival of Black-backed Woodpeckers after
+   wildfire.
+AU Stillman, Andrew N. (andrew.stillman@uconn.edu) 
+   Siegel, Rodney B.
+   Wilkerson, Robert L.
+   Johnson, Matthew
+   Howell, Christine A.
+   Tingley, Morgan W.
+SO Condor
+VL 121
+IS 3
+PS duz039
+PD Aug 1 2019
+PY 2019
+LA English
+U1 5
+U2 5
+AB Recently burned coniferous forests host wildlife communities that
+   respond to variation in burn severity, post-fire habitat structure, and
+   patch configuration. Habitat selection theory predicts that birds
+   inhabiting these variable post-fire landscapes will select nesting
+   locations that confer an adaptive advantage through increased fitness
+   and reproductive success. Understanding the effect of post-fire habitat
+   on avian nesting ecology can provide valuable information to guide
+   restoration and management after wildfire. The Black-backed Woodpecker
+   (Picoides arcticus) is strongly associated with recently burned forests
+   in the western United States, where it is used as an indicator species
+   for the effects of post-fire forest management. Between 2011 and 2018,
+   we located and monitored 118 Black-backed Woodpecker nests in burned
+   forests of northern California. We evaluated the influence of habitat
+   and nest characteristics on nest site selection and daily nest survival.
+   Our results demonstrate a pattern of neutral congruence between habitat
+   selection and fitness. Black-backed Woodpeckers showed strong selection
+   for each of the nest habitat variables that we measured: woodpeckers
+   selected moderately sized trees in areas of high snag density burned at
+   high severity, but also in areas relatively close to low-severity or
+   unburned edges. However, only nest initiation date affected nest
+   survival, with decreased survival in late-season nests. Our results
+   suggest that management actions aimed at maintaining breeding habitat
+   for Black-backed Woodpeckers should prioritize retention and creation of
+   pyrodiverse landscapes that include dense stands of snags (> 5 snags per
+   100 m2) within [approximately]500 m of forest that burned at low
+   severity or remained unburned.
+C1 Stillman, Andrew N.; Univ Connecticut, Ecol & Evolutionary Biol, Storrs,
+   CT, 06269, USA, USA.
+EM andrew.stillman@uconn.edu
+RI Stillman, Andrew/L-6080-2019; Tingley, Morgan W/F-8519-2011
+OI Stillman, Andrew/0000-0001-6692-380X; Tingley, Morgan
+   W/0000-0002-1477-2218
+SC Environmental Sciences & Ecology; Biodiversity & Conservation; Zoology;
+   Reproductive Biology; Forestry
+SN 0010-5422
+BD Conservation; Conservation measures; Reproduction; Reproductive
+   behaviour; Ecology; Population dynamics; Habitat; Terrestrial habitat;
+   Abiotic factors; Physical factors; Land zones; Nearctic region; North
+   America; USA
+DE Picoides arcticus [Conservation measures / Management implications /
+   habitat characteristics] [Habitat management /  / ] [Breeding site /
+   Nest site selection / ] [Reproductive productivity / Nest success / ]
+   [Survival / Nest survival / ] [Forest and woodland / Forest / ] [Fire /
+   Wildfire / ] [California / Plumas & Lassen National Forests / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15512090342
+OA Bronze
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15510067589
+DT Article
+TI FIRE-BIRD: A GIS-based toolset for applying habitat suitability models
+   to inform land management planning.
+AU Latif, Quresh S.
+   Saab, Victoria A.
+   Haas, Jessica R.
+   Dudley, Jonathan G.
+SO U S Forest Service Rocky Mountain Research Station General Technical
+   Report RMRS-GTR
+VL 391
+PS i-iv, 1-74
+PD Jun 2019
+PY 2019
+LA English
+U1 0
+U2 0
+AB Habitat suitability models can inform forest management for species of
+   conservation concern. Models quantify relationships between known
+   species locations and environmental attributes, which are used to
+   identify areas most likely to support species of concern. Managers can
+   then limit negative human impacts in areas of high suitability or
+   conduct habitat improvements in areas of marginal suitability. Model
+   applications are computationally intensive, requiring time and resources
+   not available to most managers. We developed FIRE-BIRD, an ArcGIS
+   toolbox, to streamline preliminary data processing and application of
+   habitat suitability models to forest management planning for
+   disturbance-associated woodpeckers of conservation concern. Tools are
+   currently developed for black-backed (Picoides arcficus) and
+   white-headed woodpecker (Dryobates albolvartus) in Inland Northwest
+   burned forests; black-backed, white-headed, and hairy woodpecker (D.
+   villosus) in Northern Sierra burned forests; and white-headed woodpecker
+   in Inland Northwest unburned forests. This manual provides tool
+   operating instructions and guidelines to interpret resulting habitat
+   suitability maps. The suite of species currently included makes this
+   toolset best suited for postfire management and restoration treatments
+   in dry mixed-conifer forests. Incorporating additional species and
+   forest conditions in the future will broaden the scope of this toolset.
+C1 Latif, Quresh S.; USDA Forest Service, Rocky Mountain Research Station,
+   Bozeman, Montana, USA, USA.
+SC Zoology; Environmental Sciences & Ecology; Biodiversity & Conservation;
+   Computer Science; Forestry
+BD Animals and man; Conservation; Conservation measures; Techniques;
+   Information handling; Habitat; Terrestrial habitat; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America
+DE Dryobates albolarvatus; Dryobates villosus; Picoides arcticus
+   [Disturbance by man /  / ] [Habitat management /  / ] [Ecological
+   techniques / Habitat suitability models / ] [Use of computers / Arcgis
+   software tool / ] [Forest and woodland / Burnt & unburnt forest / ]
+   [Fire /  / ] [USA /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Dryobates albolarvatus (Picidae). 
+   Dryobates villosus (Picidae). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15510067589
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15508049637
+DT Article
+TI Predictors of habitat use and nesting success for two sympatric species
+   of boreal woodpeckers in an unburned, managed forest landscape.
+AU Craig, Catherine
+   Mazerolle, Marc J.
+   Taylor, Philip D.
+   Tremblay, Junior A.
+   Villard, Marc-Andre (mvillard@mta.ca) 
+SO Forest Ecology and Management
+VL 438
+PS 134-141
+PD Apr 15 2019
+PY 2019
+LA English
+U1 7
+U2 14
+AB Forest harvesting reduces mean stand age and dead wood amount. Among
+   species dependent upon older forests and dead wood, primary excavators
+   such as woodpeckers play an important ecological role by providing
+   cavities for many other species. Conservation of these species thus
+   requires striking a balance between timber harvesting and dead wood
+   supply, especially under moderate natural disturbance regimes. In this
+   study, we quantified habitat use in two closely-related, sympatric
+   species: Black-backed (Picoides arcticus) and American Three-toed (P.
+   dorsalis) Woodpecker, in the highlands of northern New Brunswick,
+   Canada. Natural fires are rare in this ecoregion and forest harvesting
+   is the main agent of landscape change, along with infrequent outbreaks
+   of spruce budworm (Choristoneura fumiferana). Based on its habitat use
+   patterns in other ecoregions, we hypothesized that Black-backed
+   Woodpecker would select nest sites in mature coniferous forest stands
+   and we expected that it would achieve a higher nest survival rate in
+   forest stands than within, or at the edge of, cutblocks. Owing to sample
+   size limitations for American Three-toed Woodpecker, statistical
+   analyses were restricted to its occurrence patterns. Both species
+   co-occurred, and there was no difference in detectability following
+   conspecific and heterospecific playbacks. Contrary to our prediction,
+   Black-backed Woodpecker selected nest sites with higher proportions of
+   recently cut areas within 50 m than at randomly selected sites.
+   Black-backed Woodpecker selected cutblocks for nesting when suitable
+   snags were available and mature forest stands were present nearby as
+   foraging habitat. For the species to persist in this landscape, the
+   supply of snags must be continuous and forest stands must be
+   sufficiently mature to host saproxylic insects.
+C1 Villard, Marc-Andre; Mt Allison Univ, Dept Biol, Sackville, NB, E4L 1G7,
+   Canada, Canada.
+EM mvillard@mta.ca
+OI Tremblay, Junior A./0000-0003-4930-0939
+SC Reproductive Biology; Zoology; Environmental Sciences & Ecology;
+   Forestry
+SN 0378-1127
+BD Reproduction; Reproductive behaviour; Ecology; Population dynamics;
+   Habitat utilization; Animal constructions; Habitat; Terrestrial habitat;
+   Land zones; Nearctic region; North America; Canada
+DE Picoides arcticus; Picoides dorsalis [Breeding site / Nesting site / ]
+   [Reproductive productivity / Nesting success / ] [Survival / Nest
+   survival / ] [Habitat utilization /  / ] [Habitat preference / Habitat
+   selection / ] [Nests /  / ] [Forest and woodland / Forest / ] [New
+   Brunswick /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides dorsalis (Picidae). 
+UT ZOOREC:ZOOR15508049637
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15508052017
+DT Article
+TI Early post-fire bird community in European boreal forest: Comparing
+   salvage-logged with non-intervention areas.
+AU Zmihorski, Michal (michal.zmihorski@gmail.com) 
+   Hebda, Grzegorz
+   Eggers, Sonke
+   Mansson, Johan
+   Abrahamsson, Tommy
+   Czeszczewik, Dorota
+   Walankiewicz, Wieslaw
+   Mikusinski, Grzegorz
+SO Global Ecology and Conservation
+VL 18
+PS e00636
+PD Apr 2019
+PY 2019
+LA English
+U1 4
+U2 6
+AB Salvage logging after disturbances in forests substantially modifies
+   vegetation structure and dead wood availability, but empirical evidence
+   on its impact on biodiversity, especially in European boreal forest, is
+   sparse. In this study we investigated the short-term effect of post-fire
+   salvage logging on species richness and abundance of birds in recently
+   burned mixed coniferous forest. Using point counts we estimated local
+   species composition at 49 salvaged sites and 55 non-intervention sites
+   (burnt forest left for natural regeneration) that were not logged after
+   a fire in south-central Sweden. Local species richness, abundance and
+   Simpson's species diversity index were significantly higher at
+   non-intervention sites compared to salvaged sites. Forest birds that
+   rely on structurally complex forest stands, such as tits (Parus major,
+   Lophophanes cristatus, Poecile montanus), robin (Erithacus rubecula),
+   mistle trush (Turdus viscivorus) and tree-toed woodpecker (Picoides
+   tridactylus) were mainly associated with non-intervention sites, while
+   species that are typically linked to farm- or shrublands, such as
+   whinchat (Saxicola rubetra), white wagtail (Motacilla alba), red-backed
+   shrike (Lanius collurio), and meadow pipit (Anthus pratensis) were more
+   common at salvaged sites. These results are consistent with the idea
+   that post-fire salvage logging has an immediate impact on the bird
+   species composition and abundance in boreal forest. We conclude that
+   although post-fire salvage logging may be beneficial for birds occurring
+   in open landscapes, it has negative effects for forest bird species
+   richness and abundance, at least over the short term. To protect typical
+   forest communities with many forest specialists of high conservation
+   concern, we recommend reducing the extent of post-disturbance salvaging
+   in forests of high conservation value and updating the existing
+   management policy to restore the amount of woody debris and facilitate
+   long-term structural complexity and biodiversity in densely stocked
+   conifer stands. (C) 2019 The Authors. Published by Elsevier B.V.
+C1 Zmihorski, Michal; Polish Acad Sci, Mammal Res Inst, Stoczek 1,
+   Bialowieza, PL-17230, Poland, Poland.
+EM michal.zmihorski@gmail.com
+OI Hebda, Grzegorz/0000-0002-8668-1809; Zmihorski,
+   Michal/0000-0001-5137-1635; Czeszczewik, Dorota/0000-0003-0523-1417
+SC Biodiversity & Conservation; Zoology; Environmental Sciences & Ecology;
+   Forestry
+SN 2351-9894
+BD Conservation; Conservation measures; Ecology; Population dynamics;
+   Habitat; Terrestrial habitat; Abiotic factors; Physical factors; Land
+   zones; Palaearctic region; Eurasia; Europe
+DE Aves [Habitat management /  / ] [Community structure /  / ] [Population
+   censuses / Counts / ] [Population density / Abundance / ] [Forest and
+   woodland / Boreal forest / ] [Fire /  / ] [Sweden / Vastmanland / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR15508052017
+OA DOAJ Gold
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15508051114
+DT Article
+TI Age-dependent habitat relationships of a burned forest specialist
+   emphasise the role of pyrodiversity in fire management.
+AU Stillman, Andrew N. (andrew.stillman@uconn.edu) 
+   Siegel, Rodney B.
+   Wilkerson, Robert L.
+   Johnson, Matthew
+   Tingley, Morgan W.
+SO Journal of Applied Ecology
+VL 56
+IS 4
+PS 880-890
+PD Apr 2019
+PY 2019
+LA English
+U1 5
+U2 6
+AB Variation in fire characteristics, termed pyrodiversity, plays an
+   important role in structuring post-fire communities, but little is known
+   about the importance of pyrodiversity for individual species. The
+   availability of diverse post-fire habitats may be key for
+   fire-associated species if they require different resources at different
+   life-history stages. We tested for age-specific habitat relationships in
+   the black-backed woodpecker, a post-fire specialist. We used
+   radio-telemetry to track fledgling and adult woodpeckers in burned
+   forests and built resource selection functions to compare the effect of
+   stand-, tree- and snag-level covariates between adults and fledglings.
+   Fledgling black-backed woodpeckers selected habitat with more live trees
+   than adults and used more heterogeneous habitats burned at lower
+   severity, illustrating strong age-dependent effects on habitat
+   selection. Within selected stands, fledglings were less likely to use
+   snags and more likely to use live trees when compared to adults, but
+   both age classes showed strong positive selection for larger-diameter
+   trees (live and dead). Over the 60days after leaving their nests,
+   fledglings showed an increasing propensity to use snags rather than live
+   trees. Our results provide evidence that the predation-starvation
+   hypothesis, which posits a trade-off between foraging efficiency and the
+   need to minimise predation risk, plays a role in structuring the
+   age-dependent habitat use of a burned forest specialist. Adult
+   black-backed woodpeckers selected resources associated with food
+   availability, but these resources occurred in relatively open, exposed
+   habitat. Fledglings selected habitat that provided increased cover,
+   perhaps as a strategy to reduce predation risk.Synthesis and
+   applications. Globally, fires are increasing in severity and extent,
+   leading to increased focus on fire-associated species that play keystone
+   roles in facilitating biodiversity resilience. Our findings suggest that
+   a diversity of patches burned at different severities may benefit
+   post-fire specialists like the black-backed woodpecker at multiple
+   life-history stages. The increasing prevalence of large, homogeneously
+   high-severity megafires' may present an emerging threat even to
+   post-fire specialists, and we urge land managers to consider
+   opportunities to promote pyrodiversity in the face of novel fire
+   regimes. Globally, fires are increasing in severity and extent, leading
+   to increased focus on fire-associated species that play keystone roles
+   in facilitating biodiversity resilience. Our findings suggest that a
+   diversity of patches burned at different severities may benefit
+   post-fire specialists like the black-backed woodpecker at multiple
+   life-history stages. The increasing prevalence of large, homogeneously
+   high-severity megafires' may present an emerging threat even to
+   post-fire specialists, and we urge land managers to consider
+   opportunities to promote pyrodiversity in the face of novel fire
+   regimes.
+C1 Stillman, Andrew N.; Univ Connecticut, Ecol & Evolutionary Biol, Storrs,
+   CT, 06269, USA, USA.
+EM andrew.stillman@uconn.edu
+RI Stillman, Andrew/L-6080-2019; Tingley, Morgan W/F-8519-2011
+OI Stillman, Andrew/0000-0001-6692-380X; Tingley, Morgan
+   W/0000-0002-1477-2218
+SC Biodiversity & Conservation; Environmental Sciences & Ecology; Zoology;
+   Nutrition & Dietetics; Forestry
+SN 0021-8901
+BD Conservation; Conservation measures; Techniques; Telemetry techniques;
+   Nutrition; Ecology; Habitat utilization; Habitat; Terrestrial habitat;
+   Abiotic factors; Physical factors; Land zones; Nearctic region; North
+   America; USA
+DE Picoides arcticus [Habitat management /  / ] [Radio telemetry /  / ]
+   [Food availability /  / ] [Habitat utilization /  / ] [Habitat
+   preference / Habitat selection / ] [Forest and woodland / Burned forest
+   / ] [Fire /  / ] [California / Plumas & Lassen National Forests / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15508051114
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15512082826
+DT Article
+TI Few detections of Black-backed Woodpeckers (Picoides arcticus) in
+   extreme wildfires in the Sierra Nevada.
+AU White, Angela M. (angelawhite@fs.fed.us) 
+   Tarbill, Gina L.
+   Wilkerson, Robert L.
+   Siegel, Rodney B.
+SO Avian Conservation and Ecology
+VL 14
+IS 1
+PS 17
+PD 2019
+PY 2019
+LA English
+U1 2
+U2 2
+AB Extreme wildfires in coniferous forests produce large areas of dead
+   trees (snags) that are expected to provide much needed habitat for the
+   Black-backed Woodpecker, a postfire associate. In an attempt to better
+   understand extreme fire effects (including increasing fire size and
+   decreasing diversity of fire effects), we monitored Black-backed
+   Woodpeckers during the 2014 and 2015 breeding seasons following two
+   wildfires (the 2013 Rim and 2014 King fire) that burned in the Sierra
+   Nevada, USA under extreme fire conditions. Despite an extensive sampling
+   effort including 1025 broadcast surveys and targeted nest searching over
+   2040 ha of habitat typically used for nesting, we detected few
+   Black-backed Woodpeckers. Positive detections of Black-backed
+   Woodpeckers at broadcast points were positively associated with
+   increases in the percent of surrounding forest that burned at
+   high-severity and with the distance to the fire perimeter, indicating
+   that the severity and scale of the fire per se did not affect use by
+   Black-backed woodpeckers within the fire area. However, we suggest that
+   the timing of these fires late in the fire season may have limited
+   colonization of prey resources, leading to more limited use of these
+   fires by Black-backed Woodpeckers.
+C1 White, Angela M.; 1731 Res Pk Dr, Davis, CA, 95618, USA, USA.
+EM angelawhite@fs.fed.us
+SC Reproductive Biology; Zoology; Environmental Sciences & Ecology;
+   Forestry
+BD Reproduction; Reproductive behaviour; Ecology; Animal constructions;
+   Habitat; Terrestrial habitat; Abiotic factors; Physical factors; Land
+   zones; Nearctic region; North America; USA
+DE Picoides arcticus [Breeding season /  / ] [Nests /  / ] [Forest and
+   woodland / Coniferous forest / ] [Fire / Extreme wildfire / ]
+   [California / Sierra Nevada Mountains / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15512082826
+OA DOAJ Gold
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15411078200
+PM 29782655
+DT Article
+TI Cross-scale occupancy dynamics of a postfire specialist in response to
+   variation across a fire regime.
+AU Tingley, Morgan W. (morgan.tingley@uconn.edu) 
+   Stillman, Andrew N.
+   Wilkerson, Robert L.
+   Howell, Christine A.
+   Sawyer, Sarah C.
+   Siegel, Rodney B.
+SO Journal of Animal Ecology
+VL 87
+IS 5
+PS 1484-1496
+PD Sep 2018
+PY 2018
+LA English
+U1 1
+U2 17
+AB Fire creates challenges and opportunities for wildlife through rapid
+   destruction, modification and creation of habitat. Fire has spatially
+   variable effects on landscapes; however, for species that benefit from
+   the ephemeral resource patches created by fire, it is critical to
+   understand characteristics of fires that promote postfire colonization
+   and persistence and the spatial scales on which they operate. Using a
+   model postfire specialist, the black-backed woodpecker (Picoides
+   arcticus), we examined how colonization and persistence varied across
+   two spatial scales as a function of four characteristics of fire
+   regimesfire severity, fire size, fire ignition date and number of years
+   since fire. We modelled black-backed woodpecker colonization and
+   persistence using data from 108 recently burned forests in the Sierra
+   Nevada and southern Cascades ecoregions of California, USA, that we
+   monitored for up to 10years following fire. We employed a novel,
+   spatially hierarchical, dynamic occupancy framework which differentiates
+   colonization and persistence at two spatial scales: across fires and
+   within fires. We found strong effects of fire characteristics on dynamic
+   rates, with colonization and persistence declining across both spatial
+   scales with increasing years since fire. Additionally, at sites within
+   fires, colonization decreased with fire size and increased with fire
+   severity and for fires with later ignition dates. Our results support
+   the notion that different aspects of a species' environment are
+   important for population processes at different spatial scales. As
+   habitat quality is ephemeral for any given postfire area, our results
+   illustrate the importance of time since fire in structuring occupancy at
+   the fire level, with other characteristics of fires playing larger roles
+   in determining abundance within individual fires. Our results contribute
+   to the broader understanding of how variation in fire characteristics
+   influences the colonization and persistence of species using ephemeral
+   habitats, which is necessary for conserving and promoting postfire
+   biodiversity in the context of rapidly shifting fire regimes.
+C1 Tingley, Morgan W.; Univ Connecticut, Ecol & Evolutionary Biol, 75 N
+   Eagleville Rd,Unit 3043, Storrs, CT, 06269, USA, USA.
+EM morgan.tingley@uconn.edu
+RI Tingley, Morgan W/F-8519-2011; Stillman, Andrew/L-6080-2019
+OI Tingley, Morgan W/0000-0002-1477-2218; Stillman,
+   Andrew/0000-0001-6692-380X
+SC Zoology; Environmental Sciences & Ecology; Forestry
+SN 0021-8790
+BD Techniques; Ecology; Habitat utilization; Habitat; Terrestrial habitat;
+   Abiotic factors; Physical factors; Land zones; Nearctic region; North
+   America; USA
+DE Picoides arcticus [Ecological techniques / Dynamic occupancy model / ]
+   [Habitat colonization /  / ] [Forest and woodland / Forest / ] [Fire /
+   Wildfire / ] [California /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15411078200
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15409060798
+DT Article
+TI Black-backed woodpecker abundance in the black hills.
+AU Matseur, Elizabeth A. (eamatseur@mail.missouri.edu) 
+   Thompson, Frank R., III
+   Dickerson, Brian E.
+   Rumble, Mark A.
+   Millspaugh, Joshua J.
+SO Journal of Wildlife Management
+VL 82
+IS 5
+PS 1039-1048
+PD Jul 2018
+PY 2018
+LA English
+U1 1
+U2 5
+AB The Black Hills population of black-backed woodpeckers (Picoides
+   arcticus) was petitioned, but deemed not warranted, to be listed as a
+   threatened or endangered species under the Endangered Species Act and
+   more information on their population size in the region is needed. Our
+   objective was to map abundance and provide a population estimate of
+   black-backed woodpeckers in the Black Hills and Bear Lodge Mountains of
+   South Dakota and Wyoming, USA. We conducted 3,666 and 3,384 5-minute
+   point count surveys from late-March to late-June in 2015 and 2016,
+   respectively. We characterized vegetation around each point using
+   geographic information system-derived landscape variables and fit
+   3-level hierarchical time-removal models in R package unmarked using
+   gmultmix. The global abundance model received the most support and
+   included year, latitude, and percent area of green trees, beetle-killed
+   trees, dead trees, 1- to 2-year-old wildfire, 3-year-old wildfire, and
+   4- to 5-year-old wildfire. Points with high percent cover of
+   beetle-killed trees had the greatest density of black-backed
+   woodpeckers, followed by 1- to 2-year-old wildfires. After 4 years,
+   areas burned by wildfire supported lower densities of black-backed
+   woodpeckers than undisturbed forests. Mean density was 0.528birds/km2 in
+   2015 and 0.626birds/km2 in 2016. There were an estimated 2,920 and 3,439
+   black-backed woodpeckers in the Black Hills and Bear Lodge Mountains in
+   2015 and 2016, respectively. We suggest areas with high percent cover of
+   beetle-killed trees may support high densities of black-backed
+   woodpeckers and are important to sustaining populations when the
+   availability of recent (<4 years old) wildfire is declining or scarce.
+   Published 2018. This article is a U.S. Government work and is in the
+   public domain in the USA. We suggest areas with high percent cover of
+   beetle-killed trees may support high densities of black-backed
+   woodpeckers in the Black Hills and Bear Lodge Mountains, South Dakota
+   and Wyoming, 2015-2016, USA. Beetle-killed trees are important to
+   sustaining black-backed woodpecker populations when the availability of
+   recent (<4 years old) wildfire is declining or scarce.
+C1 Matseur, Elizabeth A.; Univ Missouri, Sch Nat Resources, 302 Nat
+   Resources Bldg, Columbia, MO, 65211, USA, USA.
+EM eamatseur@mail.missouri.edu
+SC Biodiversity & Conservation; Zoology; Environmental Sciences & Ecology
+SN 0022-541X
+BD Conservation; Ecology; Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Conservation measures / Management implications / ]
+   [Endangered status /  / ] [Population dynamics / Abundance / ] [South
+   Dakota / Black Hills & Bear Lodge Mountains / ] [Wyoming /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15409060798
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15410069082
+DT Article
+TI The persistence of Black-backed Woodpeckers following delayed salvage
+   logging in the Sierra Nevada.
+AU Tarbill, Gina L. (ginatarbill@fs.fed.us) 
+   White, Angela M.
+   Manley, Patricia N.
+SO Avian Conservation and Ecology
+VL 13
+IS 1
+PS 16
+PD Jun 2018
+PY 2018
+LA English
+U1 2
+U2 6
+AB The Black-backed Woodpecker (Picoides arcticus) is a snag-associated
+   species that colonizes and utilizes patches of burned forests typically
+   within 10 years of fire. Previous research has indicated that salvage
+   logging, the removal of dead and dying trees from burned forests, has a
+   negative effect on nesting densities of Black-backed Woodpeckers. One
+   strategy proposed to ameliorate the impacts of dead tree removal on
+   Black-backed Woodpeckers is to retain patches, or islands, of dense
+   snags within the salvage matrix, but this approach remains largely
+   untested. Following the Angora fire of South Lake Tahoe, CA several snag
+   islands were retained within the larger salvage prescription to conserve
+   habitat for Black-backed Woodpeckers and other snag-associated species.
+   In this observational study, we evaluate whether these snag islands were
+   effective at maintaining Black-backed Woodpecker populations following
+   logging operations that covered 45% of the burned area. We
+   systematically searched the postfire landscape for Black-backed
+   Woodpecker nests for two years before and after salvage operations and
+   compared nesting densities between logged and unlogged areas. Similar to
+   other studies, we found that nest densities at the stand scale declined
+   significantly in areas that were salvage logged, but Black-backed
+   Woodpeckers did nest in both snag islands and in other peripheral
+   unlogged areas, indicating that this approach may help balance habitat
+   for wildlife with management needs at the scale of the fire. In this
+   study, the removal of dead trees, which is usually implemented in the
+   first two years following fire, did not occur until the fourth year,
+   which may have also contributed to the persistence of Black-backed
+   Woodpeckers postlogging.
+C1 Tarbill, Gina L.; 1731 Res Pk Dr, Davis, CA, 95618, USA, USA.
+EM ginatarbill@fs.fed.us
+RI White, Angela/I-6436-2019
+OI White, Angela/0000-0001-7499-7390
+SC Zoology; Forestry; Biodiversity & Conservation; Environmental Sciences &
+   Ecology; Reproductive Biology
+BD Animals and man; Disturbance by man; Commercial activities;
+   Conservation; Conservation measures; Reproduction; Reproductive
+   behaviour; Ecology; Animal constructions; Land zones; Nearctic region;
+   North America; USA
+DE Picoides arcticus [Forestry / Salvage logging / ] [Habitat management / 
+   / ] [Breeding season /  / ] [Nests / Nest density / ] [California / Lake
+   Tahoe / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15410069082
+OA DOAJ Gold
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15405031093
+PM 29414989
+DT Article
+TI Harvesting interacts with climate change to affect future habitat
+   quality of a focal species in eastern Canada's boreal forest.
+AU Tremblay, Junior A. (junior.tremblay@canada.ca) 
+   Boulanger, Yan
+   Cyr, Dominic
+   Taylor, Anthony R.
+   Price, David T.
+   St-Laurent, Martin-Hugues
+SO PLoS ONE
+VL 13
+IS 2
+PS e0191645
+PD Feb 7 2018
+PY 2018
+LA English
+U1 2
+U2 29
+AB Many studies project future bird ranges by relying on correlative
+   species distribution models. Such models do not usually represent
+   important processes explicitly related to climate change and harvesting,
+   which limits their potential for predicting and understanding the future
+   of boreal bird assemblages at the landscape scale. In this study, we
+   attempted to assess the cumulative and specific impacts of both
+   harvesting and climate-induced changes on wildfires and standlevel
+   processes (e.g., reproduction, growth) in the boreal forest of eastern
+   Canada. The projected changes in these landscape-and stand-scale
+   processes (referred to as "drivers of change") were then assessed for
+   their impacts on future habitats and potential productivity of
+   black-backed woodpecker (BBWO; Picoides arcticus), a focal species
+   representative of deadwood and old-growth biodiversity in eastern
+   Canada. Forest attributes were simulated using a forest landscape model,
+   LANDIS-II, and were used to infer future landscape suitability to BBWO
+   under three anthropogenic climate forcing scenarios (RCP 2.6, RCP 4.5
+   and RCP 8.5), compared to the historical baseline. We found climate
+   change is likely to be detrimental for BBWO, with up to 92% decline in
+   potential productivity under the worst-case climate forcing scenario
+   (RCP 8.5). However, large declines were also projected under baseline
+   climate, underlining the importance of harvest in determining future
+   BBWO productivity. Present-day harvesting practices were the single most
+   important cause of declining areas of old-growth coniferous forest, and
+   hence appeared as the single most important driver of future BBWO
+   productivity, regardless of the climate scenario. Climate-induced
+   increases in fire activity would further promote young, deciduous stands
+   at the expense of old-growth coniferous stands. This suggests that the
+   biodiversity associated with deadwood and old-growth boreal forests may
+   be greatly altered by the cumulative impacts of natural and
+   anthropogenic disturbances under a changing climate. Management
+   adaptations, including reduced harvesting levels and strategies to
+   promote coniferous species content, may help mitigate these cumulative
+   impacts.
+C1 Tremblay, Junior A.; Environm & Climate Change Canada, Sci & Technol
+   Branch, Quebec City, PQ, Canada, Canada.
+EM junior.tremblay@canada.ca
+OI Tremblay, Junior A./0000-0003-4930-0939
+SC Biodiversity & Conservation; Zoology; Environmental Sciences & Ecology;
+   Forestry; Meteorology & Atmospheric Sciences
+SN 1932-6203
+BD Conservation; Conservation measures; Ecology; Habitat; Terrestrial
+   habitat; Abiotic factors; Physical factors; Land zones; Nearctic region;
+   North America; Canada
+DE Picoides arcticus [Habitat management /  / ] [Productivity /  / ]
+   [Forest and woodland / Boreal forest / ] [Climate and weather / Climate
+   change / ] [Fire /  / ] [Spatial environment /  / ] [Quebec / Center /
+   ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15405031093
+OA DOAJ Gold, Green Published
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15509058565
+DT Article
+TI Phloem sap in fire-damaged Scots pine trees provides instant foraging
+   opportunities for Three-toed Woodpeckers Picoides tridactylus.
+AU Pakkala, Timo (timo.pakkala@hotmail.fi) 
+   Kouki, Jari
+   Piha, Markus
+   Tiainen, Juha
+SO Ornis Svecica
+VL 27
+IS 2-4
+PS 144-149
+PD 2017
+PY 2017
+LA English
+U1 0
+U2 0
+AB Three-toed Woodpeckers Picoides tridactylus are known to use phloem sap
+   of conifer trees as a food resource mostly in springtime. A local pair
+   instantly began to forage sap of Scots pine Pinus sylvestris trees that
+   were damaged in a prescribed forest burning; before the fire they had
+   used phloem sap elsewhere in their territory. During three weeks after
+   the fire, the pair intensively used sap of Scots pines which were
+   exposed to fire. The woodpeckers were probably attracted by nutrients
+   induced by damage reaction of the burned pines. Rapid sap use of newly
+   burned trees has not been described before, and it indicates behavioural
+   plasticity how this woodpecker species can use resources in disturbance
+   driven, dynamic forest environments.
+C1 Pakkala, Timo; Univ Helsinki, Lammi Biol Stn, Lammi, FI-16900, Finland,
+   Finland.
+EM timo.pakkala@hotmail.fi
+OI Piha, Markus/0000-0002-8482-6162
+SC Nutrition & Dietetics; Zoology; Evolutionary Biology; Environmental
+   Sciences & Ecology
+SN 1102-6812
+BD Nutrition; Diet; Feeding behaviour; Evolution; Variation; Abiotic
+   factors; Physical factors; Land zones; Palaearctic region; Eurasia;
+   Europe
+DE Picoides tridactylus [Food plants / Pinus sylvestris / Sap feeding]
+   [Foraging /  / ] [Behavioural variation / Behavioural plasticity / ]
+   [Fire /  / ] [Finland / South / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR15509058565
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15312083759
+DT Article
+TI Transferability of habitat suitability models for nesting woodpeckers
+   associated with wildfire.
+AU Latif, Quresh S. (qlatif@fs.fed.us) 
+   Saab, Victoria A.
+   Hollenbeck, Jeff P.
+   Dudley, Jonathan G.
+SO Condor
+VL 118
+IS 4
+PS 766-790
+PD Nov 2016
+PY 2016
+LA English
+U1 0
+U2 5
+AB Following wildfire, forest managers are challenged with meeting both
+   socioeconomic demands (e.g., salvage logging) and mandates requiring
+   habitat conservation for disturbance-associated wildlife (e.g.,
+   woodpeckers). Habitat suitability models for nesting woodpeckers can be
+   informative, but tests of model transferability are needed to understand
+   how broadly models developed at one location can be applied to inform
+   post-fire forest management at other locations. We developed habitat
+   suitability models and tested their transferability for 2
+   disturbance-associated woodpecker species, Black-backed (Picoides
+   arcticus) and Lewis's (Melanerpes lewis) woodpecker. Habitat suitability
+   models consisted of weighted logistic regression models comparing
+   environmental conditions at nest versus non-nest sites. We developed
+   models at each of 3 wildfire locations in Washington, Oregon, and Idaho,
+   and then examined predictive performance for each model at alternate
+   ("application") locations. Models generally discriminated nest from
+   non-nest sites well at locations where they were developed but
+   performance was variable at application locations, indicating limited
+   transferability. Models for Black-backed Woodpecker and those that
+   included field-collected environmental covariates exhibited greater
+   transferability than models for Lewis's Woodpecker and those that only
+   included remotely sensed covariates. Transferability was also generally
+   poor between Oregon and the other 2 locations. Limitations to model
+   transferability observed in this study suggest models developed at any
+   one wildfire location are unlikely to be generally applicable across the
+   entire range of Black-backed and Lewis's woodpeckers. Generally
+   applicable models to inform post-fire forest management will therefore
+   likely require integration of data from multiple wildfire locations.
+C1 Latif, Quresh S.; US Forest Serv, Rocky Mt Res Stn, Bozeman, MT, 59718,
+   USA, USA.
+EM qlatif@fs.fed.us
+SC Zoology; Biodiversity & Conservation; Environmental Sciences & Ecology;
+   Reproductive Biology; Forestry
+SN 0010-5422
+BD Conservation; Conservation measures; Techniques; Reproduction;
+   Reproductive behaviour; Habitat; Terrestrial habitat; Abiotic factors;
+   Land zones; Nearctic region; North America; USA
+DE Melanerpes lewisis; Picoides arcticus [Habitat management / Forest
+   management / ] [Ecological techniques / Habitat suitability model / ]
+   [Breeding site / Nest site / ] [Forest and woodland /  / ] [Abiotic
+   factors / Environmental conditions / ] [Idaho /  / ] [Oregon /  / ]
+   [Washington /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Melanerpes lewisis (Picidae). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15312083759
+OA Bronze
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15212078858
+DT Article
+TI Resource Selection by Black-backed Woodpeckers (Picoides arcticus) and
+   American Three-toed Woodpeckers (P. dorsalis) in South Dakota and
+   Wyoming.
+AU Mohren, Sean R.
+   Rumble, Mark A.
+   Lehman, Chadwick P.
+   Anderson, Stanley H.
+SO Prairie Naturalist
+VL 48
+IS 1
+PS 21-29
+PD Jun 2016
+PY 2016
+LA English
+U1 0
+U2 1
+AB Black-backed woodpeckers (Picoides arcticus, (BBWO)) and American
+   three-toed woodpeckers (P. dorsalis, (ATTW)) are uncommon inhabitants of
+   conifer forests and are sympatric in some areas, including the Black
+   Hills. Both species exhibit genetic characteristics associated with
+   isolated populations, are species of special management concern, and for
+   which data are lacking concerning populations and habitats. We developed
+   resource selection models of forest vegetation within 500 m radius plots
+   (78.5 ha) for BBWOs and ATTWs to provide forest managers with
+   stand-level information to estimate how forest management might affect
+   habitat for these species in the Black Hills. Relative probability of
+   selection by BBWOs increased with greater area of ponderosa pine (Pinus
+   ponderosa) stands 41-70% overstory canopy cover up to approximately 20%
+   (16 ha) of the surrounding area then declined when these stands
+   comprised greater than 20% of the area. Relative probability of
+   selection by ATTWs increased with greater area of white spruce (Picea
+   glauca) up to a maximum of approximately 66% (50 ha) of the surrounding
+   area and subsequently declined when white spruce comprised greater than
+   66% of the surrounding area. Increased area of aspen (Populus
+   temuloides) stands increased the relative probability of selection by
+   ATTWs. During a period when the Black Hills lacked extensive disturbance
+   from fire or insect infestation, BBWPs selected areas that were managed
+   for moderate overstory canopy of ponderosa pine and ATTWs selected
+   stands with large diameter spruce and aspen at the higher elevations
+   that were not extensively harvested.
+C1 Mohren, Sean R.; Univ Wyoming, Wyoming Cooperat Fish & Wildlife Res
+   Unit, Laramie, WY, 82071, USA, USA.
+SC Environmental Sciences & Ecology; Biodiversity & Conservation; Zoology;
+   Forestry
+SN 0091-0376
+BD Conservation; Conservation measures; Techniques; Habitat; Terrestrial
+   habitat; Land zones; Nearctic region; North America; USA
+DE Picoides arcticus; Picoides dorsalis [Habitat management / Forest
+   management / ] [Ecological techniques / Resource selection models / ]
+   [Forest and woodland /  / ] [South Dakota / Southwest / ] [Wyoming /
+   Northeast / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides dorsalis (Picidae). 
+UT ZOOREC:ZOOR15212078858
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15210064211
+DT Article
+TI An integrated occupancy and space-usemodel to predict abundance of
+   imperfectly detected, territorial vertebrates.
+AU Tingley, Morgan W. (morgan.tingley@uconn.edu) 
+   Wilkerson, Robert L.
+   Howell, Christine A.
+   Siegel, Rodney B.
+SO Methods in Ecology and Evolution
+VL 7
+IS 5
+PS 508-517
+PD May 2016
+PY 2016
+LA English
+U1 0
+U2 30
+AB 1. It is often highly desirable to know not only where species are
+   likely to occur (i.e. occupancy) but also how many individuals are
+   supported by a given habitat (i.e. density). For many animals, occupancy
+   and density may be determined by distinct ecological processes. 2. Here
+   we develop a novel abundance model as the product of landscape-scale
+   occupancy probability and habitat-scale density given occupancy. One can
+   conceptualize our model as fully packing a landscape with home ranges or
+   territories based on habitat quality, and then subtracting territories
+   based on a probabilistic process that accounts for the fact that species
+   rarely exhibit full occupancy across heterogeneous landscapes. The model
+   is designed to predict abundance at fine spatial scales, using
+   resolutions equal to or smaller than a single home range or territory.
+   3. We demonstrate this model on the Black-backed Woodpecker (Picoides
+   arcticus), a species of management concern linked to post-fire forests.
+   Occupancy is derived from a regional monitoring effort, while density
+   given occupancy comes from a telemetry study of variation in territory
+   size. A Bayesian framework is used to combine independent occupancy and
+   home-range size models and predict abundance of Black-backed Woodpeckers
+   at 4 fires that burned in 2012 or 2013. Predictions are evaluated with
+   independently collected survey data, showing that the model is
+   successful at predicting both absolute abundance at fires as well as
+   relative abundance within and among fires. 4. The conceptual model
+   presents a promising new framework for fine-scale modelling of density
+   and abundance for other territorial yet elusive species. Telemetry and
+   occupancy data are widely collected for many species, but rarely
+   utilized in combination, and the ecological exploration of the factors
+   that determine occurrence versus home-range size may provide useful
+   biological insight. As applied to the Black-backed Woodpecker, the model
+   provides a tool for resource managers to explore trade-offs in retaining
+   burned forest habitat versus managing for other post-fire goals, such as
+   salvage logging or reforestation efforts that require snag removal.
+C1 Tingley, Morgan W.; Univ Connecticut, Ecol & Evolutionary Biol, 75 N
+   Eagleville Rd,Unit 3043, Storrs, CT, 06269, USA, USA.
+EM morgan.tingley@uconn.edu
+RI Tingley, Morgan W/F-8519-2011
+OI Tingley, Morgan W/0000-0002-1477-2218
+SC Environmental Sciences & Ecology; Zoology; Biodiversity & Conservation;
+   Behavioral Sciences; Forestry
+BD Conservation; Conservation measures; Techniques; Behaviour; Ecology;
+   Population dynamics; Habitat; Terrestrial habitat; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Habitat management /  / ] [Ecological techniques /
+   Bayesian model / ] [Home range /  / ] [Population density / Abundance /
+   ] [Forest and woodland / Forest / ] [Fire /  / ] [California /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15210064211
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15307039102
+DT Article
+TI [Halleskogsbrannan. Woodpecker invasion favoured by fire.]
+FT Halleskogsbrannan Hackspettsinvasion gynnas av branden.
+AU Waara, Lennart
+   Waara, Roland
+   Westman, Erik
+   Larsson, Soeren
+SO Var Fagelvarld
+VL 4
+PS 52-53
+PD 2016
+PY 2016
+LA Swedish
+U1 0
+U2 0
+SC Environmental Sciences & Ecology; Zoology; Forestry
+SN 0042-2649
+BD Ecology; Habitat utilization; Habitat; Terrestrial habitat; Abiotic
+   factors; Physical factors; Land zones; Palaearctic region; Eurasia;
+   Europe
+DE Dryocopus martius; Picoides tridactylus [Population dynamics /
+   Population reestablishment / ] [Habitat colonization /  / ] [Forest and
+   woodland / Forest / ] [Fire / Burnt areas / ] [Sweden / Vastmanland,
+   Halleskogsbrannan / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Dryocopus martius (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR15307039102
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15212077071
+DT Article
+TI Parental care by Black-backed Woodpeckers in burned and unburned
+   habitats of eastern Canada.
+AU Tremblay, Junior A. (Junior.Tremblay@canada.ca) 
+   Ibarzabal, Jacques
+   Saulnier, Marie-Christine
+   Wilson, Scott
+SO Ornis Hungarica
+VL 24
+IS 1
+PS 69-80
+PD 2016
+PY 2016
+LA English
+U1 0
+U2 1
+AB Nest care is an important parental contribution to offspring. In
+   woodpeckers, males often have an equal or greater contribution to
+   parental care, including nest sanitation. The Black-backed Woodpecker
+   (Picoides arcticus) is a North American boreal woodpecker for which both
+   parents are highly involved in parental care. By modifying their
+   territory size in optimal and suboptimal habitat (e.g. burned vs
+   unburned habitats), this species seems to have a large tolerance to
+   variation in prey abundance at a landscape scale, and could provide a
+   useful biological model to investigate the adaptability of parent care,
+   particularly to relative contribution of each sex. We investigated sex-
+   and habitat-specific parental care behaviour of Black-backed Woodpeckers
+   at 9 nests by daily monitoring during the nestling period. Specifically,
+   we examined two different aspects of parental care: 1) time spent at the
+   nest, and 2) food delivery. We also compared relative contribution
+   between sexes to nest sanitation. Despite our small sample sizes, our
+   results show that males are more involved in nest sanitation and spend
+   longer at the nest, and both sexes exhibit higher food delivery rates
+   and spend less time at the nest in burned habitat. This latter result
+   may suggest that greater effort is needed to provision Black-backed
+   Wood-pecker nestlings in unburned habitat compared to burned habitat.
+C1 Tremblay, Junior A.; Environm & Climate Change Canada, Sci & Technol
+   Branch, Quebec City, PQ, Canada, Canada.
+EM Junior.Tremblay@canada.ca
+OI Tremblay, Junior A./0000-0003-4930-0939
+SC Nutrition & Dietetics; Zoology; Reproductive Biology; Environmental
+   Sciences & Ecology
+SN 1215-1610
+BD Nutrition; Reproduction; Reproductive behaviour; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America; Canada
+DE Picoides arcticus [Food availability /  / ] [Sex differences /  / ]
+   [Parental care / Nest sanitation & time spent in nest / ] [Spatial
+   environment / Burnt & unburnt landscapes / ] [Quebec /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15212077071
+OA Other Gold
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15209054472
+DT Article
+TI Age structure of Black-backed Woodpecker populations in burned forests.
+AU Siegel, Rodney B. (rsiegel@birdpop.org) 
+   Tingley, Morgan W.
+   Wilkerson, Robert L.
+   Howell, Christine A.
+   Johnson, Matthew
+   Pyle, Peter
+SO Auk
+VL 133
+IS 1
+PS 69-78
+PD Jan 2016
+PY 2016
+LA English
+U1 2
+U2 27
+AB Population age structure is important for understanding population
+   dynamics, but can be difficult to resolve in landbirds due to the
+   limited number of age classes discernible by examining plumage. In
+   forests of western North America, Black-backed Woodpeckers (Picoides
+   articus) typically colonize burned areas shortly after fire, but
+   densities decline within 6-10 yr. This pattern is often assumed to
+   result from adult Black-backed Woodpeckers abandoning territories when
+   food resources wane, yet long-distance breeding dispersal is relatively
+   rare in birds, whereas longdistance natal dispersal is more common. To
+   determine whether colonization of newly burned areas is driven primarily
+   by breeding dispersal of adults or natal dispersal by young birds, we
+   captured 57 adult Black-backed Woodpeckers in 6 burned areas in
+   California between 1 and 8 yr after fire. We used patterns of multiple
+   feather generations retained among primary coverts, secondaries, and
+   secondary coverts to assign birds to 1 of 5 age classes (second-,
+   third-, and fourth-calendar-year; after-third-calendar-year; and
+   after-fourth-calendar-year). Population age structure varied
+   dramatically across burned areas, with a preponderance of
+   second-calendar-year birds in the 1 yr and 2 yr postfire areas, and a
+   preponderance of birds at least 3 yr old in the older postfire areas.
+   Poisson generalized linear mixed models (GLMMs) revealed that the effect
+   of years since fire on woodpecker age was highly significant (z = 3.575,
+   P < 0.001). Our results indicate that natal dispersal is the primary
+   means by which Black-backed Woodpeckers colonize recently burned areas
+   in western forests, and that breeding dispersal is uncommon. The decline
+   of Black-backed Woodpecker populations 6-10 yr after fire likely
+   reflects the lifespan of individual birds that colonized the burned
+   area, or of offspring that they produced in the early postfire years.
+   Our discrimination of Black-backed Woodpeckers into 5 age classes
+   confirms previous suppositions about plumage-based age determination in
+   woodpeckers, and is likely applicable to other woodpecker species.
+C1 Siegel, Rodney B.; Inst Bird Populat, Point Reyes Stn, CA, USA, USA.
+EM rsiegel@birdpop.org
+RI Tingley, Morgan W/F-8519-2011
+OI Tingley, Morgan W/0000-0002-1477-2218
+SC Zoology; Reproductive Biology; Environmental Sciences & Ecology;
+   Forestry
+SN 0004-8038
+BD Reproduction; Ecology; Population dynamics; Population structure;
+   Habitat utilization; Habitat; Terrestrial habitat; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America; USA
+DE Picoides articus [Reproductive behaviour / Breeding dispersal / ] [Age
+   class distribution / Age structure / ] [Distribution within habitat /  /
+   ] [Habitat colonization /  / ] [Forest and woodland / Forest / ] [Fire /
+    / ] [California /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides articus (Picidae). 
+UT ZOOREC:ZOOR15209054472
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15204025400
+DT Article
+TI WOODPECKER FORAGE AVAILABILITY IN HABITAT DISTURBANCES OF THE BLACK
+   HILLS.
+AU Dickerson, Brian E. (bedickerson@fs.fed.us) 
+   Ambourn, Angie K.
+   Rumble, Mark A.
+   Allen, Kurt K.
+   Lehman, Chad P.
+SO Prairie Naturalist
+VL 47
+IS 2
+PS 110-114
+PD Dec 2015
+PY 2015
+LA English
+U1 0
+U2 0
+C1 Dickerson, Brian E.; US Forest Serv, Rocky Mt Res Stn, 8221 South
+   Highway 16, Rapid City, SD, 57702, USA, USA.
+EM bedickerson@fs.fed.us
+SC Environmental Sciences & Ecology; Zoology; Entomology; Nutrition &
+   Dietetics
+SN 0091-0376
+BD Nutrition; Diet; Prey; Feeding behaviour; Ecology; Predators; Habitat;
+   Abiotic factors; Physical factors; Land zones; Australasian region;
+   Australasia; Australia
+DE Coleoptera [Avian predators / Picoides arcticus / Prey availability]
+   [Habitat /  / ] [South Australia / Black Hill / ]. 
+   Picoides arcticus [Insect prey / Coleoptera / Prey availability]
+   [Foraging /  / ] [Habitat /  / ] [Fire / Wildfire / ] [South Australia /
+   Black Hill / ]. 
+TN Arthropods; Beetles; Birds; Chordates; Insects; Invertebrates;
+   Vertebrates
+ST Animalia, Arthropoda, Insecta, Chordata, Vertebrata, Aves, Piciformes,
+   Picidae
+OR Coleoptera (Insecta): [Prey]. 
+   Picoides arcticus (Picidae): [Predator]. 
+UT ZOOREC:ZOOR15204025400
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15106042893
+DT Article
+TI How important is dead wood for woodpeckers foraging in eastern North
+   American boreal forests?
+AU Nappi, Antoine (antoine.nappi@fec.gouv.qc.ca) 
+   Drapeau, Pierre
+   Leduc, Alain
+SO Forest Ecology and Management
+VL 346
+PS 10-21
+PD Jun 15 2015
+PY 2015
+LA English
+U1 11
+U2 105
+AB Dead and decaying trees may be a limited resource for woodpeckers in
+   managed forests, especially for species that rely on dead wood for
+   nesting and foraging. Whereas recent nest web studies greatly increased
+   our understanding of nest tree use by woodpeckers, knowledge on
+   woodpeckers foraging requirements is much less developed. We quantified
+   and compared tree selection patterns and foraging behavior of six
+   bark-foraging woodpeckers downy woodpecker (Picoides pubescens), hairy
+   woodpecker (Picoides villosus), American three-toed woodpecker (Picoides
+   dorsalis), black-backed woodpecker (Picoides arcticus), yellow-bellied
+   sapsucker (Sphyropicus varius) and pileated woodpecker (Dryocopus
+   pileatus) that co-occur in eastern boreal forests of North America. A
+   total of 271 observation bouts and more than 600 foraging trees were
+   recorded at three study sites characterized as mixedwood, conifer, and
+   burn. Our results show that dead wood represents an important foraging
+   substrate for most bark-foraging woodpeckers in Canadian eastern boreal
+   forests. However, significant differences in individual species were
+   found with regard to substrate use patterns, foraging behavior and
+   associated prey. Woodpeckers were categorized according to their
+   selection for specific stages of tree degradation, with the
+   yellow-bellied sapsucker and the pileated woodpecker representing
+   opposite ends of this gradient. The black-backed woodpecker showed the
+   highest use of dead wood and was very specific in its tree selection by
+   using mostly recently dead trees. We emphasize that providing foraging
+   substrates for most woodpecker species not only requires maintaining
+   dead wood but also paying heed to the underlying dynamics of dead wood
+   (e.g. recruitment and degradation) in managed boreal forest landscapes.
+   (C) 2015 Elsevier B.V. All rights reserved.
+C1 Nappi, Antoine; Bur Forestier Chef, 845 Blvd St Joseph, Roberval, PQ,
+   G8H 2L6, Canada, Canada.
+EM antoine.nappi@fec.gouv.qc.ca
+SC Nutrition & Dietetics; Zoology; Forestry
+SN 0378-1127
+BD Nutrition; Feeding behaviour; Habitat; Terrestrial habitat; Land zones;
+   Nearctic region; North America; Canada
+DE Dryocopus pileatus; Picoides arcticus; Picoides dorsalis; Picoides
+   pubescens; Picoides villosus; Sphyrapicus varius [Food preferences /
+   Foraging tree selection / comparative study; co-occurrence] [Foraging /
+   Foraging ecology / ] [Forest and woodland / Boreal forest / ] [Ontario /
+   Clay Belt, north / ] [Quebec /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Dryocopus pileatus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides dorsalis (Picidae). 
+   Picoides pubescens (Picidae). 
+   Picoides villosus (Picidae). 
+   Sphyrapicus varius (Picidae). 
+UT ZOOREC:ZOOR15106042893
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15108054520
+DT Article
+TI Drill, baby, drill: the influence of woodpeckers on post-fire vertebrate
+   communities through cavity excavation.
+AU Tarbill, G.L. (gtarbill@gmail.com) 
+   Manley, P.N.
+   White, A.M.
+SO Journal of Zoology (London)
+VL 296
+IS 2
+PS 95-103
+PD Jun 2015
+PY 2015
+LA English
+U1 3
+U2 51
+AB Several studies have addressed the importance of woodpeckers as
+   ecological engineers in forests due to their excavation of cavities.
+   Although research in green, unburned forests has identified the
+   influence of different excavators on secondary use by cavity-dependent
+   species, little is known about the relative importance of cavities
+   created by woodpeckers in recently burned forests. By excavating
+   cavities, woodpeckers create habitat for secondary cavity users that can
+   facilitate post-fire regeneration through seed dispersal, seed
+   germination and regulation of insect populations that affect vegetative
+   growth. In this study, we monitored 77 cavities created by three species
+   of Picoides woodpeckers for use by secondary cavity species in a fire
+   that burned in the Sierra Nevada, California. At each cavity we measured
+   nest tree and site-specific parameters to determine if these
+   characteristics could explain differential use by secondary cavity
+   users. We found substantial overlap in cavity characteristics between
+   woodpecker species, with the white-headed woodpecker differing most
+   notably in their placement of cavities in larger diameter, shorter and
+   more decayed trees in less dense stands than either hairy or
+   black-backed woodpeckers. These differences in cavity placement may have
+   resulted in the high diversity and large number of detections of
+   secondary cavity species in white-headed woodpecker cavities.
+   Black-backed and hairy woodpeckers were similar in the number of
+   detections of secondary cavity use, although black-backed woodpecker
+   cavities were used by more species than hairy woodpecker cavities.
+   Secondary cavity use was high (86%) suggesting these woodpeckers, and
+   the white-headed woodpecker in particular, can have an accelerating
+   affect effect on ecological succession by providing valuable habitat
+   features for seed dispersing birds and mammals, insectivorous birds, and
+   small predators, thereby impacting ecological processes and functions.
+C1 Tarbill, G.L.; US Forest Serv, Pacific Southwest Res Stn, 1731 Res Pk
+   Dr, Davis, CA, 95616, USA, USA.
+EM gtarbill@gmail.com
+RI White, Angela/I-6436-2019
+OI White, Angela/0000-0001-7499-7390
+SC Zoology; Environmental Sciences & Ecology; Forestry
+SN 0952-8369
+BD Ecology; Animal constructions; Habitat; Terrestrial habitat; Land zones;
+   Nearctic region; North America; USA
+DE Picoides albolarvatus; Picoides arcticus; Picoides villosus [Nests /  /
+   Comparative study; cavity excavation] [Forest and woodland / Forest / ]
+   [California /  / ]. 
+   Vertebrata [Habitat utilization /  / ] [Forest and woodland / Tree
+   cavity habitat / ] [California /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Vertebrata (Chordata). 
+   Picoides albolarvatus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides villosus (Picidae). 
+UT ZOOREC:ZOOR15108054520
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15108054081
+DT Article
+TI Apparent foraging success reflects habitat quality in an irruptive
+   species, the Black-backed Woodpecker.
+AU Rota, Christopher T. (rotact@missouri.edu) 
+   Rumble, Mark A.
+   Lehman, Chad P.
+   Kesler, Dylan C.
+   Millspaugh, Joshua J.
+SO Condor
+VL 117
+IS 2
+PS 178-191
+PD May 2015
+PY 2015
+LA English
+U1 0
+U2 23
+AB Dramatic fluctuations in food resources are a key feature of many
+   habitats, and many species have evolved a movement strategy to exploit
+   food resources that are unpredictable in space and time. The
+   availability of food resources may be a particularly strong determinant
+   of habitat quality for irruptive bird species. We studied the apparent
+   foraging success of Black-backed Woodpeckers (Picoides arcticus), an
+   irruptive species that responds opportunistically to pulsed food
+   resources in burned forests and mountain pine beetle (MPB) infestations.
+   Prior investigations revealed that the highest population growth rates
+   of Black-backed Woodpeckers occurred in habitat created by summer
+   wildfire, with intermediate population growth rates in MPB infestations,
+   and the lowest population growth rates in habitats created by prescribed
+   fire in fall. We tested whether apparent foraging success was associated
+   with known habitat quality in order to assess the potential for food
+   availability to regulate population growth. We counted the number of
+   successfully captured wood-boring beetle larvae and "small'' prey on
+   each tree that a Black-backed Woodpecker used for foraging and modeled
+   these counts as a function of habitat, tree diameter, number of years
+   postfire, and tree disturbance category. Total apparent foraging success
+   (the sum of observed captures of wood-boring beetle larvae and small
+   prey per tree) did not vary across habitats, but woodpeckers foraging in
+   habitats created by summer wildfire were expected to capture 2.2 and 2.0
+   times more wood-boring beetles than woodpeckers foraging in habitats
+   created by fall prescribed fire and MPB infestations, respectively.
+   These results suggest that the availability of food resources may
+   contribute to population regulation in this irruptive species.
+   Furthermore, population growth in irruptive species may be highly
+   sensitive to the availability of preferred food resources. Forests
+   recently burned by summer wildfires provide relatively abundant food
+   resources for Black-backed Woodpeckers and represent high-quality
+   habitat for this species of conservation concern.
+C1 Rota, Christopher T.; Univ Missouri, Dept Fisheries & Wildlife Sci,
+   Columbia, MO, 65211, USA, USA.
+EM rotact@missouri.edu
+RI Rota, Christopher/H-5189-2019
+OI Rota, Christopher/0000-0001-9272-4687
+SC Nutrition & Dietetics; Zoology; Environmental Sciences & Ecology
+SN 0010-5422
+BD Nutrition; Diet; Feeding behaviour; Ecology; Habitat; Land zones;
+   Nearctic region; North America; USA
+DE Picoides arcticus [Prey /  / ] [Food availability /  / ] [Foraging /
+   Foraging success / ] [Population dynamics / Population growth rate / ]
+   [Habitat /  / ] [South Dakota / Black Hills / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae): [Predator]. 
+UT ZOOREC:ZOOR15108054081
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15210063635
+DT Article
+TI Contribution of unburned boreal forests to the population of
+   black-backed woodpecker in eastern Canada.
+AU Tremblay, Junior A. (junior.tremblay@canada.ca) 
+   Ibarzabal, Jacques
+   Savard, Jean-Pierre L.
+SO Ecoscience
+VL 22
+IS 2-4
+PS 145-155
+PD 2015
+PY 2015
+LA English
+U1 0
+U2 10
+AB Black-backed woodpecker is known to be a disturbance-associated species,
+   being more abundant in disturbed forest stands than in undisturbed
+   habitats, but its demography and population dynamic still need to be
+   clarified. The present study was conducted in central Quebec within
+   coniferous forests shaped largely by timber harvest and wildfire. The
+   objectives were to compare the age composition of breeding black-backed
+   woodpeckers, nest survival rate and productivity in both disturbed and
+   undisturbed habitats (respectively recently burned and unburned
+   habitats). In addition, we evaluated the general productivity of both
+   habitat types in a simulated boreal landscape. There was a positive
+   relationship between nest age and daily survival rates. Older
+   woodpeckers were the most abundant breeders in unburned habitats and
+   younger birds in one-year-old burns. Although nests in recently burned
+   forests produced more nestlings per successful nest, our simulation of a
+   boreal forest landscape showed that unburned habitat produced about
+   two-thirds more fledglings per year than burned habitat. Globally,
+   unburned habitat may provide woodpeckers more temporally stable
+   resources. Population dynamics of the black-backed woodpecker, at least
+   in our study area, may be explained by resource pulse interactions where
+   populations benefit opportunistically from short-term high-quality
+   habitat, and rely on unburned habitats for long-term persistence.
+C1 Tremblay, Junior A.; Univ Quebec, Dept Sci Fondamentales, Chicoutimi,
+   PQ, Canada, Canada.
+EM junior.tremblay@canada.ca
+OI Tremblay, Junior A./0000-0003-4930-0939
+SC Zoology; Reproductive Biology; Environmental Sciences & Ecology;
+   Forestry
+SN 1195-6860
+BD Reproduction; Ecology; Habitat; Terrestrial habitat; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America; Canada
+DE Picoides arcticus [Reproductive productivity / Productivity / first
+   report] [Population dynamics /  / ] [Forest and woodland / Boreal forest
+   / ] [Fire /  / ] [Quebec / Central / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15210063635
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15103019301
+DT Article
+TI Density and Abundance of Black-Backed Woodpeckers in a Ponderosa Pine
+   Ecosystem.
+AU Mohren, Sean R.
+   Rumble, Mark A. (mrumble@fs.fed.us) 
+   Anderson, Stanley H.
+SO Prairie Naturalist
+VL 46
+IS 2
+PS 62-69
+PD Dec 2014
+PY 2014
+LA English
+U1 0
+U2 0
+AB Black-backed woodpeckers (Picoides arcticus) are usually associated with
+   forest disturbance resulting in recently killed trees. While
+   black-backed woodpeckers are attracted to areas affected by these
+   disturbances, in the Black Hills they exist during interim disturbance
+   periods in largely undisturbed forests. In 2012, a petition for listing
+   black-backed woodpeckers in the Black Hills as a distinct population
+   segment identified current population size and the population size
+   necessary to minimize risk of extinction as key components of the
+   decision process. Our objective was to estimate the population size of
+   black-backed woodpeckers in the Black Hills National Forest of South
+   Dakota and Wyoming during a period of relatively low disturbance (e.g.,
+   2000-2001). The estimated population was 641 (95% CI = 405-990) and 456
+   (95% CI = 293-705) breeding pairs in 2000 and 2001, respectively. The
+   average density of 0.12/km2 (95% CI = 0.07-0.18) was similar to
+   densities in other undisturbed forests. This population estimate
+   provides a starting point for population viability analyses during
+   periods of relatively low disturbance by fire or insects.
+C1 Rumble, Mark A.; US Forest Serv, Rocky Mt Res Stn, 8221 S Highway 16,
+   Rapid City, SD, 57702, USA, USA.
+EM mrumble@fs.fed.us
+SC Forestry; Zoology; Environmental Sciences & Ecology
+SN 0091-0376
+BD Animals and man; Disturbance by man; Commercial activities; Ecology;
+   Habitat; Terrestrial habitat; Land zones; Nearctic region; North
+   America; USA
+DE Picoides arcticus [Forestry /  / ] [Population dynamics / Population
+   abundance / ] [Forest and woodland / Pine forest habitat / ] [South
+   Dakota / Black Hills, north & central / ] [Wyoming /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15103019301
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15011069115
+DT Article
+TI Variation in home-range size of Black-backed Woodpeckers.
+AU Tingley, Morgan W. (morgan.tingley@uconn.edu) 
+   Wilkerson, Robert L.
+   Bond, Monica L.
+   Howell, Christine A.
+   Siegel, Rodney B.
+SO Condor
+VL 116
+IS 3
+PS 325-340
+PD Aug 2014
+PY 2014
+LA English
+U1 0
+U2 52
+AB The Black-backed Woodpecker (Picoides arcticus) is a species of
+   conservation concern that is strongly associated with recently burned
+   forests. Black-backed Woodpeckers are known to have variable home-range
+   sizes, yet the ecological factors related to this variation have not
+   been adequately explored and may hold insights into the natural history
+   of the species and the management of its habitat. During 2011 and 2012,
+   we radio-tracked Black-backed Woodpeckers nesting in 3 forested areas of
+   California that burned between 2 and 5 years before the initiation of
+   tracking. Among 15 individuals with robust tracking data, we found that
+   home-range size varied by an order of magnitude, from 24.1 to 304.1 ha,
+   as measured by movement-based kernel estimation. Using an
+   information-theoretic approach, we evaluated the functional relationship
+   between snag basal area an a priori key resource and home-range size,
+   additionally controlling for sex, age, and years since fire as
+   covariates. We found that snag basal area alone best predicted
+   home-range size, explaining 54-62% of observed variation. As snag basal
+   area increased, home-range sizes exponentially decreased. This
+   relationship held true both with and without the inclusion of 3
+   individuals that nested in burned forest yet foraged predominantly
+   outside the fire perimeter in unburned forest. Snag basal area, unlike
+   other potential influences on home-range size, is an attribute that
+   forest managers can directly influence. We describe a quantitative
+   relationship between home-range size and snag basal area that forest
+   managers can use to predict Black-backed Woodpecker pair density in
+   burned forests and assess the likely population consequences of specific
+   harvest treatments. Given that the birds in our study, foraging
+   primarily in burned forest, all had home ranges with
+C1 Tingley, Morgan W.; Princeton Univ, Woodrow Wilson Sch, Princeton, NJ,
+   08544, USA, USA.
+EM morgan.tingley@uconn.edu
+RI Tingley, Morgan W/F-8519-2011; Bond, Monica L/E-3161-2013
+OI Tingley, Morgan W/0000-0002-1477-2218; Bond, Monica
+   L/0000-0001-8500-6564
+SC Biodiversity & Conservation; Environmental Sciences & Ecology; Zoology;
+   Anatomy & Morphology; Nutrition & Dietetics; Behavioral Sciences;
+   Forestry
+SN 0010-5422
+BD Conservation; Conservation measures; Biometrics; Nutrition; Feeding
+   behaviour; Behaviour; Habitat; Terrestrial habitat; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Habitat management / Forest management / model] [Age
+   /  / ] [Foraging /  / ] [Home range / Home range size variation / ]
+   [Forest and woodland / Montane forest / ] [Mountain habitat /  / ] [Fire
+   /  / ] [California / Lassen Volcanic & Plumas National Park / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15011069115
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15011062070
+PM 24736502
+DT Article
+TI The Role of Wildfire, Prescribed Fire, and Mountain Pine Beetle
+   Infestations on the Population Dynamics of Black-Backed Woodpeckers in
+   the Black Hills, South Dakota.
+AU Rota, Christopher T. (rotact@missouri.edu) 
+   Millspaugh, Joshua J.
+   Rumble, Mark A.
+   Lehman, Chad P.
+   Kesler, Dylan C.
+SO PLoS ONE
+VL 9
+IS 4
+PS e94700
+PD Apr 15 2014
+PY 2014
+LA English
+U1 0
+U2 45
+AB Wildfire and mountain pine beetle infestations are naturally occurring
+   disturbances in western North American forests. Black-backed woodpeckers
+   (Picoides arcticus) are emblematic of the role these disturbances play
+   in creating wildlife habitat, since they are strongly associated with
+   recently-killed forests. However, management practices aimed at reducing
+   the economic impact of natural disturbances can result in habitat loss
+   for this species. Although black-backed woodpeckers occupy habitats
+   created by wildfire, prescribed fire, and mountain pine beetle
+   infestations, the relative value of these habitats remains unknown. We
+   studied habitat-specific adult and juvenile survival probabilities and
+   reproductive rates between April 2008 and August 2012 in the Black
+   Hills, South Dakota. We estimated habitat-specific adult and juvenile
+   survival probability with Bayesian multi-state models and
+   habitat-specific reproductive success with Bayesian nest survival
+   models. We calculated asymptotic population growth rates from estimated
+   demographic rates with matrix projection models. Adult and juvenile
+   survival and nest success were highest in habitat created by summer
+   wildfire, intermediate in MPB infestations, and lowest in habitat
+   created by fall prescribed fire. Mean posterior distributions of
+   population growth rates indicated growing populations in habitat created
+   by summer wildfire and declining populations in fall prescribed fire and
+   mountain pine beetle infestations. Our finding that population growth
+   rates were positive only in habitat created by summer wildfire
+   underscores the need to maintain early post-wildfire habitat across the
+   landscape. The lower growth rates in fall prescribed fire and MPB
+   infestations may be attributed to differences in predator communities
+   and food resources relative to summer wildfire.
+C1 Rota, Christopher T.; Univ Missouri, Dept Fisheries & Wildlife Sci,
+   Columbia, MO, 65211, USA, USA.
+EM rotact@missouri.edu
+RI Rota, Christopher/H-5189-2019
+OI Rota, Christopher/0000-0001-9272-4687
+SC Zoology; Environmental Sciences & Ecology; Reproductive Biology
+SN 1932-6203
+BD Reproduction; Ecology; Population dynamics; Abiotic factors; Physical
+   factors; Land zones; Nearctic region; North America; USA
+DE Coleoptera [Impact on habitat /  / ] [South Dakota / Black Hills / ]. 
+   Picoides arcticus [Reproduction / Reproduction rate / impact of
+   coleoptera species] [Population dynamics / Population growth rate / ]
+   [Survival /  / ] [Fire / Wildfire & fall prescribed fire / ] [South
+   Dakota / Black Hills / ]. 
+TN Arthropods; Beetles; Birds; Chordates; Insects; Invertebrates;
+   Vertebrates
+ST Animalia, Arthropoda, Insecta, Chordata, Vertebrata, Aves, Piciformes,
+   Picidae
+OR Coleoptera (Insecta). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15011062070
+OA DOAJ Gold, Green Published
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15005027828
+DT Article
+TI Space-use and habitat associations of Black-backed Woodpeckers (Picoides
+   arcticus) occupying recently disturbed forests in the Black Hills, South
+   Dakota.
+AU Rota, Christopher T. (rotact@missouri.edu) 
+   Rumble, Mark A.
+   Millspaugh, Joshua J.
+   Lehman, Chadwick P.
+   Kesler, Dylan C.
+SO Forest Ecology and Management
+VL 313
+PS 161-168
+PD Feb 1 2014
+PY 2014
+LA English
+U1 0
+U2 36
+AB Black-backed Woodpeckers (Picoides arcticus) are a disturbance-dependent
+   species that occupy recently burned forest and mountain pine beetle
+   (MPB) infestations. Forest management practices that reduce the amount
+   of disturbed forest may lead to habitat loss for Black-backed
+   Woodpeckers, which have recently been petitioned for listing under the
+   Endangered Species Act. We studied home range size and resource
+   selection of Black-backed Woodpeckers occupying habitat created by
+   summer wildfire, fall prescribed fire, and MPB infestations in the Black
+   Hills, South Dakota. We studied home range size and resource selection
+   by attaching radio-transmitters to adult Black-backed Woodpeckers. We
+   estimated home range size using fixed kernel density techniques (n = 28
+   in habitat created by summer wildfire, n = 19 in habitat created by fall
+   prescribed fire, and n = 27 in MPB infestations). We evaluated resource
+   selection with a random-effects discrete choice model in a Bayesian
+   framework (n = 5 in habitat created by summer wildfire, n = 16 in
+   habitat created by fall prescribed fire, and n = 8 in habitat created by
+   MPB infestations). Home range size was smallest in 1-2 year post summer
+   wildfire habitat (mean home range size = 79 ha) and 2-year post fall
+   prescribed fire habitat (mean home range size = 143 ha). Home range size
+   was intermediate in MPB infestations (mean home range size = 307 ha) and
+   was greatest in 3-4 year post fire habitat (mean summer wildfire home
+   range size = 430 hectares, mean fall prescribed fire home range size =
+   460 ha). The relative probability that a Black-backed Woodpecker used a
+   tree increased with increasing diameter at breast height (DBH) and basal
+   area and was greatest on disturbance-killed trees. These results suggest
+   1-2 year post summer wildfire habitat may have the greatest relative
+   value to Black-backed Woodpeckers and that MPB infestations may be more
+   important as post-fire habitats age. We recommend retaining patches of
+   1-2 year post summer wildfire habitat that are at least 200 ha by
+   exempting portions of recently burned forest from salvage logging. This
+   recommendation can be accomplished by exempting salvage logging in
+   summer wildfires <200 ha and retaining at least 50% of summer wildfires
+   >400 ha. Ideally, recently burned forest patches should be composed of
+   >=27 m2 basal area/ha of trees that burned at moderate or high severity,
+   with at least 40% of the basal area composed of trees >=27 cm DBH. (C)
+   2013 Elsevier B.V. All rights reserved.
+C1 Rota, Christopher T.; Univ Missouri, Dept Fisheries & Wildlife Sci, 302
+   Anheuser Busch Nat Resources Bldg, Columbia, MO, 65211, USA, USA.
+EM rotact@missouri.edu
+RI Rota, Christopher/H-5189-2019
+OI Rota, Christopher/0000-0001-9272-4687
+SC Behavioral Sciences; Zoology; Environmental Sciences & Ecology; Forestry
+SN 0378-1127
+BD Behaviour; Ecology; Habitat utilization; Habitat; Terrestrial habitat;
+   Abiotic factors; Physical factors; Land zones; Nearctic region; North
+   America; USA
+DE Picoides arcticus [Home range / Home range size / ] [Habitat preference
+   / Resource selection / ] [Forest and woodland / Forest / ] [Fire /
+   Wildfire / ] [Spatial environment / Vegetation characteristics / ]
+   [South Dakota / Black Hills / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15005027828
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15109056553
+DT Article
+TI ROOST SITES OF THE BLACK-BACKED WOODPECKER IN BURNED FOREST.
+AU Siegel, Rodney B. (rsiegel@birdpop.org) 
+   Wilkerson, Robert L.
+   Tingley, Morgan W.
+   Howell, Christine A.
+SO Western Birds
+VL 45
+IS 4
+PS 296-303
+PD 2014
+PY 2014
+LA English
+U1 1
+U2 6
+AB The Black-backed Woodpecker (Picoides arcticus) is strongly associated
+   with recently burned forest, which makes it vulnerable to salvage
+   logging or other post-fire forest management that removes snags. As part
+   of a larger radio-telemetry study of the species' resource use and
+   habitat selection in a burned forest in California, we located
+   radio-tagged Black-backed Woodpeckers at night to find and describe
+   their roost sites. We found 14 unique roost locations during night-time
+   searches for five individual birds. Description of the micro-site on the
+   tree that the bird used was impossible at five roosts where we could not
+   visually locate the bird in the dark. At the nine roosts confirmed
+   visually, none of the birds roosted in excavated cavities. Rather, they
+   roosted in sheltered spaces within burned-out hollows of trunks (5
+   instances), in the crook of a forked trunk (1 instance), wedged between
+   adjacent trunks of two closely spaced trees (1 instance), in a deep,
+   natural bark furrow (1 instance), and clinging to a trunk directly above
+   a horizontal branch (1 instance). Eleven of the 14 roosts (79%) were in
+   dead trees. Our results suggest that in burned forests the Black-backed
+   Woodpecker may benefit if, during salvage logging, emphasis is placed on
+   retaining snags with burned-out hollows, forked trunks, or other
+   relatively unusual structures that may create crevices or other
+   opportunities for shelter.
+C1 Siegel, Rodney B.; Inst Bird Populat, POB 1346, Point Reyes Stn, CA,
+   94956, USA, USA.
+EM rsiegel@birdpop.org
+RI Tingley, Morgan/F-8519-2011
+OI Tingley, Morgan/0000-0002-1477-2218
+SC Zoology; Reproductive Biology; Behavioral Sciences; Environmental
+   Sciences & Ecology; Forestry
+SN 0160-1121
+BD Reproduction; Reproductive behaviour; Behaviour; Activity patterns;
+   Ecology; Habitat utilization; Habitat; Terrestrial habitat
+DE Picoides arcticus [Breeding site / Roost site / ] [Roosting /  / ]
+   [Habitat preference / Habitat selection / ] [Forest and woodland /
+   Burned forest / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15109056553
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15103020649
+DT Article
+TI Occurrence patterns of Black-backed Woodpeckers in green forest of the
+   Sierra Nevada Mountains, California, USA.
+AU Fogg, Alissa M. (afogg@pointblue.org) 
+   Roberts, L. Jay
+   Burnett, Ryan D.
+SO Avian Conservation and Ecology
+VL 9
+IS 2
+PS 3
+PD 2014
+PY 2014
+LA English
+U1 1
+U2 29
+AB Black-backed Woodpeckers (Picoides arcticus) are a rare habitat
+   specialist typically found in moderate and high severity burned forest
+   throughout its range. It also inhabits green forest but little is known
+   about occurrence and habitat use patterns outside of burned areas,
+   especially in the Sierra Nevada of California, USA. We used point count
+   and playback surveys to detect Black-backed Woodpeckers during 2011
+   -2013 on 460 transects on 10 national forest units. We defined green
+   forest as areas that had not burned at moderate or high severity since
+   1991 and were more than 2 km from areas burned at moderate or high
+   severity within the previous eight years (n = 386 transects). We used
+   occupancy models to examine green forest habitat associations and found
+   positive relationships with elevation, latitude, northern aspects,
+   number of snags, tree diameter, lodgepole pine (Pinus contorta) forest,
+   and a negative relationship with slope. Estimated occupancy in green
+   forest was higher than previously understood (0.21). In addition site
+   colonization and extinction probability in green forest were low (0.05
+   and 0.19, respectively) and suggest that many of the individuals
+   detected in green forest were not just actively dispersing across the
+   landscape in search of burned areas, but were occupying relatively
+   stable home ranges. The association with high elevation and lodgepole
+   pine forest may increase their exposure to climate change as these
+   elevation forest types are predicted to decrease in extent over the next
+   century. Although density is high in burned forest, green forest covers
+   significantly more area in the Sierra Nevada and should be considered in
+   efforts to conserve this rare species.
+C1 Fogg, Alissa M.; 3820 Cypress Dr Suite 11, Petaluma, CA, 94954, USA,
+   USA.
+EM afogg@pointblue.org
+SC Zoology; Environmental Sciences & Ecology; Biodiversity & Conservation;
+   Forestry
+BD Conservation; Ecology; Habitat; Terrestrial habitat; Land zones;
+   Nearctic region; North America; USA
+DE Picoides arcticus [Conservation measures /  / occurrence] [Distribution
+   within habitat / Occupancy / ] [Habitat utilization /  / ] [Forest and
+   woodland / Green forest / ] [California / Sierra Nevada / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15103020649
+OA DOAJ Gold
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15110063970
+DT Article
+TI Black-Backed Woodpecker Nest-Tree Preference in Burned Forests of the
+   Sierra Nevada, California.
+AU Seavy, Nathaniel E. (nseavy@prbo.org) 
+   Burnett, Ryan D.
+   Taille, Paul J.
+SO Wildlife Society Bulletin
+VL 36
+IS 4
+PS 722-728
+PD Dec 2012
+PY 2012
+LA English
+U1 1
+U2 15
+AB Black-backed woodpeckers (Picoides arcticus) are well-known to occur at
+   higher densities in recently burned forests than they do in nearby green
+   forests. In the forests of the Sierra Nevada, California, USA, there is
+   relatively little information on the types of nest trees that these
+   birds use in recently burned forests. From 2009 to 2011, we studied
+   nest-tree preference by black-backed woodpeckers in 2 burned forests in
+   the northern Sierra Nevada. For each of 31 nest trees and 389 randomly
+   selected trees, we recorded decay class, diameter at breast height, top
+   condition, and species. We also recorded the number of snags with >23 cm
+   diameter at breast height within an 11.3-m radius of each nest tree and
+   randomly selected tree. We evaluated nest-tree preference by comparing
+   the characteristics of nest trees to randomly selected trees.
+   Black-backed woodpeckers preferred dead but not heavily decayed trees
+   and moderate (29-61 cm dbh) diameter trees. There was no evidence that
+   black-backed woodpeckers had strong preferences for trees with broken
+   tops or trees of particular species. Snag density around nest trees was
+   higher than around randomly selected trees. Our results suggest that in
+   conifer forests of the Sierra Nevada, the distribution of black-backed
+   woodpeckers in post-fire environments is influenced more by surrounding
+   snag densities than by particular characteristics of potential nest
+   trees. [copyright] 2012 The Wildlife Society.
+C1 Seavy, Nathaniel E.; PRBO Conservat Sci, 3820 Cypress Dr 11, Petaluma,
+   CA, 94954, USA, USA.
+EM nseavy@prbo.org
+SC Environmental Sciences & Ecology; Zoology; Forestry
+SN 0091-7648
+BD Ecology; Habitat utilization; Habitat; Terrestrial habitat; Land zones;
+   Nearctic region; North America; USA
+DE Picoides arcticus [Habitat preference /  / ] [Forest and woodland /
+   Burned forests / ] [California / Sierra Nevada / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15110063970
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14809061998
+DT Article
+TI FORAGING-HABITAT SELECTION OF BLACK-BACKED WOODPECKERS IN FOREST BURNS
+   OF SOUTHWESTERN IDAHO.
+AU Dudley, Jonathan G. (jdudley@fs.fed.us) 
+   Saab, Victoria A.
+   Hollenbeck, Jeffrey P.
+SO Condor
+VL 114
+IS 2
+PS 348-357
+PD May 2012
+PY 2012
+LA English
+U1 0
+U2 57
+AB We examined foraging-habitat selection of Black-backed Woodpeckers
+   (Picoides arcticus) in burned forests of southwestern Idaho during 2000
+   and 2002 (6 and 8 years following wildfire). This woodpecker responds
+   positively to large-scale fire disturbances and may be at risk from
+   logging and post-fire management. With 100 radio-locations of four adult
+   males, we used resource-selection probability functions in logistic form
+   in an information-theoretic framework to model the Black-backed
+   Woodpecker's selection of foraging habitat at fine and coarse spatial
+   scales. Fine-scale data included characteristics of the foraging tree
+   (tree level) and local habitat surrounding foraging trees (plot level,
+   0.04 ha), whereas coarse-scale data (224-778 ha) included patch
+   characteristics within home ranges. Model selection by Akaike's
+   information criterion identified a multi-scale model containing tree-
+   and plot-level covariates, and their interaction, as the best model to
+   characterize foraging trees. The positive effect of interaction between
+   foraging-tree diameter and plot-level tree density suggested that
+   foraging Black-backed Woodpeckers select both patches with dense trees
+   and larger-diameter trees. Fire severity was not important, possibly
+   because of the time since fire and the birds' habit of foraging on
+   recently dead trees in adjacent unburned forests. Salvage logging that
+   retains large-diameter trees in clumped distributions is most likely to
+   provide long-term foraging habitat for Black-backed Woodpeckers in dry
+   coniferous forests of the interior western U.S. Following wildfire,
+   conservation of forest patches containing weakened trees may extend the
+   suitability of habitat for foraging Black-backed Woodpeckers by up to 8
+   years.
+C1 Dudley, Jonathan G.; US Forest Serv, USDA, 322 E Front St,Suite 401,
+   Boise, ID 83702, USA, USA.
+EM jdudley@fs.fed.us
+SC Zoology; Forestry; Biodiversity & Conservation; Environmental Sciences &
+   Ecology; Nutrition & Dietetics
+SN 0010-5422
+BD Animals and man; Disturbance by man; Commercial activities;
+   Conservation; Conservation measures; Techniques; Nutrition; Feeding
+   behaviour; Ecology; Habitat utilization; Habitat; Terrestrial habitat
+DE Picoides arcticus [Forestry / Forest management / ] [Habitat management
+   /  / ] [Ecological techniques / Fine &amp; coarse scale modelling / ]
+   [Foraging / Foraging habitat selection / ] [Habitat preference /  / ]
+   [Forest and woodland / Burned forest / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14809061998
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14709064130
+DT Article
+TI High Density Nesting of Black-backed Woodpeckers (Picoides arcticus) in
+   a Post-fire Great Lakes Jack Pine Forest.
+AU Youngman, Joseph A. (murphnj@up.net) 
+   Gayk, Zach G.
+SO Wilson Journal of Ornithology
+VL 123
+IS 2
+PS 381-386
+PD Jun 2011
+PY 2011
+LA English
+U1 0
+U2 14
+AB A stand-replacing fire in 404 ha of jack pine (Pinus banksiana) and
+   mixed pine forest in Michigan's Upper Peninsula in 2007 resulted in
+   Black-backed Woodpeckers (Picoides arcticus) nesting at high density in
+   2008, the second possible nesting season post-fire. Nests were found
+   within a 93-ha study area and a 19-ha stand (a subset of the 93-ha study
+   area) in 199.5 survey hours concentrated in March July. The 19-ha stand
+   had six nests, a density of 0.31 nests/ha or 0.63 individuals/ha, while
+   the 93-ha study area had 20 nests yielding 0.21 nests/ha or 0.42
+   individuals/ha. These nest densities are higher than previously reported
+   in the literature for comparable stands, indicating a large influx of
+   nesting woodpeckers post-fire. High nesting densities in this study may
+   have resulted from: (1) optimal timing of the fire for wood-boring
+   beetle exploitation of burned trees, (2) the discrete nature of burned
+   habitat in the study due to impacts of salvage logging, or (3) our focus
+   on regions of the burn where high nesting densities occurred, as the
+   entire burned area (404 ha) was not included in nest density
+   calculations. Received 23 April 2010. Accepted 28 December 2010.
+C1 Youngman, Joseph A.; 36311 US Highway 41, Chassell, MI, USA, USA.
+EM murphnj@up.net
+SC Reproductive Biology; Zoology; Environmental Sciences & Ecology;
+   Forestry
+SN 1559-4491
+BD Reproduction; Ecology; Population dynamics; Habitat; Terrestrial
+   habitat; Abiotic factors; Physical factors; Land zones; Nearctic region;
+   North America; USA
+DE Picoides arcticus [Reproductive behaviour / Breeding behaviour & nesting
+   behaviour / ] [Population density / Breeding density / ] [Forest and
+   woodland / Jack pine forest / ] [Fire / Postfire / ] [Michigan / Ottawa
+   National Forest / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+DI 10.1676/10-069.1
+UT ZOOREC:ZOOR14709064130
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14709062689
+DT Article
+TI Pre-fire forest conditions and fire severity as determinants of the
+   quality of burned forests for deadwood-dependent species: the case of
+   the black-backed woodpecker.
+AU Nappi, Antoine (antoine.nappi@fec.gouv.qc.ca) 
+   Drapeau, Pierre
+SO Canadian Journal of Forest Research
+VL 41
+IS 5
+PS 994-1003
+PD May 2011
+PY 2011
+LA English
+U1 1
+U2 34
+AB Burned forests represent high-quality habitats for many
+   deadwood-dependent species. Yet, post-fire conditions may vary greatly
+   within and among burns and thereby may affect habitat suitability for
+   these species. We studied habitat selection of nesting black-backed
+   woodpeckers (Picoides arcticus Swainson) in recently burned
+   spruce-dominated boreal forests. Our objectives were to (i) identify
+   factors involved in snag selection for both nesting and foraging and
+   (ii) examine selection of nest sites within the burned landscape. A
+   total of 92 nests and 1612 foraging observations were used to
+   investigate snag selection. Our results show that both pre-fire forest
+   conditions and fire severity are important in determining the quality of
+   burned forests for black-backed woodpeckers. This species selected large
+   snags for both nesting (>20 cm DBH) and foraging (>15 cm DBH).
+   Woodpeckers selected deciduous and degraded "pre-fire" snags for nesting
+   whereas black spruce snags that had been created by fire and that were
+   moderately burned were preferred for foraging. Nest sites were
+   concentrated in burned mature stands and supported higher densities of
+   large snags (e. g., >15 cm DBH). Our results suggest that burned forest
+   patches of at least 20 ha and composed mainly of burned mature and
+   old-growth forests should be maintained during post-fire harvesting. The
+   decrease in the amount of late seral stands in managed forest landscapes
+   raises concerns about the future availability of high-quality burned
+   forests for this species.
+C1 Nappi, Antoine; Bur Forestier Chef, 845 Blvd St Joseph, Roberval, PQ,
+   Canada, Canada.
+EM antoine.nappi@fec.gouv.qc.ca
+SC Zoology; Biodiversity & Conservation; Environmental Sciences & Ecology;
+   Nutrition & Dietetics; Reproductive Biology; Forestry
+SN 0045-5067
+BD Conservation; Conservation measures; Nutrition; Feeding behaviour;
+   Reproduction; Reproductive behaviour; Ecology; Habitat utilization;
+   Habitat; Terrestrial habitat; Abiotic factors; Physical factors; Land
+   zones; Nearctic region; North America; Canada
+DE Picoides arcticus [Habitat management /  / ] [Foraging /  / ] [Breeding
+   site / Nesting site / ] [Habitat preference / Habitat suitability / ]
+   [Forest and woodland / Boreal forest condition / ] [Fire / Fire severity
+   / ] [Quebec / Grands-Jardins / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14709062689
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14709064185
+DT Article
+TI Modeling Nest Survival of Cavity-Nesting Birds in Relation to Postfire
+   Salvage Logging.
+AU Saab, Victoria A. (vsaab@fs.fed.us) 
+   Russell, Robin E.
+   Rotella, Jay
+   Dudley, Jonathan G.
+SO Journal of Wildlife Management
+VL 75
+IS 4
+PS 794-804
+PD May 2011
+PY 2011
+LA English
+U1 0
+U2 48
+AB Salvage logging practices in recently burned forests often have direct
+   effects on species associated with dead trees, particularly
+   cavity-nesting birds. As such, evaluation of postfire management
+   practices on nest survival rates of cavity nesters is necessary for
+   determining conservation strategies. We monitored 1,797 nests of 6
+   cavity-nesting bird species: Lewis's woodpecker (Melanerpes lewis),
+   hairy woodpecker (Picoides villosus), black-backed woodpecker (P.
+   arcticus), northern flicker (Colaptes auratus), western bluebird (Sialia
+   mexicana), and mountain bluebird (S. currucoides) from 1994 to 2004 in
+   ponderosa pine (Pinus ponderosa), mixed-severity burned forests
+   (partially logged and unlogged) of Idaho, USA. Based on a priori
+   hypotheses, we modeled daily survival rate (DSR) of nests as a function
+   of abiotic (temperature, precipitation), temporal (time since fire,
+   calendar year) and biotic factors (distance to unburned forest, nest
+   height, and tree harvest (partial-salvage logging vs. unlogged)).
+   Multiple abiotic and biotic factors, other than direct effects of
+   salvage logging, affected daily survival rates of breeding
+   cavity-nesting birds. Hairy woodpecker was the only species in which
+   partial-salvage logging had a measurable, negative impact on DSR.
+   Managers implementing carefully planned salvage logging prescriptions
+   that include both unlogged reserves and partially logged areas can
+   expect to maintain habitat for successfully breeding cavity-nesting
+   birds of the interior northwestern United States. Our results also
+   suggest that nest survival for some species of cavity-nesting birds
+   could be improved if unlogged reserves are located centrally in postfire
+   forests, distant from unburned habitats that potentially serve as
+   sources of nest predators. [copyright] 2011 The Wildlife Society.
+C1 Saab, Victoria A.; US Forest Serv, USDA, Bozeman, MT, USA, USA.
+EM vsaab@fs.fed.us
+OI Russell, Robin/0000-0001-8726-7303
+SC Zoology; Forestry; Environmental Sciences & Ecology; Biodiversity &
+   Conservation; Reproductive Biology
+SN 0022-541X
+BD Animals and man; Disturbance by man; Commercial activities;
+   Conservation; Conservation measures; Reproduction; Ecology; Population
+   dynamics; Habitat; Terrestrial habitat; Land zones; Nearctic region;
+   North America; USA
+DE Colaptes auratus; Melanerpes lewis; Picoides arcticus; Picoides
+   villosus; Sialia currucoides; Sialia mexicana [Forestry / Postfire
+   salvage logging / ] [Habitat management /  / ] [Reproductive
+   productivity / Nest survival / ] [Survival /  / ] [Forest and woodland /
+   Ponderosa pine forest / ] [Idaho / West / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Turdidae,
+   Piciformes, Picidae
+OR Sialia currucoides (Turdidae). 
+   Sialia mexicana (Turdidae). 
+   Colaptes auratus (Picidae). 
+   Melanerpes lewis (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides villosus (Picidae). 
+UT ZOOREC:ZOOR14709064185
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR15004017664
+DT Article
+TI Occupancy modeling of Black-backed Woodpeckers on burned Sierra Nevada
+   forests.
+AU Saracco, James F. (jsaracco@birdpop.org) 
+   Siegel, Rodney B.
+   Wilkerson, Robert L.
+SO ECOSPHERE
+VL 2
+IS 3
+PS 31, 1-17
+PD Mar 2011
+PY 2011
+LA English
+U1 0
+U2 21
+AB The Black-backed Woodpecker (Picoides arcticus) has been designated by
+   the USDA Forest Service as a management indicator species for snags in
+   burned conifer forests of the Sierra Nevada of California, USA. However,
+   little is known about the characteristics that affect between-fire and
+   within-fire habitat selection by the species in the region. Here we
+   report on the first broad-scale survey of Black-backed Woodpeckers on
+   wildfire-affected forests of the Sierra Nevada. We implemented a
+   Bayesian hierarchical model to: 1) estimate Black-backed Woodpecker
+   occupancy probability in fire areas burned within a time window of 1-10
+   years; 2) identify relationships between occupancy probability and
+   habitat covariates (fire age, change in canopy cover pre-to-post fire,
+   and snag basal area), elevation, and latitude; and 3) estimate detection
+   probability and relate it to survey interval length and survey type
+   (passive v. broadcast). We included random fire-area effects in our
+   model of occupancy probability to accommodate clusters of
+   non-independent points surveyed within the larger set of fire areas.
+   Mean occupancy probability was estimated to be 0.097. Elevation (after
+   controlling for latitude) had the strongest effect on occupancy
+   probability (higher occupancy at higher elevation) followed by latitude
+   (higher occupancy at northerly sites). Fire age was also important;
+   occupancy probability was about 4X higher on the youngest compared to
+   oldest fires. Although the direction of regression coefficients were in
+   the expected direction (positive), snag basal area and canopy cover
+   change were of minor importance in affecting occupancy probability.
+   There was some indication, however, that the importance of snag basal
+   area increased with fire age. Weak links between occupancy and canopy
+   cover change suggested the species uses a range of burn severities, and
+   such heterogeneity may promote habitat longevity. Our estimate of
+   overall detection probability (across all survey intervals) was 0.772.
+   We found strong effects of survey interval length (higher for longer
+   interval) and, especially survey type (higher for broadcast survey) on
+   detection probability. Our modeling framework and implementation
+   illustrates the flexibility of the Bayesian hierarchical approach for
+   handling complexities such as estimating derived parameters (and
+   variances) and modeling random effects, and should prove generally
+   useful for occupancy studies.
+C1 Saracco, James F.; Inst Bird Populat, POB 1346, Point Reyes Stn, CA,
+   94956, USA, USA.
+EM jsaracco@birdpop.org
+RI Saracco, James F./H-6520-2019
+OI Saracco, James F./0000-0001-5084-1834
+SC Zoology; Mathematics; Environmental Sciences & Ecology; Forestry
+SN 2150-8925; 2150-8925
+BD Techniques; Ecology; Habitat; Terrestrial habitat; Abiotic factors; Land
+   zones; Nearctic region; North America; USA
+DE Picoides arcticus [Mathematical techniques / Bayesian hierarchical
+   modeling / ] [Distribution within habitat /  / ] [Forest and woodland /
+   Conifer forests / ] [Abiotic factors /  / ] [California / Sierra Nevada
+   / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+DI 10.1890/ES10-00132.1
+UT ZOOREC:ZOOR15004017664
+OA DOAJ Gold
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14610065911
+PM 25567923
+DT Article
+TI Do male and female black-backed woodpeckers respond differently to gaps
+   in habitat?
+AU Pierson, Jennifer C. (jencpierson@gmail.com) 
+   Allendorf, Fred W.
+   Saab, Victoria
+   Drapeau, Pierre
+   Schwartz, Michael K.
+SO Evolutionary Applications
+VL 3
+IS 3
+PS 263-278
+PD May 2010
+PY 2010
+LA English
+U1 0
+U2 18
+AB We used population- and individual-based genetic approaches to assess
+   barriers to movement in black-backed woodpeckers (Picoides arcticus), a
+   fire-specialist that mainly occupies the boreal forest in North America.
+   We tested if male and female woodpeckers exhibited the same movement
+   patterns using both spatially implicit and explicit genetic analyses to
+   define population structure and movement patterns of both sexes among
+   populations. Three genetic groups were identified, a large, genetically
+   continuous population that spans from the Rocky Mountains to Quebec, a
+   small isolated population in South Dakota and a separate population in
+   the western portion of their distribution (Oregon). Patterns of genetic
+   diversity suggest extensive gene flow mediated by both males and females
+   within the continuous boreal forest. However, male-mediated gene flow is
+   the main form of connectivity between the continuously distributed group
+   and the smaller populations of South Dakota and Oregon that are
+   separated by large areas of unforested habitat, which apparently serves
+   as a barrier to movement of female woodpeckers.
+C1 Pierson, Jennifer C.; Univ Montana, Wildlife Biol Program, Missoula, MT,
+   USA, USA.
+EM jencpierson@gmail.com
+RI Pierson, Jennifer/I-1939-2012; Schwartz, Michael/C-3184-2014
+OI Schwartz, Michael/0000-0003-3521-3367; Pierson,
+   Jennifer/0000-0003-4140-010X
+SC Reproductive Biology; Zoology; Genetics & Heredity; Evolutionary
+   Biology; Forestry
+SN 1752-4571
+BD Reproduction; Genetics; Evolution; Variation; Habitat; Terrestrial
+   habitat; Zoogeography; Land zones; Nearctic region
+DE Picoides arcticus [Sex differences / Sex-biased dispersal & response to
+   barriers / female; male] [Population genetics / Population genetic
+   structure / ] [Biochemical variation / Microsatellite & mtDNA sequence
+   variation / ] [Forest and woodland / Boreal forest & unforested gaps / ]
+   [Dispersal /  / ] [North America /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14610065911
+OA DOAJ Gold, Green Published
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14605032996
+DT Article
+TI Multi-scale nest-site selection by black-backed woodpeckers in outbreaks
+   of mountain pine beetles.
+AU Bonnot, Thomas W. (bonnott@missouri.edu) 
+   Millspaugh, Joshua J.
+   Rumble, Mark A.
+SO Forest Ecology and Management
+VL 259
+IS 2
+PS 220-228
+PD December 15 2009
+PY 2009
+LA English
+U1 0
+U2 31
+AB Areas of mountain pine beetle (Dendroctonus ponderosae Hopkins)
+   outbreaks in the Black Hills can provide habitat for black-backed
+   woodpeckers (Picoides arcticus), a U.S. Forest Service, Region 2
+   Sensitive Species. These outbreaks are managed through removal of trees
+   infested with mountain pine beetles to control mountain pine beetle
+   populations and salvage timber resources. To minimize impacts to
+   black-backed woodpeckers while meeting management objectives, there is a
+   need to identify characteristics of these areas that support
+   black-backed woodpeckers. We examined the habitat associations of this
+   species nesting in areas of beetle outbreaks in the Black Hills, South
+   Dakota in 2004 and 2005. We used an information theoretic approach and
+   discrete choice models to evaluate nest-site selection of 42 woodpecker
+   nests at 3 spatial scales-territory, nest area, and nest tree. At the
+   territory scale (250 m around nest), availability and distribution of
+   food best explained black-backed woodpecker selection of beetle
+   outbreaks versus the surrounding forest. Selection at the territory
+   scale was positively associated with densities of trees currently
+   infested by mountain pine beetles and indices of wood borer
+   (Cerambycidae and Buprestidae) abundance, and was greatest at distances
+   of 50-100 m from the nearest patch of infestation. At the nest-area
+   scale (12.5 m radius around the nest), densities of snags positively
+   influenced nest-area selection. Finally, at the nest-tree scale, aspen
+   (Populus tremuloides) and 3-5-year-old ponderosa pine (Pinus ponderosa)
+   snags were important resources. The association between abundant
+   wood-boring insects and black-backed woodpeckers creates a difficult
+   challenge for forest managers. In the absence of fire, areas of beetle
+   outbreak might serve as the only substantial source of habitat in the
+   Black Hills. Regulating insect populations via salvage logging will
+   reduce key food resources to black-backed woodpeckers during nesting.
+   Therefore, given the relatively infrequent occurrence of large-scale
+   fire in the Black Hills, management should recognize the importance of
+   beetle-killed forests to the long-term viability of the black-backed
+   woodpecker population in the Black Hills. (C) 2009 Elsevier B.V. All
+   rights reserved.
+C1 Bonnot, Thomas W.; Univ Missouri, Dept Fisheries and Wildlife Sci, 302
+   Nat Resources Bldg, Columbia, MO 65211, USA, USA.
+EM bonnott@missouri.edu
+OI Bonnot, Thomas/0000-0001-7114-8246
+SC Forestry; Zoology; Parasitology; Environmental Sciences & Ecology;
+   Biodiversity & Conservation; Reproductive Biology
+SN 0378-1127
+BD Animals and man; Damage caused by animals; Damage to vegetation;
+   Disturbance by man; Commercial activities; Conservation; Conservation
+   measures; Reproduction; Reproductive behaviour; Parasites diseases and
+   disorders; Hosts; Ecology; Population dynamics; Habitat utilization;
+   Land zones; Nearctic region; North America; USA
+DE Dendroctonus ponderosae [Damage to forestry / Pest outbreaks / avian
+   nest site selection & conservation] [Forestry /  / ] [Plant hosts /
+   Pinus ponderosa / ] [Irruption /  / ] [South Dakota / Black Hills / ]. 
+   Picoides arcticus [Forestry /  / coleopteran pest outbreak effects]
+   [Habitat management /  / ] [Breeding site / Nest site selection / ]
+   [Habitat preference /  / ] [South Dakota / Black Hills / ]. 
+TN Arthropods; Beetles; Birds; Chordates; Insects; Invertebrates;
+   Vertebrates
+ST Animalia, Arthropoda, Insecta, Coleoptera, Polyphaga, Curculionoidea,
+   Curculionidae, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Dendroctonus ponderosae (Curculionidae): [Parasite]. 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14605032996
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14607047037
+DT Article
+TI Reproductive success of the black-backed woodpecker (Picoides arcticus)
+   in burned boreal forests: are burns source habitats?
+AU Nappi, Antoine (antoine.nappi@fec.gouv.qc.ca) 
+   Drapeau, Pierre
+SO Biological Conservation
+VL 142
+IS 7
+PS 1381-1391
+PD July 2009
+PY 2009
+LA English
+U1 1
+U2 45
+AB The black-backed woodpecker (Picoides arcticus) is considered a fire
+   specialist throughout its breeding range. Given its high abundance in
+   recent burns, it has been hypothesized that post-fire forests are source
+   habitats for this species. We conducted a 3-year post-fire study to
+   evaluate the temporal occupancy and reproductive success of black-backed
+   woodpeckers in high-severity burned black spruce forests of central
+   Quebec, Canada. We examined how reproductive success varied temporally
+   and spatially within a burned landscape and investigated the potential
+   source or sink status of this woodpecker population over time.
+   Woodpecker nest density was high in the year after fire but declined
+   significantly over the 3-year period. Based on 106 nests, nest success
+   declined from 84% the first year after fire to 73% and 25%,
+   respectively, for the second and third years after fire. Nest density
+   and reproductive success were higher in areas with high proportions of
+   burned mature forests than in areas dominated by burned young forests.
+   Reproductive success was also higher in proximity to unburned forests.
+   Comparison of annual productivity with a range of survival estimates
+   indicated that these burned forests likely functioned as source habitats
+   for the first 2 years following fire, although this status varied as a
+   function of pre-fire forest age. Our results suggest that post-fire
+   forests may contribute significantly to population levels in fire-prone
+   ecosystems. Forest management practices that reduce the amount of mature
+   and over-mature forests can affect the quality of post-fire habitats
+   important to the black-backed woodpecker and other fire-associated
+   species.
+C1 Nappi, Antoine; Centre for Forest Research, Departement des sciences
+   biologiques, Universite du Quebec a Montreal, C.P. 8888, Succ.
+   Centre-ville, Montreal, Quebec, H3C 3P8, Canada, Canada.
+EM antoine.nappi@fec.gouv.qc.ca
+SC Reproductive Biology; Zoology; Environmental Sciences & Ecology;
+   Forestry
+SN 0006-3207
+BD Reproduction; Ecology; Habitat; Terrestrial habitat; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America; Canada
+DE Picoides arcticus [Reproductive productivity / Reproductive success / ]
+   [Population dynamics / Source-sink population dynamics / ] [Habitat
+   utilization / Temporal occupancy of habitats / ] [Forest and woodland /
+   Burned boreal forests / ] [Fire /  / ] [Quebec / Central / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14607047037
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14601000049
+PM 19688932
+DT Article
+TI Modeling the effects of environmental disturbance on wildlife
+   communities: avian responses to prescribed fire.
+AU Russell, Robin E. (RRussell@mt.gov) 
+   Royle, J. Andrew
+   Saab, Victoria A.
+   Lehmkuhl, John F.
+   Block, William M.
+   Sauer, John R.
+SO Ecological Applications
+VL 19
+IS 5
+PS 1253-1263
+PD July 2009
+PY 2009
+LA English
+U1 3
+U2 122
+AB Prescribed fire is a management tool used to reduce fuel loads on public
+   lands in forested areas in the western United States. Identifying the
+   impacts of prescribed fire on bird communities in ponderosa pine (Pinus
+   ponderosa) forests is necessary for providing land management agencies
+   with information regarding the effects of fuel reduction on sensitive,
+   threatened, and migratory bird species Recent developments in occupancy
+   modeling have established a framework for quantifying the impacts of
+   management practices on wildlife community dynamics. We describe a
+   Bayesian hierarchical model of multi-species occupancy accounting for
+   detection probability, and we demonstrate the model's usefulness for
+   identifying effects of habitat disturbances on wildlife communities.
+   Advantages to using the model include the ability to estimate the
+   effects of environmental impacts on rare or elusive species, the
+   intuitive nature of the modeling, the incorporation of detection
+   probability, the estimation of parameter uncertainty, the flexibility of
+   the model to suit a variety of experimental designs, and the composite
+   estimate of the response that applies to the collection of observed
+   species as opposed to merely a small subset of common species. Our
+   modeling of the impacts of prescribed fire on avian communities in a
+   ponderosa pine forest in Washington indicate that prescribed fire
+   treatments result in increased occupancy rates for several
+   bark-insectivore, cavity-nesting species including a management species
+   of interest, Black-backed Woodpeckers (Picoides arcticus). Three aerial
+   insectivore species, and the ground insectivore, American Robin (Turdus
+   migratorius), also responded positively to prescribed fire, whereas
+   three foliage insectivores and two seed specialists, Clark's Nutcracker
+   (Nucifraga columbiana) and the Pine Siskin (Carduelis pinus), declined
+   following treatments. Land management agencies interested in determining
+   the effects of habitat manipulations on wildlife communities can use
+   these methods to provide guidance for future management activities.
+C1 Russell, Robin E.; Montana Fish Wildlife and Pk Wildlife Div, 1400 S
+   19th Ave, Bozeman, MT 59718, USA, USA.
+EM RRussell@mt.gov
+OI Royle, Jeffrey/0000-0003-3135-2167; Russell, Robin/0000-0001-8726-7303
+SC Zoology; Environmental Sciences & Ecology; Forestry
+SN 1051-0761
+BD Animals and man; Ecology; Habitat; Terrestrial habitat; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America; USA
+DE Aves [Disturbance by man / Prescribed fire / Bayesian hierarchical
+   model] [Community structure / Community dynamics / ] [Forest and
+   woodland / Ponderosa pine forest / ] [Abiotic factors / Environmental
+   disturbance / ] [Fire /  / ] [Washington /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+DI 10.1890/08-0910.1
+UT ZOOREC:ZOOR14601000049
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14602011402
+DT Article
+TI Detection probabilities of woodpecker nests in mixed conifer forests in
+   Oregon.
+AU Russell, Robin E. (RRussell@mt.gov) 
+   Saab, Victoria A.
+   Rotella, Jay J.
+   Dudley, Jonathan G.
+SO Wilson Journal of Ornithology
+VL 121
+IS 1
+PS 82-88
+PD March 2009
+PY 2009
+LA English
+U1 0
+U2 6
+AB Accurate estimates of Black-backed (Picoides arcticus) and Hairy
+   Woodpecker (P. villosus) nests and nest survival rates in post-fire
+   landscapes provide land managers with information on the relative
+   importance of burned forests to nesting woodpeckers. We conducted
+   multiple-observer surveys in burned and unburned mixed coniferous
+   forests in Oregon to identify important factors influencing detection
+   rates of woodpecker nests. We found 21 Black-backed Woodpecker nests and
+   38 Hairy Woodpecker nests in burned forest, and three Hairy Woodpecker
+   nests in unburned forest. Competing models of detection probability in
+   Program MARK indicated that nest-detection probability differed by nest
+   stage. We found no evidence to indicate that detection rates of nests
+   were associated with survey timing during the nesting season. Raw nest
+   counts in burned coniferous forests may underestimate nest numbers,
+   especially for nests in early stages of development. Black-backed
+   Woodpecker nests were slightly more detectable than those of Hairy
+   Woodpeckers in burned forests, and observers may differ in their
+   abilities to detect nests.
+C1 Russell, Robin E.; Montana Fish, Wildlife, and Parks, 1400 South 19th
+   Avenue, Bozeman, MT 59718, USA, USA.
+EM RRussell@mt.gov
+OI Russell, Robin/0000-0001-8726-7303
+SC Environmental Sciences & Ecology; Zoology; Reproductive Biology;
+   Forestry
+SN 1559-4491
+BD Techniques; Ecological techniques; Reproduction; Reproductive behaviour;
+   Ecology; Animal constructions; Habitat; Terrestrial habitat; Land zones;
+   Nearctic region; North America; USA
+DE Picoides arcticus; Picoides villosus [Sampling / Nest detection
+   probability / ] [Breeding site /  / ] [Nests /  / ] [Forest and woodland
+   / Mixed conifer forest / ] [Oregon / Sycan Marsh Reserve &
+   Fremont-Winema National Forest / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides villosus (Picidae). 
+DI 10.1676/08-026.1
+UT ZOOREC:ZOOR14602011402
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14602011959
+DT Article
+TI Influences of postfire salvage logging on forest birds in the eastern
+   Cascades, Oregon, USA.
+AU Cahall, Rebecca E. (hayesj@ufl.edu) 
+   Hayes, John P.
+SO Forest Ecology and Management
+VL 257
+IS 3
+PS 1119-1128
+PD February 10 2009
+PY 2009
+LA English
+U1 0
+U2 23
+AB In coniferous forests of western North American, fire is an important
+   disturbance that influences the structure and composition of floral and
+   faunal communities. The impacts of postfire management, including
+   salvage logging and replanting, on these forests are not well known. We
+   compared densities and relative abundances of forest birds after fire in
+   unsalvaged stands and stands subjected to one of two intensities of
+   salvage logging (moderate, 30 snags retained per ha and heavy, 5[long
+   dash]6 snags retained per ha) in mixed-conifer forests in central
+   Oregon. We used analysis of variance with repeated measures to evaluate
+   three hypotheses concerning the influence of different intensities of
+   salvage on densities or relative abundances of sixteen species of birds,
+   and two hypotheses concerning the influence of time since salvage
+   logging on relative abundances or densities of birds. We also examined
+   the relationship between vegetation and abundances of each bird species.
+   We did not detect significant differences among treatments in densities
+   or relative abundances for eight species and one genus of birds. We
+   detected significant differences for seven species, though the patterns
+   differed among species. Relative abundances or densities of the
+   black-backed woodpecker (Picoides arcticus), hairy woodpecker (P.
+   villosus), brown creeper (Certhia americana), western wood-pewee
+   (Contopus sordidulus) and yellow-rumped warbler (Dendroica coronata)
+   were lower in the heavy and moderate salvage treatment compared to the
+   unsalvaged treatment, while densities of the dark-eyed junco (Junco
+   hyemalis) and fox sparrow (Passerella iliaca) were greater in the
+   moderately and heavily salvaged stands than in the unsalvaged treatment.
+   We detected significant differences between years for four species of
+   birds. Our findings suggest that both cavity-nesting and cup-nesting
+   species respond to salvage logging, and that some species respond
+   uniquely to habitat features influenced by salvage logging. For species
+   that responded negatively to salvage logging, the moderate salvage
+   intensity did not appear to mitigate the negative influence of salvage
+   logging. Areas of unlogged burned forest appear to provide important
+   habitat for some species of birds following forest fires. Our findings
+   parallel those of other recent studies of these species, suggesting
+   robust patterns that transcend particular locations.
+C1 Cahall, Rebecca E.; Department of Wildlife Ecology and Conservation,
+   University of Florida, Gainesville, FL 32611, USA, USA.
+EM hayesj@ufl.edu
+RI Hayes, John/C-7967-2016
+OI Hayes, John/0000-0002-6462-6876
+SC Forestry; Zoology; Environmental Sciences & Ecology
+SN 0378-1127
+BD Animals and man; Disturbance by man; Commercial activities; Ecology;
+   Habitat; Terrestrial habitat; Abiotic factors; Physical factors; Land
+   zones; Nearctic region; North America; USA
+DE Aves [Forestry / Postfire salvage logging impact / ] [Community
+   structure /  / ] [Forest and woodland / Ponderosa pine-Douglas-fir
+   forest / ] [Fire /  / ] [Oregon / Eastern Cascades / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR14602011959
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14602011994
+DT Article
+TI Nest-site selection by cavity-nesting birds in relation to postfire
+   salvage logging.
+AU Saab, Victoria A. (vsaab@fs.fed.us) 
+   Russell, Robin E.
+   Dudley, Jonathan G.
+SO Forest Ecology and Management
+VL 257
+IS 1
+PS 151-159
+PD January 20 2009
+PY 2009
+LA English
+U1 0
+U2 33
+AB Large wildfire events in coniferous forests of the western United States
+   are often followed by postfire timber harvest. The long-term impacts of
+   postfire timber harvest on fire-associated cavity-nesting bird species
+   are not well documented. We studied nest-site selection by
+   cavity-nesting birds over a 10-year period (1994[long dash]2003),
+   representing 1[long dash]11 years after fire, on two burns created by
+   mixed severity wildfires in western Idaho, USA. One burn was partially
+   salvaged logged (the Foothills burn), the other was primarily unlogged
+   (the Star Gulch burn). We monitored 1367 nests of six species (Lewis's
+   Woodpecker Melanerpes lewis, Hairy Woodpecker Picoides villosus,
+   Black-backed Woodpecker P. arcticus, Northern Flicker Colaptes auratus,
+   Western Bluebird Sialia mexicana, and Mountain Bluebird S. currucoides).
+   Habitat data at nest and non-nest random locations were characterized at
+   fine (field collected) and coarse (remotely sensed) spatial scales.
+   Nest-site selection for most species was consistently associated with
+   higher snag densities and larger snag diameters, whereas wildfire
+   location (Foothills versus Star Gulch) was secondarily important. All
+   woodpecker species used nest sites with larger diameter snags that were
+   surrounded by higher densities of snags than at non-nest locations.
+   Nests of Hairy Woodpecker and Mountain Bluebird were primarily
+   associated with the unlogged wildfire, whereas nests of Lewis's
+   Woodpecker and Western Bluebird were associated with the partially
+   logged burn in the early years after fire. Nests of wood-probing species
+   (Hairy and Black-backed Woodpeckers) were also located in larger forest
+   patch areas than patches measured at non-nest locations. Our results
+   confirm previous findings that maintaining clumps of large snags in
+   postfire landscapes is necessary for maintaining breeding habitat of
+   cavity-nesting birds. Additionally, appropriately managed salvage
+   logging can create habitat for some species of cavity-nesting birds that
+   prefermore open environments. Our findings can be used by landmangers to
+   develop design criteria for postfire salvage logging that will reserve
+   breeding habitat for cavity-nesting birds.
+C1 Saab, Victoria A.; US Forest Service, Rocky Mountain Research Station,
+   1648 S. 7th Ave, Montana State University Campus, Bozeman, MT 59717,
+   USA, USA.
+EM vsaab@fs.fed.us
+OI Russell, Robin/0000-0001-8726-7303
+SC Zoology; Forestry; Reproductive Biology; Environmental Sciences &
+   Ecology
+SN 0378-1127
+BD Animals and man; Disturbance by man; Commercial activities;
+   Reproduction; Reproductive behaviour; Ecology; Habitat utilization;
+   Habitat; Terrestrial habitat; Land zones; Nearctic region; North
+   America; USA
+DE Colaptes auratus; Melanerpes lewis; Picoides arcticus; Picoides
+   villosus; Sialia currucoides; Sialia mexicana [Forestry / Postfire
+   timber harvest / ] [Breeding site / Nest site selection / ] [Habitat
+   preference /  / ] [Forest and woodland / Coniferous forest / ] [Idaho / 
+   / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Turdidae,
+   Piciformes, Picidae
+OR Sialia currucoides (Turdidae). 
+   Sialia mexicana (Turdidae). 
+   Colaptes auratus (Picidae). 
+   Melanerpes lewis (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides villosus (Picidae). 
+DI 10.1016/j.foreco.2008.08.028
+UT ZOOREC:ZOOR14602011994
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14506036263
+PM 19263880
+DT Article
+TI The ecological importance of severe wildfires: some like it hot.
+AU Hutto, Richard L. (hutto@mso.umt.edu) 
+SO Ecological Applications
+VL 18
+IS 8
+PS 1827-1834
+PD December 2008
+PY 2008
+LA English
+U1 2
+U2 79
+AB Many scientists and forest land managers concur that past fire
+   suppression, grazing, and timber harvesting practices have created
+   unnatural and unhealthy conditions in the dry, ponderosa pine forests of
+   the western United States. Specifically, such forests are said to carry
+   higher fuel loads and experience fires that are more severe than those
+   that occurred historically. It remains unclear, however, how far these
+   generalizations can be extrapolated in time and space, and how well they
+   apply to the more mesic ponderosa pine systems and to other forest
+   systems within the western United States. I use data on the pattern of
+   distribution of one bird species (Black-backed Woodpecker, Picoides
+   arcticus) as derived from 16 465 sample locations to show that, in
+   western Montana, this bird species is extremely specialized on severely
+   burned forests. Such specialization has profound implications because it
+   suggests that the severe fires we see burning in many forests in the
+   Intermountain West are not entirely "unnatural'' or "unhealthy.''
+   Instead, severely burned forest conditions have probably occurred
+   naturally across a broad range of forest types for millennia. These
+   findings highlight the fact that severe fire provides an important
+   ecological backdrop for fire specialists like the Black-backed
+   Woodpecker, and that the presence and importance of severe fire may be
+   much broader than commonly appreciated.
+C1 Hutto, Richard L.; Univ Montana, Div Biol Sci, Missoula, MT 59812, USA,
+   USA.
+EM hutto@mso.umt.edu
+SC Environmental Sciences & Ecology; Zoology; Forestry
+SN 1051-0761
+BD Ecology; Habitat utilization; Habitat; Terrestrial habitat; Abiotic
+   factors; Physical factors; Land zones; Nearctic region; North America;
+   USA
+DE Picoides arcticus [Distribution within habitat / Burned forest habitat
+   specialization / ] [Habitat preference /  / ] [Forest and woodland /  /
+   ] [Fire /  / ] [Montana / West / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+DI 10.1890/08-0895.1
+UT ZOOREC:ZOOR14506036263
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14603021367
+DT Article
+TI Postfire woodpecker foraging in salvage-logged and unlogged forests of
+   the Sierra Nevada.
+AU Hanson, Chad T. (cthanson@ucdavis.edu) 
+   North, Malcolm P.
+SO Condor
+VL 110
+IS 4
+PS 777-782
+PD November 2008
+PY 2008
+LA English
+U1 0
+U2 29
+AB In forests, high-severity burn patches[long dash]wherein most or all of
+   the trees are killed by fire[long dash]often occur within a mosaic of
+   low- and moderate-severity effects. Although there have been several
+   studies of postfire salvage-logging effects on bird species, there have
+   been few studies of effects on bird species associated with
+   high-severity patches in forests that have otherwise burned at lower
+   severities. From 2004 to 2006, we investigated the foraging presence or
+   absence of three woodpecker species, the Black-backed (Picoides
+   arcticus), Hairy (P. villosus), and White-headed (P. albolarvatus)
+   Woodpeckers, within four different forest habitat conditions in Sierra
+   Nevada conifer forests: unburned; moderate-severity and unlogged;
+   high-severity and unlogged; and high-severity and logged. We found
+   Black-backed Woodpecker foraging was restricted to unlogged
+   high-severity patches. Hairy Woodpeckers foraged most in unlogged
+   high-severity patches, and White-headed Woodpeckers showed no
+   significant difference in presence among conditions. These results
+   suggest that unlogged, high-severity forest is important habitat for the
+   Black-backed and Hairy Woodpeckers.
+C1 Hanson, Chad T.; Agricultural Experiment Station, Department of Plant
+   Sciences, College of Agricultural and Environmental Sciences, University
+   of California Davis, Davis, CA 95616, USA, USA.
+EM cthanson@ucdavis.edu
+SC Forestry; Zoology; Biodiversity & Conservation; Environmental Sciences &
+   Ecology; Nutrition & Dietetics
+SN 0010-5422
+BD Animals and man; Disturbance by man; Commercial activities;
+   Conservation; Conservation measures; Nutrition; Feeding behaviour;
+   Ecology; Habitat utilization; Habitat; Terrestrial habitat; Abiotic
+   factors; Physical factors; Land zones; Nearctic region; North America;
+   USA
+DE Picoides albolarvatus; Picoides arcticus; Picoides villosus [Forestry /
+   Salvage logging / ] [Habitat management /  / ] [Foraging /  / ] [Habitat
+   preference /  / ] [Forest and woodland / Conifer forests / ] [Fire /  /
+   ] [California / Sierra Nevada / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides albolarvatus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides villosus (Picidae). 
+UT ZOOREC:ZOOR14603021367
+OA Green Published
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14503016726
+DT Article
+TI Nest success of black-backed woodpeckers in forests with mountain pine
+   beetle outbreaks in the Black Hills, South Dakota.
+AU Bonnot, Thomas W. (MillspaughJ@missouri.edu) 
+   Rumble, Mark A.
+   Millspaugh, Joshua J.
+SO Condor
+VL 110
+IS 3
+PS 450-457
+PD August 2008
+PY 2008
+LA English
+U1 0
+U2 14
+AB Black-backed Woodpeckers (Picoides arcticus) are burned-forest
+   specialists that rely on beetles (Coleoptera) for food. In the Black
+   Hills, South Dakota, standing dead forests resulting from mountain pine
+   beetle (Dendroctonus ponderosae) outbreaks offer food resources for
+   Black-backed Woodpeckers, in addition to providing habitat similar to
+   burned forest. However, data on reproductive rates in these habitats are
+   lacking. We estimated nest success and evaluated factors affecting nest
+   survival of Black-backed Woodpeckers in beetle-killed forests in the
+   Black Hills in 2004 and 2005. Nest success was 78% (n = 12) in 2004 and
+   44% (n = 31) in 2005. Fledging rates per pair were 2.0 [plus or minus]
+   0.3 SE (n = 12) and 1.4 [plus or minus] 0.3 SE (n = 28) in 2004 and
+   2005, respectively. Our results showed that temporal effects (e.g., age,
+   date, and year) had the greatest influence on nest survival. Nest age
+   was the most important predictor of daily nest survival; survival was
+   higher in older nests. Nest survival was also lower later in the
+   breeding season. The difference in nest success between the two years
+   requires further study; however, nest success of Black-backed
+   Woodpeckers in beetle-killed forests in the Black Hills was within the
+   range of nest success within postfire habitats in this area. In the
+   Black Hills, forests experiencing beetle outbreaks offer available
+   habitat for Black-backed Woodpeckers.
+C1 Bonnot, Thomas W.; Univ Missouri, Dept Fisheries and Wildlife Sci, 302
+   Nat Resources Bldg, Columbia, MO 65211, USA, USA.
+EM MillspaughJ@missouri.edu
+OI Bonnot, Thomas/0000-0001-7114-8246
+SC Environmental Sciences & Ecology; Zoology; Forestry; Reproductive
+   Biology
+SN 0010-5422
+BD Reproduction; Ecology; Population dynamics; Habitat; Terrestrial
+   habitat; Land zones; Nearctic region; North America; USA
+DE Dendroctonus ponderosae [Impact on habitat / Impact on forests &
+   subsequent avian nesting success / ] [Forest and woodland /  / ] [South
+   Dakota / Black Hills / ]. 
+   Picoides arcticus [Reproductive productivity / Nesting success / ]
+   [Survival / Nest survival / ] [Forest and woodland / Coleopteran
+   impacted forest / ] [South Dakota / Black Hills / ]. 
+TN Arthropods; Beetles; Birds; Chordates; Insects; Invertebrates;
+   Vertebrates
+ST Animalia, Arthropoda, Insecta, Coleoptera, Polyphaga, Curculionoidea,
+   Curculionidae, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Dendroctonus ponderosae (Curculionidae). 
+   Picoides arcticus (Picidae). 
+DI 10.1525/cond.2008.8460
+UT ZOOREC:ZOOR14503016726
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14403019617
+DT Article
+TI Responses of cavity-nesting birds to changes in available habitat reveal
+   underlying determinants of nest selection.
+AU Nielsen-Pincus, Nicole
+   Garton, Edward O.
+SO Northwestern Naturalist
+VL 88
+IS 3
+PS 135-146
+PD Winter 2007
+PY 2007
+LA English
+U1 0
+U2 0
+AB Despite an abundance of studies describing nest selection in
+   cavity-nesting birds, few account for the variation in habitat
+   availability across the geographic range of a species and through time.
+   Changes in the frequency of disturbances such as fires, timber harvests,
+   and insect outbreaks can dramatically alter habitat. Responses by
+   cavity-nesting birds to these changes provide an opportunity to evaluate
+   underlying determinants of nest selection. We compared nest site
+   attributes to available resources for 3 species of cavity-nesting birds:
+   the Pileated Wood-pecker (Dryocopus pileatus), Williamson's Sapsucker
+   (Sphyrapicus thyroideus), and Black-backed Woodpecker (Picoides
+   arcticus). Data collected in 2003-2004 were compared to data collected
+   in the 1970s in the same study area to identify changes in patterns of
+   selection. Due to severe insect outbreaks, available resources differed
+   greatly between the 2 time periods. In studies separated by 30 y,
+   Pileated Woodpeckers and Black-backed Woodpeckers exhibited remarkable
+   consistency in patterns of nest site selection. Both species still
+   selected Ponderosa Pine (Pinus ponderosa) snags preferentially for
+   nesting despite their decline in availability. Williamson's Sapsuckers
+   were less selective and nested in the most abundant snag species during
+   both time periods. Selection for factors such as tree size and degree of
+   decay remained consistent regardless of differences in habitat
+   availability for the 3 species. By identifying these general patterns of
+   nest site selection, our conclusions are applicable to a wider variety
+   of habitat conditions.
+C1 Nielsen-Pincus, Nicole; 4385 Happy Hollow Road, Prineville, Oregon
+   97754, USA, USA.
+SC Reproductive Biology; Zoology; Environmental Sciences & Ecology;
+   Forestry
+SN 1051-1733
+BD Reproduction; Reproductive behaviour; Ecology; Habitat utilization;
+   Habitat; Terrestrial habitat; Land zones; Nearctic region; North
+   America; USA
+DE Dryocopus pileatus; Picoides arcticus; Sphyrapicus thyroideus [Breeding
+   site / Nest site selection characteristics / Cavity nesting; responses
+   to changes in available habitat] [Habitat preference /  / ] [Forest and
+   woodland / Coniferous forest / ] [Oregon / Blue Mountains, Upper Grande
+   Ronde sub-basin / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Dryocopus pileatus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Sphyrapicus thyroideus (Picidae). 
+DI 10.1898/1051-1733(2007)88[135:ROCBTC]2.0.CO;2
+UT ZOOREC:ZOOR14403019617
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14404023728
+DT Article
+TI Home range size of black-backed woodpeckers in burned forests of
+   southwestern Idaho.
+AU Dudley, Jonathan G. (jdudley@fs.fed.us) 
+   Saab, Victoria A.
+SO Western North American Naturalist
+VL 67
+IS 4
+PS 593-600
+PD December 2007
+PY 2007
+LA English
+U1 0
+U2 9
+AB We examined home range size of Black-backed Woodpeckers (Picoides
+   arcticus) in burned ponderosa pine (Pinus ponderosa) / Douglas-fir
+   (Pseudotsuga menziesii) forests of southwestern Idaho during 2000 and
+   2002 (6 and 8 years following fire). Home range size for 4 adult males
+   during the post-fledging period was 115.6-420.9 ha using the 95%
+   fixed-kernel method, and 150.4-766.1 ha using the 100% minimum convex
+   polygon method. Smoothed bootstrap estimates (95%) were 130.0-521.9 ha.
+   Home range sizes were significantly smaller 6 years after fire than 8
+   years after fire. Each male had from 2 to 8 areas of concentrated use
+   within his home range. We provide recommendations for estimating area
+   requirements of Black-backed Woodpeckers in post-fire ponderosa pine /
+   Douglas-fir forests.
+C1 Dudley, Jonathan G.; USDA Forest Serv, Rocky Mt Res Stn, 322 E Front St,
+   Suite 401, Boise, ID 83702, USA, USA.
+EM jdudley@fs.fed.us
+SC Zoology; Behavioral Sciences; Forestry
+SN 1527-0904
+BD Behaviour; Habitat; Terrestrial habitat; Land zones; Nearctic region;
+   North America; USA
+DE Picoides arcticus [Home range / Home range size / ] [Forest and woodland
+   / Burned coniferous forests / ] [Idaho / Southwest, Boise National
+   Forest / Home range size in burned coniferous forests]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+DI 10.3398/1527-0904(2007)67[593:HRSOBW]2.0.CO;2
+UT ZOOREC:ZOOR14404023728
+OA Green Published
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14308049240
+DT Article
+TI Nest densities of cavity-nesting birds in relation to postfire salvage
+   logging and time since wildfire.
+AU Saab, Victoria A. (vsaab@fs.fed.us) 
+   Russell, Robin E.
+   Dudley, Jonathan G.
+SO Condor
+VL 109
+IS 1
+PS 97-108
+PD February 2007
+PY 2007
+LA English
+U1 0
+U2 58
+AB We monitored the nest densities and nest survival of seven
+   cavity-nesting bird species, including four open-space foragers
+   (American Kestrel (Falco sparperius), Lewis's Woodpecker (Melanerpes
+   lewis), Western Bluebird (Sialia mexicana), and Mountain Bluebird (S.
+   currucoides)) and three wood-foragers (Hairy Woodpecker (Picoides
+   villosus), Black-backed Woodpecker (P. arcticus), and Northern Flicker
+   (Colaptes auratus)), after two wildfires (one partially salvage-logged
+   and one unlogged) in western Idaho from 1994-2004. We estimated the
+   relationship between nest density and time since fire, tested for
+   statistical differences in nest densities and nest survival in the
+   partially salvage-logged vs. unlogged wildfires, and tested for
+   differences in nest survival between early (1-4 years after fire) and
+   late (5-12 years after fire) postfire periods. Nest densities of
+   open-space foragers and Northern Flickers generally increased with time
+   since fire, whereas nest densities of Black-backed and Hairy Woodpeckers
+   peaked 4-5 years postfire. Nest densities of wood-foraging species and
+   Mountain Bluebirds were significantly higher in the unlogged burn,
+   whereas Lewis's Woodpeckers had significantly higher nest densities in
+   the partially logged burn. Kestrels tended to favor the partially logged
+   burn, while Western Bluebird nest densities were nearly equal in both
+   burned areas. For most species, postfire period and treatment (partially
+   logged vs. unlogged) had little influence on nest survival. However,
+   Hairy Woodpecker nest survival was significantly lower in the partially
+   logged burn versus the unlogged wildfire in the early postfire period,
+   and Lewis's Woodpecker nest survival was significantly reduced in the
+   later postfire period versus the early postfire period in the partially
+   logged burn. Importantly, the salvage logging was designed to retain
+   more than half of the snags over 23 cm in diameter, which provided
+   suitable nesting habitat for open-space foragers during the decade
+   following fire.
+C1 Saab, Victoria A.; US Forest Serv, Rocky Mt Res Stn, 1648 S 7th Ave, MSU
+   Campus, Bozeman, MT 59717, USA, USA.
+EM vsaab@fs.fed.us
+OI Russell, Robin/0000-0001-8726-7303
+SC Zoology; Forestry; Reproductive Biology; Environmental Sciences &
+   Ecology
+SN 0010-5422
+BD Animals and man; Disturbance by man; Commercial activities;
+   Reproduction; Ecology; Population dynamics; Habitat; Terrestrial
+   habitat; Abiotic factors; Physical factors; Land zones; Nearctic region;
+   North America; USA
+DE Aves [Forestry / Post fire salvage logging / Nest density & nest
+   survival effects; cavity nesters; forests] [Reproductive productivity /
+   Nesting success / Post fire salvage logging & time since fire effects]
+   [Population density / Nest density / ] [Survival /  / Nests] [Forest and
+   woodland / Ponderosa pine forest habitats / Nest density & nest
+   survival] [Fire / Post fire salvage logging & time since fire / ] [Idaho
+   / West / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+DI 10.1650/0010-5422(2007)109[97:NDOCBI]2.0.CO;2
+UT ZOOREC:ZOOR14308049240
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14209057090
+DT Article; Meeting paper
+TI A comparison of the age-class structure of black-backed woodpeckers
+   found in recently burned and unburned boreal coniferous forests in
+   eastern Canada.
+AU Huot, Matthieu (matthieu_huot@uqac.ca) 
+   Ibarzabal, Jacques
+SO Annales Zoologici Fennici
+VL 43
+IS 2
+PS 131-136
+PD April 28 2006
+PY 2006
+LA English
+U1 0
+U2 9
+AB Black-backed woodpeckers (Picoides arcticus) may depend on recently
+   burned forest patches to maintain viable population levels. We wanted to
+   determine how these habitats are colonized by this species and by which
+   age classes. Data collected at the Observatoire d'oiseaux de Tadoussac
+   (situated on the north shore of the St. Lawrence River (Quebec, Canada))
+   suggest that an important movement of juveniles occurs during the
+   autumn. It was therefore hypothesized that in the year following fire,
+   burned forest sites would be colonized by a higher percentage of
+   juvenile birds than intact mature stands. In accordance to this
+   hypothesis, there was a difference in woodpecker age structure between
+   the two habitat types ([chi]2 = 9.43, df = 2, P = 0.0088, n = 186).
+   However, differences are mainly explained by the higher number of third
+   calendar year birds at burned forest sites, suggesting that a part of
+   the colonization occurs in the same year as the fire by second year
+   birds, rather than by juveniles during the autumn.
+C1 Huot, Matthieu; Univ Quebec, Dept Sci Fondamentales, 555 Boul Univ,
+   Chicoutimi, PQ G7H 2B1, Canada, Canada.
+EM matthieu_huot@uqac.ca
+OI Huot, Matthieu/0000-0002-7750-5715
+SC Reproductive Biology; Zoology; Environmental Sciences & Ecology;
+   Forestry
+SN 0003-455X
+BD Reproduction; Sex differences; Ecology; Population dynamics; Population
+   structure; Habitat utilization; Habitat; Terrestrial habitat; Abiotic
+   factors; Physical factors; Land zones; Nearctic region; North America;
+   Canada
+DE Picoides arcticus [Behavioural sex differences /  / burned & unburned
+   coniferous forests compared] [Age class distribution /  / ] [Habitat
+   preference / Habitat selection / Sex differences] [Forest and woodland /
+   Coniferous forest habitat / Age class distribution & habitat preference;
+   burned & unburned habitats compared] [Fire /  / Burned & unburned
+   coniferous forests; age class distribution & habitat preference
+   compared] [Quebec / Tadoussac Bird Observatory / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14209057090
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14209057098
+DT Article; Meeting paper
+TI Black-backed woodpecker (Picoides arcticus) detectability in unburned
+   and recently burned mature conifer forests in north-eastern North
+   America.
+AU Ibarzabal, Jacques (jacques_ibarzabal@uqac.ca) 
+   Desmeules, Patrice
+SO Annales Zoologici Fennici
+VL 43
+IS 2
+PS 228-234
+PD April 28 2006
+PY 2006
+LA English
+U1 0
+U2 6
+AB Presence-absence data is often used to determine the preferred habitat
+   of a given organism. However, with presence-absence datasets there is a
+   problem associated with the comparison between habitats when there is an
+   inter-habitat variation in the proportion of false zeros. Using
+   conspecific playbacks and time of reaction of black-backed woodpeckers
+   in burned and unburned forests, the present study determined whether
+   detection probabilities were similar. The period of time required to
+   detect this species was shorter in recently burned sites than in mature
+   forest stands (F2.235 = 22.1, df = 2, P  0.0001). To accurately compare
+   these habitats it is important to assure the same proportion of presence
+   and false zeros in each habitat during the census. To achieve this, we
+   propose a time corrected method. Because inter-habitat differences in
+   detectability exist for black-backed woodpeckers, and probably many
+   other organisms, caution is needed when interpreting presence-absence
+   data in the context of habitat comparisons or when monitoring
+   biodiversity in different habitats.
+C1 Ibarzabal, Jacques; Univ Quebec, Dept Sci Fondamentales, 555 Boul Univ,
+   Chicoutimi, PQ G7H 2B1, Canada, Canada.
+EM jacques_ibarzabal@uqac.ca
+SC Environmental Sciences & Ecology; Zoology; Forestry
+SN 0003-455X
+BD Techniques; Ecological techniques; Ecology; Population dynamics; Habitat
+   utilization; Habitat; Terrestrial habitat; Abiotic factors; Physical
+   factors; Land zones; Nearctic region; North America; Canada
+DE Picoides arcticus [Ecological techniques / Habitat preference
+   determination / Burning effect on detectability implications; time
+   corrected method; coniferous forests] [Censusing techniques /  / ]
+   [Population censuses /  / Determination; forests] [Habitat preference / 
+   / ] [Forest and woodland / Coniferous forest habitat / Habitat
+   preference & census determination] [Fire / Burning / Detectability
+   effects implications for censusing & habitat preference analysis]
+   [Quebec / North / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14209057098
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14202011290
+DT Article; Meeting paper
+TI Bird responses to burning and logging in the boreal forest of Canada.
+AU Hannon, Susan J.
+   Drapeau, Pierre
+SO Studies in Avian Biology
+VL 30
+PS 97-115
+PD 27 July 2005
+PY 2005
+LA English
+U1 0
+U2 10
+AB We compared how bird communities differed between burned and logged
+   stands in black spruce (Picea mariana) forests of the boreal shield in
+   Quebec and mixed-wood forests on the boreal plain in Alberta and
+   Saskatchewan. Bird community composition was quite different in burns
+   and clearcuts shortly after disturbance. In burns, cavity nesters and
+   species that forage on beetles in dead trees predominated, whereas
+   clearcuts were dominated by open-country species. Generally,
+   snag-dependent species decreased and shrub-breeding species increased by
+   25 yr postfire. Species that forage and nest in canopy trees were more
+   common 25 yr post-logging because of the retention of live residual
+   trees. The bird communities tended to converge over time as the
+   vegetation in burns and logged areas became more similar. Black-backed
+   Woodpeckers (Picoides arcticus) and Three-toed Woodpeckers (Picoides
+   tridactylus) exploit recently burned coniferous forest to forage on
+   wood-boring insect larvae (Cerambycidae and Buprestidae) and bark beetle
+   larvae (Scolytidae) for a short period after fire and then decline.
+   Black-backs were absent from mature forests and found at low density in
+   old-growth forest. Over the long term, burns may be temporary sources
+   for fire specialists. The major conservation issue for fire- associated
+   species is salvage logging, because woodpecker foraging and nesting
+   trees are removed. Maintenance of suitable amounts of postfire forests
+   spared from salvage logging is essential for sustainable forest
+   management. Climate change is predicted to alter fire cycles: they will
+   be shorter in the prairies leading to a shortage of old-growth forest
+   and will be longer in Quebec leading to a shortage of younger forest.
+C1 Hannon, Susan J.; Department of Biological Sciences, University of
+   Alberta, Edmonton, AB, T6G 2E9, Canada, Canada.
+RI Hannon, Susan/A-2648-2014
+OI Hannon, Susan/0000-0003-3978-3199
+SC Forestry; Zoology; Environmental Sciences & Ecology; Biodiversity &
+   Conservation
+SN 0197-9922
+BD Animals and man; Disturbance by man; Commercial activities;
+   Conservation; Conservation measures; Documentation; Publications;
+   Ecology; Habitat; Terrestrial habitat; Abiotic factors; Physical
+   factors; Land zones; Nearctic region; North America; Canada
+DE Aves [Forestry / Logging / Effects on communities; review; management &
+   research issues; Quebec & Saskatchewan] [Habitat management /  / burning
+   & logging effects on communities implications] [Literature review /  /
+   Burning & logging effects on boreal forest communities] [Community
+   structure /  / Burning & logging effects] [Forest and woodland / Boreal
+   forest / Burning & logging effects on communities] [Fire /  / ] [Alberta
+   /  / ] [Quebec /  / ] [Saskatchewan /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR14202011290
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13900049299
+DT Article
+TI Snag use by foraging Black-backed Woodpeckers (Picoides arcticus) in a
+   recently burned eastern boreal forest.
+AU Nappi, Antoine
+   Drapeau, Pierre
+   Giroux, Jean-Francois
+   Savard, Jean-Pierre L.
+SO Auk
+VL 120
+IS 2
+PS 505-511
+PD April 2003
+PY 2003
+LA English
+U1 2
+U2 17
+AB We studied snag use for foraging by Black-backed Woodpeckers (Picoides
+   arcticus) one year after a fire in an eastern black spruce (Picea
+   mariana) boreal forest in Quebec, Canada. We searched for signs of
+   foraging (bark flaking and excavation holes) by Black-backed Woodpeckers
+   on 6,536 snags sampled in 56 plots located in portions of the burned
+   forest that had not been salvage logged. A logistic regression model was
+   developed based on the presence or absence of foraging signs. Results
+   showed that Black-backed Woodpeckers used larger snags that were less
+   deteriorated by fire (qualified as high-quality snags). Direct field
+   observations of individuals foraging on 119 snags also indicated that
+   used snags corresponded to those of high predicted quality. Finally, we
+   assessed the relationship between food availability and snag
+   characteristics by measuring the density of wood-boring beetle larvae
+   holes on 30 snags of different size and deterioration classes.
+   High-quality snags contained higher prey densities (wood-boring beetle
+   holes) than smaller and more deteriorated snags. We recommend that
+   forest blocks characterized by large and less deteriorated trees be
+   preserved from salvage logging in recently burned boreal forests in
+   northeastern North America.
+C1 Nappi, Antoine; Groupe de Recherche en Ecologie Forestiere
+   Interuniversitaire (GREFi), Departement des Sciences Biologiques,
+   Universite du Quebec a Montreal, Succursale Centre-Ville, P.O. Box 8888,
+   Montreal, Quebec, H3C 3P8, Canada, Canada.
+RI Giroux, Jean-Francois/L-7945-2019
+OI Giroux, Jean-Francois/0000-0002-6732-489X
+SC Biodiversity & Conservation; Environmental Sciences & Ecology; Zoology;
+   Entomology; Nutrition & Dietetics; Forestry; Parasitology
+SN 0004-8038
+BD Conservation; Conservation measures; Nutrition; Diet; Prey; Feeding
+   behaviour; Parasites diseases and disorders; Hosts; Ecology; Population
+   dynamics; Predators; Habitat; Terrestrial habitat; Land zones; Nearctic
+   region; North America; Canada
+DE Picoides arcticus [Habitat management /  / Implications of snag use for
+   foraging in recently burned forests; discussion & recommendations]
+   [Insect prey / Coleoptera / Density of wood boring larvae; snag use for
+   foraging in recently burned forest relationships] [Food availability /
+   Coleopteran prey density / conservation implications] [Foraging /  / Use
+   of snags in recently burned forest; influencing factors & conservation
+   implications] [Habitat utilization / Snags / Use for foraging in
+   recently burned forest] [Forest and woodland / Boreal forest / Snag use
+   for foraging in recently burned forest]. 
+   Scolytidae [Plant hosts / Trees / Larval density in snags; foraging use
+   by avian predator relationships; recently burned forest] [Population
+   density /  / Larvae in snags; recently burned forests] [Avian predators
+   / Picoides arcticus / Predator foraging use of snags; larval density
+   relationships] [Quebec /  / Larval density effects on avian predator
+   foraging in snags]. 
+TN Arthropods; Beetles; Birds; Chordates; Insects; Invertebrates;
+   Vertebrates
+ST Animalia, Arthropoda, Insecta, Coleoptera, Polyphaga, Curculionoidea,
+   Curculionidae, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Scolytidae (Curculionidae): [Parasite, Prey]. 
+   Picoides arcticus (Picidae): [Predator]. 
+DI 10.1642/0004-8038(2003)120[0505:SUBFBW]2.0.CO;2
+UT ZOOREC:ZOOR13900049299
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13900034648
+DT Article; Meeting paper
+TI Three-toed woodpecker ecology in a managed Engelmann spruce forest.
+AU Hill, Rebecca L.
+   White, Clayton M.
+SO Nationalpark Berchtesgaden Forschungsbericht
+VL 48
+PS 81-86
+PD 2003
+PY 2003
+LA English
+U1 0
+U2 0
+AB The Three-toed Woodpecker Picoides tridactylus is an uncommon bird of
+   the boreal forest that is dependent on recent burns and Spruce Bark
+   Beetle Dendroctonus rufipennis infestation for foraging (Fig. 1).
+   Populations of Three-toed Woodpeckers in south-central Utah have
+   increased recently due to the large scale spread of spruce bark beetle
+   infestation. Subsequently, much of this area has been targeted for
+   salvage logging. We studied habitat use and behavior of Three-toed
+   Woodpeckers in logged and unlogged portions of beetle-infested Engelmann
+   spruce Picea engelmannii forest on Monroe Mountain, Utah, Fishlake
+   National Forest, from May to August 2000. Micro and macro-habitat data
+   and bird behavior were recorded at 60 sites where Three-toed Woodpeckers
+   were observed. Comparisons of habitat parameters were made between feed,
+   nest, and drum trees. Engelmann spruce was used most heavily for feeding
+   and comprised 97 % of feed trees. Forty-four percent of nest trees were
+   in Aspen Populus tremutoides, with the remaining 56 % in broken top
+   conifers. Average forest canopy cover differed between the three types
+   of trees (p < 0.05), with feed trees having the highest canopy cover
+   (69.7 [plus or minus] 16 %) (mean [plus or minus] SD), and nest trees
+   the lowest (19.9 [plus or minus] 18 %). Canopy cover was also less in
+   logged than in unlogged areas (p< < 0.001). Outer debarking was
+   significantly greater (p > 0.05) on feed (55 [plus or minus] 27 %) and
+   drum trees (31 [plus or minus] 34 %) than on nest trees (6 [plus or
+   minus] 10%). Nest trees were found to occur in less aggregated stands of
+   surrounding random trees than were feed and drum trees (p < 0.05).
+   Distance to habitat edge was less in logged areas than in unlogged areas
+   (p< 0.10). These findings suggest that according to certain habitat
+   parameters, Three-toed Woodpeckers use different types of trees for
+   feeding, nesting, and drumming, and in logged and unlogged areas. This
+   indicates that perpetuation of mature aspen and old-growth Engelmann
+   spruce is important in maintaining Three-toed Woodpecker populations.
+C1 Hill, Rebecca L.; Department of Integrative Biology, 401 WIDB, Brigham
+   Young University, Provo, Utah 84602, USA, USA.
+SC Nutrition & Dietetics; Zoology; Reproductive Biology; Environmental
+   Sciences & Ecology; Forestry
+SN 0172-0023
+BD Nutrition; Feeding behaviour; Reproduction; Reproductive behaviour;
+   Ecology; Habitat; Terrestrial habitat; Land zones; Nearctic region;
+   North America; USA
+DE Picoides tridactylus [Foraging /  / Activity & habitat use] [Breeding
+   site /  / Habitat use] [Distribution within habitat /  / ] [Habitat
+   utilization /  / ] [Forest and woodland / Logged & unlogged spruce
+   forest / Habitat use & behaviour] [Utah / Fishlake National Forest,
+   Monroe Mountain / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR13900034648
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR14006034289
+DT Article
+TI Insect prey population changes in habitats with declining vs. stable
+   Three-toed Woodpecker Picoides tridactylus populations.
+AU Fayt, Philippe (philippe.fayt@joensuu.fi) 
+SO Ornis Fennica
+VL 80
+IS 4
+PS 182-192
+PD 2003
+PY 2003
+LA English
+U1 1
+U2 21
+AB The effect of food supply on the Three-toed Woodpecker Picoides
+   tridactylus breeding density and productivity was investigated by
+   comparing the pattern of annual changes in prey abundance in habitats
+   with declining vs. stable woodpecker populations. In a burnt area of
+   eastern Finland, where the woodpecker breeding population has been
+   continuously diminishing, following a major increase the first year
+   after fire, only the abundance of spruce bark beetles (Col., Scolytidae)
+   (the woodpecker autumn-spring main insect prey) decreased through the
+   years. Conversely, the abundance of longhorn beetles (Col.,
+   Cerambycidae) (the nestling main food supply) increased dramatically. On
+   the other hand, in neighbouring old-growth patches where one pair was
+   breeding annually, abundance of spruce bark and longhorn beetles did not
+   change significantly between years, although the abundance level of the
+   bark beetles differed among patches. Hence, my results suggest the
+   woodpecker breeding population to be limited by food supply available
+   outside the breeding season, as shown for other forest bird species. The
+   finding, however, that woodpeckers breeding 6-7 years after the fire
+   reared larger broods than earlier pairs, while brood size did not change
+   annually under old-growth conditions, suggests longhorn beetle
+   availability to be critical to reproductive success.
+C1 Fayt, Philippe; Research Centre of Nature, Forests and Wood, DGRNE,
+   Avenue Marechal Juin, 23, B-5030, Gembloux, Belgium, Belgium.
+EM philippe.fayt@joensuu.fi
+SC Environmental Sciences & Ecology; Zoology; Entomology; Nutrition &
+   Dietetics; Reproductive Biology
+SN 0030-5685
+BD Nutrition; Diet; Prey; Feeding behaviour; Reproduction; Reproductive
+   productivity; Ecology; Community structure; Predators; Land zones;
+   Palaearctic region; Eurasia; Europe
+DE Cerambycidae [Relative abundance /  / Avian predator breeding success
+   relationship] [Avian predators / Picoides tridactylus / predator
+   breeding success relationship] [Finland / North Karelia / ]. 
+   Picoides tridactylus [Insect prey / Cerambycidae (Coleoptera) / Prey
+   availability & breeding success relationship] [Food availability /  /
+   Preferred insect prey significance for breeding success] [Food
+   preferences /  / Preferred insect prey availability & breeding success
+   relationship] [Broods / Brood size / Preferred insect prey availability
+   relationship] [Finland / North Karelia / Insect prey availability &
+   breeding success relationship]. 
+TN Arthropods; Beetles; Birds; Chordates; Insects; Invertebrates;
+   Vertebrates
+ST Animalia, Arthropoda, Insecta, Coleoptera, Polyphaga, Chrysomeloidea,
+   Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Cerambycidae (Chrysomeloidea): [Prey]. 
+   Picoides tridactylus (Picidae): [Predator]. 
+UT ZOOREC:ZOOR14006034289
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13900026244
+DT Article
+TI Habitat associations of black-backed and three-toed woodpeckers in the
+   boreal forest of Alberta.
+AU Hoyt, Jeff S. (sue.hannon@uaalberta.ca) 
+   Hannon, Susan J.
+SO Canadian Journal of Forest Research
+VL 32
+IS 10
+PS 1881-1888
+PD October 2002
+PY 2002
+LA English
+U1 0
+U2 31
+C1 Hoyt, Jeff S.; Department of Biological Sciences, University of Alberta,
+   Edmonton, AB T6G 2E9, Canada, Canada.
+EM sue.hannon@uaalberta.ca
+RI Hannon, Susan J/A-2648-2014
+OI Hannon, Susan J/0000-0003-3978-3199
+SC Forestry; Zoology; Environmental Sciences & Ecology; Biodiversity &
+   Conservation
+SN 0045-5067
+BD Animals and man; Disturbance by man; Commercial activities;
+   Conservation; Conservation measures; Ecology; Habitat; Terrestrial
+   habitat; Abiotic factors; Physical factors; Land zones; Nearctic region;
+   North America; Canada
+DE Picoides arcticus; Picoides tridactylus [Forestry /  / Relations between
+   habitat management; habitat utilization & fire] [Habitat management /  /
+   Forest; relations with habitat utilization & fire] [Habitat utilization
+   /  / effects of fire; implications for habitat management] [Forest and
+   woodland /  / ] [Fire /  / effects on habitat utilization] [Alberta /
+   North east / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+DI 10.1139/x02-109
+UT ZOOREC:ZOOR13900026244
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13800050393
+DT Article
+TI Measuring woodpecker food: a simple method for comparing wood-boring
+   beetle abundance among fire-killed trees.
+AU Powell, Hugh D.W.
+   Hejl, Sallie J.
+   Six, Diana L.
+SO Journal of Field Ornithology
+VL 73
+IS 2
+PS 130-140
+PD Spring 2002
+PY 2002
+LA English
+U1 0
+U2 14
+C1 Powell, Hugh D.W.; High Desert Ecological Research Institute, 15 SW
+   Colorado Avenue, Suite 300, Bend, Oregon 97702, USA, USA.
+SC Zoology; Environmental Sciences & Ecology; Forestry; Nutrition &
+   Dietetics; Entomology
+SN 0273-8570
+BD Techniques; Ecological techniques; Nutrition; Diet; Prey; Ecology;
+   Predators; Habitat; Terrestrial habitat; Land zones; Nearctic region;
+   North America; USA
+DE Coleoptera [Sampling /  / Simple method for wood boring larvae in fire
+   killed trees] [Avian predators / Picidae / Sampling method for wood
+   boring larvae in fire killed trees] [Forest and woodland /  / ] [Idaho /
+   Salmon County, Selway-Bitterroot Wilderness / ]. 
+   Picidae [Feeding analysis techniques /  / Sampling method for
+   coleopteran wood boring larvae in fire killed trees] [Insect prey /
+   Coleoptera / Sampling method for wood boring larvae in fire killed
+   trees] [Food availability /  / ] [Forest and woodland /  / ] [Idaho /
+   Salmon County, Selway-Bitterroot Wilderness / ]. 
+   Picoides arcticus [Insect prey / Coleoptera / Sampling method for wood
+   boring larvae in fire killed trees; Idaho]. 
+TN Arthropods; Beetles; Birds; Chordates; Insects; Invertebrates;
+   Vertebrates
+ST Animalia, Arthropoda, Insecta, Chordata, Vertebrata, Aves, Piciformes,
+   Picidae
+OR Coleoptera (Insecta): [Prey]. 
+   Picidae (Piciformes): [Predator]. 
+   Picoides arcticus (Picidae): [Predator]. 
+DI 10.1648/0273-8570-73.2.130
+UT ZOOREC:ZOOR13800050393
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13600061230
+DT Article
+TI Comparing bird assemblages in successional black spruce stands
+   originating from fire and logging.
+AU Imbeau, Louis
+   Savard, Jean-Pierre L.
+   Gagnon, Rejean
+SO Canadian Journal of Zoology
+VL 77
+IS 12
+PS 1850-1860
+PD December 1999
+PY 1999
+LA English
+U1 1
+U2 37
+AB Comparisons of the effects of logging and fire as disturbance agents on
+   the composition of bird assemblages in boreal ecosystems are still
+   lacking or are limited to the short-term impacts of clear-cutting. In
+   Quebec, where the boreal forest is largely dominated by black spruce
+   (Picea mariana (Mill.) B.S.P.) stands, we surveyed 140 point-count
+   stations in 3 postlogging and 4 postfire development stages determined
+   according to the height of the regenerating spruce trees. Species
+   richness did not vary among forest development stages, but bird
+   abundance was higher in recent clearcuts. Recently disturbed areas were
+   characterized by open-land bird assemblages dominated by Neotropical
+   migrants, which reached their highest abundance in clearcuts. Moreover,
+   logged stands were distinguished from burned sites by the absence of
+   cavity-nesting birds. Forest-bird assemblages reestablished themselves
+   as soon as young spruces reached the sapling stage. However, the
+   Black-backed Woodpecker (Picoides arcticus), Three-toed Woodpecker
+   (Picoides tridactylus), and Brown Creeper (Certhia americana) were
+   restricted to mature stands or recent burns and are thus likely to be
+   negatively affected by modern forestry, which involves fire suppression
+   and short logging rotations. We suggest that retention of larger areas
+   of continuous mature forest might be essential to maintain these species
+   in managed regions.
+C1 Imbeau, Louis; Centre de recherche en biologie forestiere, pavillon
+   Abitibi-Price, Universite Laval, Sainte-Foy, PQ G1K 7P4, Canada, Canada.
+RI Imbeau, Louis/A-6642-2009
+OI Imbeau, Louis/0000-0003-4111-8059
+SC Forestry; Zoology; Environmental Sciences & Ecology
+SN 0008-4301
+BD Animals and man; Disturbance by man; Commercial activities; Ecology;
+   Habitat utilization; Habitat; Terrestrial habitat; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America; Canada
+DE Aves [Forestry /  / Logging & fire suppression; community structure
+   relationships] [Community structure /  / Forest stands; forestry
+   practice relationship] [Forest and woodland /  / Forestry practice
+   effect on community structure] [Quebec /  / Lac Saint Jean & Laurentides
+   animal reserve; Forest community structure; effect of forestry
+   practice]. 
+   Certhia americana; Picoides arcticus; Picoides tridactylus [Habitat
+   preference /  / Mature forest; significance of forestry practice;
+   Quebec] [Fire /  / Suppression as forestry practice; Influence on
+   species presence in managed regions]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Certhiidae,
+   Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Certhia americana (Certhiidae). 
+   Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+DI 10.1139/cjz-77-12-1850
+UT ZOOREC:ZOOR13600061230
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13500043995
+DT Article
+TI Density and foraging ecology of woodpeckers following a
+   stand-replacement fire.
+AU Murphy, Edward C.
+   Lehnhausen, William A.
+SO Journal of Wildlife Management
+VL 62
+IS 4
+PS 1359-1372
+PD October 1998
+PY 1998
+LA English
+U1 2
+U2 52
+AB Throughout its geographic range, the black-backed woodpecker (Picoides
+   arcticus) is rare and appears very similar in its foraging ecology to 2
+   broadly sympatric congeners, the three-toed (P. tridactylus) and hairy
+   woodpecker (P. villosus). The purposes of our study were to test for
+   differences in foraging ecology of the black-backed, three-toed, and
+   hairy woodpeckers following a stand-replacement fire and to evaluate the
+   importance of such fires to the viability of populations of the
+   black-backed woodpecker. In boreal forests of Interior Alaska, endemic
+   population densities of three-toed woodpeckers are low (<0.1/ha), and
+   black-backed woodpeckers are extremely rare. Following the Rosie Creek
+   fire near Fairbanks, Alaska, in June 1983, both species increased
+   markedly. Densities of both species briefly exceeded 0.2/ha and remained
+   high in a 67-ha plot at the edge of the burn during the following 2
+   years. By December 1986, densities had declined to <0.1/ha. Black-backed
+   woodpeckers fed primarily on charred portions of moderately to heavily
+   burnt spruces and almost exclusively by excavating larval wood-boring
+   beetles (Cerambycidae). Three-toed woodpeckers fed on less-burnt spruces
+   and foraged in and immediately under the bark; bark beetle (Scolytidae)
+   larvae predominated in their diet. In contrast to earlier studies, our
+   results demonstrate substantive differences in foraging sites, behavior,
+   and diet of these 2 species. Foraging ecology of male hairy woodpeckers
+   and black-backed woodpeckers, particularly females, was similar. In all
+   3 species, particularly the hairy woodpecker, females fed lower on trees
+   and were far less numerous than males in the study area, which suggested
+   intersexual displacement from foraging sites and habitats selected by
+   males. In summer 1985, following initial adult emergence of the 1983
+   cerambycid and scolytid cohorts, woodpeckers declined markedly and were
+   absent by late spring 1986.
+C1 Murphy, Edward C.; Institute of Arctic Biology, University of Alaska
+   Fairbanks, Fairbanks, AK 99775, USA, USA.
+SC Forestry; Zoology; Environmental Sciences & Ecology; Biodiversity &
+   Conservation; Nutrition & Dietetics; Reproductive Biology
+SN 0022-541X
+BD Animals and man; Disturbance by man; Commercial activities;
+   Conservation; Conservation measures; Nutrition; Feeding behaviour;
+   Reproduction; Sex differences; Ecology; Population dynamics;
+   Competition; Habitat; Terrestrial habitat; Abiotic factors; Physical
+   factors; Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Forestry /  / Postfire salvage logging; impact on
+   density & foraging; Conservation implications; boreal forest] [Habitat
+   management /  / ] [Foraging /  / Fire effects] [Behavioural sex
+   differences /  / Foraging ecology; habitat use after fire] [Population
+   density /  / Abundance] [Interspecific competition /  / Picoides
+   tridactylus & Picoides villosus; Foraging competition after fire]
+   [Forest and woodland /  / foraging ecology & population density] [Fire /
+   / Stand replacement fire; impact on density & foraging ecology] [Alaska
+   /  / Fairbanks; Rosie Creek]. 
+   Picoides tridactylus; Picoides villosus [Forestry /  / Postfire salvage
+   logging; impact on density & foraging; Conservation implications; boreal
+   forest] [Habitat management /  / ] [Foraging /  / Fire effects]
+   [Behavioural sex differences /  / Foraging ecology; habitat use after
+   fire] [Population density /  / Abundance] [Forest and woodland /  /
+   foraging ecology & population density] [Fire /  / Stand replacement
+   fire; impact on density & foraging ecology] [Alaska /  / Fairbanks;
+   Rosie Creek]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+   Picoides villosus (Picidae). 
+DI 10.2307/3802002
+UT ZOOREC:ZOOR13500043995
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13400035847
+DT Article
+TI Immediate post-fire nesting by black-backed woodpeckers, Picoides
+   arcticus, in northern Alberta.
+AU Villard, Marc-Andre
+   Schieck, Jim
+SO Canadian Field-Naturalist
+VL 111
+IS 3
+PS 478-479
+PD July-September 1997
+PY 1997
+LA English
+U1 0
+U2 6
+AB An active Black-backed Woodpecker nest was found in a forested area that
+   had been severely burned the same summer. By backdating, nest excavation
+   was estimated to have started within a few days after the passage of the
+   fire. This observation indicates that the Black-backed Woodpecker is not
+   only closely associated with recently-burned forests, but that it can
+   nest successfully immediately after the occurrence of a forest fire.
+C1 Villard, Marc-Andre; Departement de biologie, Universite de Moncton,
+   Moncton, Nouveau-Brunswick E1A 3E9, Canada, Canada.
+SC Reproductive Biology; Zoology; Forestry; Environmental Sciences &
+   Ecology
+SN 0008-3550
+BD Reproduction; Reproductive behaviour; Habitat; Terrestrial habitat;
+   Abiotic factors; Physical factors; Land zones; Nearctic region; North
+   America; Canada
+DE Picoides arcticus [Breeding site /  / Immediate post fire nesting site
+   recorded in burnt forest] [Forest and woodland /  / Burnt forest;
+   immediate post fire nesting site recorded] [Fire /  / ] [Alberta /  /
+   Fort McMurray area]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR13400035847
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13200047914
+DT Article
+TI Composition of bird communities following stand-replacement fires in
+   northern Rocky Mountain (U.S.A.) conifer forests.
+AU Hutto, Richard L.
+SO Conservation Biology
+VL 9
+IS 5
+PS 1041-1058
+PD October 1995
+PY 1995
+LA English
+U1 2
+U2 63
+AB During the two breeding seasons immediately following the numerous and
+   widespread fires of 1988, I estimated bird community composition in each
+   of 34 burned-forest sites in western Montana and northern Wyoming. I
+   detected an average of 45 species per site and a total of 87 species in
+   the sites combined. A compilation of these data with bird-count data
+   from more than 200 additional studies conducted across 15 major
+   vegetation cover types in the northern Rocky Mountain region showed that
+   15 bird species are generally more abundant in early post-fire
+   communities than in any other major cover type occurring in the northern
+   Rockies. One bird species (Black-backed Woodpecker, Picoides arcticus)
+   seems to be nearly restricted in its habitat distribution to standing
+   dead forests created by stand-replacement fires. Bird communities in
+   recently burned forests are different in composition from those that
+   characterize other Rocky Mountain cover types (including
+   early-successional clearcuts) primarily because members of three feeding
+   guilds are especially abundant therein: woodpeckers, flycatchers, and
+   seedeaters. Standing, fire-killed trees provided nest sites for nearly
+   two-thirds of 31 species that were found nesting in the burned sites.
+   Broken-top snags and standing dead aspens were used as nest sites for
+   cavity-nesting species significantly more often than expected on the
+   basis of their relative abundance. Moreover, because nearly all of the
+   broken-top snags that were used were present before the fire, forest
+   conditions prior to a fire (especially the presence of snags) may be
+   important in determining the suitability of a site to cavity-nesting
+   birds after a fire. For bird species that were relatively abundant in or
+   relatively restricted to burned forests, stand-replacement fires may be
+   necessary for long-term maintenance of their populations.
+RI Cox, Elizabeth/C-2644-2008
+SC Environmental Sciences & Ecology; Zoology; Biodiversity & Conservation;
+   Forestry
+SN 0888-8892
+BD Conservation; Conservation measures; Ecology; Habitat; Terrestrial
+   habitat; Abiotic factors; Physical factors; Land zones; Nearctic region;
+   North America
+DE Aves [Habitat management /  / Post fire forest community structure &
+   habitat use implications] [Community structure /  / Post fire forests;
+   habitat management implications] [Habitat utilization /  / ] [Forest and
+   woodland /  / Forest; post fire community structure & habitat use] [Fire
+   /  / Post fire forest community structure & habitat use] [USA /  / Rocky
+   Mountains; north]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+DI 10.1046/j.1523-1739.1995.9051041.x
+UT ZOOREC:ZOOR13200047914
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13200048858
+DT Article
+TI Kitsi forest fire area - a paradise for three-toed woodpeckers.
+AU Sorvari, Veli-Matti
+SO Linnut
+VL 29
+IS 4
+PS 28-32
+PD 1994
+PY 1994
+LA Finnish
+U1 0
+U2 0
+SC Zoology; Environmental Sciences & Ecology; Forestry
+SN 1235-9807
+BD Ecology; Population dynamics; Habitat utilization; Habitat; Terrestrial
+   habitat; Abiotic factors; Physical factors; Land zones; Palaearctic
+   region; Eurasia; Europe
+DE Aves [Population density /  / Forest; effect of fire on density of
+   breeding species] [Forest and woodland /  / ] [Fire /  / effect on
+   density of breeding species] [Finland /  / Lieksa; Kitsi forest; Fire
+   effect on density of breeding species]. 
+   Picoides tridactylus [Habitat preference /  / Burned forest; Finland]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR13200048858
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR13000030002
+DT Article
+TI Foraging behavior of male black-backed and hairy woodpeckers in a forest
+   burn.
+AU Villard, Pascal
+   Beninger, Clifford W.
+SO Journal of Field Ornithology
+VL 64
+IS 1
+PS 71-76
+PD Winter 1993
+PY 1993
+LA English
+U1 1
+U2 7
+AB During December 1988-June 1989, in a small forest burn area composed
+   mainly of White Pine (Pinus strobus), male Hairy Woodpeckers (Picoides
+   villosus) tended to forage on smaller diameters and at greater heights
+   than male Black-backed Woodpeckers (P. arcticus). Males of both species
+   still overlapped greatly in their foraging heights and diameters. In all
+   (n = 22) interspecific contacts, Black-backed Woodpeckers stopped
+   foraging and moved to a more distant tree when Hairy Woodpeckers
+   approached within 10 m.
+SC Zoology; Nutrition & Dietetics; Forestry
+SN 0273-8570
+BD Nutrition; Feeding behaviour; Habitat; Terrestrial habitat; Land zones;
+   Nearctic region; North America; Canada
+DE Picoides arcticus; Picoides villosus [Foraging /  / Behaviour in forest
+   burn area; comparative study] [Forest and woodland /  / Foraging
+   behaviour in forest burn area] [Quebec /  / Quyon]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides villosus (Picidae). 
+UT ZOOREC:ZOOR13000030002
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR12000014663
+DT Article
+TI Both three-toed woodpeckers in Burnett County.
+AU Fuller, P.
+SO Passenger Pigeon
+VL 45
+IS 4
+PS 146-147
+PD 1983
+PY 1983
+LA English
+U1 0
+U2 0
+SC Zoology
+SN 0031-2703
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus; Picoides tridactylus [Wisconsin /  / Burnett County;
+   Sighting record]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR12000014663
+DA 2020-01-15
+ER
+
+PT J
+AN ZOOR11800038660
+DT Article
+TI Bird populations before and after wildfire in a Great Lakes pine forest.
+AU Apfelbaum, S.
+   Haney, A.
+SO Condor
+VL 83
+IS 4
+PS 347-354
+PD 1981
+PY 1981
+LA English
+U1 0
+U2 10
+AB Birds in a 6.25 ha quadrat in a 73 yr old jack pine-black spruce forest
+   (Pinus banksiana-Picea mariana) in Cook County, Minnesota [USA] were
+   intensively studied in June 1976. A wildfire burned through the area in
+   Aug. The following spring the same quadrat was resurveyed to determine
+   the 1st yr changes in bird populations. Species and guilds were compared
+   by density, territorial space, existence energy and importance values.
+   Twelve species had territories in the study grid before the fire
+   [Dendroica castanea, D. fusca, Parus hudsonicus, Vireo olivaceus,
+   Regulus calendula, V. solitarius, D. coronata, Certhia familiaris, Sitta
+   canadensis, Catharus guttatus, Seiurus aurocapillus, Troglodytes
+   troglodytes]; six [V. olivaceus, V. solitarius, Sitta canadensis, C.
+   guttatus, Seiurus aurocapillus, T. troglodytes] were not there the
+   following spring, but 8 additional species [Nuttallornis borealis,
+   Picoides arcticus, Catharsus minimus, C. ustulatus, Carpodacus
+   purpureus, Turdus migratorious, Junco hyemalis and Zonotrichia
+   albicollis] had established territories. Tree-foliage searchers had the
+   greatest importance value before the fire and ground-brush foragers the
+   greatest value afterwards. Density, total biomass, and combined
+   existence energy of birds decreased after the fire by 50, 23 and 41%,
+   respectively, but species using the area after the fire were 63% heavier
+   on the average. Average energy consumption per unit of body weight was
+   calculated to be 23% less after the fire. Fire apparently reduced the
+   total food available for birds, but increased the kinds of food,
+   especially at or near the ground.
+SC Environmental Sciences & Ecology; Zoology; Forestry
+SN 0010-5422
+BD Ecology; Habitat; Terrestrial habitat; Abiotic factors; Physical
+   factors; Land zones; Nearctic region; North America; USA
+DE Aves [Community structure /  / fire effects] [Forest /  / ] [Fire /  /
+   Forest community structure effects] [Minnesota /  / Cook County; Pine
+   forest]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+DI 10.2307/1367504
+UT ZOOREC:ZOOR11800038660
+DA 2020-01-15
+ER
+
+EF

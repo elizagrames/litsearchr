@@ -20,17 +20,18 @@ an igraph weighted graph
 Creates a keyword co-occurrence network from an adjacency matrix trimmed to remove rare terms.
 }
 \examples{
-create_network(
-  search_dfm = create_dfm(
-    c(
-      "Cross-scale occupancy dynamics of a postfire specialist
+dfm <- create_dfm(
+  elements = c(
+    "Cross-scale occupancy dynamics of a postfire specialist
     in response to variation across a fire regime",
-      "Variation in home-range size of Black-backed Woodpeckers",
-      "Black-backed woodpecker occupancy in burned and beetle-killed forests"
-    ),
-    features = c("occupancy", "variation", "woodpecker", "burn"),
-    closure = "none"
+    "Variation in home-range size of Black-backed Woodpeckers",
+    "Black-backed woodpecker occupancy in burned and beetle-killed forests"
   ),
+  features = c("occupancy", "variation", "black-backed woodpecker", "burn")
+)
+
+create_network(
+  search_dfm = as.matrix(dfm),
   min_studies = 1,
   min_occ = 1
 )

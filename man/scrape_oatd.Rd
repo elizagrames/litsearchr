@@ -4,9 +4,16 @@
 \alias{scrape_oatd}
 \title{Scrapes results from Open Access Theses and Dissertations}
 \usage{
-scrape_oatd(search_terms = NULL, URL = NULL, writefile = FALSE,
-  verbose = TRUE, languages = "English", stemming = FALSE,
-  exactphrase = TRUE, directory = "./")
+scrape_oatd(
+  search_terms = NULL,
+  URL = NULL,
+  writefile = FALSE,
+  verbose = TRUE,
+  languages = "English",
+  stemming = FALSE,
+  exactphrase = TRUE,
+  directory = "./"
+)
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms}

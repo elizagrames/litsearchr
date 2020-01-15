@@ -18,7 +18,7 @@ Description: Systematic review, meta-analysis, and other forms of evidence
     a set of known, relevant articles to get performance metrics.
 License: GPL-3
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Imports: 
     SnowballC,
     Rcpp,

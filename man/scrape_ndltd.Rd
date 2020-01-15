@@ -4,9 +4,17 @@
 \alias{scrape_ndltd}
 \title{Scrapes results from the NDLTD Global ETD Search}
 \usage{
-scrape_ndltd(search_terms = NULL, URL = NULL, writefile = FALSE,
-  verbose = TRUE, languages = "English", stemming = FALSE,
-  exactphrase = TRUE, where = "description", directory = "./")
+scrape_ndltd(
+  search_terms = NULL,
+  URL = NULL,
+  writefile = FALSE,
+  verbose = TRUE,
+  languages = "English",
+  stemming = FALSE,
+  exactphrase = TRUE,
+  where = "description",
+  directory = "./"
+)
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms}

@@ -299,7 +299,6 @@ select_ngrams <- function(graph,
   return(ngrams)
 }
 
-
 #' Subset unigrams from node names
 #' @description Selects only nodes from a graph whose node names are single words.
 #' @param graph an igraph object

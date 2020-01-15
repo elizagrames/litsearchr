@@ -4,9 +4,14 @@
 \alias{scrape_hits}
 \title{Scrapes hits from specified databases}
 \usage{
-scrape_hits(search_terms = NULL, URL = NULL, database = c("oatd",
-  "ndltd", "openthesis"), verbose = TRUE, writefile = FALSE,
-  directory = "./")
+scrape_hits(
+  search_terms = NULL,
+  URL = NULL,
+  database = c("oatd", "ndltd", "openthesis"),
+  verbose = TRUE,
+  writefile = FALSE,
+  directory = "./"
+)
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms.}

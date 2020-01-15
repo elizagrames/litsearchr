@@ -245,7 +245,7 @@ available_languages <- function(){
 #' @return a text string
 #'@example inst/examples/write_titles.R
 write_title_search <- function(titles){
-  titlekeys <- synthesisr::get_tokens(synthesisr::remove_punctuation(titles), "English")
+  titlekeys <- sapply(titles, synthesisr::get_tokens)
 
   title <- c()
   for (i in 1:length(titlekeys)){

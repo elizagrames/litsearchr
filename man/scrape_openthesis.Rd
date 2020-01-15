@@ -4,9 +4,16 @@
 \alias{scrape_openthesis}
 \title{Scrapes results from OpenThesis}
 \usage{
-scrape_openthesis(search_terms = NULL, URL = NULL, writefile = FALSE,
-  verbose = TRUE, languages = "English", stemming = FALSE,
-  exactphrase = TRUE, directory = "./")
+scrape_openthesis(
+  search_terms = NULL,
+  URL = NULL,
+  writefile = FALSE,
+  verbose = TRUE,
+  languages = "English",
+  stemming = FALSE,
+  exactphrase = TRUE,
+  directory = "./"
+)
 }
 \arguments{
 \item{search_terms}{a list of character strings with grouped search terms}

@@ -4,14 +4,12 @@
 \alias{create_dfm}
 \title{Create a document-feature matrix}
 \usage{
-create_dfm(elements, features, closure = "full")
+create_dfm(elements, features)
 }
 \arguments{
 \item{elements}{a character vector of document information (e.g. document titles or abstracts)}
 
 \item{features}{a character vector of terms to use as document features (e.g. keywords)}
-
-\item{closure}{restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms (e.g. "burn" matches "postburning").}
 }
 \value{
 a matrix with documents as rows and terms as columns
@@ -20,14 +18,15 @@ a matrix with documents as rows and terms as columns
 Given a character vector of document information, creates a document-feature matrix.
 }
 \examples{
-create_dfm(
-  c(
+dfm <- create_dfm(
+  elements = c(
     "Cross-scale occupancy dynamics of a postfire specialist
     in response to variation across a fire regime",
     "Variation in home-range size of Black-backed Woodpeckers",
     "Black-backed woodpecker occupancy in burned and beetle-killed forests"
   ),
-  features = c("occupancy", "variation", "woodpecker", "burn"),
-  closure = "none"
+  features = c("occupancy", "variation", "black-backed woodpecker", "burn")
 )
+
+as.matrix(dfm)
 }

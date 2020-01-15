@@ -1,7 +1,7 @@
 ---
 title: "Search term selection with litsearchr for an example systematic review of the effects of forest fragmentation on bird-insect interactions"
 
-author: "Eliza M. Grames and Emily Hennessy"
+author: "Eliza M. Grames and Emily A. Hennessy"
 
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -23,26 +23,27 @@ knitr::opts_chunk$set(
 ```
 
 ## About the package  
-The *litsearchr* package for R is designed to partially automate search term selection and writing search strategies for systematic reviews. This vignette demonstrates its utility through an example systematic review examining the effects of forest fragmentation on bird-insect interactions by demonstrating how the package: (1) Identifies potential keywords through the naive search input, (2) Builds a keyword co-occurence network to assist with building a more precise search strategy, (3) Uses a spline function to identify important changes in keyword importance, (4) Assists with grouping terms into concepts, and (5) Writes a Boolean search as a result of completion of the four previous steps.
+The *litsearchr* package for R is designed to partially automate search term selection and writing search strategies for systematic reviews. This vignette demonstrates its utility through a mock, example review examining the effects of fire on black-backed woodpeckers by demonstrating how the package: (1) Identifies potential keywords through the naive search input, (2) Builds a keyword co-occurence network to assist with building a more precise search strategy, (3) Uses a cutoff function to identify important changes in keyword importance, (4) Assists with grouping terms into concepts, and (5) Writes a Boolean search as a result of completion of the four previous steps.
 
 ## Write and conduct naive search
-In our empirical example, we begin with a naive search intended to capture a set of relevant articles. Naive search terms: (fragment* AND forest* AND (bird* OR passeri*) AND insect*). We ran the search in Scopus and Zoological Record (Web of Science), exporting results in .ris and .txt, respectively. These exported search results are then imported to litsearchr using the *import_results* function and next deduplicated using the *remove_duplicates* function. In some cases, it is best to run the *remove_duplicates* function two or more times, for example starting with exact matches and moving on to fuzzy matching. 
+In our empirical example, we begin with a naive search intended to capture a set of relevant articles. Naive search terms: (("black-backed woodpecker" OR "picoides arcticus" OR "picoides tridactylus" AND (burn\* OR fire\*)). We ran the search in Scopus and Zoological Record (Web of Science), exporting results in .ris and .txt, respectively. These exported search results are then imported to litsearchr using the *import_results* function and next deduplicated using the *remove_duplicates* function. In some cases, it is best to run the *remove_duplicates* function two or more times, for example starting with exact matches and moving on to fuzzy matching. 
 
 ```{r}
-search_directory <- paste(system.file(package="synthesisr"), "/extdata/", sep="")
+search_directory <- system.file("extdata/", package="synthesisr")
 
 naiveimport <-
   litsearchr::import_results(directory = search_directory, verbose = TRUE)
 
 naiveresults <-
-  litsearchr::remove_duplicates(naiveimport, field = "title", method = "exact")
+  litsearchr::remove_duplicates(naiveimport, field = "title", method = "stringdist")
+
 ```
 
 
 
 ## 1. Identify potential keywords
 
-Using the deduplicated records captured from the naive search, the *extract_terms* function will systematically extract all keywords from the reports that have been tagged as such in the record.
+Using the deduplicated records captured from the naive search, the *extract_terms* function will systematically extract all potential keywords from the article titles, abstracts, or other fields that are passed to the function as text. There are a couple different methods for extracting terms: the Rapid Automatic Keyword Extraction algorithm (RAKE), a function that approximates RAKE (fakerake), or simple ngram detection. Alternatively, *extract_terms* can take the keywords field from the deduplicated records (if it exists) and clean up author- and database-tagged keywords. 
 
 ```{r}
 rakedkeywords <-
@@ -51,12 +52,19 @@ rakedkeywords <-
     method = "fakerake",
     min_freq = 2,
     ngrams = TRUE,
-    n = 2,
+    min_n = 2,
     language = "English"
   )
 
 taggedkeywords <-
-  litsearchr::extract_terms(keywords = naiveresults$keywords, method = "tagged")
+  litsearchr::extract_terms(
+    keywords = naiveresults$keywords,
+    method = "tagged",
+    min_freq = 2,
+    ngrams = TRUE,
+    min_n = 2,
+    language = "English"
+  )
 ```
 
 
@@ -64,32 +72,34 @@ taggedkeywords <-
 ## 2. Build the keyword co-occurrence network
 Using the results from *Step 1, Identify potential keywords*, a series of functions are next run to create a co-occurrence network. 
 
-
 ```{r}
 all_keywords <- unique(append(taggedkeywords, rakedkeywords))
 
 naivedfm <-
-  litsearchr::create_dfm(elements = naiveresults$title, features = all_keywords)
+  litsearchr::create_dfm(
+    elements = paste(naiveresults$title, naiveresults$abstract),
+    features = all_keywords
+  )
 
 naivegraph <-
   litsearchr::create_network(
-    search_dfm = naivedfm,
-    min_studies = 3,
-    min_occ = 3
+    search_dfm = as.matrix(naivedfm),
+    min_studies = 2,
+    min_occ = 2
   )
 ```
 
 
 
 ## 3. Identify change points in keyword importance 
-The keyword co-occurrence network can next be quantitatively assessed using a spline function for important changes in the level of importance of a particular keyword to the concept. This will help in making an efficient but comprehensive search. 
+The keyword co-occurrence network can next be quantitatively assessed to detect a cutoff point for changes in the level of importance of a particular keyword to the concept. This will help in making an efficient but comprehensive search by removing terms that are not central to a field of study.
 
 ```{r}
 cutoff <-
   litsearchr::find_cutoff(
     naivegraph,
     method = "cumulative",
-    percent = .90,
+    percent = .80,
     imp_method = "strength"
   )
 
@@ -97,63 +107,53 @@ reducedgraph <-
   litsearchr::reduce_graph(naivegraph, cutoff_strength = cutoff[1])
 
 searchterms <- litsearchr::get_keywords(reducedgraph)
+
+head(searchterms, 20)
 ```
 
 ## 4. Group terms into concepts
 Now that the important keywords for the search have been identified, they can be grouped into blocks to build the search strategy. For Boolean searches, terms are grouped into similar concept groups where they can be combined with "OR" statements and the separate blocks combined with "AND" statements.
 
-In our example, all keywords that relate to forest fragmentation would be in a similar concept group (e.g., "fragmented landscape", "forest patch" etc.) while terms relating to insects and birds would be in their own concept groups.
+In our example, all keywords that relate to woodpeckers would be in a similar concept group (e.g., "three-toed woodpeckers", "cavity-nesting birds" etc.) while terms relating to fire (e.g. "post-fire", "burned forest", etc.) would be in their own concept group.
 
-We recommend saving the search terms to a .csv file, adding a new column called "group", and entering the group names in it. Terms that fit multiple concept groups can be added to both without changing the logic of the Boolean connections. For example, a term like "bird-insect interactions" would be added to both the insect and bird concept groups by labeling its group "insect, bird". Example code for this is below; it is commented out because it cannot be run without the .csv file.
+Terms that fit multiple concept groups can be added to both without changing the logic of the Boolean connections. For example, a term like "post-fire woodpecker ecology" would be added to both the woodpecker and fire concept groups by labeling its group "woodpecker, fire". We recommend saving the search terms to a .csv file, adding a new column called "group", and entering the group names in it, then reading in the .csv file. Although this can be done in R, adding tags to 300+ suggested search terms is generally quicker in a .csv file. Example code for this is commented out below as it cannot be run without the .csv file.
 
 ```{r}
 
 # write.csv(searchterms, "./search_terms.csv")
 # manually group terms in the csv
 # grouped_terms <- read.csv("./search_terms_grouped.csv")
-# extract the fragmentation terms from the csv
-# fragment_terms <- grouped_terms$term[which(stringr::str_detect(grouped_terms$group, "fragment"))]
-# join together a list of manually generated fragmentation terms with the ones from the csv
-# fragment <- unique(append(c("fragmentation", "area sensitivity", "patch size")), fragment_terms)
-
+# extract the woodpecker terms from the csv
+# woodpecker_terms <- grouped_terms$term[which(stringr::str_detect(grouped_terms$group, "woodpecker"))]
+# join together a list of manually generated woodpecker terms with the ones from the csv
+# woodpeckers <- unique(append(c("woodpecker")), woodpecker_terms)
 # repeat this for all concept groups
 # then merge them into a list, using the code below as an example
-# mysearchterms <- list(fragment, insects, birds)
+# mysearchterms <- list(woodpeckers, fire)
 
 ```
-
 
 
 ## 5. Write Boolean searches
 Once keywords are grouped into concept groups in a list, the *write_search* function can be used to write Boolean searches in multiple languages, ready for export and use in chosen databases. The example below demonstrates writing a search in English using the search terms.
 
-
 ```{r}
-# note: these search terms are a shortened example of a full search for illustration purposes only
+# Note: these search terms are a shortened example of a full search for illustration purposes only
 mysearchterms <-
   list(
     c(
-      "forest fragmentation",
-      "forest patch",
-      "forest fragment",
-      "forest remnant",
-      "forest edge",
-      "fragmentation",
-      "landscape structure"
-    ),
+      "picoides arcticus",
+      "black-backed woodpecker",
+      "cavity-nesting birds",
+      "picoides tridactylus",
+      "three-toed woodpecker"),
     c(
-      "insect",
-      "arthropod",
-      "prey abundance",
-      "food availability",
-      "caterpillar"
-    ),
-    c(
-      "bird",
-      "passerine",
-      "avian insectivores",
-      "avian community",
-      "bird assemblages"
+      "wildfire",
+      "burned forest",
+      "post-fire",
+      "postfire salvage logging",
+      "fire severity",
+      "recently burned"
     )
   )
 
@@ -183,22 +183,25 @@ Save the titles of the articles you want to retrieve as a character vector calle
 ```{r}
 gold_standard <-
   c(
-    "Avian top-down control affects invertebrate herbivory and sapling growth more strongly than overstorey species composition in temperate forest fragments",
-    "Bird functional diversity enhances insectivory at forest edges: a transcontinental experiment",
-    "Food shortage in small fragments: evidence from an area-sensitive passerine"
+    "Black-backed woodpecker occupancy in burned and beetle killed forests: disturbance agent matters",
+    "Nest site selection and nest survival of Black-backed Woodpeckers after wildfire",
+    "Cross scale occupancy dynamics of a postfire specialist in response to variation across a fire regime"
   )
 
 title_search <- litsearchr::write_title_search(titles=gold_standard)
 
 ```
 
-We then read in our full search results and compare them to our gold standard to determine which gold standard articles we retrieved. Note: in this case I am using the naive search results from earlier because this is just a demonstration and this is not a real systematic review, so I did not run the full searches. You will want to do this with your actual full search results. 
+We then read in our full search results and compare them to our gold standard to determine which gold standard articles we retrieved. Note: in this case I am using the naive search results from earlier because this is just a demonstration and this is not a real systematic review, so I did not run the full searches. You will want to do this with your actual full search results.
+
 
 ```{r}
-search_directory <- paste(system.file(package="synthesisr"), "/extdata/", sep="")
+results_directory <- system.file("extdata/", package="synthesisr")
 
-retrieved_articles <- litsearchr::import_results(directory=search_directory)
-retrieved_articles <- litsearchr::remove_duplicates(retrieved_articles, field="title", method="exact")
+retrieved_articles <-
+  litsearchr::import_results(directory = results_directory, verbose = TRUE)
+
+retrieved_articles <- litsearchr::remove_duplicates(retrieved_articles, field="title", method="stringdist")
 
 articles_found <- litsearchr::check_recall(true_hits = gold_standard,
                                            retrieved = retrieved_articles$title)
@@ -206,3 +209,4 @@ articles_found <- litsearchr::check_recall(true_hits = gold_standard,
 articles_found
 ```
 
+The check indicates that all three of our gold standard articles were included in our search results, so we would go ahead with our final search and use it for our systematic review. 

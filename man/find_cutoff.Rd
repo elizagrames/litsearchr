@@ -4,8 +4,14 @@
 \alias{find_cutoff}
 \title{Find node cutoff strength}
 \usage{
-find_cutoff(graph, method = c("spline", "cumulative"), percent = 0.8,
-  degrees = 2, knot_num = 1, imp_method = "strength")
+find_cutoff(
+  graph,
+  method = c("spline", "cumulative"),
+  percent = 0.8,
+  degrees = 2,
+  knot_num = 1,
+  imp_method = "strength"
+)
 }
 \arguments{
 \item{graph}{An igraph graph object}
@@ -30,21 +36,21 @@ Find the minimum node strength to use as a cutoff point for important nodes.
 The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
 }
 \examples{
-my_network <- create_network(
-  search_dfm = create_dfm(
-    c(
-      "Cross-scale occupancy dynamics of a postfire specialist
+dfm <- create_dfm(
+  elements = c(
+    "Cross-scale occupancy dynamics of a postfire specialist
     in response to variation across a fire regime",
-      "Variation in home-range size of Black-backed Woodpeckers",
-      "Black-backed woodpecker occupancy in burned and beetle-killed forests"
-    ),
-    features = c("occupancy", "variation", "woodpecker", "burn"),
-    closure = "none"
+    "Variation in home-range size of Black-backed Woodpeckers",
+    "Black-backed woodpecker occupancy in burned and beetle-killed forests"
   ),
-  min_studies = 1,
-  min_occ = 1
+  features = c("occupancy", "variation", "black-backed woodpecker", "burn")
 )
 
-find_cutoff(my_network,method = "cumulative", percent = .9)
+my_network <- create_network(search_dfm = as.matrix(dfm),
+                             min_studies = 1,
+                             min_occ = 1)
 
+find_cutoff(my_network,
+            method = "cumulative",
+            percent = .9)
 }

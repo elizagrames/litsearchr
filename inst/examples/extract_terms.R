@@ -5,5 +5,7 @@ extract_terms(
     "Variation in home-range size of Black-backed Woodpeckers",
     "Black-backed woodpecker occupancy in burned and beetle-killed forests"
   ),
-  method = "fakerake"
+  method = "fakerake",
+  min_freq=1,
+  min_n=2
 )
