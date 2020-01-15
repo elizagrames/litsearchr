@@ -4,9 +4,17 @@
 \alias{extract_terms}
 \title{Extract potential keywords from abstracts and titles}
 \usage{
-extract_terms(text = NULL, keywords = NULL, method = c("fakerake",
-  "RAKE", "tagged"), min_freq = 2, ngrams = TRUE, n = 2,
-  language = "English")
+extract_terms(
+  text = NULL,
+  keywords = NULL,
+  method = c("fakerake", "RAKE", "tagged"),
+  min_freq = 2,
+  ngrams = TRUE,
+  min_n = 2,
+  max_n = 5,
+  stopwords = NULL,
+  language = "English"
+)
 }
 \arguments{
 \item{text}{A character object of text from which to extract terms}
@@ -15,20 +23,34 @@ extract_terms(text = NULL, keywords = NULL, method = c("fakerake",
 
 \item{method}{The method of extracting keywords; options are fakerake (a quick implementation similar to Rapid Automatic Keyword Extraction), RAKE, or tagged for author-tagged keywords}
 
-\item{min_freq}{a number, the minimum occurrences of a potential term}
+\item{min_freq}{Numeric: the minimum occurrences of a potential term}
 
-\item{ngrams}{if TRUE, only extracts phrases with word count greater than a specified n}
+\item{ngrams}{Logical: should litsearchr only extracts phrases with word count greater than a specified n?}
 
-\item{n}{the minimum word count for ngrams}
+\item{min_n}{Numeric: the minimum length ngram to consider}
 
-\item{language}{the language of input data to use for stopwords}
+\item{max_n}{Numeric: the maximum length ngram to consider}
+
+\item{stopwords}{A character vector of stopwords.}
+
+\item{language}{A string indicating the language of input data to use for stopwords if none are supplied.}
 }
 \value{
-a character vector of potential keyword terms
+Returns a character vector of potential keyword terms.
 }
 \description{
 Extracts potential keyword terms from text (e.g. titles and abstracts)
 }
 \examples{
-extract_terms(text=BBWO_data$text[1:10], method="fakerake")
+extract_terms(
+  text = c(
+    "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+    "Variation in home-range size of Black-backed Woodpeckers",
+    "Black-backed woodpecker occupancy in burned and beetle-killed forests"
+  ),
+  method = "fakerake",
+  min_freq=1,
+  min_n=2
+)
 }

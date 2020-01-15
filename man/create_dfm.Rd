@@ -4,23 +4,29 @@
 \alias{create_dfm}
 \title{Create a document-feature matrix}
 \usage{
-create_dfm(elements, type = c("tokens", "keywords"),
-  language = "English", keywords = NULL)
+create_dfm(elements, features)
 }
 \arguments{
 \item{elements}{a character vector of document information (e.g. document titles or abstracts)}
 
-\item{type}{whether the dfm should be created based on document tokens or a restricted list of keywords}
-
-\item{language}{if type="tokens", the language to use for removing stopwords}
-
-\item{keywords}{if type="keywords", a character vector of keywords to use as document features}
+\item{features}{a character vector of terms to use as document features (e.g. keywords)}
 }
 \value{
-a matrix with documents as rows and terms as columns
-
 a matrix with documents as rows and terms as columns
 }
 \description{
 Given a character vector of document information, creates a document-feature matrix.
+}
+\examples{
+dfm <- create_dfm(
+  elements = c(
+    "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+    "Variation in home-range size of Black-backed Woodpeckers",
+    "Black-backed woodpecker occupancy in burned and beetle-killed forests"
+  ),
+  features = c("occupancy", "variation", "black-backed woodpecker", "burn")
+)
+
+as.matrix(dfm)
 }

@@ -1,0 +1,24 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Article",
+         title = "An automated approach to identifying search terms for systematic reviews using keyword co-occurrence networks",
+         author = c(person(c("Eliza", "M."), "Grames"),
+                    person(c("Andrew", "N."), "Stillman"),
+                    person(c("Morgan", "W."), "Tingley"),
+                    person(c("Chris", "S."), "Elphick")),
+         year = "2019",
+         journal = "Methods in Ecology and Evolution",
+         doi="10.1111/2041-210X.13268",
+         volume="10",
+         pages="1645-1654"
+)
+bibentry(bibtype = "Manual",
+         title = "{litsearchr}: Automated Search Term Selection and Search Strategy for Systematic Reviews",
+         author = c(person(c("Eliza", "M."), "Grames"),
+                    person(c("Andrew", "N."), "Stillman"),
+                    person(c("Morgan", "W."), "Tingley"),
+                    person(c("Chris", "S."), "Elphick")),
+         year = year,
+         note = note
+         )

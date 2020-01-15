@@ -4,21 +4,38 @@
 \alias{select_ngrams}
 \title{Subset n-grams from node names}
 \usage{
-select_ngrams(graph, n = 2, importance_method = "strength")
+select_ngrams(graph, n = 2, imp_method = "strength")
 }
 \arguments{
 \item{graph}{an igraph object}
 
 \item{n}{a minimum number of words in an n-gram}
 
-\item{importance_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
+\item{imp_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
 \value{
-a data frame of node names, strengths, rank
+a data frame of node names, strengths, and rank
 }
 \description{
 Selects only nodes from a graph whose node names are at least n-grams, where n is the minimum number of words in the node name. The default n-gram is a 2+-gram, which captures potential keyword terms that are at least two words long. The reason for this is that unigrams (terms with only one word) are detected more frequently, but are also generally less relevant to finding keyword terms.
 }
 \examples{
-select_ngrams(graph=litsearchr::BBWO_graph, n=2, importance_method="strength")
+dfm <- create_dfm(
+  elements = c(
+    "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+    "Variation in home-range size of Black-backed Woodpeckers",
+    "Black-backed woodpecker occupancy in burned and beetle-killed forests"
+  ),
+  features = c("occupancy", "variation", "black-backed woodpecker", "burn")
+)
+
+my_network <- create_network(
+  search_dfm = as.matrix(dfm),
+  min_studies = 1,
+  min_occ = 1
+)
+
+select_ngrams(my_network, imp_method = "strength")
+select_unigrams(my_network, imp_method = "strength")
 }

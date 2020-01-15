@@ -4,14 +4,14 @@
 \alias{create_network}
 \title{Create a keyword co-occurrence network}
 \usage{
-create_network(search_dfm, min_studies = 3, min_occurrences = 3)
+create_network(search_dfm, min_studies = 3, min_occ = 3)
 }
 \arguments{
 \item{search_dfm}{a document-feature matrix created with create_dfm()}
 
 \item{min_studies}{the minimum number of studies a term must occur in to be included}
 
-\item{min_occurrences}{the minimum total number of times a term must occur (counting repeats in the same document)}
+\item{min_occ}{the minimum total number of times a term must occur (counting repeats in the same document)}
 }
 \value{
 an igraph weighted graph
@@ -20,5 +20,19 @@ an igraph weighted graph
 Creates a keyword co-occurrence network from an adjacency matrix trimmed to remove rare terms.
 }
 \examples{
-create_network(create_dfm(BBWO_data$text[1:10]))
+dfm <- create_dfm(
+  elements = c(
+    "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+    "Variation in home-range size of Black-backed Woodpeckers",
+    "Black-backed woodpecker occupancy in burned and beetle-killed forests"
+  ),
+  features = c("occupancy", "variation", "black-backed woodpecker", "burn")
+)
+
+create_network(
+  search_dfm = as.matrix(dfm),
+  min_studies = 1,
+  min_occ = 1
+)
 }

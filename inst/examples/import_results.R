@@ -1,3 +1,2 @@
-write.csv(litsearchr::scopus_example,
-          paste(tempdir(), "/scopus.csv", sep = ""))
-naive_results <- import_results(paste(tempdir(), "/", sep = ""))
+file_location <- system.file("extdata/scopus.ris", package="synthesisr")
+naive_results <- import_results(file=file_location)

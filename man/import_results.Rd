@@ -4,28 +4,21 @@
 \alias{import_results}
 \title{Import results of a search}
 \usage{
-import_results(directory = NULL, filename = NULL,
-  save_dataset = FALSE, verbose = TRUE, save_directory = "./")
+import_results(directory = NULL, file = NULL, verbose = TRUE)
 }
 \arguments{
 \item{directory}{a path to a directory containing search results to import}
 
-\item{filename}{a path to a filename containing search results to import}
-
-\item{save_dataset}{if TRUE, saves the full search results to a .csv}
+\item{file}{a file of search results to import}
 
 \item{verbose}{if TRUE, prints status updates}
-
-\item{save_directory}{the path to a directory where search results will be saved if save_dataset is set to TRUE}
 }
 \value{
 a data frame of assembled search results
 }
 \description{
-Given a file or directory, calls the import_results function from the synthesisr package to import and assemble search results
+Given a file or directory containing bibliographic files, import and assemble search results
 }
-\examples{
-write.csv(litsearchr::scopus_example,
-          paste(tempdir(), "/scopus.csv", sep = ""))
-naive_results <- import_results(paste(tempdir(), "/", sep = ""))
+\details{
+If a .bib or .ris file returns an error, there is likely a character encoding or formatting issue with the file. Please try uploading your .bib or .ris file to a reference manager (e.g. Zotero) and re-exporting it as a .bib or .ris, which often clears up formatting issues that import_results cannot detect.
 }

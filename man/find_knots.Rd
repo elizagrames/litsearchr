@@ -4,10 +4,10 @@
 \alias{find_knots}
 \title{Find optimal knot placements}
 \usage{
-find_knots(importance_data, degrees = 2, knot_num = 1)
+find_knots(importances, degrees = 2, knot_num = 1)
 }
 \arguments{
-\item{importance_data}{a dataset of unique node strengths and their ranks}
+\item{importances}{a dataset of unique node strengths and their ranks}
 
 \item{degrees}{the degree of the polynomial for the curve of unique node strengths}
 
@@ -20,8 +20,23 @@ a vector of knot placements
 This function finds optimal knot placement given the degrees of your unique node strength graph and how many knots to allow. Degrees refers to the polynomial degree; for straight lines, use degree of 1 or for a curve use degree 2. Increasing the number of knots increases the fit and flexibility of the spline curve and presents more options for the cutoff strength.
 }
 \examples{
+dfm <- create_dfm(
+  elements = c(
+    "Cross-scale occupancy dynamics of a postfire specialist
+    in response to variation across a fire regime",
+    "Variation in home-range size of Black-backed Woodpeckers",
+    "Black-backed woodpecker occupancy in burned and beetle-killed forests"
+  ),
+  features = c("occupancy", "variation", "black-backed woodpecker", "burn")
+)
+
+my_network <- create_network(search_dfm = as.matrix(dfm),
+                             min_studies = 1,
+                             min_occ = 1)
+
 find_knots(
-  importance_data = make_importance(BBWO_graph, importance_method = "strength"),
+  importances = make_importance(graph=my_network,
+                                imp_method = "strength"),
   degrees = 2,
   knot_num = 1
 )
