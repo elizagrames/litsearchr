@@ -14,11 +14,12 @@ add_stopwords <- function(new_stopwords){
 #' @param text A character object of text from which to extract terms
 #' @param keywords A character vector of keywords tagged by authors and/or databases if using method="tagged"
 #' @param method The method of extracting keywords; options are fakerake (a quick implementation similar to Rapid Automatic Keyword Extraction), RAKE, or tagged for author-tagged keywords
-#' @param min_freq a number, the minimum occurrences of a potential term
-#' @param ngrams if TRUE, only extracts phrases with word count greater than a specified n
-#' @param n the minimum word count for ngrams
-#' @param language the language of input data to use for stopwords
-#' @return a character vector of potential keyword terms
+#' @param min_freq Numeric: the minimum occurrences of a potential term
+#' @param ngrams Logical: should litsearchr only extracts phrases with word count greater than a specified n?
+#' @param min_n Numeric: the minimum length ngram to consider
+#' @param max_n Numeric: the maximum length ngram to consider
+#' @param language A string indicating the language of input data to use for stopwords
+#' @return Returns a character vector of potential keyword terms.
 #' @example inst/examples/extract_terms.R
 extract_terms <- function(text=NULL,
                           keywords=NULL,
@@ -75,45 +76,38 @@ extract_terms <- function(text=NULL,
 #' @return A character vector of potential keywords
 fakerake <- function(text, stopwords){
 
-  stops <- paste("\\b", stopwords, "\\b", sep="")
-  stops <- unique(append(stops, c(",", "\\.", ":", ";", "\\[", "\\]", "/", "\\(", "\\)", "\"", "&", "=", "<", ">")))
-  hyphens <- c(" - ", " -", "- ", "-")
+  if(missing(stopwords)){
+    stopwords <- synthesisr::get_stopwords()
+  }
 
-  for(i in 1:length(hyphens)){
-    text <- gsub(hyphens[i], "--", text)
+  stops <- unique(append(stopwords,
+                         c(",", "\\.", ":", ";", "\\[", "\\]", "/",
+                           "\\(", "\\)", "\"", "&", "=", "<", ">",
+                           1, 2, 3, 4, 5, 6, 7, 8, 9, 0)))
+
+  # text <- synthesisr::remove_punctuation(text, preserve_punctuation = c("-", "_"))
+  stop1 <- paste(" ", stops[1], " ", sep = "")
+  text <- gsub("([-_])|[[:punct:]]", stop1, text)
+
+  if(any(grepl("  ", text))){
+    while(any(grepl("  ", text))){
+      text <- gsub("  ", " ", text)
+    }
   }
 
   text <- tolower(text)
 
-  for(i in 1:length(stops)){
-    text <- gsub(stops[i], "__", text)
-  }
-
-  split_terms <- strsplit(text, "__")[[1]]
-  removals <- unique(append(which(split_terms==" "), which(split_terms=="")))
-  if(length(removals>0)){split_terms <- split_terms[-removals]}
-  pre_terms <- sapply(split_terms, stringr::str_trim)
-  short_terms <- which(nchar(pre_terms)<3)
-  if(length(short_terms)>0){terms <- pre_terms[-short_terms]}else{terms <- pre_terms}
-  names(terms) <- NULL
-
-  terms <- gsub("--", "-", terms)
-
-  terms <- synthesisr::remove_punctuation(terms, remove_hyphens = FALSE)
-  terms <- synthesisr::remove_numbers(terms)
-
-  if(any(grepl("  ", terms))){
-    while(any(grepl("  ", terms))){
-      terms <- gsub("  ", " ", terms)
+  n_lengths <- seq(min_n, max_n, 1)
+  for(i in min_n:max_n){
+    if(i==min_n){
+      ngrams <- lapply(text, get_ngrams, n=i, stop_words=stops)
+    }else{
+      ngrams <- Map(c, ngrams, lapply(text, get_ngrams, n=i, stop_words=stops))
     }
   }
 
-  # remove trailing spaces
-  if(requireNamespace("stringr", quietly=TRUE)){
-    terms <- stringr::str_trim(terms)
-  }
-
-  return(terms)
+  terms <- unlist(ngrams)
+    return(terms)
 }
 
 #' Create a document-feature matrix
@@ -126,7 +120,7 @@ fakerake <- function(text, stopwords){
 create_dfm <-
   function(elements, features, closure="full") {
     dfm <-
-      synthesisr::create_dfm(
+      synthesisr::create_dtm(
         elements = elements,
 features=features,
 closure=closure,
