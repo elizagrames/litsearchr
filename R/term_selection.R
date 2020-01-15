@@ -166,14 +166,20 @@ fakerake <- function(text,
 #' @description Given a character vector of document information, creates a document-feature matrix.
 #' @param elements a character vector of document information (e.g. document titles or abstracts)
 #' @param features a character vector of terms to use as document features (e.g. keywords)
-#' @param closure restrictions on how keywords are detected; left requires terms to start with a keyword (e.g "burn" matches "burning"), right requires terms to end with a keyword (e.g. "burn" matches "postburn" but not "postburning"), full requires exact matches (e.g. "burn" only matches "burn"), and none allows keywords to be embedded within terms (e.g. "burn" matches "postburning").
 #' @return a matrix with documents as rows and terms as columns
 #' @example inst/examples/create_dfm.R
 create_dfm <-
-  function(elements, features, closure = "full") {
+  function(elements, features, retain_unigrams=FALSE) {
 
     elements <- tolower(elements)
     z <- synthesisr::replace_ngrams(elements, features)
+    if(any(unlist(lapply(strsplit(features, " "), length))==1)){
+      unigrams <- features[which(unlist(lapply(strsplit(features, " "), length))==1)]
+      replacements <- paste(unigrams, "_", sep="")
+      for(i in 1:length(unigrams)){
+        z <- gsub(unigrams[i], replacements[i], z)
+      }
+    }
     z <- strsplit(z, " ")
 
     drop_unigrams <- function(m) {
@@ -181,7 +187,6 @@ create_dfm <-
                                                                    "-")]))
     }
     docs <- sapply(lapply(z, drop_unigrams), paste, collapse=" ")
-
 
     dfm <-
       synthesisr::create_dtm(docs, ngram_check = FALSE, min_freq = 1)
@@ -237,6 +242,7 @@ create_network <- function(search_dfm,
 #' @return a data frame of node strengths, ranks, and names
 #' @example inst/examples/make_importance.R
 make_importance <- function(graph, imp_method = "strength") {
+
   if (imp_method == "strength") {
     importance <- sort(igraph::strength(graph))
   }
