@@ -75,7 +75,7 @@ extract_terms <- function(text = NULL,
   freq_terms <- names(table(terms))[which(table(terms) >= min_freq)]
   if (ngrams == TRUE) {
     freq_terms <-
-      freq_terms[which(sapply(strsplit(as.character(freq_terms), " "), length) >= n)]
+      freq_terms[which(sapply(strsplit(as.character(freq_terms), " "), length) >= min_n)]
   }
 
   return(freq_terms)
@@ -144,7 +144,7 @@ fakerake <- function(text,
     if (i == min_n) {
       ngrams <-
         lapply(text,
-               get_ngrams,
+               synthesisr::get_ngrams,
                n = i,
                stop_words = stops)
     } else{
@@ -152,7 +152,7 @@ fakerake <- function(text,
         Map(c,
             ngrams,
             lapply(text,
-                   get_ngrams,
+                   synthesisr::get_ngrams,
                    n = i,
                    stop_words = stops))
     }
@@ -169,24 +169,34 @@ fakerake <- function(text,
 #' @return a matrix with documents as rows and terms as columns
 #' @example inst/examples/create_dfm.R
 create_dfm <-
-  function(elements, features, retain_unigrams=FALSE) {
+  function(elements, features) {
+
 
     elements <- tolower(elements)
     z <- synthesisr::replace_ngrams(elements, features)
+    #z <- gsub("_", "__", z)
     if(any(unlist(lapply(strsplit(features, " "), length))==1)){
       unigrams <- features[which(unlist(lapply(strsplit(features, " "), length))==1)]
-      replacements <- paste(unigrams, "_", sep="")
+      replacements <- paste(unigrams, "+", sep="")
+      #unigrams <- paste("\\b", unigrams, "\\b", sep="")
+
       for(i in 1:length(unigrams)){
         z <- gsub(unigrams[i], replacements[i], z)
       }
     }
+
     z <- strsplit(z, " ")
 
     drop_unigrams <- function(m) {
-      unique(append(m[sapply(m, grepl, pattern = "_")], m[sapply(m, grepl, pattern =
-                                                                   "-")]))
+      terms <- unique(append(append(m[sapply(m, grepl, pattern = "_")],
+                    m[sapply(m, grepl, pattern = "-")]),
+                    m[sapply(m, grepl, pattern = "\\+")]))
     }
+
+    terms <- lapply(z, drop_unigrams)
+
     docs <- sapply(lapply(z, drop_unigrams), paste, collapse=" ")
+    docs <- gsub("\\+", "", docs)
 
     dfm <-
       synthesisr::create_dtm(docs, ngram_check = FALSE, min_freq = 1)
