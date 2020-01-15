@@ -1,11 +1,15 @@
 
+
 #' Add new stopwords to ignore
 #' @description Allows the user to add additional stopwords to the built-in English stopwords list.
 #' @param new_stopwords a character vector of new words to add
 #' @return an updated vector of custom stopwords to remove from text
 #' @examples add_stopwords(new_stopwords=c("19th century", "abiotic factors", "elsevier direct"))
-add_stopwords <- function(new_stopwords){
-  custom_stopwords <- sort(unique(append(litsearchr::custom_stopwords, new_stopwords)))
+add_stopwords <- function(new_stopwords) {
+  custom_stopwords <-
+    sort(unique(append(
+      litsearchr::custom_stopwords, new_stopwords
+    )))
   return(custom_stopwords)
 }
 
@@ -21,48 +25,64 @@ add_stopwords <- function(new_stopwords){
 #' @param language A string indicating the language of input data to use for stopwords
 #' @return Returns a character vector of potential keyword terms.
 #' @example inst/examples/extract_terms.R
-extract_terms <- function(text=NULL,
-                          keywords=NULL,
-                          method=c("fakerake", "RAKE", "tagged"),
-                          min_freq=2,
-                          ngrams=TRUE, n=2,
-                          language="English"){
-
-  if(length(text)>1){text <- paste(text, collapse = " ")}
-  if(!is.null(text)){text <- tolower(text)}
-
-  if(language=="English"){stopwords <- litsearchr::custom_stopwords}else{this_language <- which(stringr::str_detect(litsearchr::possible_langs$Language, language)==TRUE)
-  language_code <- as.character(litsearchr::possible_langs$Short[this_language])
-  stopwords <- stopwords::stopwords(language=language_code, source = "stopwords-iso")}
-
-  if(method=="fakerake"){
-    if(is.null(text)){print("Please specify a body of text from which to extract terms.")}else{
-      terms <- litsearchr::fakerake(text, stopwords)}
+extract_terms <- function(text = NULL,
+                          keywords = NULL,
+                          method = c("fakerake", "RAKE", "tagged"),
+                          min_freq = 2,
+                          ngrams = TRUE,
+                          min_n = 2,
+                          max_n = 5,
+                          language = "English") {
+  if (!is.null(text)) {
+    text <- tolower(text)
   }
 
-  if(method=="RAKE"){
-    if(is.null(text)){print("Please specify a body of text from which to extract terms.")
-    }else if (!requireNamespace("rapidraker", quietly = TRUE)){
-      stop("You need to have rapidraker and rJava installed in order to use the RAKE algorithm. Please install rapidraker or choose a different method of extracting terms.",
-           call. = FALSE)} else {
+  if(missing(language)){
+    language <- "English"
+  }
+  stopwods <- synthesisr::get_stopwords(language)
 
-             terms <- rapidraker::rapidrake(text, stop_words=stopwords, stem=FALSE)}
+  if (method == "fakerake") {
+    if (is.null(text)) {
+      stop("Please specify a body of text from which to extract terms using fakerake.")
+    } else{
+      terms <- litsearchr::fakerake(text, stopwords, min_n=min_n, max_n=max_n)
+    }
   }
 
-  if(method=="tagged"){
-    if(is.null(keywords)){print("Please specify a vector of keywords from which to extract terms")} else{
-      cleaned_keywords <- paste(gsub("([-])[[:punct:]]", ";", keywords), collapse=";")
-      terms <- stringr::str_trim(strsplit(cleaned_keywords, ";")[[1]])}
+  if (method == "RAKE") {
+    if (is.null(text)) {
+      stop("Please specify a body of text from which to extract terms using RAKE.")
+    } else if (!requireNamespace("rapidraker", quietly = TRUE)) {
+      stop(
+        "You need to have rapidraker and rJava installed in order to use the RAKE algorithm. Please install rapidraker or choose a different method of extracting terms.",
+        call. = FALSE
+      )
+    } else {
+      if (length(text) > 1) {
+        text <- paste(text, collapse = " ")
+      }
+      terms <-
+        rapidraker::rapidrake(text, stop_words = stopwords, stem = FALSE)
+    }
   }
 
-  terms <- synthesisr::remove_punctuation(terms)
+  if (method == "tagged") {
+    if (is.null(keywords)) {
+      stop("Please specify a vector of keywords from which to extract terms.")
+    } else{
+      keywords <- tolower(paste(keywords, collapse=" and "))
+      terms <- strsplit(keywords, " and ")[[1]]
+      if(any(terms=="NA")){
+        terms <- terms[-which(terms=="NA")]
+      }
+    }
+  }
 
-
-  freq_terms <- names(table(terms))[which(table(terms)>=min_freq)]
-  if(ngrams==TRUE){
-
-    freq_terms <- freq_terms[which(sapply(strsplit(as.character(freq_terms), " "), length) >= n)]
-
+  freq_terms <- names(table(terms))[which(table(terms) >= min_freq)]
+  if (ngrams == TRUE) {
+    freq_terms <-
+      freq_terms[which(sapply(strsplit(as.character(freq_terms), " "), length) >= n)]
   }
 
   return(freq_terms)
@@ -73,24 +93,54 @@ extract_terms <- function(text=NULL,
 #' @description Extracts potential keywords from text separated by stopwords
 #' @param text A string object to extract terms from
 #' @param stopwords A character vector of stopwords to remove
+#' @param min_n Numeric: the minimum length ngram to consider
+#' @param max_n Numeric: the maximum length ngram to consider
+#' @param min_freq Numeric: the minimum times an ngram must occur to be returned
 #' @return A character vector of potential keywords
-fakerake <- function(text, stopwords){
-
-  if(missing(stopwords)){
+fakerake <- function(text,
+                     stopwords,
+                     min_n = 2,
+                     max_n = 5) {
+  if (missing(stopwords)) {
     stopwords <- synthesisr::get_stopwords()
   }
 
-  stops <- unique(append(stopwords,
-                         c(",", "\\.", ":", ";", "\\[", "\\]", "/",
-                           "\\(", "\\)", "\"", "&", "=", "<", ">",
-                           1, 2, 3, 4, 5, 6, 7, 8, 9, 0)))
+  stops <- unique(append(
+    stopwords,
+    c(
+      ",",
+      "\\.",
+      ":",
+      ";",
+      "\\[",
+      "\\]",
+      "/",
+      "\\(",
+      "\\)",
+      "\"",
+      "&",
+      "=",
+      "<",
+      ">",
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      0
+    )
+  ))
 
   # text <- synthesisr::remove_punctuation(text, preserve_punctuation = c("-", "_"))
   stop1 <- paste(" ", stops[1], " ", sep = "")
   text <- gsub("([-_])|[[:punct:]]", stop1, text)
 
-  if(any(grepl("  ", text))){
-    while(any(grepl("  ", text))){
+  if (any(grepl("  ", text))) {
+    while (any(grepl("  ", text))) {
       text <- gsub("  ", " ", text)
     }
   }
@@ -98,16 +148,29 @@ fakerake <- function(text, stopwords){
   text <- tolower(text)
 
   n_lengths <- seq(min_n, max_n, 1)
-  for(i in min_n:max_n){
-    if(i==min_n){
-      ngrams <- lapply(text, get_ngrams, n=i, stop_words=stops)
-    }else{
-      ngrams <- Map(c, ngrams, lapply(text, get_ngrams, n=i, stop_words=stops))
+  for (i in min_n:max_n) {
+    if (i == min_n) {
+      ngrams <-
+        lapply(
+          text,
+          get_ngrams,
+          n = i,
+          stop_words = stops)
+    } else{
+      ngrams <-
+        Map(c,
+            ngrams,
+            lapply(
+              text,
+              get_ngrams,
+              n = i,
+              stop_words = stops
+            ))
     }
   }
 
   terms <- unlist(ngrams)
-    return(terms)
+  return(terms)
 }
 
 #' Create a document-feature matrix
@@ -118,13 +181,14 @@ fakerake <- function(text, stopwords){
 #' @return a matrix with documents as rows and terms as columns
 #' @example inst/examples/create_dfm.R
 create_dfm <-
-  function(elements, features, closure="full") {
+  function(elements, features, closure = "full") {
     dfm <-
       synthesisr::create_dtm(
         elements = elements,
-features=features,
-closure=closure,
-ignore_case=TRUE)
+        features = features,
+        closure = closure,
+        ignore_case = TRUE
+      )
     return(dfm)
   }
 
@@ -135,31 +199,33 @@ ignore_case=TRUE)
 #' @param min_occ the minimum total number of times a term must occur (counting repeats in the same document)
 #' @return an igraph weighted graph
 #' @example inst/examples/create_network.R
-create_network <- function(search_dfm, min_studies=3, min_occ = 3){
+create_network <- function(search_dfm,
+                           min_studies = 3,
+                           min_occ = 3) {
   presences <- search_dfm
-  presences[which(presences>0)] <- 1
-  study_counts <- which(as.numeric(colSums(presences))<min_studies)
-  if(length(study_counts)>0){
-    search_dfm <- search_dfm[,-study_counts]
+  presences[which(presences > 0)] <- 1
+  study_counts <- which(as.numeric(colSums(presences)) < min_studies)
+  if (length(study_counts) > 0) {
+    search_dfm <- search_dfm[, -study_counts]
   }
 
-  occur_counts <- which(colSums(search_dfm)<min_occ)
-  if(length(occur_counts)>0){
-    search_dfm <- search_dfm[,-occur_counts]
+  occur_counts <- which(colSums(search_dfm) < min_occ)
+  if (length(occur_counts) > 0) {
+    search_dfm <- search_dfm[, -occur_counts]
   }
 
-  dropped_studies <- which(rowSums(search_dfm)<1)
+  dropped_studies <- which(rowSums(search_dfm) < 1)
 
-  if(length(dropped_studies)>0){
-    search_dfm <- search_dfm[-dropped_studies,]
+  if (length(dropped_studies) > 0) {
+    search_dfm <- search_dfm[-dropped_studies, ]
   }
   trimmed_mat <- t(search_dfm) %*% search_dfm
 
   search_mat <- as.matrix(trimmed_mat)
   search_graph <- igraph::graph.adjacency(search_mat,
-                                          weighted=TRUE,
-                                          mode="undirected",
-                                          diag=FALSE)
+                                          weighted = TRUE,
+                                          mode = "undirected",
+                                          diag = FALSE)
   return(search_graph)
 }
 
@@ -170,14 +236,27 @@ create_network <- function(search_dfm, min_studies=3, min_occ = 3){
 #' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node strengths, ranks, and names
 #' @example inst/examples/make_importance.R
-make_importance <- function(graph, imp_method="strength"){
-  if (imp_method=="strength") {importance <- sort(igraph::strength(graph))}
-  if (imp_method=="eigencentrality"){importance <- sort(igraph::eigen_centrality(graph))}
-  if (imp_method=="alpha"){importance <- sort(igraph::alpha_centrality(graph))}
-  if (imp_method=="betweenness"){importance <- sort(igraph::betweenness(graph))}
-  if (imp_method=="hub"){importance <- sort(igraph::hub_score(graph))}
-  if (imp_method=="power"){importance <- sort(igraph::power_centrality(graph))}
-  importances <- cbind(seq(1, length(importance), 1), as.numeric(importance))
+make_importance <- function(graph, imp_method = "strength") {
+  if (imp_method == "strength") {
+    importance <- sort(igraph::strength(graph))
+  }
+  if (imp_method == "eigencentrality") {
+    importance <- sort(igraph::eigen_centrality(graph))
+  }
+  if (imp_method == "alpha") {
+    importance <- sort(igraph::alpha_centrality(graph))
+  }
+  if (imp_method == "betweenness") {
+    importance <- sort(igraph::betweenness(graph))
+  }
+  if (imp_method == "hub") {
+    importance <- sort(igraph::hub_score(graph))
+  }
+  if (imp_method == "power") {
+    importance <- sort(igraph::power_centrality(graph))
+  }
+  importances <-
+    cbind(seq(1, length(importance), 1), as.numeric(importance))
   colnames(importances) <- c("rank", "importance")
   importances <- as.data.frame(importances)
   importances$nodename <- names(importance)
@@ -193,9 +272,14 @@ make_importance <- function(graph, imp_method="strength"){
 #' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node names, strengths, and rank
 #' @example inst/examples/select_ngrams.R
-select_ngrams <- function(graph, n=2, imp_method="strength"){
+select_ngrams <- function(graph,
+                          n = 2,
+                          imp_method = "strength") {
   importances <- make_importance(graph, imp_method = imp_method)
-  ngrams <- importances[which(sapply(strsplit(as.character(importances$nodename), " "), length) >= n),]
+  ngrams <-
+    importances[which(sapply(strsplit(
+      as.character(importances$nodename), " "
+    ), length) >= n), ]
   return(ngrams)
 }
 
@@ -206,9 +290,12 @@ select_ngrams <- function(graph, n=2, imp_method="strength"){
 #' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return a data frame of node names, strengths, and rank
 #' @example inst/examples/select_ngrams.R
-select_unigrams <- function(graph, imp_method="strength"){
+select_unigrams <- function(graph, imp_method = "strength") {
   importances <- make_importance(graph, imp_method = imp_method)
-  unigrams <- importances[which(sapply(strsplit(as.character(importances$nodename), " "), length) == 1),]
+  unigrams <-
+    importances[which(sapply(strsplit(
+      as.character(importances$nodename), " "
+    ), length) == 1), ]
   return(unigrams)
 }
 
@@ -219,15 +306,27 @@ select_unigrams <- function(graph, imp_method="strength"){
 #' @param knot_num the number of knots to allow
 #' @return a vector of knot placements
 #' @example inst/examples/find_knots.R
-find_knots <- function(importances, degrees=2, knot_num=1){
-  if (!requireNamespace("freeknotsplines", quietly = TRUE)){
-    stop("freeknotsplines needed to select knots using the spline method. Please install it.",
-         call. = FALSE)
+find_knots <- function(importances,
+                       degrees = 2,
+                       knot_num = 1) {
+  if (!requireNamespace("freeknotsplines", quietly = TRUE)) {
+    stop(
+      "freeknotsplines needed to select knots using the spline method. Please install it.",
+      call. = FALSE
+    )
   } else {
-  knotselect <- freeknotsplines::freelsgen(importances$rank, importances$importance,
-                                           degree=degrees, numknot=knot_num, seed=5, stream=0)
-  knots <- knotselect@optknot
-  return(knots)}
+    knotselect <-
+      freeknotsplines::freelsgen(
+        importances$rank,
+        importances$importance,
+        degree = degrees,
+        numknot = knot_num,
+        seed = 5,
+        stream = 0
+      )
+    knots <- knotselect@optknot
+    return(knots)
+  }
 }
 
 #' Fit spline model to node strengths
@@ -238,14 +337,25 @@ find_knots <- function(importances, degrees=2, knot_num=1){
 #' @param knots The vector of optimal knots returned from \code{find_knots}
 #' @return a fitted spline model
 #' @example inst/examples/fit_splines.R
-fit_splines <- function(importances, degrees=2, knot_num=1, knots){
-  if (!requireNamespace("splines2", quietly = TRUE)){
+fit_splines <- function(importances,
+                        degrees = 2,
+                        knot_num = 1,
+                        knots) {
+  if (!requireNamespace("splines2", quietly = TRUE)) {
     stop("splines2 needed to use the spline method. Please install it.",
          call. = FALSE)
   } else {
-  spline_b <- splines2::bSpline(as.numeric(importances$rank), knots=knots, degree=degrees, numknot=knot_num, intercept=TRUE)
-  spline_fit <- lm(as.numeric(importances$importance) ~ spline_b)
-  return(spline_fit)}
+    spline_b <-
+      splines2::bSpline(
+        as.numeric(importances$rank),
+        knots = knots,
+        degree = degrees,
+        numknot = knot_num,
+        intercept = TRUE
+      )
+    spline_fit <- lm(as.numeric(importances$importance) ~ spline_b)
+    return(spline_fit)
+  }
 }
 
 
@@ -260,32 +370,40 @@ fit_splines <- function(importances, degrees=2, knot_num=1, knots){
 #' @details The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
 #' @return a vector of suggested node cutoff strengths
 #' @example inst/examples/find_cutoff.R
-find_cutoff <- function(graph, method=c("spline", "cumulative"), percent=0.8, degrees=2,
-                        knot_num=1, imp_method="strength"){
+find_cutoff <-
+  function(graph,
+           method = c("spline", "cumulative"),
+           percent = 0.8,
+           degrees = 2,
+           knot_num = 1,
+           imp_method = "strength") {
+    importances <- make_importance(graph, imp_method = imp_method)
 
-  importances <- make_importance(graph, imp_method=imp_method)
+    if (method == "spline") {
+      knots <- find_knots(importances, degrees = degrees, knot_num = knot_num)
+      cut_points <- floor(knots)
+      cut_strengths <- (importances$importance)[cut_points]
 
-  if (method == "spline") {
-    knots <- find_knots(importances, degrees=degrees, knot_num=knot_num)
-    cut_points <- floor(knots)
-    cut_strengths <- (importances$importance)[cut_points]
+    }
 
+    if (method == "cumulative") {
+      cum_str <- max(cumsum(sort(importances$importance)))
+      cut_point <-
+        (which(cumsum(
+          sort(importances$importance, decreasing = TRUE)
+        ) >= cum_str * percent))[1]
+      cut_strengths <-
+        as.numeric(sort(as.numeric(importances$importance), decreasing = TRUE)[cut_point])
+    }
+    return(cut_strengths)
   }
-
-  if (method == "cumulative"){
-    cum_str <- max(cumsum(sort(importances$importance)))
-    cut_point <- (which(cumsum(sort(importances$importance, decreasing = TRUE))>=cum_str*percent))[1]
-    cut_strengths <- as.numeric(sort(as.numeric(importances$importance), decreasing = TRUE)[cut_point])
-  }
-  return(cut_strengths)
-}
 
 #' Extract potential keywords
 #' @description Extracts keywords identified as important.
 #' @param reduced_graph a reduced graph with only important nodes created with reduce_grah()
 #' @return a character vector of potential keywords to consider
 #' @example inst/examples/get_keywords.R
-get_keywords <- function(reduced_graph){
+get_keywords <- function(reduced_graph) {
   potential_keys <- names(igraph::V(reduced_graph))
   return(potential_keys)
 }
@@ -298,10 +416,12 @@ get_keywords <- function(reduced_graph){
 #' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
 #' @return an igraph graph with only important nodes
 #' @example inst/examples/reduce_graph.R
-reduce_graph <- function(graph, cutoff_strength, imp_method="strength"){
-  importances <- make_importance(graph, imp_method = imp_method)
-  important_nodes <- importances$nodename[which(importances$importance >= cutoff_strength)]
-  reduced_graph <- igraph::induced_subgraph(graph, v=important_nodes)
-  return(reduced_graph)
-}
-
+reduce_graph <-
+  function(graph, cutoff_strength, imp_method = "strength") {
+    importances <- make_importance(graph, imp_method = imp_method)
+    important_nodes <-
+      importances$nodename[which(importances$importance >= cutoff_strength)]
+    reduced_graph <-
+      igraph::induced_subgraph(graph, v = important_nodes)
+    return(reduced_graph)
+  }
