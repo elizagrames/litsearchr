@@ -32,15 +32,14 @@ import_results <-  function(directory = NULL,
 remove_duplicates <-  function(df,
                                field,
                                method = c("stringdist",  "fuzzdist", "exact")) {
-  dups <-
-    synthesisr::find_duplicates(
+  df <-
+    synthesisr::deduplicate(
       data = df,
-      match_variable = field,
+      match_by = field,
       match_function = method,
       to_lower = TRUE,
       rm_punctuation = TRUE
     )
-  df <- synthesisr::deduplicate(df, dups)
   return(df)
 
 }
