@@ -188,8 +188,7 @@ create_dfm <-
     z <- strsplit(z, " ")
 
     drop_unigrams <- function(m) {
-      terms <- unique(append(append(m[sapply(m, grepl, pattern = "_")],
-                    m[sapply(m, grepl, pattern = "-")]),
+      terms <- unique(append(m[sapply(m, grepl, pattern = "_")],
                     m[sapply(m, grepl, pattern = "\\+")]))
     }
 
