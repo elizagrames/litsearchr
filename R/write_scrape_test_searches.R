@@ -132,12 +132,12 @@ write_search <- function (groupdata, API_key = NULL, languages = NULL,
 
       if(languages[i]!="English"){
         translated_terms <- litsearchr::translate_search(paste(group_terms, collapse="; "), target_lang = languages[i], API_key = API_key)
-        group_terms <- strsplit(translated_terms, "; ")[[1]]
+        group_terms <- unique(strsplit(translated_terms, "; ")[[1]])
       }
 
       if(languages[i]=="English"){
         if(stemming==TRUE){
-          group_terms <- sapply(group_terms, litsearchr::should_stem)
+          group_terms <- unique(sapply(group_terms, litsearchr::should_stem))
         }
       }
 
@@ -226,6 +226,7 @@ remove_redundancies <- function(terms, closure=c("left", "right", "full", "none"
     terms <- gsub("\\\\b", "", terms)
     terms <- gsub("__", "", terms)
   }
+  terms <- unique(terms)
   return(terms)
 }
 
