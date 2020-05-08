@@ -10,7 +10,7 @@ get_languages <- function(key_topics){
 
   combined_langs <- paste(langs, collapse=" | ")
 
-  all_langs <- synthesisr::remove_punctuation(strsplit(combined_langs, " | ")[[1]])
+  all_langs <- litsearchr::remove_punctuation(strsplit(combined_langs, " | ")[[1]])
 
   remove_these <- c(which(all_langs=="null"),
                     which(all_langs=="Yes"),
@@ -110,87 +110,87 @@ should_stem <- function(word){
 #' @param verbose if TRUE, prints when each language is finished writing
 #' @return a list of search strings
 #' @example inst/examples/write_search.R
-write_search <- function (groupdata, API_key = NULL, languages = NULL,
-                          exactphrase = FALSE, stemming = TRUE, closure=c("left", "right", "full", "none"),
-                          directory = "./", writesearch = FALSE,  verbose = TRUE){
-  if (writesearch == TRUE) {
-    if (utils::menu(c("yes", "no"), title = "This is going to write .txt files to your computer containing the search strings. Are you sure you want to write the files?") ==
-        2) {
-      writesearch <- FALSE
+  write_search <- function (groupdata, API_key = NULL, languages = NULL,
+                            exactphrase = FALSE, stemming = TRUE, closure=c("left", "right", "full", "none"),
+                            directory = "./", writesearch = FALSE,  verbose = TRUE){
+    if (writesearch == TRUE) {
+      if (utils::menu(c("yes", "no"), title = "This is going to write .txt files to your computer containing the search strings. Are you sure you want to write the files?") ==
+          2) {
+        writesearch <- FALSE
+      }
     }
-  }
 
-  search_list <- list()
-  length(search_list) <- length(languages)
+    search_list <- list()
+    length(search_list) <- length(languages)
 
-  for(i in 1:length(languages)){
+    for(i in 1:length(languages)){
 
-    group_list <- c()
+      group_list <- c()
 
-    for(j in 1:length(groupdata)){
-      group_terms <- litsearchr::remove_redundancies(groupdata[[j]], closure = closure)
+      for(j in 1:length(groupdata)){
+        group_terms <- litsearchr::remove_redundancies(groupdata[[j]], closure = closure)
 
-      if(languages[i]!="English"){
-        translated_terms <- litsearchr::translate_search(paste(group_terms, collapse="; "), target_lang = languages[i], API_key = API_key)
-        group_terms <- unique(strsplit(translated_terms, "; ")[[1]])
-      }
-
-      if(languages[i]=="English"){
-        if(stemming==TRUE){
-          group_terms <- unique(sapply(group_terms, litsearchr::should_stem))
+        if(languages[i]!="English"){
+          translated_terms <- litsearchr::translate_search(paste(group_terms, collapse="; "), target_lang = languages[i], API_key = API_key)
+          group_terms <- unique(strsplit(translated_terms, "; ")[[1]])
         }
-      }
 
-      if(exactphrase==TRUE){
-        for(k in 1:length(group_terms)){
-          if(length(strsplit(group_terms[k], " ")[[1]])>1){
-            group_terms[k] <- paste("\"", group_terms[k], "\"", sep="")
+        if(languages[i]=="English"){
+          if(stemming==TRUE){
+            group_terms <- unique(sapply(group_terms, litsearchr::should_stem))
           }
         }
-      }
 
-      if(exactphrase==FALSE){
-        for(k in 1:length(group_terms)){
-          if(length(strsplit(group_terms[k], " ")[[1]])>1){
-            group_terms[k] <- paste("\\(", group_terms[k], "\\)", sep="")
+        if(exactphrase==TRUE){
+          for(k in 1:length(group_terms)){
+            if(length(strsplit(group_terms[k], " ")[[1]])>1){
+              group_terms[k] <- paste("\"", group_terms[k], "\"", sep="")
+            }
           }
         }
-      }
 
-      group_terms[1] <- paste("\\(", group_terms[1], sep="")
-      group_terms[length(group_terms)] <- paste(group_terms[length(group_terms)], "\\)", sep="")
-      full_group <- paste(group_terms, collapse=" OR ")
-
-      group_list[j] <- full_group
-
-      if(j==length(groupdata)){
-
-        this_search <- paste(group_list, collapse=" AND ")
-        this_search <- paste("\\(", this_search, "\\)", sep="")
-
-        if(writesearch==TRUE){
-          filename <- paste(directory, "search-in", languages[i], ".txt", sep="")
-          writeLines(this_search, filename)
+        if(exactphrase==FALSE){
+          for(k in 1:length(group_terms)){
+            if(length(strsplit(group_terms[k], " ")[[1]])>1){
+              group_terms[k] <- paste("\\(", group_terms[k], "\\)", sep="")
+            }
+          }
         }
 
-        search_list[[i]] <- this_search
-        names(search_list)[[i]] <- languages[i]
+        group_terms[1] <- paste("\\(", group_terms[1], sep="")
+        group_terms[length(group_terms)] <- paste(group_terms[length(group_terms)], "\\)", sep="")
+        full_group <- paste(group_terms, collapse=" OR ")
 
-        if (verbose == TRUE) {
-          print(paste(languages[i], "is written"))
+        group_list[j] <- full_group
+
+        if(j==length(groupdata)){
+
+          this_search <- paste(group_list, collapse=" AND ")
+          this_search <- paste("\\(", this_search, "\\)", sep="")
+
+          if(writesearch==TRUE){
+            filename <- paste(directory, "search-in", languages[i], ".txt", sep="")
+            writeLines(this_search, filename)
+          }
+
+          search_list[[i]] <- this_search
+          names(search_list)[[i]] <- languages[i]
+
+          if (verbose == TRUE) {
+            print(paste(languages[i], "is written"))
+          }
+
+          }
+
         }
 
-        }
+    }
 
-      }
+    search_list <- gsub("&#39;", "'", search_list)
+    search_list <- gsub("\\\\", "", search_list)
+      return(search_list)
 
-  }
-
-  search_list <- gsub("&#39;", "'", search_list)
-  search_list <- gsub("\\\\", "", search_list)
-    return(search_list)
-
-  }
+    }
 
 #' Remove redundant terms
 #' @description Given a list of terms, removes redundant terms based on plurals, stemming, or partial matches
@@ -246,7 +246,7 @@ available_languages <- function(){
 #' @return a text string
 #'@example inst/examples/write_titles.R
 write_title_search <- function(titles){
-  titlekeys <- sapply(titles, synthesisr::get_tokens)
+  titlekeys <- sapply(titles, litsearchr::get_tokens)
 
   title <- c()
   for (i in 1:length(titlekeys)){
@@ -557,7 +557,7 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
 #' @example inst/examples/check_recall.R
 check_recall <- function (true_hits, retrieved) {
   matches <- lapply(true_hits, synthesisr::fuzzdist, b=retrieved)
-  similarity_table <- cbind(true_hits, retrieved[unlist(lapply(matches, which.min))], 1-unlist(lapply(matches, min)))
+  similarity_table <- cbind(true_hits, retrieved[unlist(lapply(matches, which.min))], 1-unlist(lapply(matches, min, na.rm=TRUE)))
   colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
   return(similarity_table)
 }
