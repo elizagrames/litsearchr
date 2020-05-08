@@ -29,6 +29,11 @@ The *litsearchr* package for R is designed to partially automate search term sel
 In our empirical example, we begin with a naive search intended to capture a set of relevant articles. Naive search terms: (("black-backed woodpecker" OR "picoides arcticus" OR "picoides tridactylus" AND (burn\* OR fire\*)). We ran the search in Scopus and Zoological Record (Web of Science), exporting results in .ris and .txt, respectively. These exported search results are then imported to litsearchr using the *import_results* function and next deduplicated using the *remove_duplicates* function. In some cases, it is best to run the *remove_duplicates* function two or more times, for example starting with exact matches and moving on to fuzzy matching. 
 
 ```{r}
+# Note: system.file() is only used to identify where the example datasets are stored
+# If litsearchr and its dependencies were successfully installed, this directory exists on your computer
+
+# If you are using your own bibliographic files, you should not use system.file
+# You should instead give it the full path (or relative path from your current working directory) to the directory where your files are stored
 search_directory <- system.file("extdata/", package="synthesisr")
 
 naiveimport <-
