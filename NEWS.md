@@ -24,7 +24,7 @@ This version of litsearchr reflects changes to its sister package synthesisr, wh
 
 # litsearchr 0.4.0 
 
-The main change in this version is that all core text processing has been moved back from synthesisr into litsearchr so that metaverse packages are more modular. litsearchr now only calls synthesisr for file import and deduplication.
+The main change in this version is that all core text processing functions have been moved back from synthesisr into litsearchr so that metaverse packages are more modular. litsearchr now only calls synthesisr for file import and deduplication.
 
 Minor changes:
 -- fixed the problem of NA string similarity in check_recall
