@@ -12,3 +12,6 @@ _testinglitsearchr/*
 _testinglitsearchr/
 to-do-list.md
 to-do-notes.R
+.testscript.R
+./litsearchr-hex.png
+./litsearchr_0.3.0.tar.gz

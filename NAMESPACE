@@ -1,4 +1,15 @@
-exportPattern("^[[:alpha:]]+")
+export(
+  available_languages, check_recall,
+  create_dfm, create_network,
+  extract_terms, fakerake, find_cutoff, find_knots, fit_splines,
+  get_keywords, get_languages, get_ngrams, get_stopwords,
+  get_tokens, import_results, language_code, make_importance,
+  merge_stems, reduce_graph,
+  remove_duplicates, remove_punctuation, remove_redundancies, replace_ngrams,
+  scrape_hits,  scrape_ndltd, scrape_oatd, scrape_openthesis,
+  select_ngrams, select_unigrams, should_stem, translate_search,
+  write_search, write_title_search
+)
 importFrom("stats", "df", "lm")
 importFrom("utils", "head", "methods", "read.csv",
            "write.csv")
