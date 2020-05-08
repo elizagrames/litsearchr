@@ -6,11 +6,12 @@
 "custom_stopwords"
 
 
-#' Languages litsearchr can write searches in
+
+#' Languages codes synthesisr can recognize
 #'
-#' A dataset of the languages that searches can be translated
-#' into along with their short form, character encoding, and
-#' whether a scientific journal indexed in ulrich uses them.
+#' A dataset of the languages that can be recognized by
+#' synthesisr along with their short form, character encoding,
+#' and whether a scientific journal indexed in ulrich uses them.
 #'
 #' @format A database with 53 rows of 4 variables:
 #' \describe{

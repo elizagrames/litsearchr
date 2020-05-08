@@ -29,7 +29,7 @@ extract_terms <- function(text = NULL,
   }
 
   if (is.null(stopwords)) {
-    stopwords <- synthesisr::get_stopwords(language)
+    stopwords <- litsearchr::get_stopwords(language)
   }
 
 
@@ -94,7 +94,7 @@ fakerake <- function(text,
                      min_n = 2,
                      max_n = 5) {
   if (missing(stopwords)) {
-    stopwords <- synthesisr::get_stopwords()
+    stopwords <- litsearchr::get_stopwords()
   }
 
   stops <- unique(append(
@@ -127,7 +127,7 @@ fakerake <- function(text,
     )
   ))
 
-  # text <- synthesisr::remove_punctuation(text, preserve_punctuation = c("-", "_"))
+  # text <- litsearchr::remove_punctuation(text, preserve_punctuation = c("-", "_"))
   stop1 <- paste(" ", stops[1], " ", sep = "")
   text <- gsub("([-_])|[[:punct:]]", stop1, text)
 
@@ -144,7 +144,7 @@ fakerake <- function(text,
     if (i == min_n) {
       ngrams <-
         lapply(text,
-               synthesisr::get_ngrams,
+               litsearchr::get_ngrams,
                n = i,
                stop_words = stops)
     } else{
@@ -152,7 +152,7 @@ fakerake <- function(text,
         Map(c,
             ngrams,
             lapply(text,
-                   synthesisr::get_ngrams,
+                   litsearchr::get_ngrams,
                    n = i,
                    stop_words = stops))
     }
@@ -173,7 +173,7 @@ create_dfm <-
 
 
     elements <- tolower(elements)
-    z <- synthesisr::replace_ngrams(elements, features)
+    z <- replace_ngrams(elements, features)
     #z <- gsub("_", "__", z)
     if(any(unlist(lapply(strsplit(features, " "), length))==1)){
       unigrams <- features[which(unlist(lapply(strsplit(features, " "), length))==1)]
@@ -198,9 +198,9 @@ create_dfm <-
     docs <- gsub("\\+", "", docs)
 
     dfm <-
-      synthesisr::create_dtm(docs, ngram_check = FALSE, min_freq = 1)
+      construct_dtm(docs, ngram_check = FALSE, min_freq = 1)
 
-    dfm$dimnames$Terms <- synthesisr::remove_punctuation(dfm$dimnames$Terms, preserve_punctuation = "-")
+    dfm$dimnames$Terms <- litsearchr::remove_punctuation(dfm$dimnames$Terms, preserve_punctuation = "-")
 
     return(dfm)
   }

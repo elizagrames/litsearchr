@@ -64,10 +64,7 @@ translate_search <- function(search_terms, target_lang, source_lang="en", API_ke
   return(termlist)
 }
 
-#' Check whether a word is long enough to stem
-#' @param word the word or phrase to check
-#' @description Checks if the stemmed form of a word is longer than 3 characters. Not intended as a standalone function and is called from write_search().
-#'@examples  should_stem("habitat fragmentation")
+# Check whether a word is long enough to stem
 should_stem <- function(word){
   splitup <- strsplit(word, " ")[[1]]
   for(i in 1:length(splitup)){
@@ -137,7 +134,7 @@ should_stem <- function(word){
 
         if(languages[i]=="English"){
           if(stemming==TRUE){
-            group_terms <- unique(sapply(group_terms, litsearchr::should_stem))
+            group_terms <- unique(sapply(group_terms, should_stem))
           }
         }
 
