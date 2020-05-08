@@ -3,7 +3,7 @@
 \docType{data}
 \name{possible_langs}
 \alias{possible_langs}
-\title{Languages litsearchr can write searches in}
+\title{Languages codes synthesisr can recognize}
 \format{A database with 53 rows of 4 variables:
 \describe{
   \item{Short}{the short form language code}
@@ -15,8 +15,8 @@
 possible_langs
 }
 \description{
-A dataset of the languages that searches can be translated
-into along with their short form, character encoding, and
-whether a scientific journal indexed in ulrich uses them.
+A dataset of the languages that can be recognized by
+synthesisr along with their short form, character encoding,
+and whether a scientific journal indexed in ulrich uses them.
 }
 \keyword{datasets}
