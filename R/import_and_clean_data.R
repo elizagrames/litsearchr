@@ -49,9 +49,9 @@ remove_duplicates <-  function(df,
 
 #' Remove duplicate studies and punctuation
 #' @description Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
-#' @param df a data frame from import_scope() to deduplicate
+#' @param keywords a character vector containing keywords to clean
 #' @return a data frame with keyword punctuation standardized
-#' @examples clean_keywords(BBWO_data)
+#' @example inst/examples/clean_keywords.R
 clean_keywords <- function(keywords){
   removals <- c("\\(",
                 "\\)",
@@ -88,8 +88,11 @@ clean_keywords <- function(keywords){
   keywords <- gsub("  ", " ", keywords)
   keywords <- gsub("; ", ";", keywords)
   keywords <- gsub(" ;", ";", keywords)
-  keywords <- gsub(";;", ";", keywords)
-  keywords <- gsub(";;", ";", keywords)
+  if(any(grepl(";;", keywords))){
+    while(any(grepl(";;", keywords))){
+      keywords <- gsub(";;", ";", keywords)
+    }
+  }
 
   return(keywords)
 }

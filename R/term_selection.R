@@ -70,6 +70,9 @@ extract_terms <- function(text = NULL,
       if (any(terms == "NA")) {
         terms <- terms[-which(terms == "NA")]
       }
+      if(any(nchar(terms)<3)){
+        terms <- terms[nchar(terms)>=3]
+      }
     }
   }
 
