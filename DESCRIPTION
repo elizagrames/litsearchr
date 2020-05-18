@@ -47,6 +47,7 @@ License: GPL-3
 LazyData: true
 RoxygenNote: 7.1.0
 Imports: 
+    changepoint,
     SnowballC,
     utils,
     igraph,
@@ -59,7 +60,6 @@ Remotes:
 Suggests: 
     xml2,
     translate,
-    changepoint,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
