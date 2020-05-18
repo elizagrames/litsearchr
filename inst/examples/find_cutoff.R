@@ -15,3 +15,7 @@ my_network <- create_network(search_dfm = as.matrix(dfm),
 find_cutoff(my_network,
             method = "cumulative",
             percent = .9)
+
+find_cutoff(my_network,
+            method = "changepoint",
+            knot_num = 3)

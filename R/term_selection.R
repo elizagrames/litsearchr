@@ -2,7 +2,7 @@
 #' @description Extracts potential keyword terms from text (e.g. titles and abstracts)
 #' @param text A character object of text from which to extract terms
 #' @param keywords A character vector of keywords tagged by authors and/or databases if using method="tagged"
-#' @param method The method of extracting keywords; options are fakerake (a quick implementation similar to Rapid Automatic Keyword Extraction), RAKE, or tagged for author-tagged keywords
+#' @param method The method of extracting keywords; options are fakerake (a quick implementation similar to Rapid Automatic Keyword Extraction), or tagged for author-tagged keywords
 #' @param min_freq Numeric: the minimum occurrences of a potential term
 #' @param ngrams Logical: should litsearchr only extracts phrases with word count greater than a specified n?
 #' @param min_n Numeric: the minimum length ngram to consider
@@ -13,7 +13,7 @@
 #' @example inst/examples/extract_terms.R
 extract_terms <- function(text = NULL,
                           keywords = NULL,
-                          method = c("fakerake", "RAKE", "tagged"),
+                          method = c("fakerake", "tagged"),
                           min_freq = 2,
                           ngrams = TRUE,
                           min_n = 2,
@@ -40,23 +40,6 @@ extract_terms <- function(text = NULL,
     } else{
       terms <-
         litsearchr::fakerake(text, stopwords, min_n = min_n, max_n = max_n)
-    }
-  }
-
-  if (method == "RAKE") {
-    if (is.null(text)) {
-      stop("Please specify a body of text from which to extract terms using RAKE.")
-    } else if (!requireNamespace("rapidraker", quietly = TRUE)) {
-      stop(
-        "You need to have rapidraker and rJava installed in order to use the RAKE algorithm. Please install rapidraker or choose a different method of extracting terms.",
-        call. = FALSE
-      )
-    } else {
-      if (length(text) > 1) {
-        text <- paste(text, collapse = " ")
-      }
-      terms <-
-        rapidraker::rapidrake(text, stop_words = stopwords, stem = FALSE)
     }
   }
 
@@ -317,92 +300,27 @@ select_unigrams <- function(graph, imp_method = "strength") {
   return(unigrams)
 }
 
-#' Find optimal knot placements
-#' @description This function finds optimal knot placement given the degrees of your unique node strength graph and how many knots to allow. Degrees refers to the polynomial degree; for straight lines, use degree of 1 or for a curve use degree 2. Increasing the number of knots increases the fit and flexibility of the spline curve and presents more options for the cutoff strength.
-#' @param importances a dataset of unique node strengths and their ranks
-#' @param degrees the degree of the polynomial for the curve of unique node strengths
-#' @param knot_num the number of knots to allow
-#' @return a vector of knot placements
-#' @example inst/examples/find_knots.R
-find_knots <- function(importances,
-                       degrees = 2,
-                       knot_num = 1) {
-  if (!requireNamespace("freeknotsplines", quietly = TRUE)) {
-    stop(
-      "freeknotsplines needed to select knots using the spline method. Please install it.",
-      call. = FALSE
-    )
-  } else {
-    knotselect <-
-      freeknotsplines::freelsgen(
-        importances$rank,
-        importances$importance,
-        degree = degrees,
-        numknot = knot_num,
-        seed = 5,
-        stream = 0
-      )
-    knots <- knotselect@optknot
-    return(knots)
-  }
-}
-
-#' Fit spline model to node strengths
-#' @description Fits a basis spline to the curve of ranked unique node strengths.
-#' @param importances a dataset of ranked unique node strengths
-#' @param degrees the same degrees used to find knot placement in \code{find_knots}
-#' @param knot_num the same number of knots used to find knot placement in \code{find_knots}
-#' @param knots The vector of optimal knots returned from \code{find_knots}
-#' @return a fitted spline model
-#' @example inst/examples/fit_splines.R
-fit_splines <- function(importances,
-                        degrees = 2,
-                        knot_num = 1,
-                        knots) {
-  if (!requireNamespace("splines2", quietly = TRUE)) {
-    stop("splines2 needed to use the spline method. Please install it.",
-         call. = FALSE)
-  } else {
-    spline_b <-
-      splines2::bSpline(
-        as.numeric(importances$rank),
-        knots = knots,
-        degree = degrees,
-        numknot = knot_num,
-        intercept = TRUE
-      )
-    spline_fit <- lm(as.numeric(importances$importance) ~ spline_b)
-    return(spline_fit)
-  }
-}
-
-
 #' Find node cutoff strength
 #' @description Find the minimum node strength to use as a cutoff point for important nodes.
 #' @param graph An igraph graph object
 #' @param method the cutoff method to use, either "spline" or "cumulative"
 #' @param percent if using method cumulative, the total percent of node strength to capture
-#' @param degrees if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths
-#' @param knot_num if using method spline, the number of knots to allow
+#' @param knot_num if using method changepoint, the number of knots to identify
 #' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
-#' @details The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
+#' @details The changepoint fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
 #' @return a vector of suggested node cutoff strengths
 #' @example inst/examples/find_cutoff.R
 find_cutoff <-
   function(graph,
-           method = c("spline", "cumulative"),
+           method = c("changepoint", "cumulative"),
            percent = 0.8,
-           degrees = 2,
-           knot_num = 1,
+           knot_num = 3,
            imp_method = "strength") {
     importances <- make_importance(graph, imp_method = imp_method)
 
-    if (method == "spline") {
-      knots <-
-        find_knots(importances, degrees = degrees, knot_num = knot_num)
-      cut_points <- floor(knots)
-      cut_strengths <- (importances$importance)[cut_points]
-
+    if (method == "changepoint") {
+      knots <- suppressWarnings(changepoint::cpt.mean(importances$importance,penalty="Manual",pen.value="2*log(n)",method="BinSeg",Q=knot_num,class=FALSE))
+      cut_strengths <- (importances$importance)[knots]
     }
 
     if (method == "cumulative") {

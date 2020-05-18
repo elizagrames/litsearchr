@@ -6,10 +6,9 @@
 \usage{
 find_cutoff(
   graph,
-  method = c("spline", "cumulative"),
+  method = c("changepoint", "cumulative"),
   percent = 0.8,
-  degrees = 2,
-  knot_num = 1,
+  knot_num = 3,
   imp_method = "strength"
 )
 }
@@ -20,9 +19,7 @@ find_cutoff(
 
 \item{percent}{if using method cumulative, the total percent of node strength to capture}
 
-\item{degrees}{if using method spline, the degrees of the polynomial curve that approximates the ranked unique node strengths}
-
-\item{knot_num}{if using method spline, the number of knots to allow}
+\item{knot_num}{if using method changepoint, the number of knots to identify}
 
 \item{imp_method}{a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"}
 }
@@ -33,7 +30,7 @@ a vector of suggested node cutoff strengths
 Find the minimum node strength to use as a cutoff point for important nodes.
 }
 \details{
-The spline fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
+The changepoint fit finds tipping points in the ranked order of node strengths to use as cutoffs. The cumulative fit option finds the node strength cutoff point at which a certain percent of the total strength of the graph is captured (e.g. the fewest nodes that contain 80\% of the total strength).
 }
 \examples{
 dfm <- create_dfm(
@@ -53,4 +50,8 @@ my_network <- create_network(search_dfm = as.matrix(dfm),
 find_cutoff(my_network,
             method = "cumulative",
             percent = .9)
+
+find_cutoff(my_network,
+            method = "changepoint",
+            knot_num = 3)
 }
