@@ -4,7 +4,8 @@
 \name{ulrich}
 \alias{ulrich}
 \title{Non-English scientific journal list}
-\format{A database with 5100 rows of 6 variables:
+\format{
+A database with 5100 rows of 6 variables:
 \describe{
   \item{Title}{the journal title}
   \item{ISSN}{the journal ISSN}
@@ -12,7 +13,8 @@
   \item{Country}{the country of publication for the journal}
   \item{Start.Year}{the first year of journal publication}
   \item{Language}{the primary language of articles published in the journal}
-}}
+}
+}
 \usage{
 ulrich
 }

@@ -18,27 +18,23 @@ Description: Systematic review, meta-analysis, and other forms of evidence
     a set of known, relevant articles to get performance metrics.
 License: GPL-3
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Imports: 
     SnowballC,
-    Rcpp,
     utils,
     igraph,
     ngram,
     synthesisr,
     stopwords,
-    stringr,
     tm
 Remotes: 
     rmetaverse/synthesisr
 Suggests: 
     xml2,
-    rapidraker,
+    translate,
+    changepoint,
     knitr,
-    rmarkdown,
-    freeknotsplines,
-    splines2,
-    translate
+    rmarkdown
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
 Date: 2020-01-02

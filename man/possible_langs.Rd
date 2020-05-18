@@ -4,13 +4,15 @@
 \name{possible_langs}
 \alias{possible_langs}
 \title{Languages codes synthesisr can recognize}
-\format{A database with 53 rows of 4 variables:
+\format{
+A database with 53 rows of 4 variables:
 \describe{
   \item{Short}{the short form language code}
   \item{Language}{the name of the language}
   \item{Encoding}{which character encoding to use for a language}
   \item{Used}{whether or not the language is used by a scientific journal}
-}}
+}
+}
 \usage{
 possible_langs
 }

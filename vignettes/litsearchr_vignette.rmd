@@ -130,7 +130,7 @@ Terms that fit multiple concept groups can be added to both without changing the
 # manually group terms in the csv
 # grouped_terms <- read.csv("./search_terms_grouped.csv")
 # extract the woodpecker terms from the csv
-# woodpecker_terms <- grouped_terms$term[which(stringr::str_detect(grouped_terms$group, "woodpecker"))]
+# woodpecker_terms <- grouped_terms$term[grep("woodpecker", grouped_terms$group)]
 # join together a list of manually generated woodpecker terms with the ones from the csv
 # woodpeckers <- unique(append(c("woodpecker")), woodpecker_terms)
 # repeat this for all concept groups
@@ -207,7 +207,7 @@ results_directory <- system.file("extdata/", package="synthesisr")
 retrieved_articles <-
   litsearchr::import_results(directory = results_directory, verbose = TRUE)
 
-retrieved_articles <- litsearchr::remove_duplicates(retrieved_articles, field="title", method="stringdist")
+retrieved_articles <- litsearchr::remove_duplicates(retrieved_articles, field="title", method="string_osa")
 
 articles_found <- litsearchr::check_recall(true_hits = gold_standard,
                                            retrieved = retrieved_articles$title)

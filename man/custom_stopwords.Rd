@@ -4,7 +4,9 @@
 \name{custom_stopwords}
 \alias{custom_stopwords}
 \title{Stopwords to remove from keywords}
-\format{A character vector with 593 entries}
+\format{
+A character vector with 593 entries
+}
 \usage{
 custom_stopwords
 }

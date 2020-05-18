@@ -7,7 +7,7 @@
 extract_terms(
   text = NULL,
   keywords = NULL,
-  method = c("fakerake", "RAKE", "tagged"),
+  method = c("fakerake", "tagged"),
   min_freq = 2,
   ngrams = TRUE,
   min_n = 2,
@@ -21,7 +21,7 @@ extract_terms(
 
 \item{keywords}{A character vector of keywords tagged by authors and/or databases if using method="tagged"}
 
-\item{method}{The method of extracting keywords; options are fakerake (a quick implementation similar to Rapid Automatic Keyword Extraction), RAKE, or tagged for author-tagged keywords}
+\item{method}{The method of extracting keywords; options are fakerake (a quick implementation similar to Rapid Automatic Keyword Extraction), or tagged for author-tagged keywords}
 
 \item{min_freq}{Numeric: the minimum occurrences of a potential term}
 

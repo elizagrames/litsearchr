@@ -89,7 +89,7 @@ should_stem <- function(word){
     }
   }
 
-    words <- stringr::str_trim(words)
+    words <- trimws(words)
 
   return(words)
 }
@@ -340,11 +340,11 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
       sploatd <- gsub("<em class=\"hilite\">", "", sploatd)
 
       for(i in 1:length(sploatd)){
-        university <- stringr::str_trim(strsplit(strsplit(strsplit(sploatd[i], ".png")[[1]][2], "</p")[[1]][1], "\n")[[1]][2])
-        author <- stringr::str_trim(strsplit(strsplit(sploatd[i], ".\n<span>")[[1]][2], "</span")[[1]][1])
-        title <- stringr::str_trim(strsplit(strsplit(sploatd[i], "etdTitle\"><span>")[[1]][2], "</span")[[1]][1])
+        university <- trimws(strsplit(strsplit(strsplit(sploatd[i], ".png")[[1]][2], "</p")[[1]][1], "\n")[[1]][2])
+        author <- trimws(strsplit(strsplit(sploatd[i], ".\n<span>")[[1]][2], "</span")[[1]][1])
+        title <- trimws(strsplit(strsplit(sploatd[i], "etdTitle\"><span>")[[1]][2], "</span")[[1]][1])
 
-        abstract <- stringr::str_trim(strsplit(strsplit(strsplit(sploatd[i], "closeField")[[1]][2], "</span>")[[1]][2], "</div")[[1]][1])
+        abstract <- trimws(strsplit(strsplit(strsplit(sploatd[i], "closeField")[[1]][2], "</span>")[[1]][2], "</div")[[1]][1])
 
         thesis <- cbind(author, university, title, abstract)
         if(i==1){df <- thesis}
@@ -408,7 +408,7 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
 
     base_site <- firstURL
 
-    total_hits <- as.numeric(stringr::str_trim(strsplit(strsplit(
+    total_hits <- as.numeric(trimws(strsplit(strsplit(
       strsplit(strsplit(ndltd, "Search results")[[1]][2], "seconds")[[1]][1], "of")[[1]][2], "\\(")[[1]][1]))
     if(!is.na(total_hits)){
       npages <- seq(0, floor(total_hits), 10)
@@ -428,16 +428,16 @@ scrape_oatd <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verbose=TR
         init_title <- strsplit(strsplit(NDspl[i], "</h4>")[[1]][1], ">")
         title <- strsplit(init_title[[1]][length(init_title[[1]])], "<")[[1]][1]
 
-        author <- stringr::str_trim(strsplit(
+        author <- trimws(strsplit(
           strsplit(strsplit(NDspl[i], "/h4>")[[1]][2], "<em>")[[1]][2], "</em>")[[1]][1])
 
-        date <- stringr::str_trim(strsplit(
+        date <- trimws(strsplit(
           strsplit(strsplit(NDspl[i], "/h4>")[[1]][2], "<em>")[[1]][3], "</em>")[[1]][1])
 
         init_abstract <- strsplit(strsplit(strsplit(
           strsplit(strsplit(NDspl[i], "/h4>")[[1]][2], "<em>")[[1]][3], "</em>")[[1]][2], "/div>")[[1]][1], ">")
 
-        abstract <- stringr::str_trim(gsub("<", "", gsub("\n", " ", init_abstract[[1]][length(init_abstract[[1]])])))
+        abstract <- trimws(gsub("<", "", gsub("\n", " ", init_abstract[[1]][length(init_abstract[[1]])])))
 
         thesis <- cbind(author, date, title, abstract)
         if(i==1){df <- thesis}
@@ -504,7 +504,7 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
     firstURL <- paste(base_site, "0", "&max=5", sep="")
     openth <- as.character(xml2::read_html(firstURL))
 
-    nhits <- stringr::str_trim(gsub("</strong>", "", gsub("<strong>", "", strsplit(strsplit(strsplit(strsplit(openth, "class=\"results\"")[[1]][2], "query")[[1]][1], "results")[[1]][1], "of")[[1]][2])))
+    nhits <- trimws(gsub("</strong>", "", gsub("<strong>", "", strsplit(strsplit(strsplit(strsplit(openth, "class=\"results\"")[[1]][2], "query")[[1]][1], "results")[[1]][1], "of")[[1]][2])))
     nhits <- as.numeric(nhits)
     if(!is.na(nhits)){
       npages <- seq(0, floor(nhits/100)*100, 100)
