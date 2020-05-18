@@ -40,7 +40,7 @@ naiveimport <-
   litsearchr::import_results(directory = search_directory, verbose = TRUE)
 
 naiveresults <-
-  litsearchr::remove_duplicates(naiveimport, field = "title", method = "stringdist")
+  litsearchr::remove_duplicates(naiveimport, field = "title", method = "string_osa")
 
 ```
 
@@ -70,6 +70,7 @@ taggedkeywords <-
     min_n = 2,
     language = "English"
   )
+
 ```
 
 

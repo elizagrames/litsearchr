@@ -1,6 +1,6 @@
 export(
   available_languages, check_recall,
-  create_dfm, create_network,
+  create_dfm, create_network, clean_keywords,
   extract_terms, fakerake, find_cutoff, find_knots, fit_splines,
   get_tokens, get_keywords, get_languages, get_ngrams, replace_ngrams, get_stopwords,
   import_results, language_code, make_importance,

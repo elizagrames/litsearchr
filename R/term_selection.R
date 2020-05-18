@@ -65,7 +65,8 @@ extract_terms <- function(text = NULL,
       stop("Please specify a vector of keywords from which to extract terms.")
     } else{
       keywords <- tolower(paste(keywords, collapse = " and "))
-      terms <- strsplit(keywords, " and ")[[1]]
+      keywords <- litsearchr::clean_keywords(keywords)
+      terms <- strsplit(keywords, ";")[[1]]
       if (any(terms == "NA")) {
         terms <- terms[-which(terms == "NA")]
       }

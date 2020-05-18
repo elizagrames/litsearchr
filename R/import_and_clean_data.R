@@ -31,15 +31,65 @@ import_results <-  function(directory = NULL,
 #' @example inst/examples/remove_duplicates.R
 remove_duplicates <-  function(df,
                                field,
-                               method = c("stringdist",  "fuzzdist", "exact")) {
+                               method = c("string_osa",  "fuzzdist", "exact")) {
   df <-
     synthesisr::deduplicate(
       data = df,
       match_by = field,
-      match_function = method,
+      method = method,
       to_lower = TRUE,
       rm_punctuation = TRUE
     )
   return(df)
 
+}
+
+
+
+
+#' Remove duplicate studies and punctuation
+#' @description Replaces all miscellaneous punctuation marks used to separate keywords and replaces them with a semicolon so that keywords properly separate in later steps.
+#' @param df a data frame from import_scope() to deduplicate
+#' @return a data frame with keyword punctuation standardized
+#' @examples clean_keywords(BBWO_data)
+clean_keywords <- function(keywords){
+  removals <- c("\\(",
+                "\\)",
+                ":",
+                "=",
+                "%",
+                "\\+",
+                "<",
+                ">",
+                "\\?",
+                "\\\\",
+                "&",
+                "!",
+                "\\$",
+                "\\*"
+  )
+  for (i in 1:length(removals)){
+    keywords <- gsub(removals[i], keywords, replacement="")
+  }
+
+  # replace keyword separators with standardized semicolon
+  replacements <- c(", ",
+                    ",",
+                    "/",
+                    ";;",
+                    ", ",
+                    "\\[",
+                    "\\]", "\\band\\b"
+  )
+  for (i in 1:length(replacements)){
+    keywords <- gsub(replacements[i], keywords, replacement=";")
+  }
+
+  keywords <- gsub("  ", " ", keywords)
+  keywords <- gsub("; ", ";", keywords)
+  keywords <- gsub(" ;", ";", keywords)
+  keywords <- gsub(";;", ";", keywords)
+  keywords <- gsub(";;", ";", keywords)
+
+  return(keywords)
 }
