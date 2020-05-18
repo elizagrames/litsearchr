@@ -2,8 +2,33 @@ Package: litsearchr
 Type: Package
 Title: Automated Search Term Selection and Search Strategy for Systematic Reviews
 Version: 0.4.1
-Author: Eliza Grames, Andrew Stillman, Morgan Tingley, Chris Elphick
-Maintainer: Eliza Grames <eliza.grames@uconn.edu>
+Authors@R: c(
+  person(
+    given = "Eliza",
+    family = "Grames",
+    role = c("aut", "cre"),
+    email = "eliza.grames@uconn.edu",
+    comment = c(ORCID = "0000-0003-1743-6815")),
+  person(
+    given = "Andrew",
+    family = "Stillman",
+    role = c("aut"),
+    email = "andrew.stillman@uconn.edu",
+    comment = c(ORCID = "0000-0001-6692-380X")),
+  person(
+    given = "Morgan",
+    family = "Tingley",
+    role = c("aut"),
+    email = "mtingley@g.ucla.edu",
+    comment = c(ORCID = "0000-0002-1477-2218")),
+  person(
+    given = "Chris",
+    family = "Elphick",
+    role = c("aut"),
+    email = "chris.elphick@uconn.edu")    
+    )
+URL: http://elizagrames.github.io/litsearchr
+BugReports: https://github.com/elizagrames/litsearchr/issues
 Description: Systematic review, meta-analysis, and other forms of evidence 
     synthesis require researchers to identify the body of evidence relevant 
     to their research question. Partially automating evidence synthesis 
@@ -12,10 +37,12 @@ Description: Systematic review, meta-analysis, and other forms of evidence
     develop search strategies. This package facilitates quick, objective, 
     reproducible search strategy development using text-mining and 
     keyword co-occurrence networks to identify important terms to include 
-    in a search strategy. It can automatically write Boolean search strings 
-    in up to 53 different languages, with stemming support for English.  To assess the 
-    quality of a search, it can also check the results of a search against 
-    a set of known, relevant articles to get performance metrics.
+    in a search strategy as described in Grames et al. (2019) 
+    <doi:10.1111/2041-210X.13268>. It can automatically write Boolean 
+    search strings in up to 53 different languages, with stemming support 
+    for English.  To assess the quality of a search, it can also check the 
+    results of a search against a set of known, relevant articles to get 
+    performance metrics.
 License: GPL-3
 LazyData: true
 RoxygenNote: 7.1.0
