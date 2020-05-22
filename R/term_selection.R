@@ -61,8 +61,9 @@ extract_terms <- function(text = NULL,
 
   freq_terms <- names(table(terms))[which(table(terms) >= min_freq)]
   if (ngrams == TRUE) {
+    n_words <- sapply(strsplit(as.character(freq_terms), " "), length)
     freq_terms <-
-      freq_terms[which(sapply(strsplit(as.character(freq_terms), " "), length) >= min_n)]
+      freq_terms[which((n_words >= min_n) & (n_words <= max_n))]
   }
 
   return(freq_terms)
