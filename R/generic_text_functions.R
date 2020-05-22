@@ -135,12 +135,12 @@ get_ngrams <- function(x, n=2, min_freq=1, ngram_quantile=NULL, stop_words, rm_p
       ngram_df <- as.data.frame(do.call(rbind, ngram_list),
                                 stringsAsFactors = FALSE)
 
-      keep_rows <- apply(ngram_df[, 1:n], 1, function(a,
+      keep_rows <- apply(ngram_df[, 1:n, drop=FALSE], 1, function(a,
                                                       sw) {
         all(nchar(a) > 4) & !any(a %in% sw)
       }, sw = stop_words)
       if (any(keep_rows)) {
-        ngram_df <- ngram_df[keep_rows,]
+        ngram_df <- ngram_df[keep_rows, , drop=FALSE]
         ngrams <- apply(ngram_df, 1, function(a) {
           paste(a, collapse = " ")
         })
