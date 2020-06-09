@@ -69,7 +69,7 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15512090342
 OA Bronze
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -129,7 +129,7 @@ OR Dryobates albolarvatus (Picidae).
    Dryobates villosus (Picidae). 
    Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15510067589
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -148,8 +148,8 @@ PS 134-141
 PD Apr 15 2019
 PY 2019
 LA English
-U1 7
-U2 14
+U1 6
+U2 13
 AB Forest harvesting reduces mean stand age and dead wood amount. Among
    species dependent upon older forests and dead wood, primary excavators
    such as woodpeckers play an important ecological role by providing
@@ -197,80 +197,7 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
    Picoides dorsalis (Picidae). 
 UT ZOOREC:ZOOR15508049637
-DA 2020-01-15
-ER
-
-PT J
-AN ZOOR15508052017
-DT Article
-TI Early post-fire bird community in European boreal forest: Comparing
-   salvage-logged with non-intervention areas.
-AU Zmihorski, Michal (michal.zmihorski@gmail.com) 
-   Hebda, Grzegorz
-   Eggers, Sonke
-   Mansson, Johan
-   Abrahamsson, Tommy
-   Czeszczewik, Dorota
-   Walankiewicz, Wieslaw
-   Mikusinski, Grzegorz
-SO Global Ecology and Conservation
-VL 18
-PS e00636
-PD Apr 2019
-PY 2019
-LA English
-U1 4
-U2 6
-AB Salvage logging after disturbances in forests substantially modifies
-   vegetation structure and dead wood availability, but empirical evidence
-   on its impact on biodiversity, especially in European boreal forest, is
-   sparse. In this study we investigated the short-term effect of post-fire
-   salvage logging on species richness and abundance of birds in recently
-   burned mixed coniferous forest. Using point counts we estimated local
-   species composition at 49 salvaged sites and 55 non-intervention sites
-   (burnt forest left for natural regeneration) that were not logged after
-   a fire in south-central Sweden. Local species richness, abundance and
-   Simpson's species diversity index were significantly higher at
-   non-intervention sites compared to salvaged sites. Forest birds that
-   rely on structurally complex forest stands, such as tits (Parus major,
-   Lophophanes cristatus, Poecile montanus), robin (Erithacus rubecula),
-   mistle trush (Turdus viscivorus) and tree-toed woodpecker (Picoides
-   tridactylus) were mainly associated with non-intervention sites, while
-   species that are typically linked to farm- or shrublands, such as
-   whinchat (Saxicola rubetra), white wagtail (Motacilla alba), red-backed
-   shrike (Lanius collurio), and meadow pipit (Anthus pratensis) were more
-   common at salvaged sites. These results are consistent with the idea
-   that post-fire salvage logging has an immediate impact on the bird
-   species composition and abundance in boreal forest. We conclude that
-   although post-fire salvage logging may be beneficial for birds occurring
-   in open landscapes, it has negative effects for forest bird species
-   richness and abundance, at least over the short term. To protect typical
-   forest communities with many forest specialists of high conservation
-   concern, we recommend reducing the extent of post-disturbance salvaging
-   in forests of high conservation value and updating the existing
-   management policy to restore the amount of woody debris and facilitate
-   long-term structural complexity and biodiversity in densely stocked
-   conifer stands. (C) 2019 The Authors. Published by Elsevier B.V.
-C1 Zmihorski, Michal; Polish Acad Sci, Mammal Res Inst, Stoczek 1,
-   Bialowieza, PL-17230, Poland, Poland.
-EM michal.zmihorski@gmail.com
-OI Hebda, Grzegorz/0000-0002-8668-1809; Zmihorski,
-   Michal/0000-0001-5137-1635; Czeszczewik, Dorota/0000-0003-0523-1417
-SC Biodiversity & Conservation; Zoology; Environmental Sciences & Ecology;
-   Forestry
-SN 2351-9894
-BD Conservation; Conservation measures; Ecology; Population dynamics;
-   Habitat; Terrestrial habitat; Abiotic factors; Physical factors; Land
-   zones; Palaearctic region; Eurasia; Europe
-DE Aves [Habitat management /  / ] [Community structure /  / ] [Population
-   censuses / Counts / ] [Population density / Abundance / ] [Forest and
-   woodland / Boreal forest / ] [Fire /  / ] [Sweden / Vastmanland / ]. 
-TN Birds; Chordates; Vertebrates
-ST Animalia, Chordata, Vertebrata
-OR Aves (Vertebrata). 
-UT ZOOREC:ZOOR15508052017
-OA DOAJ Gold
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -358,7 +285,84 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15508051114
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15512080973
+DT Article
+TI The importance of disturbance and forest structure to bird abundance in
+   the Black Hills.
+AU Matseur, Elizabeth A. (eamatseur@mail.missouri.edu) 
+   Millspaugh, Joshua J.
+   Thompson, Frank R., III
+   Dickerson, Brian E.
+   Rumble, Mark A.
+SO Condor
+VL 121
+IS 1
+PS 023
+PD Feb 2019
+PY 2019
+LA English
+U1 0
+U2 0
+AB Many North American birds associated with forest disturbances such as
+   wildfire and mountain pine beetle (Dendroctonus ponderosae) outbreaks
+   are declining in abundance. More information on relationships between
+   avian abundance and forest structure and disturbance is needed to guide
+   conservation and management. Our objective was to determine densities of
+   American Three-toed Woodpecker (Picoides dorsalis), Black-backed
+   Woodpecker (Picoides arcticus), Red-breasted Nuthatch (Sitta
+   canadensis), Brown Creeper (Certhia americana), and White-winged Junco
+   (Junco hyemalis aikeni) in relation to vegetation characteristics and
+   disturbance at the point and landscape level in the Black Hills and Bear
+   Lodge Mountains of South Dakota and Wyoming. We conducted 3 point counts
+   from late March to late June 2015 and 2016 at more than 2,300 locations
+   distributed across a gradient of forest structure and disturbance types.
+   We estimated densities using 3-level hierarchical time-removal models
+   that simultaneously estimated abundance, availability, and detection
+   probability. Black-backed Woodpeckers were positively related to percent
+   area in 1- to 3-year-old wildfires and Brown Creepers were positively
+   associated with percent area in 4- to 5-year-old wildfires; however,
+   Redbreasted Nuthatches were negatively related to percent area in 3- to
+   5-year-old wildfires. With the exception of American Three-toed
+   Woodpeckers, species were positively related to percent cover of
+   beetle-killed trees. Brown Creepers, White-winged Juncos, and
+   Red-breasted Nuthatches had mixed responses to percent overstory canopy
+   cover. White-winged Juncos also had a positive association with percent
+   ground vegetation at the point and landscape level. Brown Creepers were
+   strongly linked with spruce vegetation type. American Three-toed
+   Woodpeckers, which are thought to occupy spruce forest in the Black
+   Hills, did not show a strong relationship with any covariates.
+   Maintaining some areas of natural disturbances along with heterogeneity
+   of vegetation characteristics within stands and at the landscape scale
+   will benefit the needs of a diverse bird community in the Black Hills.
+C1 Matseur, Elizabeth A.; Univ Missouri, Sch Nat Resources, Columbia, MO,
+   65211, USA, USA.
+EM eamatseur@mail.missouri.edu
+SC Zoology; Environmental Sciences & Ecology; Forestry
+SN 0010-5422
+BD Animals and man; Ecology; Population dynamics; Habitat; Terrestrial
+   habitat; Abiotic factors; Physical factors; Land zones; Nearctic region;
+   North America; USA
+DE Certhia americana; Junco hyemalis aikeni; Picoides arcticus; Picoides
+   dorsalis; Sitta canadensis [Disturbance by man / Anthropogenic
+   disturbance / ] [Population density / Abundance / ] [Habitat utilization
+   / Habitat occupancy / ] [Forest and woodland / Forest / ] [Spatial
+   environment / Landscape composition / ] [South Dakota / Black Hills
+   National Forest & Custer State Park / ] [Wyoming / Bear Lodge Mountains
+   / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Certhiidae,
+   Emberizidae, Sittidae, Piciformes, Picidae
+OR Certhia americana (Certhiidae). 
+   Junco hyemalis aikeni (Emberizidae). 
+   Sitta canadensis (Sittidae). 
+   Picoides arcticus (Picidae). 
+   Picoides dorsalis (Picidae). 
+UT ZOOREC:ZOOR15512080973
+DA 2020-01-11
 ER
 
 PT J
@@ -413,7 +417,7 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15512082826
 OA DOAJ Gold
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -486,7 +490,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15411078200
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -552,7 +556,39 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15409060798
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15411075741
+DT Article
+TI NOVEL FUNCTION OF FLUTTER DISPLAY IN THE BLACK-BACKED WOODPECKER.
+AU Stillman, Andrew N. (andrew.stillman@uconn.edu) 
+   Tousley, Frankie
+SO Western Birds
+VL 49
+IS 2
+PS 149-151
+PD Jun 2018
+PY 2018
+LA English
+U1 0
+U2 0
+C1 Stillman, Andrew N.; Univ Connecticut, Ecol & Evolutionary Biol, 75 N
+   Eaglevllle Rd,Unit 3043, Storrs, CT, 06269, USA, USA.
+EM andrew.stillman@uconn.edu
+OI Stillman, Andrew/0000-0001-6692-380X
+SC Zoology; Reproductive Biology; Behavioral Sciences
+SN 0160-1121
+BD Reproduction; Reproductive behaviour; Behaviour; Communication; Visual
+   signals; Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Courtship /  / ] [Display / Flutter aerial display /
+   ] [California / Sierra Nevada / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15411075741
+DA 2020-01-11
 ER
 
 PT J
@@ -616,7 +652,56 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15410069082
 OA DOAJ Gold
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15411073399
+DT Article
+TI CONSPECIFICS TAKE OVER BLACK-BACKED WOODPECKER NEST FOLLOWING REMOVAL OF
+   RESIDENT PAIR.
+AU Lorenz, Teresa J. (tlorenz@fs.fed.us) 
+   Fischer, Philip C.
+   Cowell, Samuel D.
+SO Northwestern Naturalist
+VL 99
+IS 1
+PS 66-72
+PD Spr 2018
+PY 2018
+LA English
+U1 0
+U2 0
+AB On 16 April 2016, a nesting pair of Black-backed Woodpeckers (Picoides
+   arcticus) were illegally killed by a poacher near Rimrock Lake,
+   Washington. We captured the incident on camera and were surprised to
+   observe a female Black-backed Woodpecker visit the partially excavated
+   nest cavity a mere 3 h after the "removal'' of the breeding pair (and
+   presumed territory holders). Within 72 h, a male and female were both
+   observed at the abandoned nest and began excavating the partially
+   completed cavity. The intruding pair successfully fledged 2 young from
+   this nest on 10 June 2016. To our knowledge, this is the 1st reported
+   case of a pair of Black-backed Woodpeckers taking over excavation duties
+   at a cavity started by another pair in the same breeding season. While
+   formal studies are needed, this incident suggests conspecific attraction
+   may be used for territory settlement in Black-backed Woodpeckers.
+C1 Lorenz, Teresa J.; US Forest Serv, USDA, 3625 93rd Ave SW, Olympia, WA,
+   98512, USA, USA.
+EM tlorenz@fs.fed.us
+SC Zoology; Environmental Sciences & Ecology; Reproductive Biology;
+   Behavioral Sciences
+SN 1051-1733
+BD Animals and man; Reproduction; Reproductive behaviour; Behaviour;
+   Ecology; Animal constructions; Land zones; Nearctic region; North
+   America; USA
+DE Picoides arcticus [Disturbance by man / Poaching / ] [Breeding site /  /
+   ] [Territoriality /  / ] [Nests / Abandoned nest / ] [Washington /
+   Rimrock Lake / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15411073399
+DA 2020-01-11
 ER
 
 PT J
@@ -638,8 +723,8 @@ PS e0191645
 PD Feb 7 2018
 PY 2018
 LA English
-U1 2
-U2 29
+U1 1
+U2 28
 AB Many studies project future bird ranges by relying on correlative
    species distribution models. Such models do not usually represent
    important processes explicitly related to climate change and harvesting,
@@ -677,7 +762,7 @@ C1 Tremblay, Junior A.; Environm & Climate Change Canada, Sci & Technol
    Branch, Quebec City, PQ, Canada, Canada.
 EM junior.tremblay@canada.ca
 OI Tremblay, Junior A./0000-0003-4930-0939
-SC Biodiversity & Conservation; Zoology; Environmental Sciences & Ecology;
+SC Zoology; Environmental Sciences & Ecology; Biodiversity & Conservation;
    Forestry; Meteorology & Atmospheric Sciences
 SN 1932-6203
 BD Conservation; Conservation measures; Ecology; Habitat; Terrestrial
@@ -692,56 +777,138 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15405031093
 OA DOAJ Gold, Green Published
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
-AN ZOOR15509058565
+AN ZOOR15403012413
 DT Article
-TI Phloem sap in fire-damaged Scots pine trees provides instant foraging
-   opportunities for Three-toed Woodpeckers Picoides tridactylus.
-AU Pakkala, Timo (timo.pakkala@hotmail.fi) 
-   Kouki, Jari
-   Piha, Markus
-   Tiainen, Juha
-SO Ornis Svecica
-VL 27
-IS 2-4
-PS 144-149
-PD 2017
+TI TAG-TEAM TAKEOVER: USURPATION OF WOODPECKER NESTS BY WESTERN BLUEBIRDS.
+AU Cowell, Samuel (samueldavidcowell@gmail.com) 
+   Sullivan, Kim
+   Domgaard, Hannah
+   Lorscheider, Sara
+   Panoussi, Mariah
+   Parrish, Lindsey
+   Rodman, Taryn
+   Lorenz, Teresa
+SO Western Birds
+VL 48
+IS 3
+PS 173-180
+PD Sep 2017
 PY 2017
 LA English
 U1 0
 U2 0
-AB Three-toed Woodpeckers Picoides tridactylus are known to use phloem sap
-   of conifer trees as a food resource mostly in springtime. A local pair
-   instantly began to forage sap of Scots pine Pinus sylvestris trees that
-   were damaged in a prescribed forest burning; before the fire they had
-   used phloem sap elsewhere in their territory. During three weeks after
-   the fire, the pair intensively used sap of Scots pines which were
-   exposed to fire. The woodpeckers were probably attracted by nutrients
-   induced by damage reaction of the burned pines. Rapid sap use of newly
-   burned trees has not been described before, and it indicates behavioural
-   plasticity how this woodpecker species can use resources in disturbance
-   driven, dynamic forest environments.
-C1 Pakkala, Timo; Univ Helsinki, Lammi Biol Stn, Lammi, FI-16900, Finland,
-   Finland.
-EM timo.pakkala@hotmail.fi
-OI Piha, Markus/0000-0002-8482-6162
-SC Nutrition & Dietetics; Zoology; Evolutionary Biology; Environmental
-   Sciences & Ecology
-SN 1102-6812
-BD Nutrition; Diet; Feeding behaviour; Evolution; Variation; Abiotic
-   factors; Physical factors; Land zones; Palaearctic region; Eurasia;
-   Europe
-DE Picoides tridactylus [Food plants / Pinus sylvestris / Sap feeding]
-   [Foraging /  / ] [Behavioural variation / Behavioural plasticity / ]
-   [Fire /  / ] [Finland / South / ]. 
+AB Woodpeckers provide important ecological services by excavating nesting
+   cavities that are used by many forest birds and other animals. Demand
+   for nesting cavities by secondary cavity nesters can lead to intense
+   competition for this limited resource. The Western Bluebird (Sialia
+   mexicana) is known to usurp nests from its own and other species.
+   However, the process by which bluebirds take over nests from woodpeckers
+   larger than themselves has not been well documented. In order to
+   understand this process, we analyzed 112 hours of video footage of nests
+   of a Black-backed (Picoides arcticus) and a Hairy Woodpecker (P.
+   villosus) located in the Okanogan-Wenatchee National Forest in
+   Washington. Usurpation first involves a short period of physical
+   confrontation followed by a prolonged period of constant presence around
+   the nest. The male and female bluebirds cooperate by taking turns
+   harassing the woodpecker and guarding the nest. This may be of concern
+   to managers as the Black-backed Woodpecker is considered a species at
+   risk in certain locations.
+C1 Cowell, Samuel; Utah State Univ, Dept Biol, 5305 Old Main Hill, Logan,
+   UT, 84322, USA, USA.
+EM samueldavidcowell@gmail.com
+OI Domgaard, Hannah/0000-0001-9359-8352
+SC Reproductive Biology; Zoology
+SN 0160-1121
+BD Reproduction; Reproductive behaviour; Land zones; Nearctic region; North
+   America; USA
+DE Picoides arcticus; Picoides villosus; Sialia mexicana [Nest usurpation /
+    / ] [Washington / Okanogan-Wenatchee National Forest / ]. 
 TN Birds; Chordates; Vertebrates
-ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
-OR Picoides tridactylus (Picidae). 
-UT ZOOREC:ZOOR15509058565
-DA 2020-01-15
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Turdidae,
+   Piciformes, Picidae
+OR Sialia mexicana (Turdidae). 
+   Picoides arcticus (Picidae). 
+   Picoides villosus (Picidae). 
+UT ZOOREC:ZOOR15403012413
+OA Bronze
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15310064254
+DT Article
+TI Habitats and landscapes associated with bird species in a lowland
+   conifer-dominated ecosystem.
+AU Zlonis, Edmund J. (edmund.zlonis@state.mn.us) 
+   Panci, Hannah G.
+   Bednar, Josh D.
+   Hamady, Maya
+   Niemi, Gerald J.
+SO Avian Conservation and Ecology
+VL 12
+IS 1
+PS 14pp.
+PD Jun 2017
+PY 2017
+NT Unpaginated.
+LA English
+U1 0
+U2 0
+AB Human-induced effects on lowland conifer forests in hemiboreal regions
+   are increasing because of expanded use of these northern ecosystems for
+   raw materials, energy, and minerals as well as the potential effects of
+   climatic changes. These forests support many breeding bird species
+   across the Holarctic and allow the persistence of several boreal bird
+   species in hemiboreal and even temperate regions. These bird species are
+   of particular conservation concern as shifting patterns northward in
+   forest composition caused by climate change will likely affect their
+   populations. However, effective management and conservation options are
+   limited because the specifics of these species' breeding habitats are
+   not well understood. We modeled and mapped habitat suitability for 11
+   species of boreal birds that breed in the lowland conifer forests of the
+   Agassiz Lowlands Ecological Subsection in northern Minnesota and are
+   likely to have reduced breeding habitat in the future: Spruce Grouse
+   (Falcipennis canadensis), Black-backed Woodpecker (Picoides arcticus),
+   Olivesided Flycatcher (Contopus cooperi), Yellow-bellied Flycatcher
+   (Empidonax flaviventris), Boreal Chickadee (Poecile hudsonicus),
+   Goldencrowned Kinglet (Regulus satrapa), Ruby-crowned Kinglet (Regulus
+   calendula), Swainson's Thrush (Catharus ustulatus), Connecticut Warbler
+   (Oporornis agilis), Palm Warbler (Setophaga palmarum), and Dark-eyed
+   Junco (Junco hyemalis). Sets of 7 to 16 potential environmental
+   covariates, including both stand-level and landscape attributes, were
+   used to develop individual species models. Within this lowland
+   conifer-dominated ecosystem, we found significant selection for specific
+   forest and landscape characteristics by all but one of these species,
+   with the best models including between one and nine variables. Habitat
+   suitability maps were developed from these models and predictions tested
+   with an independent dataset. Model performance depended on species,
+   correctly predicting 56-96% of test data. We present a map combining
+   suitability scores for five species of conservation concern that has
+   been used for conservation planning and management opportunities across
+   a broad, lowland forest landscape. We recommend managers utilize the
+   detailed model development and validation framework to address local and
+   regional conservation issues.
+C1 Zlonis, Edmund J.; 102 23rd St NE, Bemidji, MN, 56601, USA, USA.
+EM edmund.zlonis@state.mn.us
+SC Biodiversity & Conservation; Zoology; Environmental Sciences & Ecology;
+   Reproductive Biology; Forestry
+BD Conservation; Techniques; Reproduction; Reproductive behaviour; Ecology;
+   Habitat utilization; Habitat; Terrestrial habitat; Abiotic factors;
+   Physical factors; Land zones; Nearctic region; North America; USA
+DE Aves [Conservation /  / ] [Ecological techniques / Habitat suitability
+   modelling / ] [Breeding site / Breeding habitat / ] [Habitat preference
+   / Habitat selection / ] [Forest and woodland / Lowland conifer forest /
+   distribution] [Spatial environment / Landscape structure characteristics
+   / ] [Minnesota / Agassiz Lowland Ecological Subsection / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR15310064254
+DA 2020-01-11
 ER
 
 PT J
@@ -809,7 +976,7 @@ OR Melanerpes lewisis (Picidae).
    Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15312083759
 OA Bronze
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -871,7 +1038,7 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
    Picoides dorsalis (Picidae). 
 UT ZOOREC:ZOOR15212078858
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -940,41 +1107,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15210064211
-DA 2020-01-15
-ER
-
-PT J
-AN ZOOR15307039102
-DT Article
-TI [Halleskogsbrannan. Woodpecker invasion favoured by fire.]
-FT Halleskogsbrannan Hackspettsinvasion gynnas av branden.
-AU Waara, Lennart
-   Waara, Roland
-   Westman, Erik
-   Larsson, Soeren
-SO Var Fagelvarld
-VL 4
-PS 52-53
-PD 2016
-PY 2016
-LA Swedish
-U1 0
-U2 0
-SC Environmental Sciences & Ecology; Zoology; Forestry
-SN 0042-2649
-BD Ecology; Habitat utilization; Habitat; Terrestrial habitat; Abiotic
-   factors; Physical factors; Land zones; Palaearctic region; Eurasia;
-   Europe
-DE Dryocopus martius; Picoides tridactylus [Population dynamics /
-   Population reestablishment / ] [Habitat colonization /  / ] [Forest and
-   woodland / Forest / ] [Fire / Burnt areas / ] [Sweden / Vastmanland,
-   Halleskogsbrannan / ]. 
-TN Birds; Chordates; Vertebrates
-ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
-OR Dryocopus martius (Picidae). 
-   Picoides tridactylus (Picidae). 
-UT ZOOREC:ZOOR15307039102
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -1032,7 +1165,7 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15212077071
 OA Other Gold
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -1103,7 +1236,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides articus (Picidae). 
 UT ZOOREC:ZOOR15209054472
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -1146,7 +1279,90 @@ ST Animalia, Arthropoda, Insecta, Chordata, Vertebrata, Aves, Piciformes,
 OR Coleoptera (Insecta): [Prey]. 
    Picoides arcticus (Picidae): [Predator]. 
 UT ZOOREC:ZOOR15204025400
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15202011647
+DT Article
+TI Structural retention requirements for a key ecosystem engineer in
+   conifer-dominated stands of a boreal managed landscape in eastern
+   Canada.
+AU Tremblay, Junior A. (junior.tremblay@ec.gc.ca) 
+   Savard, Jean-Pierre L.
+   Ibarzabal, Jacques
+SO Forest Ecology and Management
+VL 357
+PS 220-227
+PD Dec 1 2015
+PY 2015
+LA English
+U1 2
+U2 58
+AB The concept of retention forestry brings a new point of view for forest
+   management as more emphasis is put on what is retained as opposed to
+   what is removed during harvesting. Details of retention harvesting
+   prescriptions vary among forest ecosystems reflecting differences in
+   their disturbance dynamics, stand composition and condition, and
+   landscape context. Although recent studies underlie the important role
+   of trembling aspen (Populus tremuloides) in cavity networks of Canadian
+   western temperate forests, limited information exists for
+   conifer-dominated forests such as the black spruce (Picea mariana)
+   forests of central Quebec where the proportion of deciduous trees is
+   generally <10%. We used the habitat requirements of an ecosystem
+   engineer of eastern boreal forests, the Black-backed Woodpecker
+   (Picoides arcticus), to determine harvesting prescriptions likely to
+   preserve most of the biodiversity of this ecosystem. We describe the
+   mean physical characteristics of trees selected for nesting, quantify
+   nesting habitat selection at two scales (nest tree and nesting stand),
+   and identify quantitative targets for forest managers to select types
+   and amounts of retention structures that will offer optimal resources to
+   cavity nesting birds and dead wood associated species in managed boreal
+   landscapes. During the three years of this project, we found 18
+   Black-backed Woodpecker nests: 9 were in old coniferous, 6 in young
+   cuts, and 1 nest in each of the other habitats (barren land, young
+   coniferous and old cut). Selection of nest trees by Black-backed
+   Woodpeckers was influenced primarily by tree species (jack pine; Pinus
+   banksiana) and also by the dbh of trees, while their selection of
+   nesting stand habitat was influenced positively by the mean density of
+   recent-solid snags and negatively by the mean basal area of live trees.
+   Our results show that forest stands with >=200 recently decayed snags/ha
+   (>=9 cm dbh) exhibit higher predicted probability of selection for
+   nesting by Black-backed Woodpeckers, and most of the cutblocks with a
+   nest tree originate from harvesting with advance regeneration protection
+   with at least that many snags. Moreover, cutblocks should contain
+   suitable candidate nest trees, with retention of <=10 live and dead
+   trees/ha with a dbh >= 27 cm, and retention of jack pine snags in
+   proportion of their availability before harvesting in black
+   spruce-dominated forest stands. We recommend that, where forest stands
+   present suitable structures, every stand harvested with retention
+   harvesting should retain >=200 recent-solid snags/ha (>=9 cm dbh), which
+   represents about 1 recent-solid snag each 7 m (50 m2). The medium and
+   long-term persistence of dead wood associated species may not rely only
+   on retention forestry, thus we recommend the protection of patches (100
+   ha) of old forest stands (>=120 y) inside these agglomeration of
+   cutblocks to ensure the dynamic of dead wood creation within the managed
+   landscape. Crown Copyright (C) 2015 Published by Elsevier B.V. All
+   rights reserved.
+C1 Tremblay, Junior A.; Environm Canada, 801-1550 Ave Estimauville, Quebec
+   City, PQ, G1J 0C3, Canada, Canada.
+EM junior.tremblay@ec.gc.ca
+OI Tremblay, Junior A./0000-0003-4930-0939
+SC Biodiversity & Conservation; Environmental Sciences & Ecology; Zoology;
+   Reproductive Biology; Forestry
+SN 0378-1127
+BD Conservation; Conservation measures; Reproduction; Ecology; Habitat
+   utilization; Habitat; Terrestrial habitat; Land zones; Nearctic region;
+   North America; Canada
+DE Picoides arcticus [Habitat management /  / nesting requirements]
+   [Reproductive behaviour / Nesting behaviour / ] [Habitat preference /
+   Habitat selection / ] [Forest and woodland / Forest ecosystem / ]
+   [Quebec /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15202011647
+DA 2020-01-11
 ER
 
 PT J
@@ -1213,7 +1429,80 @@ OR Dryocopus pileatus (Picidae).
    Picoides villosus (Picidae). 
    Sphyrapicus varius (Picidae). 
 UT ZOOREC:ZOOR15106042893
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15112081809
+PM 26465039
+DT Article
+TI The role of wood hardness in limiting nest site selection in avian
+   cavity excavators.
+AU Lorenz, Teresa J. (teresajlorenz@gmail.com) 
+   Vierling, Kerri T.
+   Johnson, Timothy R.
+   Fischer, Philip C.
+SO Ecological Applications
+VL 25
+IS 4
+PS 1016-1033
+PD Jun 2015
+PY 2015
+LA English
+U1 2
+U2 55
+AB Woodpeckers and other primary cavity excavators (PCEs) are important
+   worldwide for excavating cavities in trees, and a large number of
+   studies have examined their nesting preferences. However, quantitative
+   measures of wood hardness have been omitted from most studies, and
+   ecologists have focused on the effects of external tree-and
+   habitat-level features on nesting. Moreover, information is lacking on
+   the role of wood hardness in limiting nesting opportunities for this
+   important guild. Here, we used an information theoretic approach to
+   examine the role of wood hardness in multi-scale nest site selection and
+   in limiting nesting opportunities for six species of North American
+   PCEs. We found that interior wood hardness at nests (n = 259) differed
+   from that at random sites, and all six species of PCE had nests with
+   significantly softer interior wood than random trees (F1,517 = 106.15, P
+   < 0.0001). Accordingly, interior wood hardness was the most influential
+   factor in our models of nest site selection at both spatial scales that
+   we examined: in the selection of trees within territories and in the
+   selection of nest locations on trees. Moreover, regardless of
+   hypothesized excavation abilities, all the species in our study appeared
+   constrained by interior wood hardness, and only 4-14% of random sites
+   were actually suitable for nesting. Our findings suggest that past
+   studies that did not measure wood hardness counted many sites as
+   available to PCEs when they were actually unsuitable, potentially
+   biasing results. Moreover, by not accounting for nest site limitations
+   in PCEs, managers may overestimate the amount of suitable habitat. We
+   therefore urge ecologists to incorporate quantitative measures of wood
+   hardness into PCE nest site selection studies, and to consider the
+   limitations faced by avian cavity excavators in forest management
+   decisions.
+C1 Lorenz, Teresa J.; Univ Idaho, Dept Fish & Wildlife Sci, POB 441136,
+   Moscow, ID, 83844, USA, USA.
+EM teresajlorenz@gmail.com
+RI Vierling, Kerri/N-6653-2016
+SC Zoology; Environmental Sciences & Ecology; Reproductive Biology;
+   Forestry
+SN 1051-0761
+BD Techniques; Reproduction; Reproductive behaviour; Ecology; Habitat
+   utilization; Habitat; Terrestrial habitat; Land zones; Nearctic region;
+   North America; USA
+DE Colaptes auratus; Picoides albolarvatus; Picoides arcticus; Picoides
+   dorsalis; Sphyrapicus thyroideus [Ecological techniques /  / comparative
+   study] [Breeding site / Nest site selection / ] [Habitat preference /  /
+   ] [Forest and woodland / Forest / ] [Washington / Cascade range, east /
+   ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Colaptes auratus (Picidae). 
+   Picoides albolarvatus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides dorsalis (Picidae). 
+   Sphyrapicus thyroideus (Picidae). 
+UT ZOOREC:ZOOR15112081809
+DA 2020-01-11
 ER
 
 PT J
@@ -1283,7 +1572,7 @@ OR Vertebrata (Chordata).
    Picoides arcticus (Picidae). 
    Picoides villosus (Picidae). 
 UT ZOOREC:ZOOR15108054520
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -1352,7 +1641,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae): [Predator]. 
 UT ZOOREC:ZOOR15108054081
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -1409,7 +1698,58 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15210063635
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15205032677
+PM 26782484
+DT Article
+TI DNA barcoding and phylogenetic relationships of genera Picoides and
+   Dendrocopos (Aves: Picidae).
+AU Huang, Z.H. (hzhow@163.com) 
+   Tu, F.Y.
+   Liao, X.J.
+SO Genetics and Molecular Research
+VL 14
+IS 4
+PS 18370-18375
+PD 2015
+PY 2015
+LA English
+U1 0
+U2 5
+AB Picoides and Dendrocopos are two closely related genera of woodpeckers
+   (family Picidae), and members of these genera have long been the
+   subjects of phylogenetic debate. Mitochondrial cytochrome c oxidase
+   subunit I (COI) is a powerful marker for the identification and
+   phylogenetic study of animal species. In the present study, we analyzed
+   the COI barcodes of 21 species from the two genera, and 222 variable
+   sites were identified. Kimura two-parameter distances were calculated
+   between barcodes. The average interspecific genetic distance was more
+   than 20 times higher than the average intraspecific genetic distance.
+   The neighbor-joining method was used to construct a phylogenetic tree,
+   and all of the species could be discriminated by their distinct clades.
+   Picoides arcticus was the first to split from the lineage, and the other
+   species were grouped into two divergent clades. The results of this
+   study indicated that the COI genetic data did not support the monophyly
+   of Picoides and Dendrocopos.
+C1 Huang, Z.H.; Jinggangshan Univ, Sch Life Sci, Jian, Jiangxi, 343009,
+   China, China.
+EM hzhow@163.com
+SC Biochemistry & Molecular Biology; Zoology; Genetics & Heredity;
+   Evolutionary Biology
+SN 1676-5680
+BD Biochemistry; Genetics; Evolution
+DE Dendrocopos; Picoides [Nucleic acids / DNA barcoding / ] [Population
+   genetics / Genetic distance / ] [Phylogeny /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Dendrocopos (Picidae). 
+   Picoides (Picidae). 
+UT ZOOREC:ZOOR15205032677
+OA Bronze
+DA 2020-01-11
 ER
 
 PT J
@@ -1461,7 +1801,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15103019301
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -1530,7 +1870,86 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15011069115
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15009049628
+DT Article
+TI Habitat availability for multiple avian species under modeled
+   alternative conservation scenarios in the Two Hearted River watershed in
+   Michigan, USA.
+AU Nixon, Kristina (kristi.nxon@gmail.com) 
+   Silbernagel, Janet
+   Price, Jessica
+   Miller, Nicholas
+   Swaty, Randy
+SO Journal for Nature Conservation
+VL 22
+IS 4
+PS 302-317
+PD Aug 2014
+PY 2014
+LA English
+U1 0
+U2 60
+AB Due to differences in the responses of species to changing landscape
+   patterns, developing a conservation plan with an optimal outcome of
+   supporting contrasting habitat needs can be difficult. Landscape
+   scenario modeling can provide a means to compare alternative
+   conservation strategies and can reveal tradeoffs of managing for one
+   objective versus another. In order to evaluate the impacts of
+   alternative conservation strategies in a 53,653 ha landscape in
+   Michigan's Upper Peninsula, four scenarios of alternative conservation
+   strategies were modeled 100 years into the future using the
+   VDDT[registered trademark]/TELSA[registered trademark] spatial model
+   suite, and habitat availability was evaluated for five target bird
+   species of local conservation concern under each scenario. The target
+   species were Dendroica fusca (Blackburnian Warbler), Picoides
+   arcticus(Black-backed Woodpecker), Dendroica kirtlandii (Kirtland's
+   Warbler), Buteo lineatus (Red-shouldered Hawk), and Scolopax minor
+   (American Woodcock). Scenarios were ranked based on relative performance
+   of three habitat metric results (total primary habitat area, average
+   size of habitat patches, and average distance to the nearest neighboring
+   habitat patch) for each species. The final overall rank for each
+   scenario was generally related to harvest intensity; the scenario with
+   the smallest total area of even-aged management ranked the highest.
+   Ranks were not consistent across all response variables. Relative
+   species sensitivity was also evaluated, and the ranks did not match
+   expectations, with the more habitat generalist species showing the
+   highest sensitivity and the most specialist species showing the lowest.
+   The approach here provides a means of projecting and comparing potential
+   long-term impacts of alternative landscape strategies on diverse
+   wildlife habitats. These results, when considered with budget
+   considerations and species' habitat area and population goals, can
+   assist local managers and stakeholders in conservation planning by
+   identifying tradeoffs and compromises aimed at optimizing protection for
+   a variety of target species. (C) 2014 Elsevier GmbH. All rights
+   reserved.
+C1 Nixon, Kristina; Univ Wisconsin, Nelson Inst, 550 North Pk St, Madison,
+   WI, 53706, USA, USA.
+EM kristi.nxon@gmail.com
+SC Zoology; Environmental Sciences & Ecology; Biodiversity & Conservation;
+   Forestry
+SN 1617-1381
+BD Conservation; Conservation measures; Ecology; Habitat utilization;
+   Habitat; Terrestrial habitat; Abiotic factors; Physical factors; Land
+   zones; Nearctic region; North America; USA
+DE Buteo lineatus; Dendroica fusca; Dendroica kirtlandii; Picoides
+   arcticus; Scolopax minor [Habitat management /  / ] [Habitat preference
+   /  / ] [Forest and woodland / Forest / ] [Spatial environment / Spatial
+   landscape / ] [Michigan /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Charadriiformes, Scolopacidae,
+   Falconiformes, Accipitridae, Passeriformes, Parulidae, Piciformes,
+   Picidae
+OR Scolopax minor (Scolopacidae). 
+   Buteo lineatus (Accipitridae). 
+   Dendroica fusca (Parulidae). 
+   Dendroica kirtlandii (Parulidae). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15009049628
+DA 2020-01-11
 ER
 
 PT J
@@ -1603,7 +2022,56 @@ OR Coleoptera (Insecta).
    Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15011062070
 OA DOAJ Gold, Green Published
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15105032050
+DT Article
+TI A Comparison of Avian Habitat in Forest Management Plans Produced Under
+   Three Different Certification Systems in Ontario, Canada.
+AU Euler, David
+SO Wildlife Society Bulletin
+VL 38
+IS 1
+PS 142-147
+PD Mar 2014
+PY 2014
+LA English
+U1 2
+U2 27
+AB Considerable discussion and theoretical reviews of forest certification
+   systems have been published that outline the potential impact of forest
+   certification on biodiversity and wildlife habitat. Three common
+   approaches to forest certification used in Canada include the Forest
+   Stewardship Council, the Canadian Standards Association, and the
+   Sustainable Forestry Initiative. In this study, I reviewed forest
+   management plans in Ontario, Canada, and compared the plans' potential
+   impact on habitat for 6 species of birds that use mature and older
+   forests: pileated woodpecker (Dryocopus pileatus), ruby-crowned kinglet
+   (Regulus calendula), boreal chickadee (Poecile hudsonicus), black-backed
+   woodpecker (Picoides arcticus), great gray owl (Strix nebulosa), and
+   red-breasted nuthatch (Sitta canadensis). The purpose was to determine
+   whether the different certification systems in use resulted in different
+   impacts on avian habitat, and to compare certified forest management
+   plans with plans prepared for un-certified forest units. Based on 27
+   Forest Management Plans in Ontario, there seems to be little reason to
+   believe that certified forests are more likely to protect and conserve
+   habitat for these 6 bird species that use older forests than are forests
+   that are not certified. (C) 2014 The Wildlife Society.
+SC Zoology; Environmental Sciences & Ecology; Biodiversity & Conservation;
+   Forestry
+SN 0091-7648
+BD Animals and man; Conservation; Conservation measures; Habitat;
+   Terrestrial habitat; Land zones; Nearctic region; North America; Canada
+DE Aves [Disturbance by man / Habitat loss / comparitive study] [Habitat
+   management / Forest management plans / ] [Forest and woodland /  / ]
+   [Ontario /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR15105032050
+DA 2020-01-11
 ER
 
 PT J
@@ -1679,7 +2147,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15005027828
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -1737,7 +2205,64 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15109056553
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR15106040534
+DT Article
+TI Influence of old coniferous habitat on nestling growth of Black-backed
+   Woodpeckers Picoides arcticus.
+AU Tremblay, Junior A. (Junior.Tremblay@ec.gc.ca) 
+   Ibarzabal, Jacques
+   Savard, Jean-Pierre L.
+   Wilson, Scott
+SO Acta Ornithologica (Warsaw)
+VL 49
+IS 2
+PS 273-279
+PD 2014
+PY 2014
+LA English
+U1 0
+U2 12
+AB Nest success is often used to evaluate the impact of environmental
+   stressors on species, but nestling growth may also be indicative of
+   subtle consequences on individual fitness. We monitored Black-backed
+   Woodpecker Picoides arcticus nestling growth in unburned boreal forests
+   under the influence of commercial logging. The objectives of our
+   exploratory study were to estimate growth rate constants of weight and
+   three morphometric measures (culmen length, tarsal length and wing
+   length) in nestling Black-backed Woodpeckers and to determine how the
+   amount of old coniferous habitat in home ranges may affect these rates.
+   The amount of old coniferous habitat positively influenced weight gain
+   in Black-backed Woodpecker nestlings but did not influence the three
+   morphometric measures of growth rate. Our results suggest that
+   Black-backed Woodpecker fitness may be affected by the reduction of old
+   coniferous habitat in managed forest landscapes. We encourage further
+   studies on the relationship between habitat quality and nestling growth
+   as a potentially useful indicator of how habitat loss might influence
+   individual fitness in these species.
+C1 Tremblay, Junior A.; Environm Canada, Sci & Technol Branch, Quebec City,
+   PQ, Canada, Canada.
+EM Junior.Tremblay@ec.gc.ca
+OI Tremblay, Junior A./0000-0003-4930-0939
+SC Zoology; Forestry; Anatomy & Morphology; Developmental Biology
+SN 0001-6454; 1734-8471
+BD Animals and man; Disturbance by man; Commercial activities; Biometrics;
+   General morphology; Appendages; Limbs; Skeletal and supporting
+   structures; Skeleton; Skull; Life cycle and development; Development;
+   Growth; Habitat; Terrestrial habitat; Land zones; Nearctic region; North
+   America; Canada
+DE Picoides arcticus [Forestry / Logging / ] [Size / Length / ] [Weight / 
+   / ] [Wings /  / ] [Hindlimbs / Tarsals / ] [Bill / Culmen / ] [Growth
+   rate / Nestling growth rate / ] [Forest and woodland / Coniferous forest
+   habitat / ] [Quebec / Central / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR15106040534
+DA 2020-01-11
 ER
 
 PT J
@@ -1797,7 +2322,7 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15103020649
 OA DOAJ Gold
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -1851,7 +2376,66 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR15110063970
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14810067230
+PM 22779254
+DT Article
+TI LETHAL PROCYRNEA INFECTION IN A BLACK-BACKED WOODPECKER (PICOIDES
+   ARCTICUS) FROM CALIFORNIA.
+AU Siegel, Rodney B. (rsiegel@birdpop.org) 
+   Bond, Monica L.
+   Wilkerson, Robert L.
+   Barr, Bradd C.
+   Gardiner, Chris H.
+   Kinsella, John. M.
+SO Journal of Zoo and Wildlife Medicine
+VL 43
+IS 2
+PS 421-424
+PD Jun 2012
+PY 2012
+LA English
+U1 0
+U2 3
+AB The black-backed woodpecker (Picoides arcticus) is a species of
+   management concern in California. As part of a study of black-backed
+   woodpecker home range size and foraging ecology, nine birds in Lassen
+   National Forest (Shasta and Lassen Counties, California) were
+   radio-tracked during the 2011 breeding season. One of the marked birds
+   was found dead after being tracked for a 10-wk period in which it
+   successfully nested. A postmortem examination of the dead bird revealed
+   that it was emaciated and autolyzed, with the presumptive cause being
+   numerous spiruroid nematodes of the genus Procyrnea in the gizzard. This
+   first observation of Procyrnea nematodes in a black-backed woodpecker is
+   notable because the Procyrnea infection was considered lethal and
+   because Procyrnea has been implicated in substantial die-offs in other
+   bird species, including woodpeckers.
+C1 Siegel, Rodney B.; Inst Bird Populat, POB 1346, Point Reyes Stn, CA
+   94956, USA, USA.
+EM rsiegel@birdpop.org
+RI Bond, Monica L/E-3161-2013
+OI Bond, Monica L/0000-0001-8500-6564
+SC Zoology; Parasitology; Environmental Sciences & Ecology
+SN 1042-7260
+BD Parasites diseases and disorders; Parasites; Helminth parasites; Hosts;
+   Ecology; Population dynamics; Land zones; Nearctic region; North
+   America; USA
+DE Picoides arcticus [Nematode parasites / Procyrnea / Case report; new
+   record; pathology] [Mortality /  / ] [California / Lassen & Shasta
+   counties, Lassen National Forest / ]. 
+   Procyrnea [Avian hosts / Picoides arcticus / Case report; new record;
+   pathology; host mortality] [California / Lassen & Shasta counties,
+   Lassen National Forest / ]. 
+TN Birds; Chordates; Invertebrates; Nematodes; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae, Nematoda
+OR Picoides arcticus (Picidae): [Host; New record]. 
+   Procyrnea (Nematoda): [Parasite; New record]. 
+DI 10.1638/2011-0226.1
+UT ZOOREC:ZOOR14810067230
+DA 2020-01-11
 ER
 
 PT J
@@ -1914,7 +2498,65 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR14809061998
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14803026466
+DT Article
+TI Netguns: a technique for capturing Black-backed Woodpeckers.
+AU Lehman, Chad P. (Chad.Lehman@state.sd.us) 
+   Kesler, Dylan C.
+   Rota, Christopher T.
+   Rumble, Mark A.
+   Seckinger, Eric M.
+   Juntti, Thomas M.
+   Millspaugh, Joshua J.
+SO Journal of Field Ornithology
+VL 82
+IS 4
+PS 430-435
+PD Dec 2011
+PY 2011
+LA English
+U1 0
+U2 4
+AB Effective capture techniques are essential for studying bird
+   populations, but commonly used techniques have proven ineffective for
+   capturing Black-backed Woodpeckers (Picoides arcticus) during the
+   nonbreeding period. As a result, little is known about the winter
+   ecology of Black-backed Woodpeckers. We used two netguns, one powered
+   with a 0.308 cartridge and another with CO2 propellant, to capture 101
+   Black-backed Woodpeckers (N= 75 initial captures and 26 recaptures) in
+   the Black Hills of South Dakota from 2008 to 2011. Captures with the
+   0.308 netgun resulted in an impact mortality probability of 0.061 [plus
+   or minus] 0.034 (SE), whereas no impact mortalities were associated with
+   the CO2 netgun. We also tracked birds for 72 h post-release, and
+   determined a capture-related mortality rate of 0.102 [plus or minus]
+   0.04 with the 0.308 netgun and 0.038 [plus or minus] 0.027 with the CO2
+   netgun. With the CO2 netgun, we captured woodpeckers in 31 of 43 net
+   deployments (72%), with an average of 7.2 [plus or minus] 0.4 h of
+   capture effort for each bird. Many unsuccessful attempts were caused by
+   tree branches that prevented net deployment. Netguns powered by CO2
+   provide an effective capture technique that we recommend for studies of
+   Black-backed Woodpeckers and possibly other species of birds that forage
+   low on trees.
+C1 Lehman, Chad P.; Custer State Pk, S Dakota Dept Game Fish & Pk, 13329 US
+   Highway 16A, Custer, SD 57730, USA, USA.
+EM Chad.Lehman@state.sd.us
+RI Rota, Christopher/H-5189-2019
+OI Rota, Christopher/0000-0001-9272-4687
+SC Zoology
+SN 0273-8570
+BD Techniques; Collecting techniques; Trapping; Land zones; Nearctic
+   region; North America; USA
+DE Picoides arcticus [Netting / Netguns / Procedures & technique
+   evaluations] [South Dakota / Black Hills / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14803026466
+DA 2020-01-11
 ER
 
 PT J
@@ -1967,7 +2609,7 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 DI 10.1676/10-069.1
 UT ZOOREC:ZOOR14709064130
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2028,7 +2670,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR14709062689
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2101,7 +2743,7 @@ OR Sialia currucoides (Turdidae).
    Picoides arcticus (Picidae). 
    Picoides villosus (Picidae). 
 UT ZOOREC:ZOOR14709064185
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2176,7 +2818,65 @@ OR Picoides arcticus (Picidae).
 DI 10.1890/ES10-00132.1
 UT ZOOREC:ZOOR15004017664
 OA DOAJ Gold
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14610068092
+DT Article
+TI Foraging ecology of black-backed woodpeckers (Picoides arcticus) in
+   unburned eastern boreal forest stands.
+AU Tremblay, Junior A. (Junior.Tremblay@mrnf.gouv.qc.ca) 
+   Ibarzabal, Jacques
+   Savard, Jean-Pierre L.
+SO Canadian Journal of Forest Research
+VL 40
+IS 5
+PS 991-999
+PD May 2010
+PY 2010
+LA English
+U1 1
+U2 23
+AB Managed coniferous forest dominates much of the black-backed
+   woodpecker's (Picoides arcticus Swainson) breeding range. Despite this,
+   little is known about the fine- scale foraging behaviour of this focal
+   species in unburned man- aged forest stands in the absence of insect
+   outbreaks. To investigate the foraging substrates used in such a
+   habitat, we em- ployed radio- telemetry to track a total of 27 black-
+   backed woodpeckers. During two successive summers (2005-2006), 279
+   foraging observations were recorded, most of which were on dying trees,
+   snags, and downed woody debris. Individu- als frequently foraged by
+   excavation, suggesting that in the absence of insect outbreaks the
+   black- backed woodpecker for- ages mainly by drilling. The majority of
+   foraging events occurred on recently dead snags with a mean dbh SE) of
+   18.3 0.4 cm. Our results suggest that in unburned boreal forest stands,
+   substrate diameter and decay class are important predictors of suitable
+   foraging substrates for black- backed woodpeckers. We suggest that
+   conservation efforts aimed at maintaining this dead- wood dependent
+   cavity nesting species within the landscape, should endeavour to
+   maintain 100 ha patches of old-growth coniferous forest. This would
+   ensure the continuous production of a sufficient quantity of recently
+   dead or dying trees to meet the foraging needs of this species. '
+C1 Tremblay, Junior A.; Minist Ressources Nat & Faune, Direct Expertise
+   Faune & Ses Habitats, 880 Chemin St Foy, Quebec City, PQ, Canada,
+   Canada.
+EM Junior.Tremblay@mrnf.gouv.qc.ca
+OI Tremblay, Junior A./0000-0003-4930-0939
+SC Environmental Sciences & Ecology; Biodiversity & Conservation; Zoology;
+   Nutrition & Dietetics; Forestry
+SN 0045-5067
+BD Conservation; Conservation measures; Nutrition; Feeding behaviour;
+   Ecology; Habitat; Terrestrial habitat; Land zones; Nearctic region;
+   North America; Canada
+DE Picoides arcticus [Habitat management /  / ] [Foraging / Foraging
+   ecology / ] [Ecology /  / ] [Forest and woodland / Boreal forest / ]
+   [Quebec / Lac Saint-Jean / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14610068092
+DA 2020-01-11
 ER
 
 PT J
@@ -2236,7 +2936,7 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR14610065911
 OA DOAJ Gold, Green Published
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2315,7 +3015,7 @@ ST Animalia, Arthropoda, Insecta, Coleoptera, Polyphaga, Curculionoidea,
 OR Dendroctonus ponderosae (Curculionidae): [Parasite]. 
    Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR14605032996
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2376,7 +3076,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR14607047037
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2447,7 +3147,7 @@ ST Animalia, Chordata, Vertebrata
 OR Aves (Vertebrata). 
 DI 10.1890/08-0910.1
 UT ZOOREC:ZOOR14601000049
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2505,7 +3205,7 @@ OR Picoides arcticus (Picidae).
    Picoides villosus (Picidae). 
 DI 10.1676/08-026.1
 UT ZOOREC:ZOOR14602011402
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2576,7 +3276,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata
 OR Aves (Vertebrata). 
 UT ZOOREC:ZOOR14602011959
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2656,7 +3356,66 @@ OR Sialia currucoides (Turdidae).
    Picoides villosus (Picidae). 
 DI 10.1016/j.foreco.2008.08.028
 UT ZOOREC:ZOOR14602011994
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14510064342
+DT Article
+TI Habitat requirements of breeding black-backed woodpeckers (Picoides
+   arcticus) in managed, unburned boreal forest.
+AU Tremblay, Junior A. (Junior.Tremblay@mrnf.gouv.qc.ca) 
+   Ibarzabal, Jacques
+   Dussault, Christian
+   Savard, Jean-Pierre L.
+SO Avian Conservation and Ecology
+VL 4
+IS 1
+PS art2, 1-16
+PD 2009
+PY 2009
+UR http://www.ace-eco.org/archive.php
+AW http://www.ace-eco.org/vol4/ass1/art2/
+LA English
+U1 0
+U2 0
+AB We investigated home-range characteristics and habitat selection by
+   Black-backed Woodpeckers (Picoides arcticus) in an unburned, boreal
+   forest landscape managed by mosaic harvesting in Quebec, Canada. Habitat
+   selection by this species was specifically examined to determine
+   home-range establishment and foraging activities. We hypothesized that
+   Black-backed Woodpeckers would respond to harvesting by adjusting their
+   home-range size as a function of the amount of dead wood available.
+   Twenty-two birds were tracked using radiotelemetry, and reliable
+   estimates of home-range size were obtained for seven breeding
+   individuals (six males and one female). The average home-range size was
+   151.5[plus or minus] 18.8 ha (range: 100.4[long dash]256.4 ha). Our
+   results indicate that this species establishes home ranges in areas
+   where both open and forested habitats are available. However, during
+   foraging activities, individuals preferentially selected areas dominated
+   by old coniferous stands. The study also showed that the spatial
+   distribution of preferred foraging habitat patches influenced space use,
+   with home-range area increasing with the median distance between old
+   coniferous habitat patches available within the landscape. Finally,
+   these data show that Black-backed Woodpeckers may successfully breed in
+   an unburned forest with at least 35 m3 [center dot] ha-1 of dead wood,
+   of which 42% (15 m3 [center dot] ha-1) is represented by dead wood at
+   the early decay stage.
+C1 Tremblay, Junior A.; 880 Chemin Sainte-Foy, 2e etage, Quebec, G1S 4X4,
+   Canada, Canada.
+EM Junior.Tremblay@mrnf.gouv.qc.ca
+SC Zoology; Behavioral Sciences; Environmental Sciences & Ecology; Forestry
+BD Behaviour; Ecology; Habitat utilization; Habitat; Terrestrial habitat;
+   Land zones; Nearctic region; North America; Canada
+DE Picoides arcticus [Home range /  / managed; unburned boreal forest]
+   [Habitat preference / Habitat selection / ] [Forest and woodland /
+   Managed, unburned boreal forest / ] [Quebec / South central / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14510064342
+OA DOAJ Gold
+DA 2020-01-11
 ER
 
 PT J
@@ -2698,7 +3457,7 @@ AB Many scientists and forest land managers concur that past fire
 C1 Hutto, Richard L.; Univ Montana, Div Biol Sci, Missoula, MT 59812, USA,
    USA.
 EM hutto@mso.umt.edu
-SC Environmental Sciences & Ecology; Zoology; Forestry
+SC Zoology; Environmental Sciences & Ecology; Forestry
 SN 1051-0761
 BD Ecology; Habitat utilization; Habitat; Terrestrial habitat; Abiotic
    factors; Physical factors; Land zones; Nearctic region; North America;
@@ -2711,7 +3470,7 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 DI 10.1890/08-0895.1
 UT ZOOREC:ZOOR14506036263
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2771,7 +3530,74 @@ OR Picoides albolarvatus (Picidae).
    Picoides villosus (Picidae). 
 UT ZOOREC:ZOOR14603021367
 OA Green Published
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14501001129
+DT Article
+TI Snag availability for cavity nesters across a chronosequence of
+   post-harvest landscapes in western Newfoundland.
+AU Smith, Caryn Y. (cysmith@mun.ca) 
+   Warkentin, Ian G.
+   Moroni, Martin T.
+SO Forest Ecology and Management
+VL 256
+IS 4
+PS 641-647
+PD August 10 2008
+PY 2008
+LA English
+U1 0
+U2 19
+AB We examined the availability and quality of standing dead trees (snags)
+   for nesting habitat in a harvest chronosequence of boreal forests
+   dominated by balsam fir (Abies balsamea) in western Newfoundland. Snag
+   density declined substantially 10-15 years after harvest, then increased
+   to reach its highest level in 81- to 100-year-old forests that had
+   become senescent. Most (55%) of 1260 snags encountered were balsam fir,
+   which contained 41% of the 81 cavities identified. Cavity presence was
+   most strongly positively correlated to snag diameter at breast height
+   (dbh), followed by decay class, time since harvest and height. Less than
+   40% of snags available throughout the chronosequence had large enough
+   dbh for cavity nesters. Downy Woodpeckers (Picoides pubescens) were
+   responsible for 47% of all cavities identified, excavating balsam fir
+   [approximately]50% of the time. Two larger cavity nesters present,
+   Northern Flickers (Colaptes auratus) and Three-toed Woodpeckers
+   (Picoides tridactylus), were more likely to use large-diameter white
+   birch (Betula papyrifera) snags. Northern Flickers excavated the largest
+   cavities, potentially providing habitat for the greatest variety of
+   secondary cavity nesters. Managing for snags with > 30 cm dbh, which
+   flickers target for excavation, has the greatest potential to enhance
+   the broader snag cavity-based community in western Newfoundland.
+   [copyright] 2008 Elsevier B.V. All rights reserved.
+C1 Smith, Caryn Y.; Mem Univ Newfoundland, Cognit and Behav Ecol Program,
+   St Johns, NF A1C 5S7, Canada, Canada.
+EM cysmith@mun.ca
+OI Warkentin, Ian/0000-0003-1205-6506
+SC Zoology; Forestry; Environmental Sciences & Ecology; Biodiversity &
+   Conservation; Reproductive Biology
+SN 0378-1127
+BD Animals and man; Disturbance by man; Commercial activities;
+   Conservation; Conservation measures; Reproduction; Reproductive
+   behaviour; Habitat; Terrestrial habitat; Land zones; Nearctic region;
+   North America; Canada
+DE Colaptes auratus; Picoides arcticus; Picoides pubescens; Picoides
+   tridactylus; Picoides villosus [Forestry / Post harvest boreal forest
+   habitats / ] [Habitat management / Habitat management recommendations /
+   ] [Breeding site / Snag availability for cavity nesting sites / ]
+   [Forest and woodland /  / ] [Newfoundland and Labrador / Newfoundland,
+   west / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Colaptes auratus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides pubescens (Picidae). 
+   Picoides tridactylus (Picidae). 
+   Picoides villosus (Picidae). 
+DI 10.1016/j.foreco.2008.05.009
+UT ZOOREC:ZOOR14501001129
+DA 2020-01-11
 ER
 
 PT J
@@ -2835,7 +3661,68 @@ OR Dendroctonus ponderosae (Curculionidae).
    Picoides arcticus (Picidae). 
 DI 10.1525/cond.2008.8460
 UT ZOOREC:ZOOR14503016726
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14410062794
+DT Article
+TI 2006 May species count of birds.
+AU Boyd, Judy
+SO Nature Alberta
+VL 37
+IS 4
+SU (Insert)
+PS 1-31
+PD 2008
+PY 2008
+LA English
+U1 0
+U2 0
+AB This is the second year I have done the compilation of the May Species
+   Count but this year I did it on my own. But I would like to thank my
+   daughter, Jennifer, who, though ten days late, waiting for my grandson
+   to be born, patiently sat with me and read numbers off so that I could
+   enter them into the data base. I would also like to thank my husband,
+   Larry, who also took his turn reading numbers off. The number of species
+   was down this year: 271 from 279 (in 2005) and same with the number of
+   individual birds: 225,981 down from 255,085 (in 2005). Twenty-three
+   species were found in only one location and twenty-four species were
+   found in only two locations. Of the single sightings, Ross's Goose and
+   Greater Sage Grouse were seen at Milk River. Wild Turkey was seen at
+   Cypress Hills. Semipalmated Plover, Northern Hawk Owl and Gray-crowned
+   Rosy-Finch were seen at Calgary. Red Knot, Burrowing Owl, Gray-cheeked
+   Thrush, Sage Thrasher and Smith's Longspur were seen at Brooks. Mew Gull
+   was seen at Fort McMurray. Snowy Owl and Chestnut-sided Warbler were
+   seen at Cold Lake. Black-backed Woodpecker was seen at Crooked Lake.
+   Steller's Jay was seen at Crowsnest Pass. Northern Mockingbird and
+   Bohemian Waxwing were seen at Medicine Hat. Bay-breasted Warbler and
+   Mourning Warbler were seen at Lac La Biche. Cassin's Finch was seen at
+   Cardston. Whimbrel was seen only in Brooks during the Counts themselves
+   but was also seen in Taber-Vauxhall and Milk River during Count Week.
+   Northern Pygmy Owl was seen only in Crowsnest Pass during the Counts
+   themselves but was also seen in Crooked Lake during Count Week.
+   Yellow-breasted Chat was seen only in Medicine Hat during the Counts
+   themselves but was also seen during Count Week in Milk River. Harris's
+   Sparrow were not seen at all during the Counts themselves but one was
+   seen during Count Week in Lac La Biche. Last year, none of the species
+   were observed in all count areas. This year we had eight species seen in
+   all areas: Canada Goose, Mallard, Blue-winged Teal, Tree Swallow,
+   American Robin, Yellow Warbler, Red-winged Blackbird and Brown-headed
+   Cowbird. Four species, Wilson's Snipe, American Crow, Chipping Sparrow
+   and Clay-coloured Sparrow were found in all but one area, and five
+   species, Ruddy Duck, American Coot, Northern Flicker, Black-billed
+   Magpie and Barn Swallow were observed in all count areas except two.
+SC Zoology; Environmental Sciences & Ecology
+SN 1713-8639
+BD Ecology; Population dynamics; Land zones; Nearctic region; North
+   America; Canada
+DE Aves [Population censuses / Spring censuses / ] [Alberta /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR14410062794
+DA 2020-01-11
 ER
 
 PT J
@@ -2898,7 +3785,7 @@ OR Dryocopus pileatus (Picidae).
    Sphyrapicus thyroideus (Picidae). 
 DI 10.1898/1051-1733(2007)88[135:ROCBTC]2.0.CO;2
 UT ZOOREC:ZOOR14403019617
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -2945,7 +3832,74 @@ OR Picoides arcticus (Picidae).
 DI 10.3398/1527-0904(2007)67[593:HRSOBW]2.0.CO;2
 UT ZOOREC:ZOOR14404023728
 OA Green Published
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14601005805
+DT Article
+TI Boreal forest landbirds in relation to forest composition, structure,
+   and landscape: implications for forest management.
+AU Venier, L.A.
+   Pearce, J.L.
+SO Canadian Journal of Forest Research
+VL 37
+IS 7
+PS 1214-1226
+PD July 2007
+PY 2007
+LA English
+U1 3
+U2 46
+AB We examined a landbird community and its relationship to environmental
+   variables within the boreal forest in north[long dash]central Ontario to
+   evaluate its potential usefulness as an indicator of sustainable forest
+   management. Our study had two components. First, we compared bird
+   assemblages in mature forest stands inside Pukaskwa National Park (n =
+   17) with similar forested stands in a logged landscape (n = 18) over 3
+   years. We found significant separation of sites in the two treatments
+   based on an ANOSIM (analogue of the standard univariate one-way ANOVA
+   test) of the bird communities (R = 0.238, p < 0.001). We identified four
+   significant indicators of the park landscape (bay-breasted warbler
+   (Dendroica castanea (Wilson, 1810)), black-throated green warbler
+   (Dendroica virens (J.F. Gmelin, 1789)), ovenbird (Seiurus aurocapillus
+   (L., 1766)), and red-eyed vireo (Vireo olivaceus (L., 1766))) and five
+   indicators of the logged landscape (black-backed woodpecker (Picoides
+   arcticus (Swainson, 1832)), brown creeper (Certhia americana Bonaparte,
+   1838), winter wren (Troglodytes troglodytes (L., 1758)), white-throated
+   sparrow (Zonotrichia albicollis (J.F. Gmelin, 1789)), and yellow-bellied
+   sapsucker (Sphyrapicus varius (L., 1776))). Some relationships were
+   attributable to differences in vegetation, whereas other differences
+   were attributable to the landscape context. Second, we used generalized
+   additive models to examine the relationship of individual species with
+   four sets of environmental data (understorey floristics, forest
+   structure, overstorey composition, and landscape context) using the 35
+   sites noted above and 18 additional mature forest sites in the logged
+   landscape (n = 53). We found that all four types of variables were
+   frequently included in the best model based on Akaike's information
+   criterion (AIC) (structure in 23 models, landscape in 20 models,
+   overstorey in 19 models, and understorey in 15 models). We discuss our
+   results in terms of their implications to forest management and note
+   that our ability to map habitat for forest birds is substantially
+   compromised by the lack of good spatial estimates of environmental
+   variables that describe bird habitat.
+SC Zoology; Forestry; Environmental Sciences & Ecology; Biodiversity &
+   Conservation
+SN 0045-5067
+BD Animals and man; Disturbance by man; Commercial activities;
+   Conservation; Conservation measures; Ecology; Habitat; Terrestrial
+   habitat; Land zones; Nearctic region; North America; Canada
+DE Aves [Forestry / Logging impact / landbirds] [Habitat management /
+   Sustainable forest management biomonitoring / ] [Community structure /
+   Assemblage composition / ] [Environmental indicators /  / ] [Forest and
+   woodland / Boreal forest habitat variables / ] [Ontario / North-central,
+   Pukaskwa National Park / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+DI 10.1139/X07-025
+UT ZOOREC:ZOOR14601005805
+DA 2020-01-11
 ER
 
 PT J
@@ -3018,7 +3972,109 @@ ST Animalia, Chordata, Vertebrata
 OR Aves (Vertebrata). 
 DI 10.1650/0010-5422(2007)109[97:NDOCBI]2.0.CO;2
 UT ZOOREC:ZOOR14308049240
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14406035198
+DT Article
+TI Ecology and demography of Bicknell's thrush on East Mountain and Mount
+   Mansfield, Vermont: evaluating potential impacts of wind turbine
+   construction. Year 3 progress report.
+AU Rimmer, Christopher C. (crimmer@vinsweb.org) 
+   Faccio, Steven D.
+   McFarland, Kent P.
+SO VINS Technical Report
+VL 07-01
+PS 1-18
+PD January 2007
+PY 2007
+LA English
+U1 0
+U2 0
+AB In 2006, the Vermont Institute of Natural Science (VINS) conducted Year
+   3 of a planned 4-year study to assess the potential impacts of a
+   proposed wind turbine development on the avian breeding community of
+   East Mountain in East Haven, Vermont. A special focus has been made to
+   investigate Bicknell's Thrush, a rare and at-risk species in Vermont and
+   throughout its geographically restricted breeding range. In 2006, field
+   activities were shifted to continue baseline population monitoring on
+   both East Mountain and Mt. Mansfield, a long-term VINS study site. A
+   complementary effort was conducted at a long-term VINS research site on
+   Stratton Mountain in the southern Green Mountains. A crew of four
+   fulltime field biologists initiated field work on 22 May, alternating
+   activities between the three mountains, although proportionally more
+   time was spent on East Mountain than on Mansfield or Stratton. The base
+   of operations on East Mountain was a trailer on the summit, while on Mt.
+   Mansfield and Stratton Mountain activities were based in the respective
+   ski patrol huts. Field work concluded on 14 July. Efforts in 2006
+   focused on mist-netting and banding four focal species (Bicknell's and
+   Swainson's thrushes, Blackpoll and Yellow-rumped warblers), so that
+   mark-recapture statistics can be applied to elucidate and compare the
+   demography of each species on the two peaks. In addition, selected
+   species (e.g., Black-backed Woodpecker, Gray Jay, Boreal Chickadee, and
+   Canada Warbler) were banded. Detailed morphometrics were collected on
+   all mist-netted individuals. From each captured Bicknell's Thrush, we
+   collected small quantities of blood and two secondary feathers for
+   analysis of mercury concentrations. We placed Holohil BD-2 radio
+   transmitters on one male and one female Bicknell's Thrush on East
+   Mountain, but logistics prevented meaningful data collection on either
+   bird. We were unable to collect corticosterone samples from Bicknell's
+   Thrush, but we collected samples from 3 Swainson's Thrushes on East
+   Mountain. These will be a valuable addition to samples collected in
+   2005, and will enable comparisons with congeneric Bicknell's Thrush.
+   Overall, we mist-netted and banded 155 individuals of the four target
+   species on East Mountain, and 72 on Mt. Mansfield. Among the four
+   species, we obtained a total of 106 recaptures of 65 banded individuals
+   on East Mt., and 30 recaptures of 26 banded individuals on Mt.
+   Mansfield. At East Mt., the return rate for birds banded in 2004 and/or
+   2005 and recaptured in 2006, was 8.6% for Bicknell's Thrush (2 males, 3
+   females), 4.6% for Swainson's Thrush (3 males, 2 females), 22.4% for
+   Blackpoll Warbler (10 males, 3 females), and 25.9% for Yellow-rumped
+   Warbler (13 males, 2 females). A total of 26 Bicknell's Thrushes were
+   captured on East Mountain and 16 on Mt. Mansfield. Of these, 5 birds on
+   East Mountain were returns from 2004 and/or 2005, while 4 Mansfield
+   birds were returning individuals from previous years. Of the 15 birds on
+   East Mountain for which we were able to determine sex, 7 were males and
+   8 females. On Mansfield, we captured 12 males and 4 females. Although we
+   did not concentrate on nest monitoring in 2006, we discovered nests on
+   East Mountain of Black-backed Woodpecker (n = 1; successfully fledged),
+   Bicknell's Thrush (n = 1; successfully fledged), Swainson's Thrush (n =
+   1; successfully fledged), Blackpoll Warbler (n = 1; successfully
+   fledged), and Dark-eyed Junco (n = 1; successfully fledged). While this
+   overall sample is very small and limits generalizations, we believe the
+   high rate of fledging in 2006 was primarily due to very low populations
+   of red squirrels on East Mountain. This was also the case on Mansfield
+   and Stratton, following the widespread poor production of balsam fir
+   cones in 2005and correspondingly low mammalian predator populations. We
+   conducted two series of point counts on both East Mountain and Mansfield
+   in 2006. On East we detected a total of 113 individuals of 17 avian
+   species on two point count series, for a mean of 9.4 birds per point
+   count. Among the four target species, 3 showed slight increases
+   between2004 - 2006 (Bicknell's Thrush, Swainson's Thrush, Blackpoll
+   Warbler), while Yellow-rumped Warbler declined slightly. On Mt.
+   Mansfield, we detected a total of 120 individuals of 13 species, for a
+   mean of 12 birds per point count. We estimate that as many as 20-25
+   individual male Bicknell's Thrushes and 12-15 females may inhabit the
+   full extent of suitable montane firspruce habitat on East Mountain. In
+   short, the field 2006 field season, while reduced in scope, was highly
+   successful and provided an important baseline of demographic information
+   for future studies.
+C1 Rimmer, Christopher C.; Conservation Biology Department, Vermont
+   Institute of Natural Science, 6565 Woodstock Rd., Quechee, VT 05059,
+   USA, USA.
+EM crimmer@vinsweb.org
+SC Reproductive Biology; Zoology; Environmental Sciences & Ecology
+BD Reproduction; Reproductive productivity; Ecology; Land zones; Nearctic
+   region; North America; USA
+DE Catharus bicknelli [Fledgeing success /  / ] [Population dynamics /  / ]
+   [Vermont / East Mountain & Mount Mansfield / Population dynamics &
+   fledgeing success]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Turdidae
+OR Catharus bicknelli (Turdidae). 
+UT ZOOREC:ZOOR14406035198
+DA 2020-01-11
 ER
 
 PT J
@@ -3075,7 +4131,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR14209057090
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -3131,7 +4187,78 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR14209057098
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14209057099
+DT Article; Meeting paper
+TI The hole saw method for accessing woodpecker nestlings during
+   developmental studies.
+AU Ibarzabal, Jacques (jacques_ibarzabal@uqac.ca) 
+   Tremblay, Junior A.
+SO Annales Zoologici Fennici
+VL 43
+IS 2
+PS 235-238
+PD April 28 2006
+PY 2006
+LA English
+U1 1
+U2 6
+AB A method allowing the easy access of nestlings of cavity nesting species
+   is outlined. Briefly, a hole saw fitted to an 18-V cordless drill is
+   used to cut a hole between 5 cm and 8 cm below the cavity entrance. The
+   aperture created allows extraction of nestlings by hand. After
+   manipulation, the wooden disk cut during the formation of the hole is
+   wrapped with duct tape, fitted into the hole and secured in place with
+   two screws. The technique was tested on 25 occupied black-backed
+   woodpecker cavities. No mortality occurred during the drilling process,
+   no nest was abandoned and adults returned to feed nestlings within a few
+   minutes of completion of the manipulations. Furthermore, some opened
+   cavities were reused, either by black-backed woodpeckers or by secondary
+   cavity nesters, suggesting that the nests conserved their natural
+   aspect.
+C1 Ibarzabal, Jacques; Univ Quebec, Dept Sci Fondamentales, 555 Boul Univ,
+   Chicoutimi, PQ G7H 2B1, Canada, Canada.
+EM jacques_ibarzabal@uqac.ca
+SC Zoology
+SN 0003-455X
+BD Techniques
+DE Picidae [Collecting techniques / Nestling accessing method for cavity
+   nests / Hole saw method evaluation]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes
+OR Picidae (Piciformes). 
+UT ZOOREC:ZOOR14209057099
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14201007462
+DT Article
+TI Population trends in the black-backed woodpecker in Wisconsin.
+AU Bielefeldt, John
+SO Passenger Pigeon
+VL 67
+IS 3
+PS 331-336
+PD Fall 2005
+PY 2005
+LA English
+U1 0
+U2 0
+C1 Bielefeldt, John; PO Box 283, Rochester, WI 53167-0283, USA, USA.
+SC Zoology; Environmental Sciences & Ecology
+SN 0031-2703
+BD Ecology; Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Population dynamics / Population trends / ]
+   [Wisconsin /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14201007462
+DA 2020-01-11
 ER
 
 PT J
@@ -3195,7 +4322,116 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata
 OR Aves (Vertebrata). 
 UT ZOOREC:ZOOR14202011290
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR14108049769
+DT Article
+TI Black-backed woodpecker nests near La Ronge, SK.
+AU Pollock, Oney
+SO Blue Jay
+VL 63
+IS 2
+PS 110-111
+PD June 2005
+PY 2005
+LA English
+U1 0
+U2 0
+C1 Pollock, Oney; Box 506, Canora, SK S0A 0L0, Canada, Canada.
+SC Zoology
+SN 0006-5099
+BD Land zones; Nearctic region; North America; Canada
+DE Picoides arcticus [Saskatchewan / La Ronge / New breeding records]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR14108049769
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR13900034268
+DT Article
+TI A review of the long-term effects of post-harvest silviculture on
+   vertebrate wildlife, and predictive models, with an emphasis on boreal
+   forests in Ontario, Canada.
+AU Thompson, Ian D.
+   Baker, James A.
+   Ter-Mikaelian, Michael
+SO Forest Ecology and Management
+VL 177
+IS 1-3
+PS 441-469
+PD 7 April 2003
+PY 2003
+LA English
+U1 4
+U2 101
+AB Greater fibre yields may be possible in commercial forests through an
+   increased application of post-harvest silvicultural techniques. In
+   Canadian boreal forests, while basic silvicultural regeneration
+   techniques such as planting, seeding, scarifying, and tending, have been
+   employed since the 1940's, more intensive techniques (intensive forest
+   management (IFM)) such as increased area planted, pre-commercial and
+   commercial thinning, extra tending events, fertilizing, and short
+   rotations may soon be used. There may be effects of basic and more
+   intensive silviculture on biodiversity in the long-term, compared to
+   natural regeneration following logging or especially stand development
+   following natural disturbances. We reviewed approximately 50 papers that
+   reported studies of the long-term effects of post-harvest silviculture
+   on vertebrate wildlife. In particular, large impacts to biodiversity
+   universally occur when native forest types are replaced by
+   rapidly-growing exotic tree species. However, in boreal forests, native
+   tree species are usually planted, and so any effects on associated
+   wildlife communities may be considerably less than in non-native species
+   plantations. Limited long-term information is available, but published
+   studies of effects of basic silviculture and IFM suggested that loss of
+   structures in forest stands was an important common impact that resulted
+   in vertebrate species responses. Fewer structural features in managed
+   forests compared to in natural forests likely results in reduced numbers
+   of animal species dependent on those structures, such as cavity-using
+   species and species for which large decaying woody debris is important.
+   Simplifying stand structures and species composition may result in
+   systems with low connectivity, making them vulnerable to insect and
+   mammalian herbivory. Concentration of IFM in stands on highly productive
+   sites could exacerbate effects (positive or negative), owing to the
+   positive relationship between forest productivity and animal and plant
+   diversity. Species such as black-backed woodpeckers (Picoides arcticus)
+   may be reduced over large areas by stand conversion to mixedwoods, stand
+   structural changes and especially age-class truncation. On the other
+   hand, IFM may contribute increased habitats to species favoring young to
+   mature coniferous-dominated forests, that normally decline across a
+   landscape following clearcutting in boreal mixed and upland conifer
+   stands. An aspatial model, based on published and local information and
+   expert opinion, suggested that IFM and post-harvest silviculture in
+   Ontario's boreal forests would produce positive and negative
+   species-specific effects on the vertebrates that we modeled. However,
+   IFM appeared to result in little increased effect over basic
+   post-harvest silviculture. We also expect that stand-level effects of
+   IFM on species would accumulate through time over landscapes, as more
+   stands come under intensive management and the level of effects will be
+   cumulative.
+C1 Thompson, Ian D.; Canadian Forest Service, 1219 Queen Street East, Sault
+   Sainte Marie, ON, P6A 2E5, Canada, Canada.
+SC Forestry; Zoology; Environmental Sciences & Ecology
+SN 0378-1127
+BD Animals and man; Disturbance by man; Commercial activities;
+   Documentation; Publications; Techniques; Ecology; Habitat; Terrestrial
+   habitat; Land zones; Nearctic region; North America; Canada
+DE Vertebrata [Forestry / Post-harvest silviculture / Long term effects on
+   wildlife; literature review & predictive models] [Literature review /  /
+   Post-harvest silviculture long term effects on wildlife] [Ecological
+   techniques / Predictive models / ] [Community structure /  / Long term
+   effects of post-harvest silviculture] [Forest and woodland /  / ]
+   [Ontario /  / ]. 
+TN Chordates; Vertebrates
+ST Animalia, Chordata
+OR Vertebrata (Chordata). 
+DI 10.1016/S0378-1127(02)00453-X
+UT ZOOREC:ZOOR13900034268
+DA 2020-01-11
 ER
 
 PT J
@@ -3271,135 +4507,127 @@ OR Scolytidae (Curculionidae): [Parasite, Prey].
    Picoides arcticus (Picidae): [Predator]. 
 DI 10.1642/0004-8038(2003)120[0505:SUBFBW]2.0.CO;2
 UT ZOOREC:ZOOR13900049299
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
-AN ZOOR13900034648
-DT Article; Meeting paper
-TI Three-toed woodpecker ecology in a managed Engelmann spruce forest.
-AU Hill, Rebecca L.
-   White, Clayton M.
-SO Nationalpark Berchtesgaden Forschungsbericht
-VL 48
-PS 81-86
-PD 2003
+AN ZOOR13900035250
+DT Article
+TI 2002 May species count for birds.
+AU Ellis, Margaret
+SO Alberta Naturalist
+VL 33
+IS 1
+SU Supplement 27
+PS 1A-9A
+PD Spring 2003
 PY 2003
 LA English
 U1 0
 U2 0
-AB The Three-toed Woodpecker Picoides tridactylus is an uncommon bird of
-   the boreal forest that is dependent on recent burns and Spruce Bark
-   Beetle Dendroctonus rufipennis infestation for foraging (Fig. 1).
-   Populations of Three-toed Woodpeckers in south-central Utah have
-   increased recently due to the large scale spread of spruce bark beetle
-   infestation. Subsequently, much of this area has been targeted for
-   salvage logging. We studied habitat use and behavior of Three-toed
-   Woodpeckers in logged and unlogged portions of beetle-infested Engelmann
-   spruce Picea engelmannii forest on Monroe Mountain, Utah, Fishlake
-   National Forest, from May to August 2000. Micro and macro-habitat data
-   and bird behavior were recorded at 60 sites where Three-toed Woodpeckers
-   were observed. Comparisons of habitat parameters were made between feed,
-   nest, and drum trees. Engelmann spruce was used most heavily for feeding
-   and comprised 97 % of feed trees. Forty-four percent of nest trees were
-   in Aspen Populus tremutoides, with the remaining 56 % in broken top
-   conifers. Average forest canopy cover differed between the three types
-   of trees (p < 0.05), with feed trees having the highest canopy cover
-   (69.7 [plus or minus] 16 %) (mean [plus or minus] SD), and nest trees
-   the lowest (19.9 [plus or minus] 18 %). Canopy cover was also less in
-   logged than in unlogged areas (p< < 0.001). Outer debarking was
-   significantly greater (p > 0.05) on feed (55 [plus or minus] 27 %) and
-   drum trees (31 [plus or minus] 34 %) than on nest trees (6 [plus or
-   minus] 10%). Nest trees were found to occur in less aggregated stands of
-   surrounding random trees than were feed and drum trees (p < 0.05).
-   Distance to habitat edge was less in logged areas than in unlogged areas
-   (p< 0.10). These findings suggest that according to certain habitat
-   parameters, Three-toed Woodpeckers use different types of trees for
-   feeding, nesting, and drumming, and in logged and unlogged areas. This
-   indicates that perpetuation of mature aspen and old-growth Engelmann
-   spruce is important in maintaining Three-toed Woodpecker populations.
-C1 Hill, Rebecca L.; Department of Integrative Biology, 401 WIDB, Brigham
-   Young University, Provo, Utah 84602, USA, USA.
-SC Nutrition & Dietetics; Zoology; Reproductive Biology; Environmental
-   Sciences & Ecology; Forestry
-SN 0172-0023
-BD Nutrition; Feeding behaviour; Reproduction; Reproductive behaviour;
-   Ecology; Habitat; Terrestrial habitat; Land zones; Nearctic region;
-   North America; USA
-DE Picoides tridactylus [Foraging /  / Activity & habitat use] [Breeding
-   site /  / Habitat use] [Distribution within habitat /  / ] [Habitat
-   utilization /  / ] [Forest and woodland / Logged & unlogged spruce
-   forest / Habitat use & behaviour] [Utah / Fishlake National Forest,
-   Monroe Mountain / ]. 
+AB Two hundred and sixty-nine species were observed in the seventeen areas
+   that reported counts this year, with a total of 107,459 birds
+   identified. Any unusual or rare sightings during the count week were
+   included in the numbers. The number of bird species and the number of
+   individual birds counted in a reporting zone depended on the area
+   covered and the number of participants in the observing groups. The
+   details of each count vary in information given; some were very sparse.
+   The cold spring in southern Alberta and the many May snowstorms may have
+   accounted for the delay in migration that produced increased species
+   counts in most areas with many "new" birds being added to most species
+   lists. Only one species, the Red-winged Blackbird, was observed in every
+   count while the American Robin was seen in all but one count. Six
+   species, Canada Goose, Mallard, Common Snipe, Tree Swallow, Black-billed
+   Magpie and Brown-headed Cowbird were observed in all but two counts. The
+   forty-one species seen in only one count area are as follows: Fort
+   McMurray: Mew Gull (1), Herring Gull (665), Barred Owl (2),
+   Yellow-bellied Flycatcher (1), Palm Warbler (25), Canada Warbler (1) and
+   Lapland Longspur (51). Athabasca: Pacific Loon (1) and Surf Scoter (14).
+   Buffalo Lake: White-faced Ibis (3). Bow Valley: Oldsquaw (2), Northern
+   Saw-whet Owl (1), Black-backed Woodpecker (5), Plumbeous Vireo (1),
+   Bohemian Waxwing (1) and Black-throated Blue Warbler (1).  Brooks; Red
+   Knot (43), Northern Shrike (1), Northem Mockingbird (1), Grasshopper
+   Sparrow (9) and Nelson's Sharp-tailed Sparrow (1). Claresholm:
+   White-ftonted Goose (1), Blue Grouse (1), Wild turkey (14), Hammond's
+   Flycatcher (1) and Yellow-breasted Chat (2). Taber: Black-chinned
+   Hummingbird (1) and Bullock's Oriole (1). Lethbridge; Brown Creeper (1)
+   and Bay-breasted Warbler (1). Cardston: Eurasian Wigeon (2) and Lewis's
+   Woodpecker (1). Milk River: Greater Sage Grouse (37), Long-eared Owl (4)
+   and Blackburnian Warbler. Waterton: Harlequin Duck (3), Vaux's Swift
+   (2), Cordilleran Flycatcher (1), Cassin's Vireo (5), Steller's Jay (1)
+   and Chestnut-backed Chickadee (4). While the whole province was not well
+   covered this year it is hoped that more areas will join the May Species
+   Count in 2003 and provide as much detail as possible to make the report
+   more interesting.
+SC Zoology; Environmental Sciences & Ecology
+SN 0318-5540
+BD Ecology; Population dynamics; Land zones; Nearctic region; North
+   America; Canada
+DE Aves [Population censuses / May species counts / ] [Alberta /  / ]. 
 TN Birds; Chordates; Vertebrates
-ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
-OR Picoides tridactylus (Picidae). 
-UT ZOOREC:ZOOR13900034648
-DA 2020-01-15
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR13900035250
+DA 2020-01-11
 ER
 
 PT J
-AN ZOOR14006034289
-DT Article
-TI Insect prey population changes in habitats with declining vs. stable
-   Three-toed Woodpecker Picoides tridactylus populations.
-AU Fayt, Philippe (philippe.fayt@joensuu.fi) 
-SO Ornis Fennica
-VL 80
-IS 4
-PS 182-192
+AN ZOOR13900034684
+DT Article; Meeting paper
+TI Temporal use patterns of woodpecker nest trees in British Columbia.
+AU Steeger, Christoph
+   Dulisse, Jakob
+SO Nationalpark Berchtesgaden Forschungsbericht
+VL 48
+PS 157-163
 PD 2003
 PY 2003
 LA English
-U1 1
-U2 21
-AB The effect of food supply on the Three-toed Woodpecker Picoides
-   tridactylus breeding density and productivity was investigated by
-   comparing the pattern of annual changes in prey abundance in habitats
-   with declining vs. stable woodpecker populations. In a burnt area of
-   eastern Finland, where the woodpecker breeding population has been
-   continuously diminishing, following a major increase the first year
-   after fire, only the abundance of spruce bark beetles (Col., Scolytidae)
-   (the woodpecker autumn-spring main insect prey) decreased through the
-   years. Conversely, the abundance of longhorn beetles (Col.,
-   Cerambycidae) (the nestling main food supply) increased dramatically. On
-   the other hand, in neighbouring old-growth patches where one pair was
-   breeding annually, abundance of spruce bark and longhorn beetles did not
-   change significantly between years, although the abundance level of the
-   bark beetles differed among patches. Hence, my results suggest the
-   woodpecker breeding population to be limited by food supply available
-   outside the breeding season, as shown for other forest bird species. The
-   finding, however, that woodpeckers breeding 6-7 years after the fire
-   reared larger broods than earlier pairs, while brood size did not change
-   annually under old-growth conditions, suggests longhorn beetle
-   availability to be critical to reproductive success.
-C1 Fayt, Philippe; Research Centre of Nature, Forests and Wood, DGRNE,
-   Avenue Marechal Juin, 23, B-5030, Gembloux, Belgium, Belgium.
-EM philippe.fayt@joensuu.fi
-SC Environmental Sciences & Ecology; Zoology; Entomology; Nutrition &
-   Dietetics; Reproductive Biology
-SN 0030-5685
-BD Nutrition; Diet; Prey; Feeding behaviour; Reproduction; Reproductive
-   productivity; Ecology; Community structure; Predators; Land zones;
-   Palaearctic region; Eurasia; Europe
-DE Cerambycidae [Relative abundance /  / Avian predator breeding success
-   relationship] [Avian predators / Picoides tridactylus / predator
-   breeding success relationship] [Finland / North Karelia / ]. 
-   Picoides tridactylus [Insect prey / Cerambycidae (Coleoptera) / Prey
-   availability & breeding success relationship] [Food availability /  /
-   Preferred insect prey significance for breeding success] [Food
-   preferences /  / Preferred insect prey availability & breeding success
-   relationship] [Broods / Brood size / Preferred insect prey availability
-   relationship] [Finland / North Karelia / Insect prey availability &
-   breeding success relationship]. 
-TN Arthropods; Beetles; Birds; Chordates; Insects; Invertebrates;
-   Vertebrates
-ST Animalia, Arthropoda, Insecta, Coleoptera, Polyphaga, Chrysomeloidea,
-   Chordata, Vertebrata, Aves, Piciformes, Picidae
-OR Cerambycidae (Chrysomeloidea): [Prey]. 
-   Picoides tridactylus (Picidae): [Predator]. 
-UT ZOOREC:ZOOR14006034289
-DA 2020-01-15
+U1 0
+U2 2
+AB Conservation of woodpecker habitat within British Columbia's 50 million
+   hectares of productive forest land relies primarily on the retention of
+   forest patches and single trees during forestry operations. Trees
+   selected for retention are recommended to have suitable habitat value
+   for woodpeckers and other wildlife tree users. To provide background
+   information for the development of wildlife tree retention strategies in
+   southern British Columbia, we monitored active woodpecker nest trees
+   from 1994 to 2000. Here we describe the characteristics and temporal use
+   patterns of 408 woodpecker nests in 258 individual trees. We located
+   seven sympatric woodpecker species (Red-naped Sapsucker Sphyrapicus
+   nuchalis. Northern Flicker Colaptes auratus, Pileated Woodpecker
+   Dryocopus pileatus. Downy Woodpecker Picoides pubescens. Hairy
+   Woodpecker Picoides villosus, Three-toed Woodpecker Picoides
+   tridactylus, and Black-backed Woodpecker Picoides arcticus) breeding in
+   seven different tree species. Forty-two percent of all nest trees were
+   dead, 40 % had visible sign of stem rot and 40 % had broken tops when
+   first recorded as an active nest tree. Eleven percent of all active
+   nests were part of simultaneous double or triple nesting events within
+   single trees. Annual reassessments of all previously active nest trees
+   from 1996 to 2000 revealed that 40 % were reused by woodpeckers and
+   other cavity nesters (chickadees, nuthatches, bluebirds and squirrels).
+   Complex patterns exist in the reuse of woodpecker nest trees by the same
+   and other woodpecker species, andby other cavity-using species. We
+   provide recommendations for conservation of woodpecker nest-tree habitat
+   within the context of wildlife tree management in British Columbia.
+C1 Steeger, Christoph; Pandion Ecological Research Ltd., 532 Park Street,
+   Nelson, British Columbia, V1L 2G4, Canada, Canada.
+SC Biodiversity & Conservation; Environmental Sciences & Ecology; Zoology;
+   Reproductive Biology; Forestry
+SN 0172-0023
+BD Conservation; Conservation measures; Reproduction; Reproductive
+   behaviour; Ecology; Habitat; Terrestrial habitat; Land zones; Nearctic
+   region; North America; Canada
+DE Picidae [Habitat management /  / Implications from nest tree use
+   patterns] [Breeding site /  / Nest tree use; temporal patterns;
+   conservation significance] [Habitat utilization /  / ] [Forest and
+   woodland /  / ] [British Columbia / Arrow Forest District, Deer Creek
+   watershed / Temporal use patterns of nest trees]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes
+OR Picidae (Piciformes). 
+UT ZOOREC:ZOOR13900034684
+DA 2020-01-11
 ER
 
 PT J
@@ -3442,7 +4670,33 @@ OR Picoides arcticus (Picidae).
    Picoides tridactylus (Picidae). 
 DI 10.1139/x02-109
 UT ZOOREC:ZOOR13900026244
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR13800036843
+DT Article
+TI Black-backed woodpecker Picodes [Picoides] arcticus: Pike County.
+AU Pulcinella, Nick
+SO Pennsylvania Birds
+VL 15
+IS 2
+PS 88
+PD Apr-Jun 2001(2002)
+PY 2002
+LA English
+U1 0
+U2 0
+C1 Pulcinella, Nick; 210 Welcome Ave., Norwood, PA 19074, USA, USA.
+SC Zoology
+SN 0898-8501
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Pennsylvania / Pike County / New record]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae): [New record]. 
+UT ZOOREC:ZOOR13800036843
+DA 2020-01-11
 ER
 
 PT J
@@ -3490,7 +4744,102 @@ OR Coleoptera (Insecta): [Prey].
    Picoides arcticus (Picidae): [Predator]. 
 DI 10.1648/0273-8570-73.2.130
 UT ZOOREC:ZOOR13800050393
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR13600083436
+DT Article
+TI Woodpecker abundance and habitat use in mature balsam fir forests in
+   Newfoundland.
+AU Setterington, Michael A.
+   Thompson, Ian D.
+   Montevecchi, William A.
+SO Journal of Wildlife Management
+VL 64
+IS 2
+PS 335-345
+PD April 2000
+PY 2000
+LA English
+U1 3
+U2 28
+AB Availability of the oldest age-class of balsam fir (Abies balsamea)
+   forest, the major forest type of western Newfoundland, is declining
+   through logging, insect effects, and management for a 60-year harvest
+   rotation. Loss of old-growth balsam fir forests may limit the
+   availability of woodpecker habitat if nesting trees and feeding
+   substrates are most abundant in these later successional stages. We
+   assessed abundance of black-backed woodpeckers (Picoides arcticus),
+   downy woodpeckers (P. pubescens), and hairy woodpeckers (P. villosus) in
+   10 stands in each of 3 forest age classes (40-59, 60-79, and >80 yr) of
+   balsam fir in western Newfoundland. For each stand, we quantified 10
+   habitat variables that may have influenced habitat use by woodpeckers.
+   Black-backed woodpeckers were almost exclusively found in >80-year-old
+   forests. Density of black-backed woodpeckers was significantly related
+   to number of large snags, but negatively to the total number of dead
+   stems. Downy woodpeckers were common and similarly distributed among the
+   3 forest age classes, and hairy woodpeckers were uncommon and only
+   observed in the 40- and 60-year age classes. Downy and hairy woodpeckers
+   were significantly associated with the number of white birch snags in
+   the stands, a resource that declined with forest age. A reduction in the
+   amount of forest in the oldest age class is probably reducing the
+   population of black-backed woodpeckers in western Newfoundland. We
+   recommend a series of fixed-width transects, coupled with point counts
+   using call broadcasts, as an effective means of surveying woodpeckers.
+   Forest managers must maintain large areas of old forests, temporally and
+   spatially, to maintain black-backed woodpeckers in Newfoundland.
+C1 Setterington, Michael A.; AXYS Environmental Consulting, P.O. Box 2240,
+   2045 Mills Road West, Sidney, BC V8L 3S8, Canada, Canada.
+SC Zoology; Environmental Sciences & Ecology; Biodiversity & Conservation;
+   Forestry
+SN 0022-541X
+BD Conservation; Conservation measures; Ecology; Population dynamics;
+   Habitat; Terrestrial habitat; Land zones; Nearctic region; North
+   America; Canada
+DE Picoides arcticus; Picoides pubescens; Picoides villosus [Habitat
+   management /  / Mature balsam fir forest] [Population density /  /
+   Abundance in mature balsam fir forest; conservation significance;
+   Canada] [Habitat utilization /  / ] [Forest and woodland /  / abundance
+   & habitat utilization] [Newfoundland /  / West coast region; Abundance &
+   use of mature balsam fir forest]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides pubescens (Picidae). 
+   Picoides villosus (Picidae). 
+DI 10.2307/3803231
+UT ZOOREC:ZOOR13600083436
+OA Green Accepted
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR13600091221
+DT Article
+TI Black-backed woodpecker: Picoides arcticus.
+AU Dixon, Rita D.
+   Saab, Victoria A.
+SO Birds of North America
+VL 509
+PS 1-19
+PD 2000
+PY 2000
+LA English
+U1 0
+U2 0
+C1 Dixon, Rita D.; Idaho Department of Fish & Game, Clearwater Region, 1540
+   Warner Avenue, Lewiston, ID 83501, USA, USA.
+SC Zoology
+SN 1061-5466
+BD Land zones
+DE Picoides arcticus [Nearctic region /  / North America; Distribution &
+   biology; species account]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR13600091221
+DA 2020-01-11
 ER
 
 PT J
@@ -3535,7 +4884,7 @@ C1 Imbeau, Louis; Centre de recherche en biologie forestiere, pavillon
    Abitibi-Price, Universite Laval, Sainte-Foy, PQ G1K 7P4, Canada, Canada.
 RI Imbeau, Louis/A-6642-2009
 OI Imbeau, Louis/0000-0003-4111-8059
-SC Forestry; Zoology; Environmental Sciences & Ecology
+SC Zoology; Forestry; Environmental Sciences & Ecology
 SN 0008-4301
 BD Animals and man; Disturbance by man; Commercial activities; Ecology;
    Habitat utilization; Habitat; Terrestrial habitat; Abiotic factors;
@@ -3559,7 +4908,124 @@ OR Aves (Vertebrata).
    Picoides tridactylus (Picidae). 
 DI 10.1139/cjz-77-12-1850
 UT ZOOREC:ZOOR13600061230
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR13600082693
+DT Article
+TI The nesting season: June through July 1999. Mountain West Region.
+AU Truan, Van A.
+   Percival, Brandon K.
+SO North American Birds
+VL 53
+IS 4
+PS 413-415
+PD June-July 1999
+PY 1999
+LA English
+U1 0
+U2 1
+C1 Truan, Van A.; 1901 Court Street, Pueblo, CO 81003, USA, USA.
+SC Zoology
+SN 1525-3708
+BD Land zones; Nearctic region; North America; USA
+DE Aves [USA /  / Mountain West Region; Summer distribution records
+   including new records] [Colorado /  / ] [Nevada /  / Summer distribution
+   records] [ /  / Summer distribution records including new record] [Utah
+   /  / ]. 
+   Buteo albonotatus [Colorado /  / Mesa County; Colorado National
+   Monument; First record for Colorado]. 
+   Chaetura vauxi [Colorado /  / Pueblo; Possible second record for
+   Colorado]. 
+   Dendroica striata [Nevada /  / Corn Creek; Third spring record for
+   Nevada]. 
+   Gavia stellata [Colorado /  / Routt County; Wolford Mountain Recreation
+   Area; First summer record for Colorado]. 
+   Larus pipixcan [Colorado /  / Jackson County; Walden Reservoir; First
+   breeding record for Colorado]. 
+   Picoides arcticus [Colorado /  / Jefferson County; Pine Valley Ranch;
+   Unauthenticated first record for Colorado]. 
+   Toxostoma bendirei [Colorado /  / Rio Grande County; Del Norte;
+   Additional record for Colorado]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Apodiformes, Apodidae,
+   Charadriiformes, Laridae, Falconiformes, Accipitridae, Gaviiformes,
+   Gaviidae, Passeriformes, Mimidae, Parulidae, Piciformes, Picidae
+OR Aves (Vertebrata): [New record]. 
+   Chaetura vauxi (Apodidae). 
+   Larus pipixcan (Laridae). 
+   Buteo albonotatus (Accipitridae): [New record]. 
+   Gavia stellata (Gaviidae). 
+   Toxostoma bendirei (Mimidae). 
+   Dendroica striata (Parulidae). 
+   Picoides arcticus (Picidae): [New record]. 
+UT ZOOREC:ZOOR13600082693
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR13600008541
+DT Article
+TI Avian communities of mature balsam fir forests in Newfoundland:
+   age-dependence and implications for timber harvesting.
+AU Thompson, Ian D.
+   Hogan, Holly A.
+   Montevecchi, William A.
+SO Condor
+VL 101
+IS 2
+PS 311-323
+PD May 1999
+PY 1999
+LA English
+U1 0
+U2 14
+AB The amount of old growth balsam fir (Abies balsamea) forest (80+ years)
+   in Newfoundland, Canada has declined and management towards a 60-year
+   rotation age will further reduce the availability of old forest as
+   wildlife habitat. We distinguished among three mature age-classes of
+   forests (40-59, 60-79, and 80+ years) based on tree density, canopy
+   gaps, woody debris, and moss and litter cover on the ground. Canonical
+   correspondence analysis revealed two groups of stands: one containing
+   all of the 40-year-old stands and most 60-year-old stands, and a second
+   that included old growth stands and 4 of 10 60-year-old stands. Forest
+   birds were separated into four groups: one preferring the youngest
+   stands, another observed primarily in old stands, and two others that
+   were intermediate. Bird species richness was greater in 40-year-old
+   forests than in 60+ and 80+-year-old stands. Black-backed Woodpecker
+   (Picoides arcticus) and Gray-cheeked Thrush (Hylocichla minima) were
+   most abundant in old forests. Six other species also were grouped
+   together with the latter two as an old forest group. We observed more
+   species and more total birds breeding on productive forest site types
+   than on less-productive sites based on a forest ecosystem
+   classification, and five species showed significant relationships
+   between density and site quality. We observed few relationships between
+   stand age and migratory strategy. The only guild for which there was a
+   significant relationship of abundance with forest age was cone
+   seed-eaters, which were more common in second-growth forests than in old
+   forest. To maintain avian diversity in these forest landscapes, some
+   stands must be allowed to develop as old growth.
+C1 Thompson, Ian D.; Canadian Forest Service, 1219 Queen Street East, Sault
+   Ste. Marie, Ontario, P6A 5M7, Canada, Canada.
+SC Environmental Sciences & Ecology; Zoology; Biodiversity & Conservation;
+   Forestry
+SN 0010-5422
+BD Conservation; Conservation measures; Ecology; Habitat; Terrestrial
+   habitat; Land zones; Nearctic region; North America; Canada
+DE Aves [Habitat management /  / Balsam fir forests; implications from
+   community dependence on habitat age] [Community structure /  / Balsam
+   fir forest age relationships; management implications] [Forest and
+   woodland /  / Balsam fir forest community structure related to habitat
+   age] [Newfoundland /  / West coast; Balsam fir forest community
+   dependence on habitat age]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+DI 10.2307/1369994
+UT ZOOREC:ZOOR13600008541
+OA Green Accepted
+DA 2020-01-11
 ER
 
 PT J
@@ -3640,7 +5106,7 @@ OR Picoides arcticus (Picidae).
    Picoides villosus (Picidae). 
 DI 10.2307/3802002
 UT ZOOREC:ZOOR13500043995
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -3681,7 +5147,7 @@ TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
 UT ZOOREC:ZOOR13400035847
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
@@ -3727,7 +5193,7 @@ AB During the two breeding seasons immediately following the numerous and
    relatively restricted to burned forests, stand-replacement fires may be
    necessary for long-term maintenance of their populations.
 RI Cox, Elizabeth/C-2644-2008
-SC Environmental Sciences & Ecology; Zoology; Biodiversity & Conservation;
+SC Zoology; Biodiversity & Conservation; Environmental Sciences & Ecology;
    Forestry
 SN 0888-8892
 BD Conservation; Conservation measures; Ecology; Habitat; Terrestrial
@@ -3744,39 +5210,112 @@ ST Animalia, Chordata, Vertebrata
 OR Aves (Vertebrata). 
 DI 10.1046/j.1523-1739.1995.9051041.x
 UT ZOOREC:ZOOR13200047914
-DA 2020-01-15
+DA 2020-01-11
 ER
 
 PT J
-AN ZOOR13200048858
+AN ZOOR13200041015
 DT Article
-TI Kitsi forest fire area - a paradise for three-toed woodpeckers.
-AU Sorvari, Veli-Matti
-SO Linnut
-VL 29
+TI Relative vulnerability to extirpation of montane breeding birds in the
+   Great Basin.
+AU Michael Reed, J.
+SO Great Basin Naturalist
+VL 55
 IS 4
-PS 28-32
-PD 1994
-PY 1994
-LA Finnish
+PS 342-351
+PD October 1995
+PY 1995
+LA English
 U1 0
 U2 0
-SC Zoology; Environmental Sciences & Ecology; Forestry
-SN 1235-9807
-BD Ecology; Population dynamics; Habitat utilization; Habitat; Terrestrial
-   habitat; Abiotic factors; Physical factors; Land zones; Palaearctic
-   region; Eurasia; Europe
-DE Aves [Population density /  / Forest; effect of fire on density of
-   breeding species] [Forest and woodland /  / ] [Fire /  / effect on
-   density of breeding species] [Finland /  / Lieksa; Kitsi forest; Fire
-   effect on density of breeding species]. 
-   Picoides tridactylus [Habitat preference /  / Burned forest; Finland]. 
+AB Seventy-four species of montane breeding birds were evaluated for their
+   vulnerability to extirpation in the Great Basin. Although none of these
+   species are endemic to the Great Basin, the montane island system
+   results in a unique pattern of species associations. Loss of species
+   from these montane communities could be indicative of region-wide
+   habitat degradation. I ranked susceptibility to extirpation based on
+   seven biological variables: geographic range, population size,
+   reproductive potential, susceptibility to cowbird parasitism, migratory
+   status, and diet specialization. Each variable was weighted equally in
+   its contribution to vulnerability, and scores were the sum of trait
+   scores for each species. Different suites of life-history traits led to
+   similar vulnerabilities. The following 10 montane bird species were
+   categorized as most vulnerable to extirpation from the Great Basin,
+   listed as most to least vulnerable: Olive-sided Flycatcher (Contopus
+   borealis), Painted Redstart (Myioborus pictus), Hammond's Flycatcher
+   (Empidonax hammondii), Veery (Catharus fuscescens), Whip-poor-will
+   (Caprimulgus vociferus), Lincoln's Sparrow (Melospiza lincolnii),
+   Black-backed Woodpecker (Picoides arcticus), Three-toed Woodpecker (P.
+   tridactylus), Himalayan Snowcock (Tetraogallus himalayensis), and
+   Nashville Warbler (Vermivora ruficapilla). Species of similar
+   vulnerability scores often were dissimilar in threats related to their
+   vulnerability. No taxonomic patterns in vulnerability were found. This
+   type of analysis should be used proactively to identify vulnerable
+   species or populations and to set priorities for research and
+   management.
+SC Environmental Sciences & Ecology; Biodiversity & Conservation; Zoology;
+   Nutrition & Dietetics; Reproductive Biology; Behavioral Sciences
+SN 0017-3614
+BD Conservation; Nutrition; Reproduction; Reproductive productivity;
+   Behaviour; Parasites diseases and disorders; Ecology; Habitat;
+   Terrestrial habitat; Land zones; Nearctic region; North America
+DE Aves [Endangered status /  / Montane breeding taxa; relative extirpation
+   vulnerability assessment] [Diet /  / Extirpation vulnerability
+   relations; montane breeding species] [Fecundity /  / ] [Migration /  / ]
+   [Nest parasitism /  / Molothrus ater] [Community structure /  / ]
+   [Habitat utilization /  / ] [Mountain habitat /  / Extirpation
+   vulnerability of breeding species; influencing factors] [USA /  / Great
+   Basin; Relative vulnerability to extirpation of montane breeding
+   species; analysis]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR13200041015
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR13100062783
+DT Article
+TI Foraging behavior of black-backed and three-toed woodpeckers during
+   spring and summer in a Canadian boreal forest.
+AU Villard, Pascal
+SO Canadian Journal of Zoology
+VL 72
+IS 11
+PS 1957-1959
+PD November 1994
+PY 1994
+LA English
+U1 0
+U2 13
+AB During one spring to summer study in a Canadian boreal forest,
+   Black-backed Woodpeckers (Picoides arcticus) were found to excavate
+   mainly on logs and at the base of large-diameter tree trunks. In
+   contrast, Three-toed Woodpeckers (Picoides tridactylus) preferred higher
+   strata and smaller diameter trunks. The predominant foraging technique
+   used by Three-toed Woodpeckers was bark scaling. Canadian Three-toed
+   Woodpeckers showed foraging behavior similar to that found in European
+   woodpeckers, but in the Nearctic range they have not fully developed the
+   sap-licking behavior that is typical of the Three-toed Woodpeckers of
+   the western Palearctic range.
+SC Nutrition & Dietetics; Zoology; Environmental Sciences & Ecology;
+   Forestry
+SN 0008-4301
+BD Nutrition; Feeding behaviour; Ecology; Ecological niche; Habitat;
+   Terrestrial habitat; Land zones; Nearctic region; North America; Canada
+DE Picoides arcticus; Picoides tridactylus [Foraging /  / Niche
+   segregation; behavioural analysis; spring & summer; forest] [Resource
+   partitioning /  / Foraging niche segregation analysis] [Habitat
+   utilization /  / ] [Forest and woodland /  / Foraging niche segregation]
+   [Manitoba /  / Taiga Biological Station]. 
 TN Birds; Chordates; Vertebrates
 ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
-OR Aves (Vertebrata). 
+OR Picoides arcticus (Picidae). 
    Picoides tridactylus (Picidae). 
-UT ZOOREC:ZOOR13200048858
-DA 2020-01-15
+DI 10.1139/z94-266
+UT ZOOREC:ZOOR13100062783
+DA 2020-01-11
 ER
 
 PT J
@@ -3815,7 +5354,400 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
    Picoides villosus (Picidae). 
 UT ZOOREC:ZOOR13000030002
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12800067176
+DT Article
+TI Fall birding on Outer Island in Lake Superior.
+AU Johnson, P.
+SO Passenger Pigeon
+VL 53
+IS 4
+PS 327-329
+PD 1991
+PY 1991
+LA English
+U1 0
+U2 0
+SC Zoology
+SN 0031-2703
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus; Picoides tridactylus; Zonotrichia querula [Wisconsin
+   /  / Lake Superior; Apostle Islands; Rare records]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Emberizidae,
+   Piciformes, Picidae
+OR Zonotrichia querula (Emberizidae). 
+   Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR12800067176
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12500056592
+DT Article
+TI Late nesting of black-backed woodpecker.
+AU Crumb, D.W.
+SO Kingbird
+VL 38
+IS 4
+PS 248-249
+PD 1988
+PY 1988
+LA English
+U1 0
+U2 0
+SC Reproductive Biology; Zoology
+SN 0023-1606
+BD Reproduction; Reproductive behaviour; Land zones; Nearctic region; North
+   America; USA
+DE Picoides arcticus [Breeding season /  / Late record of fledgling for New
+   York] [New York /  / Herkimer County; Fledgling sighting; late nesting
+   record for New York]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR12500056592
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12400067355
+DT Article
+TI Bird news.
+AU Holland, G
+SO Leicestershire and Rutland Trust for Nature Conservation Newsletter
+VL 13
+IS 4
+PS 10
+PD 1988
+PY 1988
+LA English
+U1 0
+U2 0
+SC Zoology; Environmental Sciences & Ecology
+SN 0962-5593
+BD Ecology; Population dynamics; Land zones; Nearctic region; North
+   America; Canada
+DE Aves [Manitoba /  / Winter records]. 
+   Leucosticte arctoa [Manitoba /  / Recorded]. 
+   Picoides arcticus [Population censuses /  / Manitoba; Winter count; new
+   record total for 1 day]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Fringillidae,
+   Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Leucosticte arctoa (Fringillidae). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR12400067355
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12400021333
+DT Article
+TI The winter season. December 1, 1986 - February 28, 1987. Southwest
+   Region. New Mexico, northern Chihuahua.
+AU Hubbard, J.P.
+SO American Birds
+VL 41
+IS 2
+PS 314-316
+PD 1987
+PY 1987
+LA English
+U1 0
+U2 0
+SC Zoology
+SN 0004-7686
+BD Land zones; Nearctic region; North America; USA
+DE Aves [Mexico /  / Chihuahua; north; Winter distribution records] [New
+   Mexico /  / Winter distribution records including first records]. 
+   Larus minutus [New Mexico /  / Lake McMillan; First record for New
+   Mexico]. 
+   Picoides arcticus [New Mexico /  / Sandia Mountains; Sandia Crest;
+   Possible first record for New Mexico]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Charadriiformes, Laridae,
+   Piciformes, Picidae
+OR Aves (Vertebrata): [New record]. 
+   Larus minutus (Laridae): [New record]. 
+   Picoides arcticus (Picidae): [New record]. 
+UT ZOOREC:ZOOR12400021333
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12300020292
+DT Article
+TI The winter season. December 1, 1985 - February 28, 1986. Middlewestern
+   Prairie Region.
+AU Peterjohn, B.G.
+SO American Birds
+VL 40
+IS 2
+PS 285-289
+PD 1986
+PY 1986
+LA English
+U1 0
+U2 0
+SC Zoology; Behavioral Sciences
+SN 0004-7686
+BD Behaviour; Migration; Land zones; Nearctic region; North America; USA
+DE Aves [Overwintering behaviour /  / Distribution records] [USA /  /
+   Middlewestern Prairie Region; Winter distribution records including
+   first state records] [Iowa /  / First & additional records]. 
+   Gavia pacifica [Ohio /  / Huron; First acceptable record for Ohio]. 
+   Larus thayeri [Iowa /  / Red Rock Reservoir; First confirmed record for
+   Iowa]. 
+   Picoides arcticus [Iowa /  / Ottumwa; Additional record for Iowa]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Charadriiformes, Laridae,
+   Gaviiformes, Gaviidae, Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Larus thayeri (Laridae). 
+   Gavia pacifica (Gaviidae). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR12300020292
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12300051269
+DT Article
+TI Northern woodpeckers visit Taylor County.
+AU Robbins, S.
+SO Passenger Pigeon
+VL 48
+IS 3
+PS 122-124
+PD 1986
+PY 1986
+LA English
+U1 0
+U2 0
+SC Zoology
+SN 0031-2703
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus; Picoides tridactylus [Wisconsin /  / Taylor County;
+   Sighting records]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR12300051269
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12300060422
+DT Article
+TI Black-backed woodpecker in Taylor County.
+AU Frank, J.C.
+SO Passenger Pigeon
+VL 48
+IS 4
+PS 177
+PD 1986
+PY 1986
+LA English
+U1 0
+U2 0
+SC Zoology
+SN 0031-2703
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Wisconsin /  / Taylor County; Medford area; Sighting
+   record; winter]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR12300060422
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12700053585
+DT Article
+TI Resource partitioning among woodpeckers in northeastern Oregon.
+AU Bull, E.L.
+   Peterson, S.R.
+   Thomas, J.W.
+SO U S Forest Service Research Note PNW
+SU No. 444
+PS 1-19
+PD 1986
+PY 1986
+LA English
+U1 0
+U2 0
+SC Zoology; Environmental Sciences & Ecology; Nutrition & Dietetics;
+   Reproductive Biology; Forestry
+SN 0099-3433
+BD Nutrition; Feeding behaviour; Reproduction; Reproductive behaviour;
+   Breeding site; Ecology; Habitat utilization; Habitat; Terrestrial
+   habitat; Land zones; Nearctic region; North America; USA
+DE Colaptes auratus; Dryocopus pileatus; Picoides albolarvatus; Picoides
+   arcticus; Picoides tridactylus; Picoides villosus; Sphyrapicus
+   thyroideus; Sphyrapicus varius [Ecological niche /  / Resource
+   partitioning; nesting & foraging comparisons; Oregon]. 
+   Picidae [Foraging /  / Comparisons; resource partitioning indication]
+   [Nesting site /  / Preference comparisons] [Ecological niche /  /
+   Resource partitioning; nesting & foraging comparisons] [Habitat
+   preference /  / Nest & foraging sites comparison] [Forest /  / ] [Oregon
+   /  / Wallowa Whitman National Forest]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picidae (Piciformes). 
+   Colaptes auratus (Picidae). 
+   Dryocopus pileatus (Picidae). 
+   Picoides albolarvatus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+   Picoides villosus (Picidae). 
+   Sphyrapicus thyroideus (Picidae). 
+   Sphyrapicus varius (Picidae). 
+UT ZOOREC:ZOOR12700053585
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12200037685
+DT Article
+TI Woodpeckers with three toes.
+AU McNicholl, M.K.
+SO Birdfinding in Canada
+VL 5
+IS 5
+PS 4
+PD 1985
+PY 1985
+LA English
+U1 0
+U2 0
+SC Zoology
+SN 0229-5024
+BD Land zones; Nearctic region; North America
+DE Picoides arcticus; Picoides tridactylus [Canada /  / Sighting records]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR12200037685
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12200025404
+DT Article
+TI A review of recent irruptions of the black-backed woodpecker and
+   three-toed woodpecker in eastern North America.
+AU Yunick, R.P.
+SO Journal of Field Ornithology
+VL 56
+IS 2
+PS 138-152
+PD 1985
+PY 1985
+LA English
+U1 0
+U2 2
+AB An examination of the 1950-1982 field note records for black-backed and
+   three-toed woodpeckers in northeastern USA and southeastern Canada
+   indicates a pattern of irregular irruption from their resident range.
+   Periods of irruptive activity lasting several years appear interspersed
+   between long lapses of little or no reporting. A period of almost
+   regular and heightened irruptive activity by the black-backed woodpecker
+   occurred in 1956-1966. Following it there was a marked decline in New
+   York and southern New England, while in Canada there was another period
+   of irruptive activity through the 1970's. During this time the greatest
+   reported irruption occurred in 1974-1975. The three-toed woodpecker is
+   not only rarer than the black-backed woodpecker, but appears to be less
+   irruptive, judging from its increased scarcity relative to the
+   black-backed woodpecker at greater distances from its resident range.
+   While these species are sympatric on their resident range, they do not
+   appear to be  completely synchronous in irrupting. During irruption,
+   both species have occurred in urban habitats totally unlike the boreal
+   forests of their resident range. In the irruptions of the 1950's and
+   1960's in New York, they frequented urban areas blighted by the Dutch
+   elm disease. Irrupting individuals appeared out of their resident range
+   in the north typically in Sept. and spread gradually disappeared
+   northward. Most sightings for both species (61-63%) were single-day
+   sightings, although some  individuals remained in an area for prolonged
+   periods of 132 days of more for the three-toed woodpecker and 192 days
+   for the black-backed woodpecker. Females of both species were recorded
+   more frequently than males by 1.43:1 and 1.17:1, respectively.
+SC Zoology; Environmental Sciences & Ecology
+SN 0273-8570
+BD Ecology; Population dynamics; Land zones; Nearctic region
+DE Picoides arcticus; Picoides tridactylus [Irruption /  / Recent; review]
+   [North America /  / East; Recent irruptions]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR12200025404
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12300012180
+DT Article
+TI Food gathering for nestlings by a male black-backed woodpecker (Picoides
+   arcticus).
+AU Crins, W.J.
+SO Ontario Birds
+VL 3
+IS 2
+PS 71-72
+PD 1985
+PY 1985
+LA English
+U1 0
+U2 0
+SC Nutrition & Dietetics; Zoology; Reproductive Biology
+SN 0822-3890
+BD Nutrition; Feeding behaviour; Reproduction; Reproductive behaviour;
+   Parental care; Land zones; Nearctic region; North America; Canada
+DE Picoides arcticus [Food carrying /  / Prey for nestlings carried in crop
+   & beak] [Care of young /  / ] [Ontario /  / Nipissing district;
+   Algonquin Provincial Park; Foraging for nestlings; prey carried in crop
+   & beak]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR12300012180
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12000014660
+DT Article
+TI Nesting black-backed three-toed woodpeckers in Forest County.
+AU Eckstein, R.G.
+SO Passenger Pigeon
+VL 45
+IS 1
+PS 16-17
+PD 1983
+PY 1983
+LA English
+U1 0
+U2 0
+SC Zoology; Reproductive Biology
+SN 0031-2703
+BD Reproduction; Reproductive behaviour; Breeding site; Land zones;
+   Nearctic region; North America; USA
+DE Picoides arcticus [Nesting site /  / ] [Wisconsin /  / Forest County;
+   Nesting recorded & nest site details]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR12000014660
+DA 2020-01-11
 ER
 
 PT J
@@ -3842,7 +5774,54 @@ ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
 OR Picoides arcticus (Picidae). 
    Picoides tridactylus (Picidae). 
 UT ZOOREC:ZOOR12000014663
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12000042806
+DT Article
+TI Life history studies of woodpeckers of eastern North America.
+AU Kilham, L.
+SO Publications of the Nuttall Ornithological Club
+SU No. 20
+PS i-vii, 1-240
+PD 1983
+PY 1983
+LA English
+U1 0
+U2 0
+SC Behavioral Sciences; Zoology; Nutrition & Dietetics; Reproductive
+   Biology; Environmental Sciences & Ecology
+SN 0550-4082
+BD Nutrition; Reproduction; Behaviour; Ecology; Animal constructions; Land
+   zones; Nearctic region; Neotropical region; North America; Central
+   America
+DE Campephilus guatemalensis [Behaviour /  / Comprehensive account; Costa
+   Rica & Guatemala] [Costa Rica /  / ] [Guatemala /  / ]. 
+   Campephilus melanoleucos [Behaviour /  / Comprehensive account] [Panama
+   /  / ]. 
+   Colaptes auratus; Dryocopus lineatus; Melanerpes carolinus; Melanerpes
+   erythrocephalus; Picoides arcticus; Picoides pubescens; Picoides
+   villosus; Sphyrapicus varius [Behaviour /  / Comprehensive account;
+   USA]. 
+   Picidae [Feeding behaviour /  / Central & North America] [Reproductive
+   behaviour /  / ] [Behaviour /  / ] [Communication /  / ] [Nests /  / ]
+   [USA /  / comprehensive account]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picidae (Piciformes). 
+   Campephilus guatemalensis (Picidae). 
+   Campephilus melanoleucos (Picidae). 
+   Colaptes auratus (Picidae). 
+   Dryocopus lineatus (Picidae). 
+   Melanerpes carolinus (Picidae). 
+   Melanerpes erythrocephalus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides pubescens (Picidae). 
+   Picoides villosus (Picidae). 
+   Sphyrapicus varius (Picidae). 
+UT ZOOREC:ZOOR12000042806
+DA 2020-01-11
 ER
 
 PT J
@@ -3896,7 +5875,913 @@ ST Animalia, Chordata, Vertebrata
 OR Aves (Vertebrata). 
 DI 10.2307/1367504
 UT ZOOREC:ZOOR11800038660
-DA 2020-01-15
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR12000055220
+DT Article
+TI Interspecific differences in nesting habitat of sympatric woodpeckers
+   and nuthatches.
+AU Raphael, M.G.
+SO U S Forest Service General Technical Report RM
+SU No. 87
+PS 142-151
+PD 1981
+PY 1981
+LA English
+U1 0
+U2 0
+SC Environmental Sciences & Ecology; Zoology; Reproductive Biology;
+   Forestry
+SN 0094-4823
+BD Reproduction; Reproductive behaviour; Breeding site; Ecology; Habitat
+   utilization; Habitat; Terrestrial habitat; Land zones; Nearctic region;
+   North America; USA
+DE Colaptes auratus; Melanerpes lewis; Picoides albolarvatus; Picoides
+   arcticus; Picoides villosus; Sphyrapicus ruber dagetti; Sphyrapicus
+   thyroideus [Ecological niche /  / Nesting site interspecific
+   differences; forest; California]. 
+   Picidae; Sitta canadensis; Sitta pygmaea [Nesting site /  /
+   Interspecific differences] [Ecological niche /  / Nesting site
+   interspecific differences] [Habitat preference /  / ] [Forest /  / ]
+   [California /  / Truckee]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Sittidae,
+   Piciformes, Picidae
+OR Sitta canadensis (Sittidae). 
+   Sitta pygmaea (Sittidae). 
+   Picidae (Piciformes). 
+   Colaptes auratus (Picidae). 
+   Melanerpes lewis (Picidae). 
+   Picoides albolarvatus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Picoides villosus (Picidae). 
+   Sphyrapicus ruber dagetti (Picidae). 
+   Sphyrapicus thyroideus (Picidae). 
+UT ZOOREC:ZOOR12000055220
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11700038136
+DT Article
+TI Black-backed three-toed woodpecker in Forest County.
+AU Haig, S.
+SO Passenger Pigeon
+VL 42
+IS 4
+PS 149-150
+PD 1980
+PY 1980
+LA English
+U1 0
+U2 0
+SC Zoology
+SN 0031-2703
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Wisconsin /  / Forest County; Nicolet National
+   Forest; Sighting records]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR11700038136
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11900057826
+DT Article
+TI Bleak future for the black-backed woodpecker.
+AU Tirimanne, W.
+SO Loris
+VL 14
+IS 6
+PS 396-397
+PD 1978
+PY 1978
+LA English
+U1 0
+U2 0
+SC Zoology; Biodiversity & Conservation; Environmental Sciences & Ecology
+SN 0024-6514
+BD Conservation; Land zones; Oriental region; Eurasia; Asia
+DE Chrysocolaptes festivus [Endangered species /  / Status] [Sri Lanka /  /
+   ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Chrysocolaptes festivus (Picidae). 
+UT ZOOREC:ZOOR11900057826
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11500046893
+DT Article
+TI Black-backed three-toed woodpecker.
+AU Korotev, R.
+SO Passenger Pigeon
+VL 40
+IS 2
+PS 413-414
+PD 1978
+PY 1978
+LA English
+U1 0
+U2 0
+SC Zoology
+SN 0031-2703
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [Wisconsin /  / Douglas County; Stones Bridge; Nesting
+   record]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR11500046893
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11500046901
+DT Article
+TI The distribution of the three-toed woodpeckers in Wisconsin.
+AU Thiel, R.P.
+SO Passenger Pigeon
+VL 40
+IS 4
+PS 477-488
+PD 1978
+PY 1978
+LA English
+U1 0
+U2 0
+SC Zoology
+SN 0031-2703
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus; Picoides tridactylus [Wisconsin /  / Distribution
+   records; 1890-1978; & catalogue of museum specimens]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR11500046901
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11400037155
+DT Article
+TI Wintering woodpeckers in an urban environment.
+AU McMichael, D.J
+   Wilcove, D.S.
+SO Kingbird
+VL 27
+IS 1
+PS 2-10,illust.
+PD 1977
+PY 1977
+LA English
+U1 0
+U2 2
+SC Zoology; Environmental Sciences & Ecology
+BD Habitat; Man made habitat
+DE Picoides arcticus; Picoides pubescens; Picoides villosus [Residential
+   area /  / Population study; New York]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides pubescens (Picidae). 
+   Picoides villosus (Picidae). 
+UT ZOOREC:ZOOR11400037155
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11400043089
+DT Article
+TI Die Brutvogel des Waldfriedhofes Heerstrasse 1974.
+AU Elvers, H.
+SO Ornithologischer Ber Berl (West)
+VL 2
+IS 2
+PS 139-150,illust.
+PD 1977
+PY 1977
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [North Dakota /  / Sighting record]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR11400043089
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11400045165
+DT Article
+TI Black-backed three-toed woodpecker in Grand Forks, North Dakota.
+AU Elsen, D.
+SO Prairie Nat.
+VL 9
+IS 34
+PS 56
+PD 1977
+PY 1977
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Land zones; Nearctic region; North America; USA
+DE Picoides arcticus [North Dakota /  / Sighting record]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR11400045165
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11100004281
+DT Article
+TI On the geographical ecology and evolution of the three-toed woodpeckers,
+   Picoides tridactylus and P. arcticus.
+AU Bock, C.E.
+   Bock, J.H.
+SO American Midland Naturalist
+VL 92
+IS 2
+PS 397-405
+PD 1974
+PY 1974
+LA English
+U1 0
+U2 4
+SC Zoology; Evolutionary Biology; Environmental Sciences & Ecology
+BD Evolution; Ecology; Zoogeography; Land zones; Nearctic region
+DE Picoides arcticus; Picoides tridactylus [Evolution /  / ] [Ecology /  /
+   ] [Zoogeography /  / Distributional status] [North America /  /
+   Distributional status] [ /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+DI 10.2307/2424304
+UT ZOOREC:ZOOR11100004281
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11100004312
+DT Article
+TI Habits and interactions of North American three-toed woodpeckers
+   (Picoides arcticus and Picoides tridactylus).
+AU Short, L.L.
+SO American Museum Novitates
+VL No. 2547
+PS 1-42
+PD 1974
+PY 1974
+LA English
+U1 0
+U2 4
+SC Zoology; Reproductive Biology; Behavioral Sciences
+BD Reproduction; Reproductive behaviour; Behaviour; Communication
+DE Picoides arcticus [Nesting /  / Comparative study] [Behaviour /  /
+   Comparative study] [Acoustic signals /  / Vocalizations; Compaiative
+   study] [ /  / Vocalizations; Comparative study] [Behavioural
+   interactions /  / Picoides tridactylus]. 
+   Picoides tridactylus [Nesting /  / Comparative study] [Behaviour /  /
+   Comparative study] [Acoustic signals /  / Vocalizations; Comparative
+   study] [Behavioural interactions /  / Picoides arcticus]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR11100004312
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11100021408
+DT Article
+TI Some additional observations on the nesting of the black-backed
+   three-toed woodpecker in Michigan.
+AU Cottrille, B.D.
+SO Jack Pine Warbler
+VL 5
+IS 3
+PS 148-150
+PD 1974
+PY 1974
+LA English
+U1 0
+U2 0
+SC Zoology; Reproductive Biology
+BD Reproduction; Reproductive behaviour
+DE Picoides arcticus [Nesting /  / Michigan]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR11100021408
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR11100026397
+DT Article
+TI Observations of three-toed woodpeckers in an Adirondack bog with notes
+   on plumages.
+AU LaFrance, F.
+SO Kingbird
+VL 23
+IS 4
+PS 190-191
+PD 1973
+PY 1973
+LA English
+U1 0
+U2 0
+SC Zoology; Anatomy & Morphology
+BD Integument; Integumentary derivatives; Zoogeography; Land zones;
+   Nearctic region; North America; USA
+DE Picoides arcticus [Plumage /  / New York]. 
+   Picoides tridactylus [Plumage /  / ] [Zoogeography /  / Additional
+   breeding record] [New York /  / Hamilton County; Additional breeding
+   record]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR11100026397
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR10300005221
+DT Article
+TI The Arctic three-toed woodpecker (Picoides arcticus)
+AU Reid-Henry, D. M.
+SO Avicultural Magazine
+VL 72
+PS 69-70
+PD 1966
+PY 1966
+NT pl.
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Aves [Zoology /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR10300005221
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR10200006884
+DT Article
+TI Climbing and pecking adaptations in some North American woodpeckers.
+AU Spring, L. W.
+SO Condor
+VL 67
+PS 457-488
+PD 1965
+PY 1965
+NT figs.
+LA English
+U1 0
+U2 5
+SC Zoology; Behavioral Sciences
+BD Biology; Behaviour
+DE Aves [Zoology /  / Physiology; Muscalar activity; Cranial kinesis in N.
+   American woodpeckers] [Behaviour /  / Climbing and pecking behaviour in
+   N. American woodpeckers]. 
+   Dendrocopos villosus [Zoology /  / Natural history; characterization of
+   pecking movements; blow delivery; climbing; cranial kinesis]. 
+   Picoides arcticus [Zoology /  / natural history; characterization of
+   packing movements; blow delivery; climbing; cranial kinesis]. 
+   Sphyrapicus varius [Zoology /  / natural history; characterization of
+   pecking movements; blow delivery; climbing; cranial kinesis]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Dendrocopos villosus (Picidae). 
+   Picoides arcticus (Picidae). 
+   Sphyrapicus varius (Picidae). 
+DI 10.2307/1365612
+UT ZOOREC:ZOOR10200006884
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR10200016136
+DT Article
+TI Black-backed three-toed wood-pecker, Picoides arcticus, predation on
+   Monochamus oregopensis(Coleoptera: Cerambycidae).
+AU Wickman, B. E.
+SO Pan-Pacific Entomologist
+VL 41
+PS 162-164
+PD 1965
+PY 1965
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Monochamus oregonensis [Zoology /  / Parasites Of Other Animals;
+   Predacious Animals; (Col. Lamiid.); larva preyed upon by; Picoides
+   arcticus; California]. 
+TN Arthropods; Beetles; Insects; Invertebrates
+ST Animalia, Arthropoda, Insecta, Coleoptera, Polyphaga, Chrysomeloidea,
+   Cerambycidae
+OR Monochamus oregonensis (Cerambycidae). 
+UT ZOOREC:ZOOR10200016136
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR10200007514
+DT Article
+TI Black-backed three-toed woodpecker, Pieoides arcticus, predation on
+   Monochamus oregonensis (Coleoptera, Cerambycidae).
+AU Wickman, B. E.
+SO Pan-Pacific Entomologist
+VL 41
+PS 162-164
+PD 1965
+PY 1965
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Aves [Zoology /  / Ecology And Habits; Enemies; Defence and Predation;
+   Predation on; Monochamns oregonensis; by; Picoides arcticus]. 
+   Picoides arcticus [Zoology /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR10200007514
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR09600004288
+DT Article
+TI Black-backed Three-toed Woodpecker in central Pennsylvania.
+AU Wood, M.
+SO Auk
+VL 76
+PS 361
+PD 1959
+PY 1959
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Picoides arcticus [Zoology /  / in central Pennsylvania]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR09600004288
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR09600002527
+DT Article
+TI A method for opening nesting holes.
+AU Erskine, A. J.
+SO Bird-Banding
+VL 30
+PS 181-182
+PD 1959
+PY 1959
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Aves [Zoology /  / Habits And Ecology; Bird-Ringing : Methods; A method
+   for opening nesting holes] [ /  / Habits And Ecology; Iii.-distribution;
+   (a) Geographical; Nearctic Region Including Mexico; Canada; British
+   Columbi]. 
+   Picoides arcticus [Zoology /  / nesting in the Cariboo; B.C]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR09600002527
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR09600002528
+DT Article
+TI Picoides arcticus nesting in the Cariboo, British Columbia.
+AU Ersklne, A. J.
+SO Canadian Field Naturalist
+VL 73
+PS 205
+PD 1959
+PY 1959
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Aves [Zoology /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata
+OR Aves (Vertebrata). 
+UT ZOOREC:ZOOR09600002528
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR09800002991
+DT Article
+TI Recent records of the Black-backed Three-toed Woodpecker in Michigan.
+AU Ryel, L. A.
+   Harger, E. M.
+SO Jack Pine Warbler
+VL 37
+PS 12-16
+PD 1959
+PY 1959
+NT fig.
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Aves [Zoology /  / Nearctic Region Including Mexico; U.S.A. North
+   Central; Michigan]. 
+   Picoides arcticus [Zoology /  / records in Michigan]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR09800002991
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR09600004214
+DT Article
+TI The 1956-1957 invasion of Three-toed Woodpeckers.
+AU West, J. D.
+   Spiers, J. M.
+SO Wilson Bulletin
+VL 71
+PS 348-363
+PD 1959
+PY 1959
+NT figs.
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Picoides arcticus [Zoology /  / and; Picoides tridactylus; invasion in
+   New England 1956-57]. 
+   Picoides tridactylus [Zoology /  / ]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+   Picoides tridactylus (Picidae). 
+UT ZOOREC:ZOOR09600004214
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR09500007516
+DT Article
+TI On a small collection of Mallophaga from the United States, with
+   descriptions of three new species.
+AU Carriker, M. A., jr.
+SO Proceedings of the Entomological Society of Washington
+VL 60
+PS 167-174
+PD 1958
+PY 1958
+NT 8 figs.
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology; Systematics; Nomenclature; New taxa
+DE Mallophaga [Zoology /  / A small collection of Mallophaga from the
+   United States]. 
+   Strigiphilus o.; Strigiphilus oculatus [Zoology /  / ]. 
+TN Arthropods; Insects; Invertebrates
+ST Animalia, Arthropoda, Insecta, Mallophaga
+OR Mallophaga (Insecta). 
+   Menacanthus aurocapillus (Mallophaga): [Sp nov, sp. n., (on, Seiurus
+   aurocapillus) Maryland p. 172 figs.]. 
+   Penenirmus arcticus (Mallophaga): [Sp nov, sp. n., (on, Picoides
+   arcticus) Michigan p. 168 figs.]. 
+   Strigiphilus bubonis - Osb. (Mallophaga): [Systematics]. 
+   Strigiphilus o. (Mallophaga). 
+   Strigiphilus oculatus (Mallophaga). 
+   Strigiphilus varius (Mallophaga): [Sp nov, sp. n., (on, Strix v. varia)
+   Indiana p. 169, Strigiphilus bubonis, Osb., a good sp. not syn. of,
+   Strigiphilus oculatus, Strigiphilus o., neoparatype designated p. 174
+   figs.]. 
+UT ZOOREC:ZOOR09500007516
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR09500003366
+DT Article
+TI Nesting of the Black-backed Three-toed Woodpecker n Michigan.
+AU Mayfield, H.
+SO Wilson Bulletin
+VL 70
+PS 195
+PD 1958
+PY 1958
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Picoides arcticus [Zoology /  / nesting in Michigan]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR09500003366
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR09400002478
+DT Article
+TI 1956-1957 invasion of Arctic Woodpeckers.
+AU Mitchell, H. D.
+SO Kingbird
+VL 7
+PS 74-77
+PD 1957
+PY 1957
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Picoides arcticus [Zoology /  / invasion in New England]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR09400002478
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR08800002141
+DT Article
+TI Observations on the Arctic Three-toed Woodpecker.
+AU Bourlo, E. A.
+   Hestuberg, G. A.
+SO Jack Pine Warbler
+VL 29
+PS pp. 78-81
+PD 1951
+PY 1951
+NT fig.
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Picoides arcticus [Zoology /  / observations in Michigan]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR08800002141
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR07700000858
+DT Article
+TI A nest of the Arctic Three-toed Woodpecker.
+AU England, E. G.
+SO Condor
+VL 42
+PS pp. 242-245
+PD 1940
+PY 1940
+NT 32 photos.
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Aves [Zoology /  / Ecology And Habits; Nidification; Single Species]. 
+   Picoides arcticus [Zoology /  / nesting notes with photos in California
+   mountains]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Picoides arcticus (Picidae). 
+DI 10.2307/1364484
+UT ZOOREC:ZOOR07700000858
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR06600001656
+DT Article
+TI The migrations and plumages of North American Birds. Three-toed
+   Woodpeckers
+AU Oberholser, H. C.
+   Chapman, F. M.
+SO Bird Lore New York
+VL 31
+PS pp. 110-111
+PD 1929
+PY 1929
+NT col. pl. Arizona and Red-cockaded Woodpeckers pp. 255-256 col. pl. Texas
+   & Nuttall's Woodpeckers pp. 398-399 col. pl.
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Dryobates arizonae [Zoology /  / Dryobates borealis; and other spp.
+   migrations plumages and col. pl]. 
+   Dryobates borealis; Picoides americanus [Zoology /  / ]. 
+   Picoides arcticus [Zoology /  / Picoides americanus; plumages migrations
+   col. pl]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Dryobates arizonae (Picidae). 
+   Dryobates borealis (Picidae). 
+   Picoides americanus (Picidae). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR06600001656
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR06300001301
+DT Article
+TI An unusual flight of Arctic Three-toed Woodpeckers.
+AU Van Tyne, J.
+SO Auk Lancaster Pa
+VL 43
+PS pp. 469-474
+PD 1926
+PY 1926
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Picoides arcticus [Zoology /  / status and invasion south to New York
+   and N. Jersey]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR06300001301
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR05600000670
+DT Article
+TI Further notes on New Brunswick birds.
+AU Philipp, P . B .
+   Bowdish, B. S.
+SO Auk Cambridge Mass
+VL 36
+PS (36-45)
+PD 1919
+PY 1919
+NT 2 pls.
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology; Land zones; Nearctic region; North America; Canada
+DE Aves [Zoology /  / Ethology. 5819; Migration; Regional Observations;
+   NORTH AMERICA] [New Brunswick /  / ]. 
+   Dendroica tigrina [Zoology /  / nest and eggs photographed and
+   described; p. 38]. 
+   Picoides arcticus [Zoology /  / nest and eggs photographed and
+   described]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Passeriformes, Parulidae,
+   Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Dendroica tigrina (Parulidae). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR05600000670
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR05500000692
+DT Article
+TI Picoides arcticus in Florida.
+AU Oberholser, H. C.
+SO Auk Cambridge Mass
+VL 35
+PS (479)
+PD 1918
+PY 1918
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Aves [Zoology /  / Geography. 5827; General; Nearctic Region (including
+   Mexico); Eastern United States; FLORIDA:]. 
+   Picoides arcticus [Zoology /  / wandering to Florida]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Aves (Vertebrata). 
+   Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR05500000692
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR04100001471
+DT Article
+TI [Title unknown.]
+AU Nichols
+SO Auk
+VL xxi
+PS Unpaginated
+PD 1904
+PY 1904
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology
+DE Picoides arcticus [Zoology /  / at Wellfleet; Massachusetts; p. 81]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Piciformes, Picidae
+OR Picoides arcticus (Picidae). 
+UT ZOOREC:ZOOR04100001471
+DA 2020-01-11
+ER
+
+PT J
+AN ZOOR03700000025
+DT Article
+TI A review of the Three-toed Woodpeckers of North America.
+AU Bangs, O.
+SO Auk
+VL xvii
+PS pp. 126-142
+PD 1900
+PY 1900
+NT [Pici.]
+LA English
+U1 0
+U2 0
+SC Zoology
+BD Biology; Systematics; Nomenclature; New taxa
+DE Ardea caerulea [Zoology /  / in Labrador; p. 386]. 
+   Dendraeca achrustera [Zoology /  / nomen emend. pro; Dendraeca
+   bahamensis; Maynard nec Cory; p. 292]. 
+   Picoides americanus bacatus [Zoology /  / n. subsp; Eastern North
+   America; pp. 136-138]. 
+   Picoides americanus labradorius [Zoology /  / n. subsp; Labrador; p.
+   138]. 
+   Picoides arcticus tenuirostria [Zoology /  / n. subsp; Oregon and
+   California; pp. 131 & 132]. 
+   Speotyto cunicularia cavicola [Zoology /  / nomen emend. pro; Speotyto
+   bahamensis; Maynard nec Cory; p. 287]. 
+TN Birds; Chordates; Vertebrates
+ST Animalia, Chordata, Vertebrata, Aves, Ciconiiformes, Ardeidae,
+   Passeriformes, Parulidae, Piciformes, Picidae, Strigiformes, Strigidae
+OR Dendraeca achrustera (Aves). 
+   Ardea caerulea (Ardeidae). 
+   Geothlypis maynardi (Parulidae): [Sp nov, n. sp., Bahamas, pp. 290 &
+   291]. 
+   Picoides americanus bacatus (Picidae). 
+   Picoides americanus labradorius (Picidae). 
+   Picoides arcticus tenuirostria (Picidae). 
+   Speotyto bahamensis - Maynard nec Cory (Strigidae): [Systematics]. 
+   Speotyto cunicularia cavicola (Strigidae). 
+UT ZOOREC:ZOOR03700000025
+DA 2020-01-11
 ER
 
 EF

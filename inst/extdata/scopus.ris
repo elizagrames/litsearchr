@@ -20,11 +20,77 @@ KW  - Habitat
 KW  - Occupancy
 KW  - Picoides arcticus
 KW  - Wildfire
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 C7  - 117694
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85074800841&doi=10.1016%2fj.foreco.2019.117694&partnerID=40&md5=0eda2e05b4ee01a795e8eb2dd2ec45bb
+ER  - 
+
+TY  - JOUR
+TI  - Efficacy of automated detection of motion in wildlife monitoring videos
+T2  - Wildlife Society Bulletin
+VL  - 43
+IS  - 4
+SP  - 726
+EP  - 736
+PY  - 2019
+DO  - 10.1002/wsb.1016
+AU  - Marcot, B.G.
+AU  - Lorenz, T.J.
+AU  - Fischer, P.
+AU  - Weinstein, B.G.
+AU  - Cowell, S.
+AD  - U.S. Forest Service, Pacific Northwest Research Station, 620 SW Main Street, Portland, OR  97205, United States
+AD  - U.S. Forest Service, Pacific Northwest Research Station, 3625 93rd Avenue SW, Olympia, WA  98512, United States
+AD  - 27291 US Highway 12, Naches, WA  98937, United States
+AD  - Department of Fisheries and Wildlife, Marine Mammal Institute, Oregon State University, 2030 Marine Science Drive, Newport, OR  97365, United States
+AD  - Department of Biology, Utah State University, 5305 Old Main Hill, Logan, UT  84322, United States
+AB  - Documenting biodiversity and wildlife behavior is time-consuming and potentially invasive. Remotely placed cameras often are used to increase sampling and minimize disturbance of focal animals. Such wildlife monitoring programs can entail numerous and lengthy videos requiring massive amounts of time to analyze their content. We evaluated the efficacy of a computer program, MotionMeerkat (http://benweinstein.weebly.com/motionmeerkat.html), for automated detection of motion in 21 continuous, 3-hour-long videos monitoring woodpecker (Picidae) nest cavities during 2016 in Washington, USA. The program produces still-image frame captures from the video where motion was detected, files logging the video time-stamps of each frame, and x,y coordinates within each frame where motion was detected. We compared program results with video reviews conducted by students using a standard protocol for identifying movement events and species identification. The program tagged 60% more motion events of all types, and 38% more motion events of target species (woodpeckers and potential predators), than were found by student reviews. We also conducted sensitivity analyses of the program by varying program input settings; results suggest that optimal settings depend on the video quality, environmental conditions, desired target species, and type of motion. We conclude that automated motion-detection programs such as MotionMeerkat can play important roles in use of continuous videos for wildlife monitoring, but results need to be reviewed by the researcher. © 2019 The Wildlife Society. © 2019 The Wildlife Society
+KW  - black-backed woodpecker
+KW  - hairy woodpecker
+KW  - motion detection
+KW  - northern flicker
+KW  - video monitoring
+KW  - Washington
+KW  - white-headed woodpecker
+KW  - woodpecker breeding behavior
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85074491527&doi=10.1002%2fwsb.1016&partnerID=40&md5=e382466d9167828e896075085e08f47f
+ER  - 
+
+TY  - JOUR
+TI  - Haemoproteosis lethality in a woodpecker, with molecular and morphological characterization of Haemoproteus velans (Haemosporida, Haemoproteidae)
+T2  - International Journal for Parasitology: Parasites and Wildlife
+VL  - 10
+SP  - 93
+EP  - 100
+PY  - 2019
+DO  - 10.1016/j.ijppaw.2019.07.007
+AU  - Groff, T.C.
+AU  - Lorenz, T.J.
+AU  - Crespo, R.
+AU  - Iezhova, T.
+AU  - Valkiūnas, G.
+AU  - Sehgal, R.N.M.
+AD  - San Francisco State University, Biology Department, 1600 Holloway Ave, San Francisco, CA  94312, United States
+AD  - U.S. Department of Agriculture, Forest Service, Pacific Northwest Research Station, 3625 93rd Ave SW, Olympia, WA  98512, United States
+AD  - North Carolina State, College of Veterinary Medicine, 1060 William Moore Dr, Raleigh, NC  27607, United States
+AD  - Institute of Ecology, Nature Research Centre, Akademijos Str. 2, Vilnius, LT-08412, Lithuania
+AB  - A juvenile White-headed woodpecker (Dryobates albolarvatus) fitted with a radio tag was located dead at approximately 22-days post-fledging in Yakima county in central Washington in July 2015. Postmortem examination revealed an enlarged liver and spleen plus evidence of iron sequestration. Microscopic examination observed young gametocytes within the cytoplasm of erythrocytes, and exo-erythrocytic meronts within the cytoplasm of capillary endothelial cells, hepatocytes, and myocytes, and free in the tissues. These attributes implicated a haemosporidian infection that likely resulted in mortality. Subsequent sampling results of local woodpecker species in the same area during the breeding season in June–July 2016 and May–July 2017 showed other individuals infected with Haemoproteus parasites. Nested Polymerase Chain Reaction (PCR), sequencing, and microscopic analyses for avian haemosporidians revealed infections with Haemoproteus velans (Haemosporida, Haemoproteidae). This parasite was characterized molecularly and morphologically. This is the first report of a haemosporidian infection in a White-headed woodpecker anywhere in its range, and the first reported suspected mortality from haemoproteosis for a woodpecker (Piciformes, Picidae). The use of radio-tagged birds is an asset in wildlife haemosporidian studies because the effect of the pathogen can be monitored in real time. Additionally, this methodology provides opportunities to collect fresh material for microscopic and histological examination from wild birds that have died from natural causes. © 2019 The Authors
+KW  - Haemoproteus velans
+KW  - Molecular and morphological characterization
+KW  - Mortality
+KW  - Picidae
+KW  - Radio-tagging
+KW  - White-headed woodpecker
+N1  - Cited By :1
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85070057686&doi=10.1016%2fj.ijppaw.2019.07.007&partnerID=40&md5=ee6f9a8dd8f3e65d650b52a0427f24a7
 ER  - 
 
 TY  - JOUR
@@ -53,11 +119,42 @@ KW  - Habitat specialist
 KW  - Metapopulation
 KW  - Prey dynamics
 KW  - Woodboring beetles
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 C7  - 17
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85070740078&doi=10.5751%2fACE-01375-140117&partnerID=40&md5=83b14ccf49a5b16e0e6dfd3d3e85899d
+ER  - 
+
+TY  - JOUR
+TI  - The importance of disturbance and forest structure to bird abundance in the Black Hills
+T2  - Condor
+VL  - 121
+IS  - 1
+PY  - 2019
+DO  - 10.1093/condor/duy023
+AU  - Matseur, E.A.
+AU  - Millspaugh, J.J.
+AU  - Thompson, F.R.
+AU  - Dickerson, B.E.
+AU  - Rumble, M.A.
+AD  - School of Natural Resources, University of Missouri, Columbia, MO, United States
+AD  - W.A. Franke College of Forestry and Conservation, University of Montana, Missoula, United States
+AD  - U.S. Forest Service Northern Research Station, Columbia, MO, United States
+AD  - U.S. Forest Service Rocky Mountain Research Station, Rapid City, United States
+AD  - Silt, CO, United States
+AB  - Many North American birds associated with forest disturbances such as wildfire and mountain pine beetle (Dendroctonus ponderosae) outbreaks are declining in abundance. More information on relationships between avian abundance and forest structure and disturbance is needed to guide conservation and management. Our objective was to determine densities of American Three-toed Woodpecker (Picoides dorsalis), Black-backed Woodpecker (Picoides arcticus), Redbreasted Nuthatch (Sitta canadensis), Brown Creeper (Certhia americana), and White-winged Junco (Junco hyemalis aikeni) in relation to vegetation characteristics and disturbance at the point and landscape level in the Black Hills and Bear Lodge Mountains of South Dakota and Wyoming. We conducted 3 point counts from late March to late June 2015 and 2016 at more than 2,300 locations distributed across a gradient of forest structure and disturbance types. We estimated densities using 3-level hierarchical time-removal models that simultaneously estimated abundance, availability, and detection probability. Black-backed Woodpeckers were positively related to percent area in 1-to 3-year-old wildfires and Brown Creepers were positively associated with percent area in 4-to 5-year-old wildfires; however, Redbreasted Nuthatches were negatively related to percent area in 3-to 5-year-old wildfires. With the exception of American Three-toed Woodpeckers, species were positively related to percent cover of beetle-killed trees. Brown Creepers, Whitewinged Juncos, and Red-breasted Nuthatches had mixed responses to percent overstory canopy cover. White-winged Juncos also had a positive association with percent ground vegetation at the point and landscape level. Brown Creepers were strongly linked with spruce vegetation type. American Three-toed Woodpeckers, which are thought to occupy spruce forest in the Black Hills, did not show a strong relationship with any covariates. Maintaining some areas of natural disturbances along with heterogeneity of vegetation characteristics within stands and at the landscape scale will benefit the needs of a diverse bird community in the Black Hills. Copyright © American Ornithological Society 2019. All rights reserved.
+KW  - Bird abundance
+KW  - Black Hills
+KW  - disturbance
+KW  - point counts
+KW  - time-removal models
+N1  - Cited By :1
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+C7  - duy023
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85068608486&doi=10.1093%2fcondor%2fduy023&partnerID=40&md5=6b71806dd9d953aa1862c76d216de6b9
 ER  - 
 
 TY  - JOUR
@@ -84,7 +181,7 @@ KW  - Habitat fragmentation
 KW  - Habitat selection
 KW  - Picoides arcticus
 KW  - Picoides dorsalis
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85061613518&doi=10.1016%2fj.foreco.2019.02.016&partnerID=40&md5=f4f2316bc5bd4d3ed21cba7308cfa8b4
@@ -117,68 +214,10 @@ KW  - Picoides arcticus
 KW  - pyrodiversity
 KW  - wildfire
 N1  - Cited By :4
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85060344055&doi=10.1111%2f1365-2664.13328&partnerID=40&md5=481739915b6e8b0288dbd6387c0db498
-ER  - 
-
-TY  - JOUR
-TI  - Early post-fire bird community in European boreal forest: Comparing salvage-logged with non-intervention areas
-T2  - Global Ecology and Conservation
-VL  - 18
-PY  - 2019
-DO  - 10.1016/j.gecco.2019.e00636
-AU  - Żmihorski, M.
-AU  - Hebda, G.
-AU  - Eggers, S.
-AU  - Månsson, J.
-AU  - Abrahamsson, T.
-AU  - Czeszczewik, D.
-AU  - Walankiewicz, W.
-AU  - Mikusiński, G.
-AD  - Mammal Research Institute, Polish Academy of Sciences, Stoczek 1, Białowieża17-230, Poland
-AD  - Institute of Biology, University of Opole, Oleska 22, Opole, 45-052, Poland
-AD  - Department of Ecology, Swedish University of Agricultural Sciences, Box 7044, Uppsala, SE-750 07, Sweden
-AD  - Grimsö Wildlife Research Station, Department of Ecology, Swedish University of Agricultural Sciences, Riddarhyttan, SE-730 91, Sweden
-AD  - School for Forest Management, Swedish University of Agricultural Sciences, Box 43, Skinnskatteberg, SE-739 21, Sweden
-AD  - Department of Zoology, Faculty of Natural Science, Siedlce University, Prusa 12, Siedlce, 08-110, Poland
-AB  - Salvage logging after disturbances in forests substantially modifies vegetation structure and dead wood availability, but empirical evidence on its impact on biodiversity, especially in European boreal forest, is sparse. In this study we investigated the short-term effect of post-fire salvage logging on species richness and abundance of birds in recently burned mixed coniferous forest. Using point counts we estimated local species composition at 49 salvaged sites and 55 non-intervention sites (burnt forest left for natural regeneration) that were not logged after a fire in south-central Sweden. Local species richness, abundance and Simpson's species diversity index were significantly higher at non-intervention sites compared to salvaged sites. Forest birds that rely on structurally complex forest stands, such as tits (Parus major, Lophophanes cristatus, Poecile montanus), robin (Erithacus rubecula), mistle trush (Turdus viscivorus) and tree-toed woodpecker (Picoides tridactylus) were mainly associated with non-intervention sites, while species that are typically linked to farm- or shrublands, such as whinchat (Saxicola rubetra), white wagtail (Motacilla alba), red-backed shrike (Lanius collurio), and meadow pipit (Anthus pratensis) were more common at salvaged sites. These results are consistent with the idea that post-fire salvage logging has an immediate impact on the bird species composition and abundance in boreal forest. We conclude that although post-fire salvage logging may be beneficial for birds occurring in open landscapes, it has negative effects for forest bird species richness and abundance, at least over the short term. To protect typical forest communities with many forest specialists of high conservation concern, we recommend reducing the extent of post-disturbance salvaging in forests of high conservation value and updating the existing management policy to restore the amount of woody debris and facilitate long-term structural complexity and biodiversity in densely stocked conifer stands. © 2019 The Authors
-KW  - Bird communities
-KW  - Boreal forest
-KW  - Forest fire
-KW  - Forest management
-KW  - Natural disturbance
-KW  - Salvage logging
-N1  - Export Date: 15 January 2020
-M3  - Article
-DB  - Scopus
-C7  - e00636
-UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85065919898&doi=10.1016%2fj.gecco.2019.e00636&partnerID=40&md5=6e8ccf317ff6b16449a9b4395f4d5e70
-ER  - 
-
-TY  - JOUR
-TI  - Ecological restoration modifies the value of biodiversity indicators in resident boreal forest birds
-T2  - Ecological Indicators
-VL  - 98
-SP  - 104
-EP  - 111
-PY  - 2019
-DO  - 10.1016/j.ecolind.2018.10.020
-AU  - Versluijs, M.
-AU  - Hjältén, J.
-AU  - Roberge, J.-M.
-AD  - Department of Wildlife, Fish, and Environmental Studies, Swedish University of Agricultural Sciences (SLU), Umeå, SE-901 83, Sweden
-AD  - Swedish Forest Agency, Box 284, Umeå, SE-901 06, Sweden
-AB  - A wide range of different biodiversity indicators have been identified in different biomes and types of environments. However, we currently lack a clear understanding under which circumstances proposed biodiversity indicators are valid indicators and when they are not. Here we conducted a large-scale restoration experiment by emulating natural disturbances through prescribed burning and gap-cutting. From this experiment data of resident forest birds was used to, (1) identify biodiversity indicators in the middle and northern boreal zone, (2) test the effect of forest restoration practices on biodiversity indicators and (3) explore the patterns when biodiversity indicator analyses are performed across a wider range of forest types including both restored and unrestored sites. Additionally, to understand the occurrence of species we correlated their occurrence with local habitat structures across different forest types. We found that both the three-toed woodpecker (Picoides tridactylus) and Siberian jay (Perisoreus infaustus) were important biodiversity indicators for the middle/northern boreal zone. The occurrence of these species can generally be used to identify species rich areas across different forest types. However, the three-toed woodpecker, the best indicator for unrestored forest, lost its indicator value after prescribed burning; in these stands the goldcrest (Regulus regulus) was the best biodiversity indicator. Based on habitat associations, we suggest that biodiversity indicators in boreal forest not only indicate high species richness but also structural habitat complexity. Our results draw attention to the fact that one must be careful about using previously identified biodiversity indicators in ecosystems subjected to ecological restoration. © 2018 Elsevier Ltd
-KW  - Biodiversity indicators
-KW  - Ecological restoration
-KW  - Middle/northern boreal forest
-KW  - Resident birds
-N1  - Export Date: 15 January 2020
-M3  - Article
-DB  - Scopus
-UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85055645695&doi=10.1016%2fj.ecolind.2018.10.020&partnerID=40&md5=7c87ee368809afbb97a2139ba60dbdbb
 ER  - 
 
 TY  - JOUR
@@ -209,7 +248,7 @@ KW  - Neutral congruence
 KW  - Picoides arcticus
 KW  - Post-fire
 KW  - Pyrodiversity
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85072769230&doi=10.1093%2fcondor%2fduz039&partnerID=40&md5=59d9232ce1e84fd49742180433bfc3f7
@@ -243,7 +282,7 @@ KW  - persistence
 KW  - Picoides arcticus
 KW  - wildfire
 N1  - Cited By :6
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85051269705&doi=10.1111%2f1365-2656.12851&partnerID=40&md5=1639c86fb4861d1f3ad749e89bab2f56
@@ -275,7 +314,7 @@ KW  - Picoides arcticus
 KW  - point count
 KW  - population estimate
 N1  - Cited By :1
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85044380371&doi=10.1002%2fjwmg.21450&partnerID=40&md5=c3a6419eccb464ce4f08928acfe67455
@@ -302,7 +341,7 @@ KW  - Salvage logging
 KW  - Snag island
 KW  - Snag retention
 N1  - Cited By :4
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 C7  - 16
@@ -334,10 +373,42 @@ KW  - Forest management
 KW  - Habitat suitability model
 KW  - Species distribution
 KW  - Species of conservation concern
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85070506676&partnerID=40&md5=0277aa0bc0c38e1f6427bd7fbbd15845
+ER  - 
+
+TY  - JOUR
+TI  - Thermal conditions within tree cavities in ponderosa pine (Pinus ponderosa) forests: potential implications for cavity users
+T2  - International Journal of Biometeorology
+VL  - 62
+IS  - 4
+SP  - 553
+EP  - 564
+PY  - 2018
+DO  - 10.1007/s00484-017-1464-4
+AU  - Vierling, K.T.
+AU  - Lorenz, T.J.
+AU  - Cunningham, P.
+AU  - Potterf, K.
+AD  - Department of Fish and Wildlife Sciences, University of Idaho, Moscow, ID  83844-1136, United States
+AD  - Pacific Northwest Research Station, 3625 93rd Ave. SW, Olympia, WA  98512, United States
+AD  - Pacific Northwest Research Station, US Forest Service, 3200 SW Jefferson Way, Corvallis, OR  97331, United States
+AD  - Center for Natural Lands Management, 120 Union Ave SE #215, Olympia, WA  98501, United States
+AB  - Tree cavities provide critical roosting and breeding sites for multiple species, and thermal environments in these cavities are important to understand. Our objectives were to (1) describe thermal characteristics in cavities between June 3 and August 9, 2014, and (2) investigate the environmental factors that influence cavity temperatures. We placed iButtons in 84 different cavities in ponderosa pine (Pinus ponderosa) forests in central Washington, and took hourly measurements for at least 8 days in each cavity. Temperatures above 40 °C are generally lethal to developing avian embryos, and ~ 18% of the cavities had internal temperatures of ≥ 40 °C for at least 1 h of each day. We modeled daily maximum cavity temperature, the amplitude of daily cavity temperatures, and the difference between the mean internal cavity and mean ambient temperatures as a function of several environmental variables. These variables included canopy cover, tree diameter at cavity height, cavity volume, entrance area, the hardness of the cavity body, the hardness of the cavity sill (which is the wood below the cavity entrance which forms the barrier between the cavity and the external environment), and sill width. Ambient temperature had the largest effect size for maximum cavity temperature and amplitude. Larger trees with harder sills may provide more thermally stable cavity environments, and decayed sills were positively associated with maximum cavity temperatures. Summer temperatures are projected to increase in this region, and additional research is needed to determine how the thermal environments of cavities will influence species occupancy, breeding, and survival. © 2017, ISB.
+KW  - Bats
+KW  - Black-backed woodpecker
+KW  - Lewis’s woodpecker
+KW  - Microclimate
+KW  - Ponderosa pine
+KW  - Tree cavity
+KW  - White-headed woodpecker
+N1  - Cited By :3
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85033465519&doi=10.1007%2fs00484-017-1464-4&partnerID=40&md5=7e1a933b9bc8631ab2078215a49f794f
 ER  - 
 
 TY  - JOUR
@@ -360,11 +431,30 @@ AD  - Natural Resources Canada, Canadian Forest Service, Northern Forestry Centr
 AD  - Université du Québec à Rimouski, Centre for Northern Studies and Centre for Forest Research, Département de biologie, chimie et géographie, Allée des Ursulines, Rimouski, QC, Canada
 AB  - Many studies project future bird ranges by relying on correlative species distribution models. Such models do not usually represent important processes explicitly related to climate change and harvesting, which limits their potential for predicting and understanding the future of boreal bird assemblages at the landscape scale. In this study, we attempted to assess the cumulative and specific impacts of both harvesting and climate-induced changes on wildfires and stand-level processes (e.g., reproduction, growth) in the boreal forest of eastern Canada. The projected changes in these landscape- and stand-scale processes (referred to as “drivers of change”) were then assessed for their impacts on future habitats and potential productivity of black-backed woodpecker (BBWO; Picoides arcticus), a focal species representative of deadwood and old-growth biodiversity in eastern Canada. Forest attributes were simulated using a forest landscape model, LANDIS-II, and were used to infer future landscape suitability to BBWO under three anthropogenic climate forcing scenarios (RCP 2.6, RCP 4.5 and RCP 8.5), compared to the historical baseline. We found climate change is likely to be detrimental for BBWO, with up to 92% decline in potential productivity under the worst-case climate forcing scenario (RCP 8.5). However, large declines were also projected under baseline climate, underlining the importance of harvest in determining future BBWO productivity. Present-day harvesting practices were the single most important cause of declining areas of old-growth coniferous forest, and hence appeared as the single most important driver of future BBWO productivity, regardless of the climate scenario. Climate-induced increases in fire activity would further promote young, deciduous stands at the expense of old-growth coniferous stands. This suggests that the biodiversity associated with deadwood and old-growth boreal forests may be greatly altered by the cumulative impacts of natural and anthropogenic disturbances under a changing climate. Management adaptations, including reduced harvesting levels and strategies to promote coniferous species content, may help mitigate these cumulative impacts. Copyright: © 2018 Tremblay et al. This is an open access article distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
 N1  - Cited By :6
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 C7  - e0191645
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85041510447&doi=10.1371%2fjournal.pone.0191645&partnerID=40&md5=ff7439e81036e6e67f63e7bf74965a8b
+ER  - 
+
+TY  - JOUR
+TI  - Novel function of flutter display in the black-backed woodpecker
+T2  - Western Birds
+VL  - 49
+IS  - 2
+SP  - 149
+EP  - 151
+PY  - 2018
+DO  - 10.21199/WB49.2.7
+AU  - Stillman, A.N.
+AU  - Tousley, F.
+AD  - Ecology and Evolutionary Biology, University of Connecticut, 75 N. Eagleville Road, Storrs, CT  06269, United States
+AD  - Institute for Bird Populations, P.O. Box 1346, Point Reyes Station, CA  94956, United States
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85049382159&doi=10.21199%2fWB49.2.7&partnerID=40&md5=7e28bcb1ea4e20781b3b7d1fd4bf65df
 ER  - 
 
 TY  - JOUR
@@ -393,11 +483,39 @@ KW  - Socio-ecological trade-offs
 KW  - State-and-transition model
 KW  - Wildfire feedbacks
 N1  - Cited By :9
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 C7  - e02161
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85048729186&doi=10.1002%2fecs2.2161&partnerID=40&md5=b7b943455f44ba137582f0d3db322308
+ER  - 
+
+TY  - JOUR
+TI  - Tag-team takeover: Usurpation of woodpecker nests by western bluebirds
+T2  - Western Birds
+VL  - 48
+IS  - 3
+SP  - 173
+EP  - 180
+PY  - 2017
+DO  - 10.21199/WB48.3.2
+AU  - Cowell, S.
+AU  - Sullivan, K.
+AU  - Domgaard, H.
+AU  - Lorscheider, S.
+AU  - Panoussi, M.
+AU  - Parrish, U.
+AU  - Rodman, T.
+AU  - Lorenz, T.
+AU  - Fischer, P.
+AD  - Department of Biology, Utah State University, 5305 Old Main Hill, Logan, UT  84322-5305, United States
+AD  - USFS Pacific Northwest Research Station, 3625 93rd Ave. SW, Olympia, WA  98512, United States
+AD  - 22620 U.S. Highway 12, Naches, WA  98937, United States
+AB  - Woodpeckers provide important ecological services by excavating nesting cavities that are used by many forest birds and other animals. Demand for nesting cavities by secondary cavity nesters can lead to intense competition for this limited resource. The Western Bluebird (Sialia mexicana) is known to usurp nests from its own and other species. However, the process by which bluebirds take over Eests from woodpeckers larger than themselves has not been well documented. In rder to understand this process, we analyzed 112 hours of video footage of nests of a Black-backed (Picoides arcticus) and a Hairy Woodpecker (P. vlliosus) located in the Okanogan-Wenatchee National Forest in Washington. Usurpation first involves a short period of physical confrontation followed by a prolonged period of constant bresence around the nest. The male and female bluebirds cooperate by taking turns harassing the woodpecker and guarding the nest. This may be of concern to managers as the Black-backed Woodpecker is considered a species at risk in certain locations.
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85032019200&doi=10.21199%2fWB48.3.2&partnerID=40&md5=950bd83e26a3d3b519139cac68f5e949
 ER  - 
 
 TY  - JOUR
@@ -434,36 +552,47 @@ KW  - Pyrodiversity
 KW  - Sierra Nevada
 KW  - Species of conservation concern
 N1  - Cited By :4
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85027023455&doi=10.4996%2ffireecology.13014817&partnerID=40&md5=5d7650dde3c8f2bd0033b5d1ba137b7b
 ER  - 
 
 TY  - JOUR
-TI  - Phloem sap in fire-damaged scots pine trees provides instant foraging opportunities for three-toed woodpeckers picoides tridactylus 
-ST  - Sav i floemet hos brandskadade tallar ger omedelbart tillgång till föda för tretåiga hackspettar picoides tridactylus
-T2  - Ornis Svecica
-VL  - 27
-IS  - 2-4
-SP  - 144
-EP  - 149
+TI  - Habitats and landscapes associated with bird species in a lowland conifer-dominated ecosystem 
+ST  - Milieux et paysages associés avec certaines espèces d'oiseaux dans un écosystème composé de basses terres dominées par les conifères
+T2  - Avian Conservation and Ecology
+VL  - 12
+IS  - 1
 PY  - 2017
-DO  - 10.34080/os.v27.19568
-AU  - Pakkala, T.
-AU  - Kouki, J.
-AU  - Piha, M.
-AU  - Tiainen, J.
-AD  - University of Helsinki, Lammi Biological Station, Lammi, FI-16900, Finland
-AD  - University of Eastern Finland, School of Forest Sciences, P. O. Box 111, Joensuu, FI-80101, Finland
-AD  - Finnish Museum of Natural History – LUOMUS, University of Helsinki, P. O. Box 17FI-00014, Finland
-AD  - Natural Resources Research Institute Finland, P. O. Box 2, Helsinki, FI-00791, Finland
-AB  - Three-toed Woodpeckers Picoides tridactylus are known to use phloem sap of conifer trees as a food resource mostly in springtime. A local pair instantly began to forage sap of Scots pine Pinus sylvestris trees that were damaged in a prescribed forest burning; before the fire they had used phloem sap elsewhere in their territory. During three weeks after the fire, the pair intensively used sap of Scots pines which were exposed to fire. The woodpeckers were probably attracted by nutrients induced by damage reaction of the burned pines. Rapid sap use of newly burned trees has not been described before, and it indicates behavioural plasticity how this woodpecker species can use resources in disturbance driven, dynamic forest environments. © 2017, University of Lund. All rights reserved.
-N1  - Cited By :1
-N1  - Export Date: 15 January 2020
+DO  - 10.5751/ACE-00954-120107
+AU  - Zlonis, E.J.
+AU  - Panci, H.G.
+AU  - Bednar, J.D.
+AU  - Hamady, M.
+AU  - Niemi, G.J.
+AD  - Natural Resources Research Institute, University of Minnesota Duluth, United States
+AD  - Wetland Wildlife Population and Research Group, Division of Fish and Wildlife, Minnesota Department of Natural Resources, United States
+AD  - Natural Resources Research Institute, United Kingdom
+AD  - University of Minnesota Duluth, United States
+AD  - Great Lakes Indian Fish and Wildlife Commission, United States
+AD  - Department of Biology, University of Minnesota Duluth, United States
+AD  - Division of Ecological and Water Resources, Minnesota Department of Natural Resources, United States
+AB  - Human-induced effects on lowland conifer forests in hemiboreal regions are increasing because of expanded use of these northern ecosystems for raw materials, energy, and minerals as well as the potential effects of climatic changes. These forests support many breeding bird species across the Holarctic and allow the persistence of several boreal bird species in hemiboreal and even temperate regions. These bird species are of particular conservation concern as shifting patterns northward in forest composition caused by climate change will likely affect their populations. However, effective management and conservation options are limited because the specifics of these species’ breeding habitats are not well understood. We modeled and mapped habitat suitability for 11 species of boreal birds that breed in the lowland conifer forests of the Agassiz Lowlands Ecological Subsection in northern Minnesota and are likely to have reduced breeding habitat in the future: Spruce Grouse (Falcipennis canadensis), Black-backed Woodpecker (Picoides arcticus), Olivesided Flycatcher (Contopus cooperi), Yellow-bellied Flycatcher (Empidonax flaviventris), Boreal Chickadee (Poecile hudsonicus), Golden-crowned Kinglet (Regulus satrapa), Ruby-crowned Kinglet (Regulus calendula), Swainson’s Thrush (Catharus ustulatus), Connecticut Warbler (Oporornis agilis), Palm Warbler (Setophaga palmarum), and Dark-eyed Junco (Junco hyemalis). Sets of 7 to 16 potential environmental covariates, including both stand-level and landscape attributes, were used to develop individual species models. Within this lowland conifer-dominated ecosystem, we found significant selection for specific forest and landscape characteristics by all but one of these species, with the best models including between one and nine variables. Habitat suitability maps were developed from these models and predictions tested with an independent dataset. Model performance depended on species, correctly predicting 56–96% of test data. We present a map combining suitability scores for five species of conservation concern that has been used for conservation planning and management opportunities across a broad, lowland forest landscape. We recommend managers utilize the detailed model development and validation framework to address local and regional conservation issues. © 2017 by the author(s).
+KW  - Bird conservation
+KW  - Boreal birds
+KW  - Boreal forests
+KW  - Forest management
+KW  - Habitat suitability
+KW  - Hemiboreal
+KW  - Lowland coniferous forest
+KW  - MaxEnt
+N1  - Cited By :5
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
-UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85068195252&doi=10.34080%2fos.v27.19568&partnerID=40&md5=7f3f7e3fbb9bdc46b56aa8edcd832a68
+C7  - 7
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85021349541&doi=10.5751%2fACE-00954-120107&partnerID=40&md5=12461c917c9aa0bf870c58e44e7df5ae
 ER  - 
 
 TY  - JOUR
@@ -496,7 +625,7 @@ KW  - Predictive performance
 KW  - Salvage logging
 KW  - Wildfire
 N1  - Cited By :6
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84992317272&doi=10.1650%2fCONDOR-16-86.1&partnerID=40&md5=d7d26a5c5cf752e5af8ff66fc4ec329f
@@ -527,7 +656,7 @@ KW  - Home range
 KW  - Population size
 KW  - Wildlife habitat model
 N1  - Cited By :17
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84949818344&doi=10.1111%2f2041-210X.12500&partnerID=40&md5=5987039513efeecf26336c87a8887f8d
@@ -567,7 +696,7 @@ KW  - Stem diameter
 KW  - Watershed segmentation
 KW  - Wildlife habitat
 N1  - Cited By :25
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84954203107&doi=10.1016%2fj.rse.2015.12.044&partnerID=40&md5=6b18d2cdf6c37fb69203e7e0dfc712c8
@@ -595,10 +724,37 @@ KW  - Nest sanitation
 KW  - Parental provisioning
 KW  - Picoides arcticus
 KW  - Woodpecker
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85051423487&doi=10.1515%2forhu-2016-0004&partnerID=40&md5=3c413c23186fc8a72f1160fa9a1c535d
+ER  - 
+
+TY  - JOUR
+TI  - Resident and cavity-nesting avian community is affected by amount but not age of white pine in central Ontario mature mixedwood forests
+T2  - Canadian Journal of Forest Research
+VL  - 46
+IS  - 5
+SP  - 725
+EP  - 737
+PY  - 2016
+DO  - 10.1139/cjfr-2015-0477
+AU  - Thompson, I.D.
+AU  - Wiebe, P.
+AU  - Kirk, D.A.
+AD  - Canadian Forest Service, 1219 Queen Street East, Sault Ste. Marie, ON  P6A 2E5, Canada
+AD  - Aquila Conservation and Environmental Consulting, 75 Albert Street, Suite 300, Ottawa, ON  K1P 5E7, Canada
+AB  - Forests with old-growth white pines have been severely reduced compared with historical levels. We examined resident and cavity-nesting bird species abundances in winter and the breeding season, because some of these species may prefer old-forest habitats for breeding. We counted birds over 10 years in four mixedwood types: old pine, mature pine, mature nonpine, and selection-harvested stands. We expected that old pine stands would be selected by some species because of abundant snags and large trees for foraging. We assessed habitat use among years and changes following harvesting. Counts of nomadic species varied across years but counts for others did not. Species used old and mature pine mixedwoods equally and more than nonpine or harvested stands in winter and for breeding, but old stands were not preferred. Important variables included percent pine and large tree density. Selection harvesting benefitted Yellow-bellied Sapsuckers but reduced counts of Black-capped Chickadees and Brown Creepers. Black-capped Chickadees changed habitats between seasons and in some years. Black-backed Woodpeckers were most common in pine stands but abundant in harvested stands for 2 years following cutting. Regardless of stand age, large (>40 cm) pines provide important habitat for residents and cavity nesters. © 2016 NRC Research Press.
+KW  - Cavity nesters
+KW  - Old growth
+KW  - Resident birds
+KW  - Selection harvesting
+KW  - White pine
+N1  - Cited By :2
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84964702644&doi=10.1139%2fcjfr-2015-0477&partnerID=40&md5=0e92669bea61d91b32be65e5aaa60cda
 ER  - 
 
 TY  - JOUR
@@ -624,10 +780,36 @@ KW  - restoration
 KW  - salvage logging
 KW  - wildfire
 N1  - Cited By :15
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84990848029&doi=10.1071%2fWF15228&partnerID=40&md5=ad9ec1058a5650695b7a948c5b18beba
+ER  - 
+
+TY  - JOUR
+TI  - DNA barcoding and phylogenetic relationships of genera Picoides and Dendrocopos (Aves: Picidae)
+T2  - Genetics and Molecular Research
+VL  - 14
+IS  - 4
+SP  - 18370
+EP  - 18375
+PY  - 2015
+DO  - 10.4238/2015.December.23.24
+AU  - Huang, Z.H.
+AU  - Tu, F.Y.
+AU  - Liao, X.J.
+AD  - School of Life Sciences, Jinggangshan University, Ji’an, Jiangxi Province, China
+AD  - Jiangxi Academy of Forestry, Nanchang, Jiangxi Province, China
+AB  - Picoides and Dendrocopos are two closely related genera of woodpeckers (family Picidae), and members of these genera have long been the subjects of phylogenetic debate. Mitochondrial cytochrome c oxidase subunit I (COI) is a powerful marker for the identification and phylogenetic study of animal species. In the present study, we analyzed the COI barcodes of 21 species from the two genera, and 222 variable sites were identified. Kimura two-parameter distances were calculated between barcodes. The average interspecific genetic distance was more than 20 times higher than the average intraspecific genetic distance. The neighbor-joining method was used to construct a phylogenetic tree, and all of the species could be discriminated by their distinct clades. Picoides arcticus was the first to split from the lineage, and the other species were grouped into two divergent clades. The results of this study indicated that the COI genetic data did not support the monophyly of Picoides and Dendrocopos. © FUNPEC-RP.
+KW  - Dendrocopos
+KW  - DNA barcoding
+KW  - Phylogenetic relationship
+KW  - Picoides
+N1  - Cited By :1
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84952013206&doi=10.4238%2f2015.December.23.24&partnerID=40&md5=1152992ebfb87d4f7cdd03493b41da05
 ER  - 
 
 TY  - JOUR
@@ -657,10 +839,37 @@ KW  - natal dispersal
 KW  - Picoides arcticus
 KW  - population age structure
 N1  - Cited By :9
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84951153944&doi=10.1642%2fAUK-15-137.1&partnerID=40&md5=c00e0b77434d13521df326075e9b79bf
+ER  - 
+
+TY  - JOUR
+TI  - Structural retention requirements for a key ecosystem engineer in conifer-dominated stands of a boreal managed landscape in eastern Canada
+T2  - Forest Ecology and Management
+VL  - 357
+SP  - 220
+EP  - 227
+PY  - 2015
+DO  - 10.1016/j.foreco.2015.08.024
+AU  - Tremblay, J.A.
+AU  - Savard, J.-P.L.
+AU  - Ibarzabal, J.
+AD  - Environment Canada, Science and Technology Branch, 801-1550, avenue d'Estimauville, Québec, QC  G1J 0C3, Canada
+AD  - Université du Québec à Chicoutimi, Département des sciences fondamentales, 555, boulevard de l'Université, Chicoutimi, QC  G7H 2B1, Canada
+AB  - The concept of retention forestry brings a new point of view for forest management as more emphasis is put on what is retained as opposed to what is removed during harvesting. Details of retention harvesting prescriptions vary among forest ecosystems reflecting differences in their disturbance dynamics, stand composition and condition, and landscape context. Although recent studies underlie the important role of trembling aspen (Populus tremuloides) in cavity networks of Canadian western temperate forests, limited information exists for conifer-dominated forests such as the black spruce (Picea mariana) forests of central Québec where the proportion of deciduous trees is generally &lt;10%. We used the habitat requirements of an ecosystem engineer of eastern boreal forests, the Black-backed Woodpecker (Picoides arcticus), to determine harvesting prescriptions likely to preserve most of the biodiversity of this ecosystem. We describe the mean physical characteristics of trees selected for nesting, quantify nesting habitat selection at two scales (nest tree and nesting stand), and identify quantitative targets for forest managers to select types and amounts of retention structures that will offer optimal resources to cavity nesting birds and dead wood associated species in managed boreal landscapes. During the three years of this project, we found 18 Black-backed Woodpecker nests: 9 were in old coniferous, 6 in young cuts, and 1 nest in each of the other habitats (barren land, young coniferous and old cut). Selection of nest trees by Black-backed Woodpeckers was influenced primarily by tree species (jack pine Pinus banksiana) and also by the dbh of trees, while their selection of nesting stand habitat was influenced positively by the mean density of recent-solid snags and negatively by the mean basal area of live trees. Our results show that forest stands with ≥200 recently decayed snags/ha (≥9cm dbh) exhibit higher predicted probability of selection for nesting by Black-backed Woodpeckers, and most of the cutblocks with a nest tree originate from harvesting with advance regeneration protection with at least that many snags. Moreover, cutblocks should contain suitable candidate nest trees, with retention of ≤ 10 live and dead trees/ha with a dbh ≥ 27cm, and retention of jack pine snags in proportion of their availability before harvesting in black spruce-dominated forest stands. We recommend that, where forest stands present suitable structures, every stand harvested with retention harvesting should retain ≥ 200 recent-solid snags/ha (≥ 9 cm dbh), which represents about 1 recent-solid snag each 7m (50m2). The medium and long-term persistence of dead wood associated species may not rely only on retention forestry, thus we recommend the protection of patches (100ha) of old forest stands (≥120y) inside these agglomeration of cutblocks to ensure the dynamic of dead wood creation within the managed landscape. © 2015.
+KW  - Black-backed Woodpecker
+KW  - Cavity-nesting bird
+KW  - Nest tree
+KW  - Old-growth forest
+KW  - Retention forestry
+KW  - Secondary cavity-nester
+N1  - Cited By :13
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84940109687&doi=10.1016%2fj.foreco.2015.08.024&partnerID=40&md5=2520e086ac861337fddac628153781cd
 ER  - 
 
 TY  - CHAP
@@ -685,7 +894,7 @@ KW  - Forest restoration
 KW  - Salvage logging
 KW  - Severe fire
 N1  - Cited By :8
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Book Chapter
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84940042425&doi=10.1016%2fB978-0-12-802749-3.00003-7&partnerID=40&md5=a7ac861b5edf09e8f5ab2f9ac0be6abc
@@ -711,10 +920,44 @@ KW  - Picoides
 KW  - Saproxylic
 KW  - Woodpeckers
 N1  - Cited By :21
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84924663658&doi=10.1016%2fj.foreco.2015.02.028&partnerID=40&md5=dcaee7b11cf023837e5c3ae8e1c9cbff
+ER  - 
+
+TY  - JOUR
+TI  - The role of wood hardness in limiting nest site selection in avian cavity excavators
+T2  - Ecological Applications
+VL  - 25
+IS  - 4
+SP  - 1016
+EP  - 1033
+PY  - 2015
+DO  - 10.1890/14-1042.1
+AU  - Lorenz, T.J.
+AU  - Vierling, K.T.
+AU  - Johnson, T.R.
+AU  - Fischer, P.C.
+AD  - Department of Fish and Wildlife Sciences, University of Idaho, P.O. Box 441136, Moscow, ID  83844, United States
+AD  - Department of Statistical Sciences, University of Idaho, Moscow, ID  83844, United States
+AD  - Retired Civil Engineer, 1405 Jesica Drive, Selah, WA  98942, United States
+AB  - Woodpeckers and other primary cavity excavators (PCEs) are important worldwide for excavating cavities in trees, and a large number of studies have examined their nesting preferences. However, quantitative measures of wood hardness have been omitted from most studies, and ecologists have focused on the effects of external tree- and habitat-level features on nesting. Moreover, information is lacking on the role of wood hardness in limiting nesting opportunities for this important guild. Here, we used an information theoretic approach to examine the role of wood hardness in multi-scale nest site selection and in limiting nesting opportunities for six species of North American PCEs. We found that interior wood hardness at nests (n = 259) differed from that at random sites, and all six species of PCE had nests with significantly softer interior wood than random trees (F1,517 = 106.15, P &lt; 0.0001). Accordingly, interior wood hardness was the most influential factor in our models of nest site selection at both spatial scales that we examined: in the selection of trees within territories and in the selection of nest locations on trees. Moreover, regardless of hypothesized excavation abilities, all the species in our study appeared constrained by interior wood hardness, and only 4-14% of random sites were actually suitable for nesting. Our findings suggest that past studies that did not measure wood hardness counted many sites as available to PCEs when they were actually unsuitable, potentially biasing results. Moreover, by not accounting for nest site limitations in PCEs, managers may overestimate the amount of suitable habitat. We therefore urge ecologists to incorporate quantitative measures of wood hardness into PCE nest site selection studies, and to consider the limitations faced by avian cavity excavators in forest management decisions. © 2015 by the Ecological Society of America.
+KW  - Black-backed woodpecker
+KW  - Nest limitations
+KW  - Nest site selection
+KW  - Primary cavity excavator
+KW  - Resource selection
+KW  - Secondary cavity user
+KW  - Snag decay class
+KW  - White-headed woodpecker
+KW  - Wood hardness
+KW  - Wood mass density
+N1  - Cited By :28
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84930036756&doi=10.1890%2f14-1042.1&partnerID=40&md5=436ba03ae206ff56e9d3944cc74a8e03
 ER  - 
 
 TY  - JOUR
@@ -741,7 +984,7 @@ KW  - Ephemeral habitat
 KW  - Foraging
 KW  - Wood-boring beetles
 N1  - Cited By :10
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84928108072&doi=10.1650%2fCONDOR-14-112.1&partnerID=40&md5=f470afe7793e2caf2eb9f6ee096696dd
@@ -768,7 +1011,7 @@ KW  - Picoides arcticus
 KW  - resource pulse interactions
 KW  - wildfire
 N1  - Cited By :7
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84975455037&doi=10.1080%2f11956860.2016.1169386&partnerID=40&md5=6105ec5d15d18ab24ca7cbbadecbc1cf
@@ -797,7 +1040,7 @@ KW  - Ecological succession
 KW  - Pioneer species
 KW  - Post-fire habitat
 N1  - Cited By :11
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84930378117&doi=10.1111%2fjzo.12220&partnerID=40&md5=94aae78f1b610b47db18b52975578c07
@@ -816,7 +1059,7 @@ AU  - Rumble, M.A.
 AU  - Lehman, C.P.
 AU  - Kesler, D.C.
 N1  - Cited By :8
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Erratum
 DB  - Scopus
 C7  - e106390
@@ -850,7 +1093,7 @@ KW  - Picoides arcticus
 KW  - Snag basal area
 KW  - Space use
 N1  - Cited By :25
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84908569401&doi=10.1650%2fCONDOR-13-140.1&partnerID=40&md5=5b24b022893be5a662701c484aa54bec
@@ -873,7 +1116,7 @@ AD  - Forest and Grassland Research Laboratory, United States Forest Service Roc
 AD  - South Dakota Department of Game, Fish, and Parks, Custer State Park, Custer, SD, United States
 AB  - Wildfire and mountain pine beetle infestations are naturally occurring disturbances in western North American forests. Black-backed woodpeckers (Picoides arcticus) are emblematic of the role these disturbances play in creating wildlife habitat, since they are strongly associated with recently-killed forests. However, management practices aimed at reducing the economic impact of natural disturbances can result in habitat loss for this species. Although black-backed woodpeckers occupy habitats created by wildfire, prescribed fire, and mountain pine beetle infestations, the relative value of these habitats remains unknown. We studied habitat-specific adult and juvenile survival probabilities and reproductive rates between April 2008 and August 2012 in the Black Hills, South Dakota. We estimated habitat-specific adult and juvenile survival probability with Bayesian multi-state models and habitat-specific reproductive success with Bayesian nest survival models. We calculated asymptotic population growth rates from estimated demographic rates with matrix projection models. Adult and juvenile survival and nest success were highest in habitat created by summer wildfire, intermediate in MPB infestations, and lowest in habitat created by fall prescribed fire. Mean posterior distributions of population growth rates indicated growing populations in habitat created by summer wildfire and declining populations in fall prescribed fire and mountain pine beetle infestations. Our finding that population growth rates were positive only in habitat created by summer wildfire underscores the need to maintain early post-wildfire habitat across the landscape. The lower growth rates in fall prescribed fire and MPB infestations may be attributed to differences in predator communities and food resources relative to summer wildfire.
 N1  - Cited By :16
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 C7  - e94700
@@ -903,10 +1146,40 @@ KW  - Prescribed fire
 KW  - Resource selection
 KW  - Wildfire
 N1  - Cited By :24
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84889025251&doi=10.1016%2fj.foreco.2013.10.048&partnerID=40&md5=ec1d6a622c50c98c9a4c5144213790cc
+ER  - 
+
+TY  - JOUR
+TI  - Influence of old coniferous habitat on nestling growth of black-backed woodpeckers picoides arcticus
+T2  - Acta Ornithologica
+VL  - 49
+IS  - 2
+SP  - 273
+EP  - 279
+PY  - 2014
+DO  - 10.3161/173484714X687172
+AU  - Tremblay, J.A.
+AU  - Ibarzabal, J.
+AU  - Savard, J.-P.L.
+AU  - Wilson, S.
+AD  - Département des Sciences Fondamentales, Université du Québec À Chicoutimi, Chicoutimi, Canada
+AD  - Science and Technology Branch, Environment CanadaQC, Canada
+AD  - Science and Technology Branch, Environment Canada, Ottawa, Canada
+AB  - Nest success is often used to evaluate the impact of environmental stressors on species, but nestling growth may also be indicative of subtle consequences on individual fitness. We monitored Black-backed Woodpecker Picoides arcticus nestling growth in unburned boreal forests under the influence of commercial logging. The objectives of our exploratory study were to estimate growth rate constants of weight and three morphometric measures (culmen length, tarsal length and wing length) in nestling Black-backed Woodpeckers and to determine how the amount of old coniferous habitat in home ranges may affect these rates. The amount of old coniferous habitat positively influenced weight gain in Black-backed Woodpecker nestlings but did not influence the three morphometric measures of growth rate. Our results suggest that Black-backed Woodpecker fitness may be affected by the reduction of old coniferous habitat in managed forest landscapes. We encourage further studies on the relationship between habitat quality and nestling growth as a potentially useful indicator of how habitat loss might influence individual fitness in these species.
+KW  - Cavity-nesting bird
+KW  - fitness
+KW  - forest management
+KW  - nestling growth rate
+KW  - unburned boreal forest
+KW  - woodpecker
+N1  - Cited By :5
+N1  - Export Date: 11 January 2020
+M3  - Conference Paper
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84924521470&doi=10.3161%2f173484714X687172&partnerID=40&md5=418f332fe0e1486da88c3c8a9c34d358
 ER  - 
 
 TY  - JOUR
@@ -926,7 +1199,7 @@ AD  - Department of Ecology and Evolutionary Biology, University of Connecticut,
 AD  - USDA Forest Service, Pacific Southwest Region, 1323 Club Drive, Vallejo, CA  94592, United States
 AB  - The Black-backed Woodpecker (Picoides arcticus) is strongly associated with recently burned forest, which makes it vulnerable to salvage logging or other post-fire forest management that removes snags. As part of a larger radio-telemetry study of the species' resource use and habitat selection in a burned forest in California, we located radio-tagged Black-backed Woodpeckers at night to find and describe their roost sites. We found 14 unique roost locations during night-time searches for five individual birds. Description of the micro-site on the tree that the bird used was impossible at five roosts where we could not visually locate the bird in the dark. At the nine roosts confirmed visually, none of the birds roosted in excavated cavities. Rather, they roosted in sheltered spaces within burned-out hollows of trunks (5 instances), in the crook of a forked trunk (1 instance), wedged between adjacent trunks of two closely spaced trees (1 instance), in a deep, natural bark furrow (1 instance), and clinging to a trunk directly above a horizontal branch (1 instance). Eleven of the 14 roosts (79%) were in dead trees. Our results suggest that in burned forests the Black-backed Woodpecker may benefit if, during salvage logging, emphasis is placed on retaining snags with burned-out hollows, forked trunks, or other relatively unusual structures that may create crevices or other opportunities for shelter.
 N1  - Cited By :2
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84922059056&partnerID=40&md5=1e1c1e506edc2bc83e23dccae0e9352e
@@ -951,10 +1224,67 @@ KW  - Occupancy modeling
 KW  - Picoides arcticus
 KW  - Secondary habitat
 N1  - Cited By :21
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84919934928&doi=10.5751%2fACE-00671-090203&partnerID=40&md5=176e5cc6c1ca452965e0133c1421fd00
+ER  - 
+
+TY  - JOUR
+TI  - Habitat availability for multiple avian species under modeled alternative conservation scenarios in the two hearted river watershed in Michigan, USA
+T2  - Journal for Nature Conservation
+VL  - 22
+IS  - 4
+SP  - 302
+EP  - 317
+PY  - 2014
+DO  - 10.1016/j.jnc.2014.02.005
+AU  - Nixon, K.
+AU  - Silbernagel, J.
+AU  - Price, J.
+AU  - Miller, N.
+AU  - Swaty, R.
+AD  - University of Wisconsin, Nelson Institute, 550 North Park Street, Madison, WI 53706, United States
+AD  - Nature Conservancy, Wisconsin Field Office, 633 West Main Street, Madison, WI 53703, United States
+AD  - Nature Conservancy, Global Fire Team, 109 West Baraga Street, Suite B, Marquette, MI 49855, United States
+AB  - Due to differences in the responses of species to changing landscape patterns, developing a conservation plan with an optimal outcome of supporting contrasting habitat needs can be difficult. Landscape scenario modeling can provide a means to compare alternative conservation strategies and can reveal tradeoffs of managing for one objective versus another. In order to evaluate the impacts of alternative conservation strategies in a 53,653ha landscape in Michigan's Upper Peninsula, four scenarios of alternative conservation strategies were modeled 100 years into the future using the VDDT®/TELSA® spatial model suite, and habitat availability was evaluated for five target bird species of local conservation concern under each scenario. The target species were Dendroica fusca (Blackburnian Warbler), Picoides arcticus (Black-backed Woodpecker), Dendroica kirtlandii (Kirtland's Warbler), Buteo lineatus (Red-shouldered Hawk), and Scolopax minor (American Woodcock). Scenarios were ranked based on relative performance of three habitat metric results (total primary habitat area, average size of habitat patches, and average distance to the nearest neighboring habitat patch) for each species. The final overall rank for each scenario was generally related to harvest intensity; the scenario with the smallest total area of even-aged management ranked the highest. Ranks were not consistent across all response variables. Relative species sensitivity was also evaluated, and the ranks did not match expectations, with the more habitat generalist species showing the highest sensitivity and the most specialist species showing the lowest. The approach here provides a means of projecting and comparing potential long-term impacts of alternative landscape strategies on diverse wildlife habitats. These results, when considered with budget considerations and species' habitat area and population goals, can assist local managers and stakeholders in conservation planning by identifying tradeoffs and compromises aimed at optimizing protection for a variety of target species. © 2014 Elsevier GmbH.
+KW  - Conservation effectiveness
+KW  - Forest management strategies
+KW  - Forest scenario analysis
+KW  - Habitat assessment
+KW  - Landscape change
+KW  - Multiple species
+KW  - Spatial pattern
+N1  - Cited By :5
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84902791528&doi=10.1016%2fj.jnc.2014.02.005&partnerID=40&md5=b00d8b9c5e0be0b9b94eac6dc9fff4d6
+ER  - 
+
+TY  - JOUR
+TI  - A comparison of avian habitat in forest management plans produced under three different certifi cation systems in Ontario, Canada
+T2  - Wildlife Society Bulletin
+VL  - 38
+IS  - 1
+SP  - 142
+EP  - 147
+PY  - 2014
+DO  - 10.1002/wsb.397
+AU  - Euler, D.
+AD  - Echo Bay, ON, Canada
+AD  - Box 6, Echo Bay, ON P0S 1C0, Canada
+AB  - Considerable discussion and theoretical reviews of forest certification systems have been published that outline the potential impact of forest certification on biodiversity and wildlife habitat. Three common approaches to forest certification used in Canada include the Forest Stewardship Council, the Canadian Standards Association, and the Sustainable Forestry Initiative. In this study, I reviewed forest management plans in Ontario, Canada, and compared the plans' potential impact on habitat for 6 species of birds that use mature and older forests: pileated woodpecker (Dryocopus pileatus), ruby-crowned kinglet (Regulus calendula), boreal chickadee (Poecile hudsonicus), black-backed woodpecker (Picoides arcticus), great gray owl (Strix nebulosa), and red-breasted nuthatch (Sitta canadensis). The purpose was to determine whether the different certification systems in use resulted in different impacts on avian habitat, and to compare certified forest management plans with plans prepared for un-certified forest units. Based on 27 Forest Management Plans in Ontario, there seems to be little reason to believe that certified forests are more likely to protect and conserve habitat for these 6 bird species that use older forests than are forests that are not certified. © 2014 The Wildlife Society.
+KW  - Avian habitat
+KW  - Forest certification
+KW  - Forest management plans
+KW  - Mature forests
+KW  - Old-growth forests
+N1  - Cited By :2
+N1  - Export Date: 11 January 2020
+M3  - Review
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84899049707&doi=10.1002%2fwsb.397&partnerID=40&md5=2f460dab5df1f20cccfcf244b4239a67
 ER  - 
 
 TY  - JOUR
@@ -985,7 +1315,7 @@ KW  - Resource selection models
 KW  - Species distribution models
 KW  - Wildfire
 N1  - Cited By :14
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84887509809&doi=10.1002%2fece3.790&partnerID=40&md5=6c1813972ef68d18ce8686ebc28aad42
@@ -1009,11 +1339,44 @@ AD  - United States Forest Service, Rocky Mountain Research Station, Missoula, M
 AD  - CSIRO Black Mountain Site, Canberra, ACT, Australia
 AB  - An exciting advance in the understanding of metapopulation dynamics has been the investigation of how populations respond to ephemeral patches that go 'extinct' during the lifetime of an individual. Previous research has shown that this scenario leads to genetic homogenization across large spatial scales. However, little is known about fine-scale genetic structuring or how this changes over time in ephemeral patches. We predicted that species that specialize on ephemeral habitats will delay dispersal to exploit natal habitat patches while resources are plentiful and thus display fine-scale structure. To investigate this idea, we evaluated the effect of frequent colonization of ephemeral habitats on the fine-scale genetic structure of a fire specialist, the black-backed woodpecker (Picoides arcticus) and found a pattern of fine-scale genetic structure. We then tested for differences in spatial structure between sexes and detected a pattern consistent with male-biased dispersal. We also detected a temporal increase in relatedness among individuals within newly burned forest patches. Our results indicate that specialist species that outlive their ephemeral patches can accrue significant fine-scale spatial structure that does not necessarily affect spatial structure at larger scales. This highlights the importance of both spatial and temporal scale considerations in both sampling and data interpretation of molecular genetic results. © 2013 Pierson et al.
 N1  - Cited By :17
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 C7  - e67248
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84879346781&doi=10.1371%2fjournal.pone.0067248&partnerID=40&md5=e9e11610ebe30f3eecc45a40325f773b
+ER  - 
+
+TY  - JOUR
+TI  - Lethal procyrnea infection in a black-backed woodpecker (picoides arcticus) from california
+T2  - Journal of Zoo and Wildlife Medicine
+VL  - 43
+IS  - 2
+SP  - 421
+EP  - 424
+PY  - 2012
+DO  - 10.1638/2011-0226.1
+AU  - Siegel, R.B.
+AU  - Bond, M.L.
+AU  - Wilkerson, R.L.
+AU  - Barr, B.C.
+AU  - Gardiner, C.H.
+AU  - Kinsella, J.M.
+AD  - Institute for Bird Populations, P.O. Box 1346, Point Reyes Station, CA 94956, United States
+AD  - California Animal Health and Food Safety Laboratory, University of California, Davis, CA 95616, United States
+AD  - Veterinary Pathology Service, Joint Pathology Center, 606 Stephen Sitter Avenue, Silver Spring, MD 20910, United States
+AD  - HelmWest Laboratory, 2108 Hilda Avenue, Missoula, MN 59801, United States
+AB  - The black-backed woodpecker (Picoides arcticus) is a species of management concern in California. As part of a study of black-backed woodpecker home range size and foraging ecology, nine birds in Lassen National Forest (Shasta and Lassen Counties, California) were radio-tracked during the 2011 breeding season. One of the marked birds was found dead after being tracked for a 10-wk period in which it successfully nested. A postmortem examination of the dead bird revealed that it was emaciated and autolyzed, with the presumptive cause being numerous spiruroid nematodes of the genus Procyrnea in the gizzard. This first observation of Procyrnea nematodes in a black-backed woodpecker is notable because the Procyrnea infection was considered lethal and because Procyrnea has been implicated in substantial die-offs in other bird species, including woodpeckers. © 2012 American Association of Zoo Veterinarians.
+KW  - Black-backed woodpecker
+KW  - Picoides arcticus
+KW  - Procyrnea colaptes
+KW  - Procyrnea pileata
+KW  - spiruroid nematodes
+KW  - woodpeckers
+N1  - Cited By :4
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84862882823&doi=10.1638%2f2011-0226.1&partnerID=40&md5=d8c42106e47d924e8ebd12895ac63bb1
 ER  - 
 
 TY  - JOUR
@@ -1040,7 +1403,7 @@ KW  - Remote sensing
 KW  - Resource-selection probability function
 KW  - Wildfire
 N1  - Cited By :23
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84862303807&doi=10.1525%2fcond.2012.110020&partnerID=40&md5=36bf9a511f1cc3093d805633aec10aed
@@ -1061,7 +1424,7 @@ AD  - 36311 U.S. Hwy. 41, Chassell, MI 49916, United States
 AD  - 1020 Allouez Rd., Marquette, MI 49844, United States
 AB  - A stand-replacing fire in 404 ha of jack pine (Pinus banksiana) and mixed pine forest in Michigan's Upper Peninsula in 2007 resulted in Black-backed Woodpeckers (Picoides arcticus) nesting at high density in 2008, the second possible nesting season post-fire. Nests were found within a 93-ha study area and a 19-ha stand (a subset of the 93-ha study area) in 199.5 survey hours concentrated in March-July. The 19-ha stand had six nests, a density of 0.31 nests/ha or 0.63 individuals/ha, while the 93-ha study area had 20 nests yielding 0.21 nests/ha or 0.42 individuals/ha. These nest densities are higher than previously reported in the literature for comparable stands, indicating a large influx of nesting woodpeckers post-fire. High nesting densities in this study may have resulted from: (1) optimal timing of the fire for wood-boring beetle exploitation of burned trees, (2) the discrete nature of burned habitat in the study due to impacts of salvage logging, or (3) our focus on regions of the burn where high nesting densities occurred, as the entire burned area (404 ha) was not included in nest density calculations. © 2011 by the Wilson Ornithological Society.
 N1  - Cited By :3
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-79957512845&doi=10.1676%2f10-069.1&partnerID=40&md5=6020690d3905ddb0d49ec94a22c3cfd1
@@ -1082,7 +1445,7 @@ AD  - Centre d'étude de la forêt, Département des sciences biologiques, Unive
 AD  - Bureau du forestier en chef, 845 blvd. Saint-Joseph, Roberval, QC G8H 2L6, Canada
 AB  - Burned forests represent high-quality habitats for many deadwood-dependent species. Yet, post-fire conditions may vary greatly within and among burns and thereby may affect habitat suitability for these species. We studied habitat selection of nesting black-backed woodpeckers (Picoides arcticus Swainson) in recently burned spruce-dominated boreal forests. Our objectives were to (i) identify factors involved in snag selection for both nesting and foraging and (ii) examine selection of nest sites within the burned landscape. A total of 92 nests and 1612 foraging observations were used to investigate snag selection. Our results show that both pre-fire forest conditions and fire severity are important in determining the quality of burned forests for black-backed woodpeckers. This species selected large snags for both nesting (>20 cm DBH) and foraging (>15 cm DBH). Woodpeckers selected deciduous and degraded "pre-fire" snags for nesting whereas black spruce snags that had been created by fire and that were moderately burned were preferred for foraging. Nest sites were concentrated in burned mature stands and supported higher densities of large snags (e.g., >15 cm DBH). Our results suggest that burned forest patches of at least 20 ha and composed mainly of burned mature and old-growth forests should be maintained during post-fire harvesting. The decrease in the amount of late seral stands in managed forest landscapes raises concerns about the future availability of high-quality burned forests for this species.
 N1  - Cited By :23
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-79955726583&doi=10.1139%2fx11-028&partnerID=40&md5=a078cc058bd63fd633d5c1440289d4cb
@@ -1116,7 +1479,7 @@ KW  - Salvage logging
 KW  - Sialia spp.
 KW  - Wildfire
 N1  - Cited By :23
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-79957605801&doi=10.1002%2fjwmg.111&partnerID=40&md5=0344bc250ea034b014ed84263cfe3d54
@@ -1145,11 +1508,43 @@ KW  - Picoides arcticus
 KW  - Removal model
 KW  - Sierra Nevada
 N1  - Cited By :32
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 C7  - 31
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84862901565&doi=10.1890%2fES10-00132.1&partnerID=40&md5=e012059488bac2f62650a1159dff3141
+ER  - 
+
+TY  - JOUR
+TI  - Netguns: A technique for capturing Black-backed Woodpeckers
+T2  - Journal of Field Ornithology
+VL  - 82
+IS  - 4
+SP  - 430
+EP  - 435
+PY  - 2011
+DO  - 10.1111/j.1557-9263.2011.00347.x
+AU  - Lehman, C.P.
+AU  - Kesler, D.C.
+AU  - Rota, C.T.
+AU  - Rumble, M.A.
+AU  - Seckinger, E.M.
+AU  - Juntti, T.M.
+AU  - Millspaugh, J.J.
+AD  - South Dakota Department of Game, Fish and Parks, 13329 US Highway 16A, Custer State Park, Custer, SD 57730, United States
+AD  - Department of Fisheries and Wildlife Sciences, University of Missouri, 302 Anheuser-Busch Natural Resources Building, Columbia, MO 65211, United States
+AD  - U.S. Forest Service, Rocky Mountain Research Station, 8221 South Highway 16, Rapid City, SD 57702, United States
+AB  - Effective capture techniques are essential for studying bird populations, but commonly used techniques have proven ineffective for capturing Black-backed Woodpeckers (Picoides arcticus) during the nonbreeding period. As a result, little is known about the winter ecology of Black-backed Woodpeckers. We used two netguns, one powered with a 0.308 cartridge and another with CO2 propellant, to capture 101 Black-backed Woodpeckers (N= 75 initial captures and 26 recaptures) in the Black Hills of South Dakota from 2008 to 2011. Captures with the 0.308 netgun resulted in an impact mortality probability of 0.061 ± 0.034 (SE), whereas no impact mortalities were associated with the CO2 netgun. We also tracked birds for 72 h post-release, and determined a capture-related mortality rate of 0.102 ± 0.04 with the 0.308 netgun and 0.038 ± 0.027 with the CO2 netgun. With the CO2 netgun, we captured woodpeckers in 31 of 43 net deployments (72%), with an average of 7.2 ± 0.4 h of capture effort for each bird. Many unsuccessful attempts were caused by tree branches that prevented net deployment. Netguns powered by CO2 provide an effective capture technique that we recommend for studies of Black-backed Woodpeckers and possibly other species of birds that forage low on trees. © 2011 Association of Field Ornithologists.
+KW  - Black hills
+KW  - Capture success
+KW  - Capture technique
+KW  - Handling time
+KW  - Picoides arcticus
+N1  - Cited By :6
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-82255164359&doi=10.1111%2fj.1557-9263.2011.00347.x&partnerID=40&md5=82625bdd570e966dcd9e4648ec55b34c
 ER  - 
 
 TY  - JOUR
@@ -1177,7 +1572,7 @@ KW  - Nuthatch
 KW  - Prescribed fire
 KW  - Woodpecker
 N1  - Cited By :2
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-82755181580&doi=10.2174%2f1876325101004010041&partnerID=40&md5=b8007d29c3df6107e22f80420b3c6764
@@ -1210,10 +1605,33 @@ KW  - Picoides arcticus
 KW  - Picoides dorsalis
 KW  - Scolytinae.
 N1  - Cited By :44
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-77954095495&doi=10.1071%2fWF08109&partnerID=40&md5=72dc9394cfcf8334da043cba470bb3a7
+ER  - 
+
+TY  - JOUR
+TI  - Foraging ecology of black-backed woodpeckers (Picoides arcticus) in unburned eastern boreal forest stands
+T2  - Canadian Journal of Forest Research
+VL  - 40
+IS  - 5
+SP  - 991
+EP  - 999
+PY  - 2010
+DO  - 10.1139/X10-044
+AU  - Tremblay, J.A.
+AU  - Ibarzabal, J.
+AU  - Savard, J.-P.L.
+AD  - Ministère des Ressources naturelles et de la Faune, Direction de l'expertise sur la faune et ses habitats, 880 chemin Sainte-Foy, Québec, QC G1S 4X4, Canada
+AD  - Université du Québec à Chicoutimi, Département des sciences fondamentales, 555 boulevard de l'Université, Chicoutimi, QC G7H 2B1, Canada
+AD  - Science et Technologie, Environnement Canada, Région de Québec, 1141 route de l'Église, C. P. 10100, Québec, QC G1V 4H5, Canada
+AB  - Managed coniferous forest dominates much of the black-backed woodpecker's (Picoides arcticus Swainson) breeding range. Despite this, little is known about the fine-scale foraging behaviour of this focal species in unburned managed forest stands in the absence of insect outbreaks. To investigate the foraging substrates used in such a habitat, we employed radio-telemetry to track a total of 27 black-backed woodpeckers. During two successive summers (2005-2006), 279 foraging observations were recorded, most of which were on dying trees, snags, and downed woody debris. Individuals frequently foraged by excavation, suggesting that in the absence of insect outbreaks the black-backed woodpecker forages mainly by drilling. The majority of foraging events occurred on recently dead snags with a mean dbh (±SE) of 18.3 ± 0.4 cm. Our results suggest that in unburned boreal forest stands, substrate diameter and decay class are important predictors of suitable foraging substrates for black-backed woodpeckers. We suggest that conservation efforts aimed at maintaining this dead-wood dependent cavity nesting species within the landscape, should endeavour to maintain 100 ha patches of old-growth coniferous forest. This would ensure the continuous production of a sufficient quantity of recently dead or dying trees to meet the foraging needs of this species.
+N1  - Cited By :24
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-77951997088&doi=10.1139%2fX10-044&partnerID=40&md5=b6ccfd75a286cfba8e472a0a53b807a7
 ER  - 
 
 TY  - JOUR
@@ -1243,7 +1661,7 @@ KW  - Picoides arcticus
 KW  - Population genetic structure
 KW  - Sex-biased movement
 N1  - Cited By :23
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-77954296909&doi=10.1111%2fj.1752-4571.2009.00111.x&partnerID=40&md5=ef05833719b3eacf4bbb9ca3b60cfebf
@@ -1270,7 +1688,7 @@ KW  - Picoides arcticus
 KW  - Post-fire
 KW  - Wood borer
 N1  - Cited By :39
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-70449715066&doi=10.1016%2fj.foreco.2009.10.021&partnerID=40&md5=7fa48e2a305aa55f3fa482da8eaa710d
@@ -1296,7 +1714,7 @@ KW  - Nest success
 KW  - Picidae
 KW  - Source-sink
 N1  - Cited By :68
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-67349284072&doi=10.1016%2fj.biocon.2009.01.022&partnerID=40&md5=2375007dd7ff2effe463a0b9460f7171
@@ -1332,7 +1750,7 @@ KW  - Presence-absence data
 KW  - Species richness
 KW  - WinBUGS
 N1  - Cited By :94
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-68149147597&doi=10.1890%2f08-0910.1&partnerID=40&md5=d58f15a71c6b09b4d4340a89ba28f709
@@ -1357,7 +1775,7 @@ AD  - Department of Ecology, Montana State University, Bozeman, MT 59717, United
 AD  - USDA Forest Service, Rocky Mountain Research Station, 322 East Front Street, Boise, ID 83702, United States
 AB  - Accurate estimates of Black-backed (Picoides arcticus) and Hairy Woodpecker (P. villosus) nests and nest survival rates in post-fire landscapes provide land managers with information on the relative importance of burned forests to nesting woodpeckers. We conducted multiple-observer surveys in burned and unburned mixed coniferous forests in Oregon to identify important factors influencing detection rates of wood-pecker nests. We found 21 Black-backed Woodpecker nests and 38 Hairy Woodpecker nests in burned forest, and three Hairy Woodpecker nests in unburned forest. Competing models of detection probability in Program MARK indicated that nest-detection probability differed by nest stage. We found no evidence to indicate that detection rates of nests were associated with survey timing during the nesting season. Raw nest counts in burned coniferous forests may underestimate nest numbers, especially for nests in early stages of development. Black-backed Woodpecker nests were slightly more detectable than those of Hairy Woodpeckers in burned forests, and observers may differ in their abilities to detect nests.
 N1  - Cited By :5
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-62549152286&doi=10.1676%2f08-026.1&partnerID=40&md5=0c6a9c5d007d6983e738438ba6ffd5bd
@@ -1381,7 +1799,7 @@ KW  - Fire
 KW  - Ponderosa pine-Douglas-fir forest
 KW  - Salvage logging
 N1  - Cited By :23
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-58149302673&doi=10.1016%2fj.foreco.2008.11.019&partnerID=40&md5=de72d5ef908e0bd5a6395b3a6d9aa4d0
@@ -1410,10 +1828,96 @@ KW  - Sialia spp.
 KW  - Wildfire
 KW  - Woodpeckers
 N1  - Cited By :54
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-56449118495&doi=10.1016%2fj.foreco.2008.08.028&partnerID=40&md5=3686d424dc054259271d283e33cbb719
+ER  - 
+
+TY  - JOUR
+TI  - Habitat requirements of breeding black-backed woodpeckers (Picoides arcticus) in managed, unburned boreal forest 
+ST  - Besoins en termes d'habitat chez le Pic à dos noir (Picoides arcticus) nichant en forêt boréale non brûlée et sous aménagement
+T2  - Avian Conservation and Ecology
+VL  - 4
+IS  - 1
+SP  - 3
+PY  - 2009
+DO  - 10.5751/ACE-00297-040102
+AU  - Tremblay, J.A.
+AU  - Ibarzabal, J.
+AU  - Dussault, C.
+AU  - Savard, J.-P.L.
+AD  - Université du Québec à Chicoutimi, Canada
+AD  - Environment Canada, Canadian Wildlife Service, Canada
+AB  - We investigated home-range characteristics and habitat selection by Black-backed Woodpeckers (Picoides arcticus) in an unburned, boreal forest landscape managed by mosaic harvesting in Quebec, Canada. Habitat selection by this species was specifically examined to determine home-range establishment and foraging activities. We hypothesized that Black-backed Woodpeckers would respond to harvesting by adjusting their home-range size as a function of the amount of dead wood available. Twenty-two birds were tracked using radiotelemetry, and reliable estimates of home-range size were obtained for seven breeding individuals (six males and one female). The average home-range size was 151.5 ± 18.8 ha (range: 100.4-256.4 ha). Our results indicate that this species establishes home ranges in areas where both open and forested habitats are available. However, during foraging activities, individuals preferentially selected areas dominated by old coniferous stands. The study also showed that the spatial distribution of preferred foraging habitat patches influenced space use, with home-range area increasing with the median distance between old coniferous habitat patches available within the landscape. Finally, these data show that Black-backed Woodpeckers may successfully breed in an unburned forest with at least 35 m3 • ha-1 of dead wood, of which 42% (15 m3 • ha-1) is represented by dead wood at the early decay stage. © 2009. by the author(s).
+KW  - Cavity-associated species management
+KW  - Dead wood
+KW  - Foraging ecology
+KW  - Habitat use
+KW  - Radiotelemetry
+N1  - Cited By :29
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-69649105835&doi=10.5751%2fACE-00297-040102&partnerID=40&md5=ac32cd9f1e1b60ccf0f59d9b7ff99c2c
+ER  - 
+
+TY  - JOUR
+TI  - Digital voice recording: An efficient alternative for data collection
+T2  - USDA Forest Service - Research Note RMRS-RN
+IS  - 38
+SP  - 1
+EP  - 3
+PY  - 2009
+AU  - Rumble, M.A.
+AU  - Juntti, T.M.
+AU  - Bonnot, T.W.
+AU  - Millspaugh, J.J.
+AD  - Research Wildlife Biologist, Rocky Mountain Research Station, Rapid City, SD, United States
+AD  - Biological Technician, Rocky Mountain Research Station, Rapid City, SD, United States
+AD  - Research Associate, Department of Wildlife and Fisheries Sciences at the University of Missouri, Colombia
+AD  - Associate Professor, Department of Wildlife and Fisheries Sciences at the University of Missouri, Colombia
+AB  - Study designs are usually constrained by logistical and budgetary considerations that can affect the depth and breadth of the research. Little attention has been paid to increasing the efficiency of data recording. Digital voice recording and translation may offer improved efficiency of field personnel. Using this technology, we increased our data collection by 55 percent. Digital voice recording was useful for the intense, repetitive, and structured data set we collected on black-backed woodpecker (Picoides arcticus) nest sites and perhaps for other studies.
+N1  - Cited By :1
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-61649091554&partnerID=40&md5=07fc452f237a38c97e4ffdcc50374c30
+ER  - 
+
+TY  - JOUR
+TI  - Effects of partial harvesting on vertebrate species associated with late-successional forests in Ontario's boreal region
+T2  - Forestry Chronicle
+VL  - 85
+IS  - 1
+SP  - 91
+EP  - 104
+PY  - 2009
+DO  - 10.5558/tfc85091-1
+AU  - Vanderwel, M.C.
+AU  - Mills, S.C.
+AU  - Malcolm, J.R.
+AD  - Faculty of Forestry, University of Toronto, 33 Willcocks St., Toronto, Ontario M5S 3B3, Canada
+AD  - Northeast Science and Information Section, Ont. Min. Nat. Res., Hwy. 101 East, P.O. Bag 3020, South Porcupine, Ontario P0N 1H0, Canada
+AB  - In the boreal forest region, partial-harvest silviculture has been garnering increasing interest as a means of maintaining wildlife species and habitat structure associated with late-successional forests. If late-successional species can find suitable habitat in partially harvested stands with a given level of structural retention, then partial harvesting might represent a viable silvicultural tool for maintaining wildlife dependent on mature or old-forest habitat within managed stands over time. Here we summarize literature on the responses of late-successional amphibians, birds, and mammals in Ontario's boreal region to various intensities of partial harvesting. We assess species responses from comparisons of habitat use in harvested and unharvested stands; we do not explicitly consider impacts of partial harvesting applied over large areas across the landscape. At the stand scale, light-intensity harvesting (70% retention) negatively affects several passerine birds, as well as spruce grouse winter habitat, but most late-successional species (including all mammals and amphibians considered) appear to be tolerant of this level of habitat alteration. Moderate-intensity harvesting (50% retention) was found to reduce the abundance of about 40% of the species considered, particularly cavity- and snag-dependent species (martens, northern flying squirrels, owls) and passerine birds that forage or nest in the canopy and understory. Highintensity (30% retention) partial harvesting was found to provide unsuitable habitat for about one quarter of all late-successional species, including most forest raptors, pileated and black-backed woodpeckers, brown creepers, northern flying squirrels, and woodland caribou. Also, studies indicate that additional passerine bird species would decrease in abundance, as would small, moisture-dependent, terrestrial species such as short-tailed shrews, red-backed voles, and eastern red-backed salamanders. There is a need to strengthen our understanding of responses to partial harvesting for nonpasserine birds and large mammals, and to verify species responses through experimental studies within Ontario's boreal region.
+KW  - Amphibians
+KW  - Biodiversity
+KW  - Birds
+KW  - Cavities
+KW  - Downed woody debris
+KW  - Habitat suitability
+KW  - Mammals
+KW  - Review
+KW  - Seed tree
+KW  - Selection
+KW  - Shelterwood
+KW  - Snags
+KW  - Structural retention
+N1  - Cited By :29
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-65649101218&doi=10.5558%2ftfc85091-1&partnerID=40&md5=c1780261e660ff909a4a4ca95da4d251
 ER  - 
 
 TY  - JOUR
@@ -1439,7 +1943,7 @@ KW  - Nest success
 KW  - Nest survival
 KW  - Picoides arcticus
 N1  - Cited By :37
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-67349100009&doi=10.1525%2fcond.2008.8460&partnerID=40&md5=dc9935771500d87f16e676a3558e8177
@@ -1464,7 +1968,7 @@ KW  - Mixed-conifer forest
 KW  - Picoides arcticus
 KW  - Severe fire
 N1  - Cited By :124
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-63249085825&doi=10.1890%2f08-0895.1&partnerID=40&md5=aa8771b115c9a15f233f2b34e07e00ee
@@ -1491,10 +1995,42 @@ KW  - Sierra Nevada
 KW  - Stand-replacement fire
 KW  - Woodpeckers
 N1  - Cited By :28
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-67649669774&doi=10.1525%2fcond.2008.8611&partnerID=40&md5=3b2a656c6fb3bbd33e378110a6fc400e
+ER  - 
+
+TY  - JOUR
+TI  - Isolation and characterization of 12 microsatellite markers in the middle-spotted woodpecker (Dendrocopos medius)
+T2  - Molecular Ecology Resources
+VL  - 8
+IS  - 2
+SP  - 415
+EP  - 417
+PY  - 2008
+DO  - 10.1111/j.1471-8286.2007.01976.x
+AU  - Vila, M.
+AU  - Robles, H.
+AU  - Ciudad, C.
+AU  - Olea, P.P.
+AU  - Baglione, V.
+AD  - Department of Molecular and Cell Biology, University of A Coruna, Campus Zapateira, E-15008, A Coruna, Spain
+AD  - Laboratory of Animal Ecology, University of Antwerp, Campus Drie Eiken, Universiteitsplein 1, 26210 Wilrijk, Belgium
+AD  - Department of Biodiversity and Environment Management, University of León, Campus Vegazana, E-24071, León, Spain
+AD  - Department of Molecular Biology and Environmental Sciences, SEK University, Campus Santa Cruz la Real, E-40003 Segovia, Spain
+AD  - Department of Agro-forestry, University of Valladolid, Avenida Madrid 44, E-34004, Palencia, Spain
+AB  - Twelve polymorphic microsatellite loci were developed for Dendrocopos medius. Polymorphism was assessed for 27 individuals from the southwesternmost population of this woodpecker species. The number of alleles per locus ranged from three to seven, with observed heterozygosity values from 0.444 to 0.852. Genotypic frequencies conformed to Hardy-Weinberg equilibrium, and no evidence for linkage disequilibrium was observed. Multilocus genotypes resulting from this set of markers will be useful to determine genetic diversity and differentiation within and among habitat patches inhabited by D. medius. Three of the loci were polymorphic for Picoides articus. © 2007 The Authors.
+KW  - Dendrocopos medius
+KW  - Habitat fragmentation
+KW  - Microsatellite
+KW  - Picoides arcticus
+KW  - Woodpecker
+N1  - Cited By :7
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-38949183937&doi=10.1111%2fj.1471-8286.2007.01976.x&partnerID=40&md5=1c44f81696dffc9c1c8559fe44c15a9a
 ER  - 
 
 TY  - JOUR
@@ -1521,7 +2057,7 @@ KW  - Picoides arcticus
 KW  - Ponderosa pine
 KW  - Wildfire
 N1  - Cited By :17
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-38549174717&doi=10.3398%2f1527-0904%282007%2967%5b593%3aHRSOBW%5d2.0.CO%3b2&partnerID=40&md5=856ae16572f6aade8528d6604c0a139a
@@ -1553,10 +2089,31 @@ KW  - Receiver operating curves
 KW  - Remotely sensed data
 KW  - Sialia spp.
 N1  - Cited By :26
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-38549122242&doi=10.2193%2f2007-034&partnerID=40&md5=1f57b225e8cdc9540f80d7e7462d2281
+ER  - 
+
+TY  - JOUR
+TI  - Boreal forest landbirds in relation to forest composition, structure, and landscape: Implications for forest management
+T2  - Canadian Journal of Forest Research
+VL  - 37
+IS  - 7
+SP  - 1214
+EP  - 1226
+PY  - 2007
+DO  - 10.1139/X07-025
+AU  - Venier, L.A.
+AU  - Pearce, J.L.
+AD  - Great Lakes Forestry Centre, Canadian Forest Service, 1219 Queen St. E, Sault Ste. Marie, Ont. P6A 2E5, Canada
+AD  - Pearce and Associates Ecological Research, 1405 Third Line East, Sault Ste. Marie, Ont. P6A 6J8, Canada
+AB  - We examined a landbird community and its relationship to environmental variables within the boreal forest in north-central Ontario to evaluate its potential usefulness as an indicator of sustainable forest management. Our study had two components. First, we compared bird assemblages in mature forest stands inside Pukaskwa National Park (n = 17) with similar forested stands in a logged landscape (n = 18) over 3 years. We found significant separation of sites in the two treatments based on an ANOSIM (analogue of the standard univariate one-way ANOVA test) of the bird communities (R = 0.238, p < 0.001). We identified four significant indicators of the park landscape (bay-breasted warbler (Dendroica castanea (Wilson, 1810)), black-throated green warbler (Dendroica virens (J.F. Gmelin, 1789)), ovenbird (Seiurus aurocapillus (L., 1766)), and red-eyed vireo (Vireo olivaceus (L., 1766))) and five indicators of the logged landscape (black-backed woodpecker (Picoides arcticus (Swainson, 1832)), brown creeper (Certhia americana Bonaparte, 1838), winter wren (Troglodytes troglodytes (L., 1758)), white-throated sparrow (Zonotrichia albicollis (J.F. Gmelin, 1789)), and yellow-bellied sapsucker (Sphyrapicus varius (L., 1776))). Some relationships were attributable to differences in vegetation, whereas other differences were attributable to the landscape context. Second, we used generalized additive models to examine the relationship of individual species with four sets of environmental data (understorey floristics, forest structure, overstorey composition, and landscape context) using the 35 sites noted above and 18 additional mature forest sites in the logged landscape (n = 53). We found that all four types of variables were frequently included in the best model based on Akaike's information criterion (AIC) (structure in 23 models, landscape in 20 models, overstorey in 19 models, and understorey in 15 models). We discuss our results in terms of their implications to forest management and note that our ability to map habitat for forest birds is substantially compromised by the lack of good spatial estimates of environmental variables that describe bird habitat. © 2007 NRC.
+N1  - Cited By :31
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-35848957938&doi=10.1139%2fX07-025&partnerID=40&md5=3f7838fa43d48be00bf9b23c39312b82
 ER  - 
 
 TY  - JOUR
@@ -1582,7 +2139,7 @@ KW  - Transect count method
 KW  - Wildfire
 KW  - Woodpeckers
 N1  - Cited By :47
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-34047094826&doi=10.1016%2fj.foreco.2007.01.075&partnerID=40&md5=62b77fd5acd56bee624eff14abb1319e
@@ -1610,7 +2167,7 @@ KW  - Ponderosa pine forests
 KW  - Postfire salvage logging
 KW  - Wildfire
 N1  - Cited By :99
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-33847205723&doi=10.1650%2f0010-5422%282007%29109%5b97%3aNDOCBI%5d2.0.CO%3b2&partnerID=40&md5=c3e682d775d923ef9b8501642ce3f968
@@ -1636,7 +2193,7 @@ KW  - Fire
 KW  - Healthy forests
 KW  - Salvage logging
 N1  - Cited By :64
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-33845215798&doi=10.1650%2f0010-5422%282006%29108%5b817%3aTEOPSL%5d2.0.CO%3b2&partnerID=40&md5=f506917c775486a28f6851efd17d8dc6
@@ -1662,7 +2219,7 @@ KW  - Picoides arcticus
 KW  - Salvage logging
 KW  - Stand-replacement fire
 N1  - Cited By :113
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Review
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-33746338207&doi=10.1111%2fj.1523-1739.2006.00494.x&partnerID=40&md5=5dae09554e78f10b17639c35909a7f0d
@@ -1681,7 +2238,7 @@ AU  - Desmeules, P.
 AD  - Département des Sciences Fondamentales, Université du Québec à Chicoutimi, 555 boul. de l'Université, Chicoutimi, Que. G7H 2B1, Canada
 AB  - Presence-absence data is often used to determine the preferred habitat of a given organism. However, with presence-absence datasets there is a problem associated with the comparison between habitats when there is an inter-habitat variation in the proportion of false zeros. Using conspecific playbacks and time of reaction of black-backed woodpeckers in burned and unburned forests, the present study determined whether detection probabilities were similar. The period of time required to detect this species was shorter in recently burned sites than in mature forest stands (F2,235 = 22.1, df = 2, P &lt; 0.0001). To accurately compare these habitats it is important to assure the same proportion of presence and false zeros in each habitat during the census. To achieve this, we propose a time corrected method. Because inter-habitat differences in detectability exist for black-backed woodpeckers, and probably many other organisms, caution is needed when interpreting presence-absence data in the context of habitat comparisons or when monitoring biodiversity in different habitats. © Finnish Zoological and Botanical Publishing Board 2006.
 N1  - Cited By :10
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Conference Paper
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-33646705650&partnerID=40&md5=93467517959d4869192fdeceb1628e02
@@ -1700,10 +2257,29 @@ AU  - Ibarzabal, J.
 AD  - Département des Sciences Fondamentales, Université du Québec à Chicoutimi, 555 boul. de l'Université, Chicoutimi, Que. G7H 2B1, Canada
 AB  - Black-backed woodpeckers (Picoides arcticus) may depend on recently burned forest patches to maintain viable population levels. We wanted to determine how these habitats are colonized by this species and by which age classes. Data collected at the Observatoire d'oiseaux de Tadoussac (situated on the north shore of the St. Lawrence River (Québec, Canada)) suggest that an important movement of juveniles occurs during the autumn. It was therefore hypothesized that in the year following fire, burned forest sites would be colonized by a higher percentage of juvenile birds than intact mature stands. In accordance to this hypothesis, there was a difference in woodpecker age structure between the two habitat types (χ2 = 9.43, df = 2, P = 0.0088, n = 186). However, differences are mainly explained by the higher number of third calendar year birds at burned forest sites, suggesting that a part of the colonization occurs in the same year as the fire by second year birds, rather than by juveniles during the autumn. © Finnish Zoological and Botanical Publishing Board 2006.
 N1  - Cited By :7
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Conference Paper
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-33646692701&partnerID=40&md5=d884c694e6feb0ea42ea044704b70fef
+ER  - 
+
+TY  - JOUR
+TI  - The hole saw method for accessing woodpecker nestlings during developmental studies
+T2  - Annales Zoologici Fennici
+VL  - 43
+IS  - 2
+SP  - 235
+EP  - 238
+PY  - 2006
+AU  - Ibarzabal, J.
+AU  - Tremblay, J.A.
+AD  - Département des Sciences Fondamentales, Université du Québec à Chicoutimi, 555 boul. de l'Université, Chicoutimi, Que. G7H 2B1, Canada
+AB  - A method allowing the easy access of nestlings of cavity nesting species is outlined. Briefly, a hole saw fitted to an 18-V cordless drill is used to cut a hole between 5 cm and 8 cm below the cavity entrance. The aperture created allows extraction of nestlings by hand. After manipulation, the wooden disk cut during the formation of the hole is wrapped with duct tape, fitted into the hole and secured in place with two screws. The technique was tested on 25 occupied black-backed woodpecker cavities. No mortality occurred during the drilling process, no nest was abandoned and adults returned to feed nestlings within a few minutes of completion of the manipulations. Furthermore, some opened cavities were reused, either by black-backed woodpeckers or by secondary cavity nesters, suggesting that the nests conserved their natural aspect. © Finnish Zoological and Botanical Publishing Board 2006.
+N1  - Cited By :11
+N1  - Export Date: 11 January 2020
+M3  - Conference Paper
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-33646676061&partnerID=40&md5=64fc250fe23dfffa221eace9c0132cc4
 ER  - 
 
 TY  - SER
@@ -1728,28 +2304,39 @@ KW  - Forest fire
 KW  - Logging
 KW  - Picoides arcticus
 N1  - Cited By :34
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Conference Paper
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-24644470538&partnerID=40&md5=fd1d9c08e613660ffba76f0a3d8a56b0
 ER  - 
 
 TY  - JOUR
-TI  - Insect prey population changes in habitats with declining vs. stable Three-toed Woodpecker Picoides tridactylus populations
-T2  - Ornis Fennica
-VL  - 80
-IS  - 4
-SP  - 182
-EP  - 192
+TI  - A review of the long-term effects of post-harvest silviculture on vertebrate wildlife, and predictive models, with an emphasis on boreal forests in Ontario, Canada
+T2  - Forest Ecology and Management
+VL  - 177
+IS  - 1-3
+SP  - 441
+EP  - 469
 PY  - 2003
-AU  - Fayt, P.
-AD  - Department of Biology, University of Joensuu, P.O. Box 111, Joensuu FIN-80101, Finland
-AB  - The effect of food supply on the Three-toed Woodpecker Picoides tridactylus breeding density and productivity was investigated by comparing the pattern of annual changes in prey abundance in habitats with declining vs. stable woodpecker populations. In a bumt area of eastern Finland, where the woodpecker breeding population has been continuously diminishing, following a major increase the first year after fire, only the abundance of spruce bark beetles (Col., Scolytidae) (the woodpecker autumnspring main insect prey) decreased through the years. Conversely, the abundance of longhorn beetles (Col., Cerambycidae) (the nestling main food supply) increased dramatically. On the other hand, in neighbouring old-growth patches where one pair was breeding annually, abundance of spruce bark and longhorn beetles did not change significantly between years, although the abundance level ofthe bark beetles differed among patches. Hence, my results suggest the woodpecker breeding population to be limited by food supply available outside the breeding season, as shown for other forest bird species. The finding, however, that woodpeckers breeding 6-7 years after the fire reared larger broods than earlier pairs, while brood size did not change annually under old-growth conditions, suggests longhorn beetle availability to be critical to reproductive success.
-N1  - Cited By :5
-N1  - Export Date: 15 January 2020
+DO  - 10.1016/S0378-1127(02)00453-X
+AU  - Thompson, I.D.
+AU  - Baker, J.A.
+AU  - Ter-Mikaelian, M.
+AD  - Canadian Forest Service, 1219 Queen Street East, Sault Ste. Marie, Ont. P6A 2E5, Canada
+AD  - Ontario Forest Research Institute, Ont. Ministry of Natural Resources, 1235 Queen Street East, Sault Ste. Marie, Ont. P6A 5N5, Canada
+AB  - Greater fibre yields may be possible in commercial forests through an increased application of post-harvest silvicultural techniques. In Canadian boreal forests, while basic silvicultural regeneration techniques such as planting, seeding, scarifying, and tending, have been employed since the 1940's, more intensive techniques (intensive forest management (IFM)) such as increased area planted, pre-commercial and commercial thinning, extra tending events, fertilizing, and short rotations may soon be used. There may be effects of basic and more intensive silviculture on biodiversity in the long-term, compared to natural regeneration following logging or especially stand development following natural disturbances. We reviewed approximately 50 papers that reported studies of the long-term effects of post-harvest silviculture on vertebrate wildlife. In particular, large impacts to biodiversity universally occur when native forest types are replaced by rapidly-growing exotic tree species. However, in boreal forests, native tree species are usually planted, and so any effects on associated wildlife communities may be considerably less than in non-native species plantations. Limited long-term information is available, but published studies of effects of basic silviculture and IFM suggested that loss of structures in forest stands was an important common impact that resulted in vertebrate species responses. Fewer structural features in managed forests compared to in natural forests likely results in reduced numbers of animal species dependent on those structures, such as cavity-using species and species for which large decaying woody debris is important. Simplifying stand structures and species composition may result in systems with low connectivity, making them vulnerable to insect and mammalian herbivory. Concentration of IFM in stands on highly productive sites could exacerbate effects (positive or negative), owing to the positive relationship between forest productivity and animal and plant diversity. Species such as black-backed woodpeckers (Picoides arcticus) may be reduced over large areas by stand conversion to mixedwoods, stand structural changes and especially age-class truncation. On the other hand, IFM may contribute increased habitats to species favoring young to mature coniferous-dominated forests, that normally decline across a landscape following clearcutting in boreal mixed and upland conifer stands. An aspatial model, based on published and local information and expert opinion, suggested that IFM and post-harvest silviculture in Ontario's boreal forests would produce positive and negative species-specific effects on the vertebrates that we modeled. However, IFM appeared to result in little increased effect over basic post-harvest silviculture. We also expect that stand-level effects of IFM on species would accumulate through time over landscapes, as more stands come under intensive management and the level of effects will be cumulative. Crown Copyright © 2002 Published by Elsevier Science B.V. All rights reserved.
+KW  - Amphibians
+KW  - Biodiversity
+KW  - Birds
+KW  - Boreal forest
+KW  - Intensive forest management
+KW  - Mammals
+KW  - Ontario
+N1  - Cited By :81
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
-UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0942280445&partnerID=40&md5=8aaabbe929b6be971f2ac8f414d293a3
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0037424919&doi=10.1016%2fS0378-1127%2802%2900453-X&partnerID=40&md5=bb149d9b97a2d8a12281e8d850be12b2
 ER  - 
 
 TY  - JOUR
@@ -1768,7 +2355,7 @@ AD  - Grp. Rech. Ecologie Forestiere I., Dept. des Sciences Biologiques, Univ. d
 AD  - Can. Wildl. Serv., Qué. Regn., 1141 Route de l'Église, Québec, Que. G1V 4H5, Canada
 AB  - We studied snag use for foraging by Black-backed Woodpeckers (Picoides arcticus) one year after a fire in an eastern black spruce (Picea mariana) boreal forest in Quebec, Canada. We searched for signs of foraging (bark flaking and excavation holes) by Black-backed Woodpeckers on 6,536 snags sampled in 56 plots located in portions of the burned forest that had not been salvage logged. A logistic regression model was developed based on the presence or absence of foraging signs. Results showed that Black-backed Woodpeckers used larger snags that were less deteriorated by fire (qualified as high-quality snags). Direct field observations of individuals foraging on 119 snags also indicated that used snags corresponded to those of high predicted quality. Finally, we assessed the relationship between food availability and snag characteristics by measuring the density of wood-boring beetle larvae holes on 30 snags of different size and deterioration classes. High-quality snags contained higher prey densities (wood-boring beetle holes) than smaller and more deteriorated snags. We recommend that forest blocks characterized by large and less deteriorated trees be preserved from salvage logging in recently burned boreal forests in northeastern North America.
 N1  - Cited By :68
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0038818063&partnerID=40&md5=5bdf1ee2c820f2e4e1e49165a211bdd1
@@ -1788,7 +2375,7 @@ AU  - Hannon, S.J.
 AD  - Department of Biological Sciences, University of Alberta, Edmonton, Alta. T6G 2E9, Canada
 AB  - Recent studies suggest that black-backed (Picoides arcticus) and three-toed woodpeckers (Picoides tridactylus) might decrease in abundance because of habitat loss from fire suppression and short-rotation logging in landscapes managed for forestry. We examined black-backed and three-toed woodpecker occupancy of stands in a 2-year post-fire forest, mature and old-growth spruce and pine forests, and six post-fire coniferous forests of different ages. Three-toeds were detected in old stands and in the 2-year-old burn, and their probability of occupancy of burned forests decreased between 3 and 8 years post-fire. Within 50 km of the 2-year-old burn, black-backs were only detected in the burn and not in old-growth or mature conifer stands. However, they did occupy old coniferous stands located 75 and 150 km from the recent burn. They had a similar probability of occupying stands in the 3-, 4-, and 8-year-old burns but were not detected in the 16-year-old burn. The persistence of three-toed woodpeckers in boreal Alberta will likely depend on the presence of both old-growth and recently burned coniferous forests or forests with old-growth structural characteristics. Black-backed woodpeckers appear to be more burn dependent than three-toeds, and their long-term persistence may depend on the frequency of recently burned forests within their dispersal range.
 N1  - Cited By :87
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0036433472&doi=10.1139%2fx02-109&partnerID=40&md5=f5abbcc13c21508af313f73f6ab3cc84
@@ -1819,28 +2406,43 @@ KW  - Soil physical properties
 KW  - Understory vegetation
 KW  - Wildlife
 N1  - Cited By :1
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0036046652&partnerID=40&md5=391df3a06f4fa627d2a046d97b55089e
 ER  - 
 
 TY  - JOUR
-TI  - Available insect prey in bark patches selected by the three-toed Woodpecker picoides tridactylus prior to reproduction
-T2  - Ornis Fennica
-VL  - 76
-IS  - 3
-SP  - 135
-EP  - 140
-PY  - 1999
-AU  - Fayt, P.
-AD  - Department of Biology, University of Joensuu, PO Box 111, Joensuu FIN-80101, Finland
-AB  - The diet composition of the Three-toed Woodpecker (Picoides tridactylus) before the onset of egg laying was investigated in eastern Finland. This was carried out in 1997 and 1998 by collecting bark samples from woodpecker territories in six old-growth and two burnt forest patches during the two month period preceding the start of reproductive activities. Bark samples (10 x 15 cm) were removed from the immediate vicinity of a freshly exploited area, either directly after a foraging bird left the tree or from trees recently exploited. A total of 55 bark samples were collected, from which 33 were found after direct foraging observation. Recently dead spruce comprised 89% of foraging substrates. Including adult, larva and pupa development stages, 3236 potential insect prey were collected and identified. Among them, Scolytids, or bark beetles, represented 96.9% of the insect prey. This proportion did not differ between territories, sexes and years. Some 78.5% of adult bark beetles found were classified as mature spruce forest interior specialists.
-N1  - Cited By :22
-N1  - Export Date: 15 January 2020
+TI  - Woodpecker abundance and habitat use in mature balsam fir forests in Newfoundland
+T2  - Journal of Wildlife Management
+VL  - 64
+IS  - 2
+SP  - 335
+EP  - 345
+PY  - 2000
+DO  - 10.2307/3803231
+AU  - Setterington, M.A.
+AU  - Thompson, I.D.
+AU  - Montevecchi, W.A.
+AD  - Biopsychology Programme, Memorial University of Newfoundland, St. John's, Nfld. A1B 3X9, Canada
+AD  - Canadian Forest Service, 1219 Queen Street East, Sault Ste. Marie, Ont. P6A 5M7, Canada
+AD  - AXYS Environmental Consulting, 2045 Mills Road West, Sidney, BC V8L 3S8, Canada
+AB  - Availability of the oldest age-class of balsam fir (Abies balsamea) forest, the major forest type of western Newfoundland, is declining through logging, insect effects, and management for a 60-year harvest rotation. Loss of old-growth balsam fir forests may limit the availability of woodpecker habitat if nesting trees and feeding substrates are most abundant in these later successional stages. We assessed abundance of black-backed woodpeckers (Picoides arcticus), downy woodpeckers (P. pubescens), and hairy woodpeckers (P. villosus) in 10 stands in each of 3 forest age classes (40-59, 60-79, and >80 yr) of balsam fir in western Newfoundland. For each stand, we quantified 10 habitat variables that may have influenced habitat use by woodpeckers. Black-backed woodpeckers were almost exclusively found in >80-year-old forests. Density of black-backed woodpeckers was significantly related to number of large snags, but negatively to the total number of dead stems. Downy woodpeckers were common and similarly distributed among the 3 forest age classes, and hairy woodpeckers were uncommon and only observed in the 40- and 60-year age classes. Downy and hairy woodpeckers were significantly associated with the number of white birch snags in the stands, a resource that declined with forest age. A reduction in the amount of forest in the oldest age class is probably reducing the population of black-backed woodpeckers in western Newfoundland. We recommend a series of fixed-width transects, coupled with point counts using call broadcasts, as an effective means of surveying Woodpeckers. Forest managers must maintain large areas of old forests, temporally and spatially, to maintain black-backed woodpeckers in Newfoundland.
+KW  - Abies balsamea
+KW  - Balsam fir
+KW  - Black-backed woodpecker
+KW  - Downy woodpecker
+KW  - Hairy woodpecker
+KW  - Newfoundland
+KW  - Old growth
+KW  - Picoides arcticus
+KW  - Picoides pubescens
+KW  - Picoides villosus
+N1  - Cited By :31
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
-UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0033278569&partnerID=40&md5=1e16aafbac4fd8cb86e9ad5c43e0853c
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0033994443&doi=10.2307%2f3803231&partnerID=40&md5=e5fb6af9c0e0a9f4b8cf8f3d8db5ba14
 ER  - 
 
 TY  - JOUR
@@ -1860,10 +2462,40 @@ AD  - Canadian Wildlife Service, 1141 route de l'Église, Sainte-Foy, Que. G1V 4
 AD  - Ctr. de Rech. en Biologie Forestiere, Pavillon Abitibi-Price, Université Laval, Sainte-Foy, Que. PQ G1K 7P4, Canada
 AB  - Comparisons of the effects of logging and fire as disturbance agents on the composition of bird assemblages in boreal ecosystems are stall lacking or are limited to the short-term impacts of clear-cutting. In Quebec, where the boreal forest is largely dominated by black spruce (Picea mariana (Mill.) B S.P) stands, we surveyed 140 point-count stations in 3 postlogging and 4 postfire development stages determined according to the height of the regenerating spruce trees. Species richness did not vary among forest development stages, but bird abundance was higher in recent clearcuts. Recently disturbed areas were characterized by open-land bird assemblages dominated by Neotropical migrants, which reached their highest abundance in clearcuts. Moreover, logged stands were distinguished from burned sites by the absence of cavity-nesting birds Forest-bird assemblages reestablished themselves as soon as young spruces reached the sapling stage. However, the Black-backed Woodpecker (Picoides arcticus), Three-toed Woodpecker (Picoides tridactylus), and Brown Creeper (Certhia americana) were restricted to mature stands or recent burns and are thus likely to be negatively affected by modern forestry, which revolves fire suppression and short logging rotations. We suggest that retention of larger areas of continuous mature forest might be essential to maintain these species in managed regions.
 N1  - Cited By :105
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0033494314&doi=10.1139%2fz99-172&partnerID=40&md5=67b2bb3aa65fce3073de34dd2013daef
+ER  - 
+
+TY  - JOUR
+TI  - Avian communities of mature balsam fir forests in Newfoundland: Age-dependence and implications for timber harvesting
+T2  - Condor
+VL  - 101
+IS  - 2
+SP  - 311
+EP  - 323
+PY  - 1999
+DO  - 10.2307/1369994
+AU  - Thompson, I.D.
+AU  - Hogan, H.A.
+AU  - Montevecchi, W.A.
+AD  - Canadian Forest Service, 1219 Queen Street East, Sault Ste. Marie, Ont. P6A 5M7, Canada
+AD  - Jacques Whitford Environment Limited, 607 Torbay Road, St. John's, Nfld. A1A 4Y6, Canada
+AD  - Biopsychology Programme, Memorial University of Newfoundland, St. John's, Nfld. A1B 4Y6, Canada
+AB  - The amount of old growth balsam fir (Abies balsamea) forest (80+ years) in Newfoundland, Canada has declined and management towards a 60-year rotation age will further reduce the availability of old forest as wildlife habitat. We distinguished among three mature age-classes of forests (40-59, 60-79, and 80+ years) based on tree density, canopy gaps, woody debris, and moss and litter cover on the ground. Canonical correspondence analysis revealed two groups of stands: one containing all of the 40-year-old stands and most 60-year-old stands, and a second that included old growth stands and 4 of 10 60-year-old stands. Forest birds were separated into four groups: one preferring the youngest stands, another observed primarily in old stands, and two others that were intermediate. Bird species richness was greater in 40-year-old forests than in 60+ and 80+-year-old stands. Black-backed Woodpecker (Picoides arcticus) and Gray-checked Thrush (Hylocichla minima) were most abundant in old forests. Six other species also were grouped together with the latter two as an old forest group. We observed more species and more total birds breeding on productive forest site types than on less-productive sites based on a forest ecosystem classification, and five species showed significant relationships between density and site quality. We observed few relationships between stand age and migratory strategy. The only guild for which there was a significant relationship of abundance with forest age was cone seed-eaters, which were more common in second-growth forests than in old forest. To maintain avian diversity in these forest landscapes, some stands must be allowed to develop as old growth.
+KW  - Balsam fir
+KW  - Bird community
+KW  - Boreal forest
+KW  - Forest management
+KW  - Newfoundland
+KW  - Old growth
+KW  - Species richness
+N1  - Cited By :48
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0032915533&doi=10.2307%2f1369994&partnerID=40&md5=e17ffe73e4c9d91003f0bdf15df587db
 ER  - 
 
 TY  - JOUR
@@ -1889,7 +2521,7 @@ KW  - TWINSPAN
 KW  - Vegetation structure
 KW  - Wildfire
 N1  - Cited By :150
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0033178333&doi=10.1890%2f1051-0761%281999%29009%5b0849%3aCIBCIB%5d2.0.CO%3b2&partnerID=40&md5=8c4bee2667b4a90b755d91da262cda05
@@ -1920,7 +2552,7 @@ KW  - Picoides villosus
 KW  - Salvage logging
 KW  - Three-toed woodpecker
 N1  - Cited By :138
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0031785512&doi=10.2307%2f3802002&partnerID=40&md5=6970719cd9759f420b6dbe9e2d2b436f
@@ -1945,14 +2577,14 @@ KW  - Forest fires
 KW  - Picoides arcticus
 KW  - Source-sink dynamics
 N1  - Cited By :9
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0030864971&partnerID=40&md5=c0f29471cc842217157f98423e9a940f
 ER  - 
 
 TY  - JOUR
-TI  - Composition of Bird Communities Following Stand‐Replacement Fires in Northern Rocky Mountain (U.S.A.) Conifer Forests
+TI  - Composition of Bird Communities Following Stand-Replacement Fires in Northern Rocky Mountain (U.S.A.) Conifer Forests
 T2  - Conservation Biology
 VL  - 9
 IS  - 5
@@ -1962,11 +2594,29 @@ PY  - 1995
 DO  - 10.1046/j.1523-1739.1995.9051033.x-i1
 AU  - HUTTO, R.L.
 AD  - Division of Biological Sciences, University of Montana, Missoula, Montana, 59812, United States
-AB  - Abstract: During the two breeding seasons immediately following the numerous and widespread fires of 1988, I estimated bird community composition in each of 34 burned‐forest sites in western Montana and northern Wyoming. I detected an average of 45 species per site and a total of 87 species in the sites combined. A comppilation of these data with bird‐count data from more than 200 additional studies conducted across 15 major vegetation cover types in the northern Rocky Mountain region showed that 15 bird species are generally more abundant in early post‐fire communities than in any other major cover type occurring in the northern Rockies. One bird species (Black‐backed Woodpecker, Picoides arcticus) seems to be nearly restricted in its habitat distribution to standing dead forests created by stand‐replacement fires. Bird communities in recently burned forests are different in composition from those that characterize other Rocky Mountain cover types (including early‐successional clearcuts) primarily because members of three feeding guilds are especially abundant therein: woodpeckers, flycatchers, and seedeaters. Standing, fire‐killed trees provided nest sites for nearly two‐thirds of 31 species that were found nesting in the burned sites. Broken‐top snags and standing dead aspens were used as nest sites for cavity‐nesting species significantly more often than expected on the basis of their relative abundance. Moreover, because nearly all of the broken‐top snags that were used were present before the fire, forest conditions prior to a fire (especially the presence of snags) may be important in determining the suitability of a site to cavity‐nesting birds after a fire. For bird species that were relatively abundant in or relatively restricted to burned forests, stand‐replacement fires may be necessary for long‐term maintenance of their populations. Unfortunately, the current fire policy of public land‐management agencies does not encourage maintenance of stand‐replacement fire regimes, which may be necessary for the creation of conditions needed by the most fire‐dependent bird species. In addition, salvage cutting may reduce the suitability of burned‐forest habitat for birds by removing the most important element—standing, fire‐killed trees–needed for feeding, nesting, or both by the majority of bird species that used burned forests. Composición de las comunidades de aves luego del reemplazo de rodales a cause de incendios forestales en bosques de coníferas de las montañas Rocosas del norte Copyright © 1995, Wiley Blackwell. All rights reserved
+AB  - Abstract: During the two breeding seasons immediately following the numerous and widespread fires of 1988, I estimated bird community composition in each of 34 burned-forest sites in western Montana and northern Wyoming. I detected an average of 45 species per site and a total of 87 species in the sites combined. A comppilation of these data with bird-count data from more than 200 additional studies conducted across 15 major vegetation cover types in the northern Rocky Mountain region showed that 15 bird species are generally more abundant in early post-fire communities than in any other major cover type occurring in the northern Rockies. One bird species (Black-backed Woodpecker, Picoides arcticus) seems to be nearly restricted in its habitat distribution to standing dead forests created by stand-replacement fires. Bird communities in recently burned forests are different in composition from those that characterize other Rocky Mountain cover types (including early-successional clearcuts) primarily because members of three feeding guilds are especially abundant therein: woodpeckers, flycatchers, and seedeaters. Standing, fire-killed trees provided nest sites for nearly two-thirds of 31 species that were found nesting in the burned sites. Broken-top snags and standing dead aspens were used as nest sites for cavity-nesting species significantly more often than expected on the basis of their relative abundance. Moreover, because nearly all of the broken-top snags that were used were present before the fire, forest conditions prior to a fire (especially the presence of snags) may be important in determining the suitability of a site to cavity-nesting birds after a fire. For bird species that were relatively abundant in or relatively restricted to burned forests, stand-replacement fires may be necessary for long-term maintenance of their populations. Unfortunately, the current fire policy of public land-management agencies does not encourage maintenance of stand-replacement fire regimes, which may be necessary for the creation of conditions needed by the most fire-dependent bird species. In addition, salvage cutting may reduce the suitability of burned-forest habitat for birds by removing the most important element—standing, fire-killed trees–needed for feeding, nesting, or both by the majority of bird species that used burned forests. Composición de las comunidades de aves luego del reemplazo de rodales a cause de incendios forestales en bosques de coníferas de las montañas Rocosas del norte Copyright © 1995, Wiley Blackwell. All rights reserved
 N1  - Cited By :258
-N1  - Export Date: 15 January 2020
+N1  - Export Date: 11 January 2020
 M3  - Article
 DB  - Scopus
 UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0028995050&doi=10.1046%2fj.1523-1739.1995.9051033.x-i1&partnerID=40&md5=445682144311a175eea36fdd78b7e012
+ER  - 
+
+TY  - JOUR
+TI  - Foraging behavior of black-backed and three-toed woodpeckers during spring and summer in a Canadian boreal forest
+T2  - Canadian Journal of Zoology
+VL  - 72
+IS  - 11
+SP  - 1957
+EP  - 1959
+PY  - 1994
+DO  - 10.1139/z94-266
+AU  - Villard, P.
+AD  - Fac.Sci.,Lab.Ecol., Dijon, 21004, France
+N1  - Cited By :29
+N1  - Export Date: 11 January 2020
+M3  - Article
+DB  - Scopus
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-0028160624&doi=10.1139%2fz94-266&partnerID=40&md5=1c2443ec0db97e502a0c8b21aeffbb80
 ER  - 
 
