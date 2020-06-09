@@ -1,7 +1,7 @@
 Package: litsearchr
 Type: Package
 Title: Automated Search Term Selection and Search Strategy for Systematic Reviews
-Version: 0.4.1
+Version: 1.0.0
 Authors@R: c(
   person(
     given = "Eliza",
@@ -40,7 +40,7 @@ Description: Systematic review, meta-analysis, and other forms of evidence
     in a search strategy as described in Grames et al. (2019) 
     <doi:10.1111/2041-210X.13268>. It can automatically write Boolean 
     search strings in up to 53 different languages, with stemming support 
-    for English.  To assess the quality of a search, it can also check the 
+    for English. To assess the quality of a search, it can also check the 
     results of a search against a set of known, relevant articles to get 
     performance metrics.
 License: GPL-3
@@ -55,8 +55,6 @@ Imports:
     synthesisr,
     stopwords,
     tm
-Remotes: 
-    rmetaverse/synthesisr
 Suggests: 
     xml2,
     translate,
@@ -64,4 +62,4 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
-Date: 2020-01-02
+Date: 2020-05-18
