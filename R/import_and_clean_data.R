@@ -9,7 +9,7 @@ import_results <-  function(directory = NULL,
                             file=NULL,
                             verbose = TRUE) {
   if(!is.null(directory)){
-    filename <- paste(directory, list.files(directory), sep="")
+    filename <- list.files(directory, full.names = TRUE)
   }else if(!is.null(file)){
     filename <- file
   }else{stop(print("Supply either a directory or a file containing search results."))}

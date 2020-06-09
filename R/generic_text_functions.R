@@ -270,6 +270,7 @@ merge_stems <- function(dfm) {
     stemmed = SnowballC::wordStem(dfm$dimnames$Terms),
     stringsAsFactors = FALSE
   )
+  Encoding(lookup$initial) <- "latin-9" #seems to solve the issues windows users report
   dtm_df <- data.frame(i = dfm$i, j = dfm$j, v = dfm$v)
 
   if (base::anyDuplicated(lookup$stemmed) > 0) {

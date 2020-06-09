@@ -34,7 +34,7 @@ In our empirical example, we begin with a naive search intended to capture a set
 
 # If you are using your own bibliographic files, you should not use system.file
 # You should instead give it the full path (or relative path from your current working directory) to the directory where your files are stored
-search_directory <- system.file("extdata/", package="litsearchr")
+search_directory <- system.file("extdata", package="litsearchr")
 
 naiveimport <-
   litsearchr::import_results(directory = search_directory, verbose = TRUE)
@@ -202,7 +202,7 @@ We then read in our full search results and compare them to our gold standard to
 
 
 ```{r}
-results_directory <- system.file("extdata/", package="litsearchr")
+results_directory <- system.file("extdata", package="litsearchr")
 
 retrieved_articles <-
   litsearchr::import_results(directory = results_directory, verbose = TRUE)
