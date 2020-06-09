@@ -1,12 +1,12 @@
 ---
-title: "Search term selection with litsearchr for an example systematic review of the effects of forest fragmentation on bird-insect interactions"
+title: "Search term selection with litsearchr v0.4.1 for an example systematic review of the effects of fire on black-backed woodpeckers"
 
 author: "Eliza M. Grames and Emily A. Hennessy"
 
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Search term selection with litsearchr for an example systematic review of the effects of forest fragmentation on bird-insect interactions}
+  %\VignetteIndexEntry{Search term selection with litsearchr v0.4.1 for an example systematic review of the effects of fire on black-backed woodpeckers}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

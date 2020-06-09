@@ -29,3 +29,15 @@ The main change in this version is that all core text processing functions have 
 Minor changes:
 -- fixed the problem of NA string similarity in check_recall
 -- hid some functions that are only called internally by other functions
+
+
+# litsearchr 1.0.0
+
+This is the first major release of litsearchr! Dependencies for finding cutoffs in keyword importance are no longer maintained, so the method has shifted to change point instead of optimal knot placement. Similarly, Rapid Automatic Keyword Extraction is no longer an option and has been completely replaced by fakerake. These changes make the new functions no longer compatible with previous versions. 
+
+Summary of changes in this version:
+-- switched cutoff methods to changepoint instead of optimal knot placement
+-- permanently replaced RAKE with fakerake
+-- fixed issue with tagged keywords not being recognized properly
+-- removed stringr dependency
+-- switched synthesisr dependency from remotes
