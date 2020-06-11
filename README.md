@@ -8,7 +8,7 @@ Our intent in creating ``litsearchr`` is to make the process of designing a sear
 
 Getting started
 ------------------------------------------
-Check out the litsearchr website at <https://elizagrames.github.io/litsearchr> or install the package in R with remotes::install_github("elizagrames/litsearchr"). 
+Check out the litsearchr website at <https://elizagrames.github.io/litsearchr> or install the package in R with remotes::install_github("elizagrames/litsearchr", ref="main"). 
 
 Comments, suggestions, bugs, and questions
 ------------------------------------------
