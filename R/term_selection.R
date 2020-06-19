@@ -304,7 +304,7 @@ select_unigrams <- function(graph, imp_method = "strength") {
 #' Find node cutoff strength
 #' @description Find the minimum node strength to use as a cutoff point for important nodes.
 #' @param graph An igraph graph object
-#' @param method the cutoff method to use, either "spline" or "cumulative"
+#' @param method the cutoff method to use, either "changepoint" or "cumulative"
 #' @param percent if using method cumulative, the total percent of node strength to capture
 #' @param knot_num if using method changepoint, the number of knots to identify
 #' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
