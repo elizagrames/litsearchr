@@ -338,7 +338,7 @@ find_cutoff <-
 
 #' Extract potential keywords
 #' @description Extracts keywords identified as important.
-#' @param reduced_graph a reduced graph with only important nodes created with reduce_grah()
+#' @param reduced_graph a reduced graph with only important nodes created with reduce_graph()
 #' @return a character vector of potential keywords to consider
 #' @example inst/examples/get_keywords.R
 get_keywords <- function(reduced_graph) {
