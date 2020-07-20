@@ -157,39 +157,22 @@ fakerake <- function(text,
 #' @return a matrix with documents as rows and terms as columns
 #' @example inst/examples/create_dfm.R
 create_dfm <-
-  function(elements, features) {
-
+  function(elements, features){
 
     elements <- tolower(elements)
-    z <- replace_ngrams(elements, features)
-    #z <- gsub("_", "__", z)
-    if(any(unlist(lapply(strsplit(features, " "), length))==1)){
-      unigrams <- features[which(unlist(lapply(strsplit(features, " "), length))==1)]
-      replacements <- paste(unigrams, "+", sep="")
-      #unigrams <- paste("\\b", unigrams, "\\b", sep="")
+    features <- tolower(features)
 
-      for(i in 1:length(unigrams)){
-        z <- gsub(unigrams[i], replacements[i], z)
-      }
+    detections <- lapply(features, function(x){
+      grep(x, elements)
+    })
+
+    dfm_holder <- array(dim=c(length(elements), length(features)))
+    for(i in 1:length(features)){
+      dfm_holder[unlist(detections[[i]]), i] <- 1
     }
-
-    z <- strsplit(z, " ")
-
-    drop_unigrams <- function(m) {
-      terms <- unique(append(m[sapply(m, grepl, pattern = "_")],
-                    m[sapply(m, grepl, pattern = "\\+")]))
-    }
-
-    terms <- lapply(z, drop_unigrams)
-
-    docs <- sapply(lapply(z, drop_unigrams), paste, collapse=" ")
-    docs <- gsub("\\+", "", docs)
-
-    dfm <-
-      construct_dtm(docs, ngram_check = FALSE, min_freq = 1)
-
-    dfm$dimnames$Terms <- litsearchr::remove_punctuation(dfm$dimnames$Terms, preserve_punctuation = "-")
-
+    dfm_holder[is.na(dfm_holder)] <- 0
+    dfm <- as.matrix(dfm_holder)
+    colnames(dfm) <- features
     return(dfm)
   }
 
@@ -304,7 +287,7 @@ select_unigrams <- function(graph, imp_method = "strength") {
 #' Find node cutoff strength
 #' @description Find the minimum node strength to use as a cutoff point for important nodes.
 #' @param graph An igraph graph object
-#' @param method the cutoff method to use, either "changepoint" or "cumulative"
+#' @param method the cutoff method to use, either "spline" or "cumulative"
 #' @param percent if using method cumulative, the total percent of node strength to capture
 #' @param knot_num if using method changepoint, the number of knots to identify
 #' @param imp_method a character specifying the importance measurement to be used; takes arguments of "strength", "eigencentrality", "alpha", "betweenness", "hub" or "power"
@@ -338,7 +321,7 @@ find_cutoff <-
 
 #' Extract potential keywords
 #' @description Extracts keywords identified as important.
-#' @param reduced_graph a reduced graph with only important nodes created with reduce_graph()
+#' @param reduced_graph a reduced graph with only important nodes created with reduce_grah()
 #' @return a character vector of potential keywords to consider
 #' @example inst/examples/get_keywords.R
 get_keywords <- function(reduced_graph) {

@@ -89,7 +89,7 @@ naivedfm <-
 
 naivegraph <-
   litsearchr::create_network(
-    search_dfm = as.matrix(naivedfm),
+    search_dfm = naivedfm,
     min_studies = 2,
     min_occ = 2
   )
