@@ -62,4 +62,4 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
-Date: 2020-05-18
+Date: 2020-07-20
