@@ -15,7 +15,7 @@ find_cutoff(
 \arguments{
 \item{graph}{An igraph graph object}
 
-\item{method}{the cutoff method to use, either "spline" or "cumulative"}
+\item{method}{the cutoff method to use, either "changepoint" or "cumulative"}
 
 \item{percent}{if using method cumulative, the total percent of node strength to capture}
 

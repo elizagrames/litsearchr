@@ -7,7 +7,7 @@
 get_keywords(reduced_graph)
 }
 \arguments{
-\item{reduced_graph}{a reduced graph with only important nodes created with reduce_grah()}
+\item{reduced_graph}{a reduced graph with only important nodes created with reduce_graph()}
 }
 \value{
 a character vector of potential keywords to consider
