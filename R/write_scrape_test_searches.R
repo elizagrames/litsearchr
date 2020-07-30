@@ -557,7 +557,8 @@ check_recall <- function (true_hits, retrieved) {
   matches <- lapply(litsearchr::remove_punctuation(tolower(true_hits), preserve_punctuation=c("-")),
                     synthesisr::fuzzdist,
                     b=litsearchr::remove_punctuation(tolower(retrieved), preserve_punctuation=c("-")))
-  similarity_table <- cbind(true_hits, retrieved[unlist(lapply(matches, which.min))], 1-unlist(lapply(matches, min, na.rm=TRUE)))
-  colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
+  similarity_table <- data.frame(Title = true_hits,
+                                 Best_Match = retrieved[unlist(lapply(matches, which.min))],
+                                 Similarity = 1-unlist(lapply(matches, min, na.rm=TRUE)))
   return(similarity_table)
 }
