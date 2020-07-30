@@ -243,7 +243,7 @@ available_languages <- function(){
 #' @return a text string
 #'@example inst/examples/write_titles.R
 write_title_search <- function(titles){
-  titlekeys <- sapply(titles, litsearchr::get_tokens)
+  titlekeys <- sapply(tolower(titles), litsearchr::get_tokens)
 
   title <- c()
   for (i in 1:length(titlekeys)){
@@ -253,6 +253,7 @@ write_title_search <- function(titles){
 
   title_search <- paste(title, collapse=" OR ")
   title_search <- gsub("\\\\", "", title_search)
+  title_search <- litsearchr::remove_punctuation(title_search, preserve_punctuation = c("-", "\\)", "\\("))
 
   return(title_search)
 }
@@ -553,7 +554,7 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
 #' @return a table of the best match for each true title from the search results along with a title similarity score
 #' @example inst/examples/check_recall.R
 check_recall <- function (true_hits, retrieved) {
-  matches <- lapply(true_hits, synthesisr::fuzzdist, b=retrieved)
+  matches <- lapply(tm::removePunctuation(tolower(true_hits)), synthesisr::fuzzdist, b=tm::removePunctuation(tolower(retrieved)))
   similarity_table <- cbind(true_hits, retrieved[unlist(lapply(matches, which.min))], 1-unlist(lapply(matches, min, na.rm=TRUE)))
   colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
   return(similarity_table)

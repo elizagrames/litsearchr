@@ -47,7 +47,7 @@ get_stopwords <- function(language = "English"){
 #' @examples get_tokens("On the Origin of Species", language="English")
 get_tokens <- function(text, language = "English"){
   language <- litsearchr::language_code(language)
-  tm::scan_tokenizer(tm::removeWords(text, tm::stopwords(language)))
+  text <- tm::scan_tokenizer(tm::removeWords(text, tm::stopwords(language)))
   return(text)
 }
 
