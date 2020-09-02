@@ -52,7 +52,7 @@ Imports:
     utils,
     igraph,
     ngram,
-    synthesisr,
+    synthesisr (>= 0.3),
     stopwords,
     tm
 Suggests: 
