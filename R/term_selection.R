@@ -117,7 +117,10 @@ fakerake <- function(text,
 
   # text <- litsearchr::remove_punctuation(text, preserve_punctuation = c("-", "_"))
   stop1 <- paste(" ", stops[1], " ", sep = "")
+  text <- gsub("-", "XXYYZZQQ", text)
   text <- gsub("([-_])|[[:punct:]]", stop1, text)
+  text <- gsub("XXYYZZQQ", "-", text)
+
 
   if (any(grepl("  ", text))) {
     while (any(grepl("  ", text))) {
