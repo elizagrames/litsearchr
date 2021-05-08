@@ -554,8 +554,11 @@ scrape_openthesis <- function(search_terms=NULL, URL=NULL, writefile=FALSE, verb
 #' @return a table of the best match for each true title from the search results along with a title similarity score
 #' @example inst/examples/check_recall.R
 check_recall <- function (true_hits, retrieved) {
-  matches <- lapply(tm::removePunctuation(tolower(true_hits)), synthesisr::fuzzdist, b=tm::removePunctuation(tolower(retrieved)))
-  similarity_table <- cbind(true_hits, retrieved[unlist(lapply(matches, which.min))], 1-unlist(lapply(matches, min, na.rm=TRUE)))
-  colnames(similarity_table) <- c("Title", "Best_Match", "Similarity")
+  matches <- lapply(litsearchr::remove_punctuation(tolower(true_hits), preserve_punctuation=c("-")),
+                    synthesisr::fuzzdist,
+                    b=litsearchr::remove_punctuation(tolower(retrieved), preserve_punctuation=c("-")))
+  similarity_table <- data.frame(Title = true_hits,
+                                 Best_Match = retrieved[unlist(lapply(matches, which.min))],
+                                 Similarity = 1-unlist(lapply(matches, min, na.rm=TRUE)))
   return(similarity_table)
 }
